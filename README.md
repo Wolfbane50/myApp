@@ -29,3 +29,24 @@ Run `grunt build` for building and `grunt serve` for preview.
 ## Testing
 
 Running `npm test` will run the unit tests with karma.
+
+Angular Full Stack generators
+
+Available generators:
+•App ?angular-fullstack (aka angular-fullstack:app)
+
+•Server Side ?angular-fullstack:endpoint
+
+•Client Side ?angular-fullstack:route
+?angular-fullstack:component
+?angular-fullstack:controller
+?angular-fullstack:filter
+?angular-fullstack:directive
+?angular-fullstack:service
+?angular-fullstack:provider
+?angular-fullstack:factory
+?angular-fullstack:decorator
+
+•Deployment ?angular-fullstack:openshift
+?angular-fullstack:heroku
+
