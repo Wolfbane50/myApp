@@ -16,8 +16,8 @@ class NavbarController {
         state : 'spGridExample'
       },
       {
-        title : 'item 2',
-        state : 'home'
+        title : 'Big Finish Grid View',
+        state : 'bfGrid'
       }
     ];
 

@@ -1,0 +1,54 @@
+
+  <h1>Big Finish Audios</h1>
+Filters:  <label>Series:
+     <input type="text" ng-model="search.Series" /></label>
+<label>Title:
+     <input type="text" ng-model="search.Title" /></label>
+<label>Doctor:
+     <input type="text" ng-model="search.Doctor" /></label>
+<label>Featuring:
+     <input type="text" ng-model="search.Featuring" /></label>
+<hr />
+<div style="height: 700px; overflow-y: scroll;">
+
+<table>
+<tr>
+   <th>Got It</th>
+   <th>Series</th>
+   <th>Number</th>
+   <th>Title</th>
+   <th>Doctor</th>
+   <th>Doctor Actor</th>
+   <th>Featuring</th>
+   <th>Released</th>
+   <th>Audio Files</th>
+</tr>
+<tr ng-repeat="rec in bfGridCtrl.audioList | filter:search">
+<td ng-class-odd="'altRow'"><img ng-src="{{gotIt(rec)}}" ></td>
+<td ng-class-odd="'altRow'">{{bfGridCtrlrec.Series}}</td>
+<td ng-class-odd="'altRow'">{{rec.Number}}</td>
+<td ng-class-odd="'altRow'">{{rec.Title}}</td>
+<td ng-class-odd="'altRow'">{{rec.Doctor}}<dh-sprite-set config="doctorSpriteSpec.min.json" feat='rec.Doctor'></dh-sprite-set></td>
+<td ng-class-odd="'altRow'">{{rec.Doctor_Actor}}</td>
+<td ng-class-odd="'altRow'">{{rec.Featuring}}<dh-sprite-set config="spriteSpec.min.json" feat='rec.Featuring'></dh-sprite-set></td>
+<td ng-class-odd="'altRow'">{{rec.Released | date : 'MMM yyyy' }}</td>
+<td ng-class-odd="'altRow'">
+					       <div ng-show="rec.Chapters.length">
+					         <h3>Chapters:</h3>
+					  	   	 <ul ng-repeat="ep in rec.Chapters">
+								<li>&nbsp;<a href="{{rec.SPath}}/{{ep}}" target="_blank">
+									{{ep}}
+								</a>
+								</li>
+
+							 </ul>
+					       </div>
+        				   <div ng-show="rec.Fname">
+					         <a href="{{rec.SPath}}/{{rec.Fname}}" target="_blank">
+					           {{rec.Fname}}
+					         </a>
+					       </div>
+</td>
+</tr>
+</table>
+</div>

@@ -10,4 +10,8 @@ angular.module('myappApp')
       url: '/spriteGridExample',
       template: '<sprite-grid-example></sprite-grid-example>'
     });
+    //$stateProvider.state('bfGrid', {
+    //  url: '/bfGrid',
+    //  template: '<bf-grid></bf-grid>'
+    //});
   });
