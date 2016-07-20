@@ -5,6 +5,6 @@ angular.module('myappApp')
     $stateProvider
       .state('bfGrid', {
         url: '/bfGrid',
-        template: '<bf-grid-bf></bf-grid>'
+        template: '<bf-grid></bf-grid>'
       });
   });
