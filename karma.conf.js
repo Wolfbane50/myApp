@@ -32,8 +32,7 @@ module.exports = function(config) {
       'client/app/app.js',
       'client/{app,components}/**/*.module.js',
       'client/{app,components}/**/*.js',
-      'client/{app,components}/**/*.html',
-      'client/app/components/**/*.js',
+      'client/{app,components}/**/*.html'
     ],
 
     preprocessors: {
@@ -61,7 +60,7 @@ module.exports = function(config) {
     exclude: [],
 
     // web server port
-    port: 8080,
+    port: 9020,
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG

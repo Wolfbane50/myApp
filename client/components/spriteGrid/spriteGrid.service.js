@@ -72,7 +72,7 @@ function spriteGridService($http) {
 
 
      $http({ method: 'GET', url: url }).then(function(result) {
-                console.log("Got data from spriteSpec.json");
+                //console.log("Got data from spriteSpec.json");
 
                 // process result
                 var myData = result.data
@@ -98,7 +98,7 @@ function spriteGridService($http) {
     var callbackHash = {}; // Contains all the config complete callbacks for a configuration
     return {
         "generate" : function (configUrl, callback) {
-            console.log("In generate... URL = " + configUrl);
+            //console.log("In generate... URL = " + configUrl);
             var spriteConfig;
             if ( setConfigs[configUrl] ) {
                // Reusing the configuration for the input url

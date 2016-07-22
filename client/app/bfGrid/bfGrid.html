@@ -25,7 +25,7 @@ Filters:  <label>Series:
 </tr>
 <tr ng-repeat="rec in bfGridCtrl.audioList | filter:search">
 <td ng-class-odd="'altRow'"><img ng-src="{{gotIt(rec)}}" ></td>
-<td ng-class-odd="'altRow'">{{bfGridCtrlrec.Series}}</td>
+<td ng-class-odd="'altRow'">{{rec.Series}}</td>
 <td ng-class-odd="'altRow'">{{rec.Number}}</td>
 <td ng-class-odd="'altRow'">{{rec.Title}}</td>
 <td ng-class-odd="'altRow'">{{rec.Doctor}}<dh-sprite-set config="doctorSpriteSpec.min.json" feat='rec.Doctor'></dh-sprite-set></td>
