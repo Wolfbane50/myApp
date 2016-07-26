@@ -1,14 +1,14 @@
-<script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header">
-        <h3 class="modal-title">Loading Data</h3>
-    </div>
-    <div class="modal-body">
-    <p>We Are Sorry!</p>
-    <p>Eventually the data will be moved to a database for quicker access.  For now, you must wait for it to load...
-    </div>
-</script>
 
 <div class="container">
+  <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+      <h3 class="modal-title">Loading Data</h3>
+    </div>
+    <div class="modal-body">
+      <p>We Are Sorry!</p>
+      <p>Eventually the data will be moved to a database for quicker access. For now, you must wait for it to load...
+    </div>
+  </script>
 
 
   <div class="row" style="background-color: dark-gray;">
@@ -16,234 +16,211 @@
       <h2>BF Audios</h2>
     </div>
     <div class="col-lg-8" id="buttonBar">
-    <a class="pull-right btn btn-primary" ng-click="Bftree.showJSONstuff()">
-                <span>Generate JSON</span></a>
-  <button ng-json-export-file data="Bftree.audioList"
-        filename="'bigFinish'" class="pull-right btn btn-primary">Export JSON</button>
-  <a ng-show="Bftree.showShow" class="btn btn-primary" ng-click="Bftree.prevItem()"><span>&lt;&lt; Previous</span></a>
-  <a ng-show="Bftree.showShow" class="btn btn-primary" ng-click="Bftree.nextItem()"><span>Next &gt;&gt;</span></a>
+      <a class="pull-right btn btn-primary" ng-click="Bftree.showJSONstuff()">
+        <span>Generate JSON</span></a>
+      <button ng-json-export-file data="Bftree.audioList" filename="'bigFinish'" class="pull-right btn btn-primary">Export JSON</button>
+      <a ng-show="Bftree.showShow" class="btn btn-primary" ng-click="Bftree.prevItem()"><span>&lt;&lt; Previous</span></a>
+      <a ng-show="Bftree.showShow" class="btn btn-primary" ng-click="Bftree.nextItem()"><span>Next &gt;&gt;</span></a>
 
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-12">
-        <div class="row">
-          <div class="col-lg-4" style="height: 750px; overflow:scroll;">
+      <div class="row">
+        <div class="col-lg-4" style="height: 750px; overflow:scroll;">
 
-            <!-- Nested list template -->
-            <script type="text/ng-template" id="items_renderer.html">
-              <div ui-tree-handle>
-                <a class="btn btn-default btn-xs" data-nodrag ng-click="Bftree.toggle(this)">
-                     <span class="glyphicon" ng-class="itemIcon(this)"></span></a>
-                <span data-nodrag ng-show="item.Title"><a ng-click="Bftree.itemSelect(this)" ng-class="Bftree.selectedItemClass(this)">{{item.Title}}</a></span>
-                <span data-nodrag ng-hide="item.Title"><a ng-click="Bftree.itemSelect(this)" ng-class="Bftree.selectedItemClass(this)">{{item.Series}}</a></span>
-                <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="Bftree.sureRemove(this)">
-                      <span class="glyphicon glyphicon-remove"></span></a>
-                <a ng-hide="item.Title" class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="Bftree.newSubItem(this)"
-                      style="margin-right: 8px;">
-                      <span class="glyphicon glyphicon-plus"></span></a>
-              </div>
-              <ol ui-tree-nodes data-collapsed="true" ng-model="item.items" ng-class="{hidden: collapsed}">
-                <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'">
-                </li>
-              </ol>
-            </script>
-            <div ui-tree>
-
-                    <a class="btn btn-primary btn-xs" ng-click="Bftree.myCollapseAll(this)">
-                        <span>Collapse Tree</span></a>
-                    <a class="btn btn-primary btn-xs" ng-click="Bftree.myExpandAll(this)">
-                        <span>Expand Tree</span></a>
-                    <a class="btn btn-primary btn-xs" ng-click="Bftree.newSeries(this)">
-                        <span>New Series</span></a>
-
-              <ol ui-tree-nodes ng-model="Bftree.audioTree">
-                <li ng-repeat="item in Bftree.audioTree" ui-tree-node ng-include="'items_renderer.html'"></li>
-              </ol>
+          <!-- Nested list template -->
+          <script type="text/ng-template" id="items_renderer.html">
+            <div ui-tree-handle>
+              <a class="btn btn-default btn-xs" data-nodrag ng-click="Bftree.toggle(this)">
+                <span class="glyphicon" ng-class="itemIcon(this)"></span></a>
+              <span data-nodrag ng-show="item.Title"><a ng-click="Bftree.itemSelect(this)" ng-class="Bftree.selectedItemClass(this)">{{item.Title}}</a></span>
+              <span data-nodrag ng-hide="item.Title"><a ng-click="Bftree.itemSelect(this)" ng-class="Bftree.selectedItemClass(this)">{{item.Series}}</a></span>
+              <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="Bftree.sureRemove(this)">
+                <span class="glyphicon glyphicon-remove"></span></a>
+              <a ng-hide="item.Title" class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="Bftree.newSubItem(this)" style="margin-right: 8px;">
+                <span class="glyphicon glyphicon-plus"></span></a>
             </div>
+            <ol ui-tree-nodes data-collapsed="true" ng-model="item.items" ng-class="{hidden: collapsed}">
+              <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'">
+              </li>
+            </ol>
+          </script>
+          <div ui-tree>
+
+            <a class="btn btn-primary btn-xs" ng-click="Bftree.myCollapseAll()">
+              <span>Collapse Tree</span></a>
+            <a class="btn btn-primary btn-xs" ng-click="Bftree.myExpandAll()">
+              <span>Expand Tree</span></a>
+            <a class="btn btn-primary btn-xs" ng-click="Bftree.newSeries(this)">
+              <span>New Series</span></a>
+
+            <ol ui-tree-nodes ng-model="Bftree.audioTree">
+              <li ng-repeat="item in Bftree.audioTree" ui-tree-node data-collapsed="true" ng-include="'items_renderer.html'"></li>
+            </ol>
           </div>
-         <div class="col-lg-8">
-            <div class="bg-primary" style="text-align: center;" ng-show="Bftree.editMode">Edit Mode</div>
-            <div ng-show="Bftree.showJSON">
-                    <a class="pull-right btn btn-primary btn-xs" ng-click="Bftree.doneJSON()">
-                        <span>Done with JSON</span></a>
-
-                  <pre class="code">{{ Bftree.audioTree | json }}</pre>
-             </div>
-      <div id="response_pane">
-      <div ng-hide="Bftree.showShow"><h1>Select an Item from tree ...</h1></div>
-      <div ng-show="Bftree.showShow">
-
-
-        <div class="checkbox">
-          <label><input type="checkbox" ng-model="Bftree.editMode">Edit Mode</label>
         </div>
+        <div class="col-lg-8">
+          <div class="bg-primary" style="text-align: center;" ng-show="Bftree.editMode">Edit Mode</div>
+          <div ng-show="Bftree.showJSON">
+            <a class="pull-right btn btn-primary btn-xs" ng-click="Bftree.doneJSON()">
+              <span>Done with JSON</span></a>
 
-        <div class="row">
-           <div class="col-sm-6">
-              <span ng-show="Bftree.editMode" class="lead">Episode:  <input type="text" placeholder="Title" ng-model="Bftree.selItem.Title"></span>
-              <span ng-hide="Bftree.editMode" class="lead">{{Bftree.selItem.Title}}</span>
-           </div>
-           <div class="col-sm-6">
-               <a ng-href ="{{Bftree.getBFLink()}}" target="_blank" > <img ng-show="Bftree.selItem.Image" ng-src="{{Bftree.selItem.Image}}" style="float: right;" /></a>
-           </div>
-        </div>
-
-
-          <div class="row">
-             <div class="col-sm-6">
-                   <div  ng-show="Bftree.editMode" class="form-group">
-                <label for="sel1">Doctor:</label>
-                <select class="form-control" id="sel1" ng-model="Bftree.selItem.Doctor">
-                  <option value="1st">1st W. Hartnell</option>
-                  <option value="2nd">2nd P. Troughton</option>
-                  <option value="3rd">3rd J. Pertwee</option>
-                  <option value="4th">4th T. Baker</option>
-                  <option value="5th">5th P. Davisson</option>
-                  <option value="6th">6th C. Baker</option>
-                  <option value="7th">7th S. McCoy</option>
-                  <option value="8th">8th P. McGann</option>
-                  <option value="9th">9th C. Eccleston</option>
-                  <option value="10th">10th D. Tennant</option>
-                  <option value="11th">11th M. Smith</option>
-                  <option value="12th">12th P. Capaldi</option>
-                  <option value="War">War J. Hurt</option>
-                  <option value="Other">Other</option>
-                  <option value="None">None</option>
-                </select>
-                          </div>
-                          <div ng-style="setDoctorStyle(selItem.Doctor);" ></div>
-             </div>
-             <div class="col-sm-6">
-               <div  ng-show="Bftree.editMode" class="form-group">
-                 <label for="inputdefault">Featuring (companions and enemies):</label>
-                 <input class="form-control" id="inputdefault" type="text" ng-model="Bftree.selItem.Featuring">
-               </div>
-               <p  ng-hide="Bftree.editMode">Featuring:  {{selItem.Featuring}}</p>
-               <dh-featuring feat='Bftree.selItem.Featuring'></dh-featuring>
-             </div>
-
-
-
+            <pre class="code">{{ Bftree.audioTree | json }}</pre>
           </div>
+          <div id="response_pane">
+            <div ng-hide="Bftree.showShow">
+              <h1>Select an Item from tree ...</h1></div>
+            <div ng-show="Bftree.showShow">
 
 
-           <div class="row">
-              <div class="col-sm-3">
-                <div class="form-group">
-                  <label for="inputdefault">Series:</label><span ng-hide="Bftree.editMode">&nbsp;&nbsp;{{Bftree.selItem.Series}}</span>
-                  <input ng-show="Bftree.editMode" class="form-control" id="inputdefault" type="text" ng-model="Bftree.selItem.Series">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="Bftree.editMode">Edit Mode</label>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <span ng-show="Bftree.editMode" class="lead">Episode:  <input type="text" placeholder="Title" ng-model="Bftree.selItem.Title"></span>
+                  <span ng-hide="Bftree.editMode" class="lead">{{Bftree.selItem.Title}}</span>
+                </div>
+                <div class="col-sm-6">
+                  <a ng-href="{{Bftree.getBFLink()}}" target="_blank"> <img ng-show="Bftree.selItem.Image" ng-src="{{Bftree.selItem.Image}}" style="float: right;" /></a>
                 </div>
               </div>
-              <div class="col-sm-3">
-                <div class="form-group">
-                  <label for="inputdefault">Number in Series:</label><span ng-hide="Bftree.editMode">&nbsp;&nbsp;{{Bftree.selItem.Number}}</span>
-                  <input ng-show="Bftree.editMode" class="form-control" id="inputdefault" type="text" ng-model="Bftree.selItem.Number">
+
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div ng-show="Bftree.editMode" class="form-group">
+                    <label for="sel1">Doctor:</label>
+                    <select class="form-control" id="sel1" ng-model="Bftree.selItem.Doctor">
+                      <option value="1st">1st W. Hartnell</option>
+                      <option value="2nd">2nd P. Troughton</option>
+                      <option value="3rd">3rd J. Pertwee</option>
+                      <option value="4th">4th T. Baker</option>
+                      <option value="5th">5th P. Davisson</option>
+                      <option value="6th">6th C. Baker</option>
+                      <option value="7th">7th S. McCoy</option>
+                      <option value="8th">8th P. McGann</option>
+                      <option value="9th">9th C. Eccleston</option>
+                      <option value="10th">10th D. Tennant</option>
+                      <option value="11th">11th M. Smith</option>
+                      <option value="12th">12th P. Capaldi</option>
+                      <option value="War">War J. Hurt</option>
+                      <option value="Other">Other</option>
+                      <option value="None">None</option>
+                    </select>
+                  </div>
+                  <dh-sprite-set config="doctorSpriteSpec.min.json" feat='Bftree.selItem.Doctor' dh-float="'left'"></dh-sprite-set>
                 </div>
+                <div class="col-sm-6">
+                  <div ng-show="Bftree.editMode" class="form-group">
+                    <label for="inputdefault">Featuring (companions and enemies):</label>
+                    <input class="form-control" id="inputdefault" type="text" ng-model="Bftree.selItem.Featuring">
+                  </div>
+                  <p ng-hide="Bftree.editMode">Featuring: {{selItem.Featuring}}</p>
+                  <dh-sprite-set config="spriteSpec.min.json" feat='Bftree.selItem.Featuring'></dh-sprite-set>
+                </div>
+
+
+
               </div>
-              <div class="col-sm-3">
-                <div class="form-group">
-                  <label for="relDate">Release Date:</label><span ng-hide="Bftree.editMode">&nbsp;&nbsp;{{Bftree.selItem.Released | date : 'MMM yyyy' }}</span>
-                  <p ng-show="Bftree.editMode" class="input-group">
-                    <input id="relDate" type="text" class="form-control" uib-datepicker-popup="{{Bftree.format}}" ng-model="Bftree.selItem.Released" is-open="Bftree.popup1.opened"
-                          datepicker-options="Bftree.dateOptions" close-text="Close" />
-                    <span class="input-group-btn">
+
+
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="inputdefault">Series:</label><span ng-hide="Bftree.editMode">&nbsp;&nbsp;{{Bftree.selItem.Series}}</span>
+                    <input ng-show="Bftree.editMode" class="form-control" id="inputdefault" type="text" ng-model="Bftree.selItem.Series">
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="inputdefault">Number in Series:</label><span ng-hide="Bftree.editMode">&nbsp;&nbsp;{{Bftree.selItem.Number}}</span>
+                    <input ng-show="Bftree.editMode" class="form-control" id="inputdefault" type="text" ng-model="Bftree.selItem.Number">
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="relDate">Release Date:</label><span ng-hide="Bftree.editMode">&nbsp;&nbsp;{{Bftree.selItem.Released | date : 'MMM yyyy' }}</span>
+                    <p ng-show="Bftree.editMode" class="input-group">
+                      <input id="relDate" type="text" class="form-control" uib-datepicker-popup="{{Bftree.format}}" ng-model="Bftree.selItem.Released" is-open="Bftree.popup1.opened" datepicker-options="Bftree.dateOptions" close-text="Close" />
+                      <span class="input-group-btn">
                       <button type="button" class="btn btn-default" ng-click="Bftree.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
-                  </p>
+                    </p>
+                  </div>
+
                 </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="inputdefault">Series Sorted Number:</label><span ng-hide="Bftree.editMode">&nbsp;&nbsp;{{Bftree.selItem.Series_Sorted}}</span>
+                    <input ng-show="Bftree.editMode" class="form-control" id="Bftree.inputdefault" type="text" ng-model="Bftree.selItem.Series_Sorted">
+                  </div>
+                </div>
+              </div>
 
+              <div class="row" ng-show="editMode">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="inputdefault">Image URL:</label>
+                    <input class="form-control" id="inputdefault" type="url" ng-model="Bftree.selItem.Image">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="inputdefault">Big Finish URL:</label>
+                    <input class="form-control" id="inputdefault" type="url" ng-model="Bftree.selItem.bfUrl">
+                  </div>
+                </div>
               </div>
-              <div class="col-sm-3">
-                 <div class="form-group">
-                   <label for="inputdefault">Series Sorted Number:</label><span ng-hide="Bftree.editMode">&nbsp;&nbsp;{{Bftree.selItem.Series_Sorted}}</span>
-                   <input ng-show="Bftree.editMode" class="form-control" id="Bftree.inputdefault" type="text" ng-model="Bftree.selItem.Series_Sorted">
-                 </div>
-              </div>
-            </div>
 
-            <div class="row" ng-show="editMode" >
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="inputdefault">Image URL:</label>
-                <input class="form-control" id="inputdefault" type="url" ng-model="Bftree.selItem.Image">
+              <div class="row" ng-show="Bftree.editMode">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="inputdefault"> Server Path:</label>
+                    <input class="form-control" id="inputdefault" type="text" ng-model="Bftree.selItem.SPath">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="radio-inline">
+                      <input type="radio" ng-model="Bftree.selMethod" value="None">None</label>
+                    <label class="radio-inline">
+                      <input type="radio" ng-model="Bftree.selMethod" value="1 File">1 File</label>
+                    <label class="radio-inline">
+                      <input type="radio" ng-model="Bftree.selMethod" value="Chapters">Chapters</label>
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" id="inputdefault" type="text" ng-show="Bftree.selMethod == '1 File'" ng-model="Bftree.selItem.Fname">
+                    <textarea id="chapterTextArea" class="form-control" rows="10" ng-show="Bftree.selMethod == 'Chapters'" ng-model="Bftree.chapterListText" ng-change="Bftree.updateChapters()"></textarea>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="inputdefault">Big Finish URL:</label>
-                <input class="form-control" id="inputdefault" type="url" ng-model="Bftree.selItem.bfUrl">
-              </div>
-            </div>
-          </div>
+              <div class="row" ng-hide="editMode">
 
-          <div class="row" ng-show="Bftree.editMode" >
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="inputdefault"> Server Path:</label>
-                <input class="form-control" id="inputdefault" type="text" ng-model="Bftree.selItem.SPath">
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label class="radio-inline"><input type="radio" ng-model="Bftree.selMethod" value="None">None</label>
-                <label class="radio-inline"><input type="radio" ng-model="Bftree.selMethod" value="1 File">1 File</label>
-                <label class="radio-inline"><input type="radio" ng-model="Bftree.selMethod" value="Chapters">Chapters</label>
-              </div>
-              <div class="form-group">
-                <input class="form-control" id="inputdefault" type="text" ng-show="Bftree.selMethod == '1 File'" ng-model="Bftree.selItem.Fname">
-                <textarea id="chapterTextArea" class="form-control" rows="10" ng-show="Bftree.selMethod == 'Chapters'" ng-model="Bftree.chapterListText" ng-change="Bftree.updateChapters()"></textarea>
-            </div>
-            </div>
-          </div>
-          <div class="row" ng-hide="editMode" >
+                <div ng-show="Bftree.selItem.Chapters.length">
+                  <h2>Chapters:</h2>
+                  <ul ng-repeat="ep in Bftree.selItem.Chapters">
+                    <li>&nbsp;<a href="{{Bftree.selItem.SPath}}/{{ep}}" target="_blank">
+                     {{ep}}
+                      </a>
+                    </li>
 
-               <div ng-show="Bftree.selItem.Chapters.length">
-                 <h2>Chapters:</h2>
-                 <ul ng-repeat="ep in Bftree.selItem.Chapters">
-              <li>&nbsp;<a href="{{Bftree.selItem.SPath}}/{{ep}}" target="_blank">
-                {{ep}}
-              </a>
-              </li>
-
-             </ul>
-               </div>
-                 <div ng-show="Bftree.selItem.Fname">
-                 <a href="{Bftree.{selItem.SPath}}/{{Bftree.selItem.Fname}}" target="_blank">
+                  </ul>
+                </div>
+                <div ng-show="Bftree.selItem.Fname">
+                  <a href="{Bftree.{selItem.SPath}}/{{Bftree.selItem.Fname}}" target="_blank">
                    {{Bftree.selItem.Fname}}
                  </a>
-               </div>
-          </div>
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-
-
-
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
       </div>
-
     </div>
   </div>
+</div>

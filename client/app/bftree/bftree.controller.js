@@ -66,7 +66,7 @@ class BftreeComponent {
     };
 
     this.prevItem = function () {
-    	if (things.listIndex == 0) {
+    	if (this.listIndex == 0) {
     	    this.listIndex = things.list.length - 1;
     	} else {
     	    this.listIndex--;
@@ -114,10 +114,14 @@ class BftreeComponent {
   //      console.log("Ui tree node scope contains:");
 //         console.log(angular.toJson(scope, true));
 //      }
-        if (scope.hasChild()) {
-           return scope.collapsed ? 'glyphicon-folder-close' :'glyphicon-folder-open';
+        if(scope.hasChild) {
+          if (scope.hasChild()) {
+             return scope.collapsed ? 'glyphicon-folder-close' :'glyphicon-folder-open';
+          } else {
+             return 'glyphicon-file';
+          }
         } else {
-           return 'glyphicon-file';
+          console.log("itemIcon: scope.hasChild does not exist")
         }
      };
 
@@ -126,12 +130,12 @@ class BftreeComponent {
      this.options = {
      };
 
-     this.myCollapseAll = function(scope) {
-        scope.collapseAll();
+     this.myCollapseAll = function() {
+        $scope.$broadcast('angular-ui-tree:collapse-all');
      };
 
-     this.myExpandAll = function(scope) {
-        scope.expandAll();
+     this.myExpandAll = function() {
+        $scope.$broadcast('angular-ui-tree:expand-all');
      };
 
     this.sureRemove = function(scope) {
