@@ -2,7 +2,7 @@
 
 angular.module('myappApp', ['myappApp.auth', 'myappApp.admin', 'myappApp.constants', 'ngCookies',
     'ngResource', 'ngSanitize', 'btford.socket-io', 'ui.router', 'ui.bootstrap', 'ui.tree',
-    'validation.match', 'spriteGrids'
+    'validation.match', 'spriteGrids', 'bootstrapLightbox'
   ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider.otherwise('/');

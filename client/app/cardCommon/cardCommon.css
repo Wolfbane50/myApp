@@ -1,0 +1,83 @@
+nav {
+   background-color: white;
+}
+
+@page {
+  margin-left: 0.5in;
+  margin-top:0.2in;
+}
+
+.sizeit {
+width: 225px;
+  height: 321px;
+}
+
+div#runhead {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.cardpic {
+  float:left;
+  padding: 1px;
+  width: 225px;
+  height: 321px;
+}
+
+.cardRow {
+  float: left;
+  clear:left;
+  padding: 1px;
+  width: 225px;
+  height: 321px;
+}
+
+.rotate {
+  transform: rotate(-90deg) translateX(-321px);
+  transform-origin: left top;
+  width: 321px;
+  height: 225px;
+}
+.noPage {
+  display: none;
+}
+
+@media screen {
+  .print-vis {
+    display: none;
+  }
+  .page-break {
+     display: none;
+  }
+}
+@media print {
+  /* Style rules */
+  .page-break {
+     page-break-after: always;
+  }
+  .print-invis {
+    display: none;
+  }
+  .print-vis {
+    display: block;
+  }
+}
+
+select.form-control {
+  background-color: BLACK;
+  color: white;
+}
+.cardDisplay {}
+.nav-label {
+  color: white;
+  vertical-align: middle;
+  margin-top: 10px;
+}
+.affix {
+  top: 0;
+  width: 100%;
+}
+.affix + .container-fluid {
+    padding-top: 70px;
+}

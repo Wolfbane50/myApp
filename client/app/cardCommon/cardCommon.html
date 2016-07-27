@@ -1,0 +1,36 @@
+<div>
+  <nav class="navbar navbar-inverse print-invis" data-spy="affix" data-offset-top="1">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <span class="navbar-brand">Card Catalog</span>
+      </div>
+      <ul class="nav navbar-nav">
+        <li>
+          <label class="nav-label" for="sel1">Type:</label>
+        </li>
+        <li>
+          <select id="sel1" class="form-control" ng-model="myJSON" ng-options="item for item in jsonFiles" ng-change="loadSets();"></select>
+        </li>
+        <li>
+          <label class="nav-label" for="sel2">Year/Set:</label>
+        </li>
+        <li>
+          <select id="sel2" class="form-control" ng-model="mySet" ng-options="set.year for set in cardSets" ng-change="selYear();"></select>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="runhead" class="print-vis">{{mySet.year}}</div>
+
+  <div class="cardDisplay">
+    <div ng-repeat="card in cards">
+
+      <div ng-class="(($index % 3) == 0) ? 'cardRow' : 'cardpic'">
+        <a ng-click="openLightboxModal($index)">
+          <img id="card{{$index}}" ng-src="{{imageLink(card)}}" data-toggle="tooltip" title="{{card.name}}" orientable /></a>
+      </div>
+
+    </div>
+  </div>
+</div>
