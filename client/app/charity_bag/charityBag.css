@@ -1,0 +1,23 @@
+table {
+   border-collapse: collapse;
+   border: 2px solid #444;
+}
+td {
+  border: 2px solid #666;
+}
+th {
+   border: 2px solid #666;
+   background: CADETBLUE;
+}
+tr:hover {
+  background: DARKKAHKI;
+}
+.sps-num {
+  color: green;
+}
+.altRow {
+   background: yellow;
+}
+.report {
+   background: LIGHTGRAY;
+}

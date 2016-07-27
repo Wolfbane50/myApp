@@ -1,0 +1,32 @@
+<div>
+  <div>
+
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Charity</th>
+        <th>Number of Bags</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr ng-repeat="trip in donationTrips">
+        <td ng-class-odd="'altRow'">
+          <input ng-model="trip.date">(mm/dd/yy)</td>
+        <td ng-class-odd="'altRow'">
+          <input ng-model="trip.charity">
+        </td>
+        <td ng-class-odd="'altRow'">
+          <input ng-model="trip.bags">
+        </td>
+        <td ng-class-odd="'altRow'">
+          <button ng-hide="trip.added" ng-click="addTrip(trip)">Add</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <button ng-click="calculate()">Submit</button>
+
+  <pre class="code">{{output}}</pre>
+
+  <div class="report" id="report"></div>
+</div>

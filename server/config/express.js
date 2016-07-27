@@ -17,8 +17,8 @@ import path from 'path';
 import config from './environment';
 import passport from 'passport';
 import session from 'express-session';
-import connectMongo from 'connect-mongo';
-import mongoose from 'mongoose';
+//import connectMongo from 'connect-mongo';
+//import mongoose from 'mongoose';
 //var MongoStore = connectMongo(session);
 
 export default function(app) {
@@ -40,8 +40,12 @@ export default function(app) {
   }));
 
   app.set('views', config.root + '/server/views');
-  app.engine('html', require('ejs').renderFile);
-  app.set('view engine', 'html');
+  var handlebars = require('express-handlebars')
+          .create();
+  app.engine('handlebars', handlebars.engine);
+  app.set('view engine', 'handlebars');
+//  app.engine('html', require('ejs').renderFile);
+//  app.set('view engine', 'html');
   app.use(compression());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());

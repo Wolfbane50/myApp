@@ -5,8 +5,8 @@
 'use strict';
 
 import express from 'express';
-import mongoose from 'mongoose';
-mongoose.Promise = require('bluebird');
+//import mongoose from 'mongoose';
+//mongoose.Promise = require('bluebird');
 import config from './config/environment';
 import http from 'http';
 
@@ -18,7 +18,7 @@ import http from 'http';
 // });
 
 // Populate databases with sample data
-if (config.seedDB) { require('./config/seed'); }
+//if (config.seedDB) { require('./config/seed'); }
 
 // Setup server
 var app = express();
