@@ -1,23 +1,24 @@
-table {
+table.charbags {
    border-collapse: collapse;
    border: 2px solid #444;
 }
-td {
+.charbags td {
   border: 2px solid #666;
 }
-th {
+th.charbags {
    border: 2px solid #666;
    background: CADETBLUE;
 }
-tr:hover {
+.charbagtablehdr {
+   border: 2px solid #666;
+   background: CADETBLUE;
+}
+.charbags tr:hover {
   background: DARKKAHKI;
 }
-.sps-num {
-  color: green;
-}
-.altRow {
+.charbags .altRow {
    background: yellow;
 }
-.report {
+.charbags .report {
    background: LIGHTGRAY;
 }
