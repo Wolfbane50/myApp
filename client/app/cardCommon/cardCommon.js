@@ -3,6 +3,7 @@ angular.module('myappApp')
     $stateProvider
       .state('cardCommon', {
         url: '/cards',
-        template: '<cards></cards>'
+        template: '<cards></cards>',
+        css: 'app/cardCommon/cardCommon.css'
       });
   });

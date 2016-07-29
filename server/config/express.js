@@ -34,7 +34,9 @@ export default function(app) {
 
   app.set('appPath', path.join(config.root, 'client'));
   app.use(express.static(config.root + '/server/public'));
+  app.use(express.static('/Users/daniel.heaney/Documents/ADS_GUI_page'));
   app.use(express.static(app.get('appPath')));
+
   app.use(morgan(':method :url :req[header]', {
     immediate: true
   }));

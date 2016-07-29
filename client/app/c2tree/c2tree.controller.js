@@ -14,12 +14,12 @@
 
       var c2DataStr = localStorage.getItem("c2portal");
       if (c2DataStr) {
-          alert("Getting data from local store");
+          //alert("Getting data from local store");
 
              treeCtlScope.list = angular.fromJson(c2DataStr);
        } else {
             $http({ method: 'GET', url: 'c2snapshot_071916.json' }).success(function(data) {
-            alert("Got data ");
+            //alert("Got data ");
                 treeCtlScope.list = data;
             });
        }

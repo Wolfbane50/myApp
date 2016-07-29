@@ -7,6 +7,7 @@ angular.module('myappApp')
        replace: true,
        scope: true,
        controller: 'c2Ctrl',
-       templateUrl: 'app/c2tree/c2tree.html'
+       templateUrl: 'app/c2tree/c2tree.html',
+       css: 'app/c2tree/c2tree.css'
      };
 });

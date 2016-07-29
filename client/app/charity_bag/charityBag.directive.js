@@ -7,6 +7,7 @@ angular.module('myappApp')
        replace: true,
        scope: true,
        controller: 'charityBagCtrl',
-       templateUrl: 'app/charity_bag/charityBag.html'
+       templateUrl: 'app/charity_bag/charityBag.html',
+       css: 'app/charity_bag/charityBag.css'
      };
 });

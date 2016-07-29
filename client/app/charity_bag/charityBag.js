@@ -3,6 +3,7 @@ angular.module('myappApp')
     $stateProvider
       .state('charityBag', {
         url: '/charity_bag',
-        template: '<charity-bag></charity-bag>'
+        template: '<charity-bag></charity-bag>',
+        css: 'app/charity_bag/charityBag.css'
       });
   });

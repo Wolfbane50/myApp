@@ -74,7 +74,7 @@ var pick_a_price = function(item_rec) {
   var price = low_price + ((high_price - low_price) * Math.random());
 
   // Format to the nearest 10 cents
-  var pr_str = price.toFixed(2);
+  var pr_str = price.toFixed(1) + '0';
   //console.log ("Price from " + low_price + "," + high_price + " is " + pr_str);
   return pr_str;
 
