@@ -18,7 +18,7 @@
     <div class="col-lg-8" id="buttonBar">
       <a class="pull-right btn btn-primary" ng-click="Bftree.showJSONstuff()">
         <span>Generate JSON</span></a>
-      <button ng-json-export-file data="Bftree.audioList" filename="'bigFinish'" class="pull-right btn btn-primary">Export JSON</button>
+      <a class="pull-right btn btn-primary" ng-click="Bftree.backup()"><span>Backup to SVR</span></a>
       <a ng-show="Bftree.showShow" class="btn btn-primary" ng-click="Bftree.prevItem()"><span>&lt;&lt; Previous</span></a>
       <a ng-show="Bftree.showShow" class="btn btn-primary" ng-click="Bftree.nextItem()"><span>Next &gt;&gt;</span></a>
 

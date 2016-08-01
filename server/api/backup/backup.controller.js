@@ -21,7 +21,7 @@ function fileDateString () {
     var daystr = ( day < 10 ) ? ("0" + day) : day;
     var year = dt.getFullYear() % 100;
 
-    return "_" + monthstr + daystr + year;
+    return "_" + monthstr + daystr + year + "_" + dt.getTime();
 
 }
 
@@ -45,12 +45,16 @@ function handleError(res, statusCode) {
 
 export function backup(req, res) {
   console.log("-------------In Backup--");
-  console.log("backup file  = " + req.body.bkfile + fileDateString() + '.json' );
+  console.log("backup file  = " + req.body.bkfile + fileDateString() + '.bak' );
   // console.log("C2 String = " + req.body.c2_data);
   // Lets just assume the save works
-  var ch_fname = "./" + req.body.bkfile + fileDateString() + '.json'
+  var ch_fname = "server/public/" + req.body.bkfile + fileDateString() + '.bak';
    fs.writeFile(ch_fname,
            req.body.c2_data);
+  // Overwrite original file
+  var orig_fname = "server/public/" + req.body.bkfile + '.json';
+  fs.writeFile(orig_fname,
+          req.body.c2_data);
   res.status(200).send("Data backed up to " + ch_fname);
 
 }

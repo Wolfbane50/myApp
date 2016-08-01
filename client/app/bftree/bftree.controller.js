@@ -107,13 +107,6 @@ class BftreeComponent {
      };
 
      $scope.itemIcon = function(scope) {
-    //   return 'glyphicon-file';
-  //      if (! scope) {
-  //           console.log("Ui tree node scope is undefined");  return 'glyphicon-file';
-  //    } else {
-  //      console.log("Ui tree node scope contains:");
-//         console.log(angular.toJson(scope, true));
-//      }
         if(scope.hasChild) {
           if (scope.hasChild()) {
              return scope.collapsed ? 'glyphicon-folder-close' :'glyphicon-folder-open';
@@ -184,6 +177,32 @@ class BftreeComponent {
        this.doneJSON = function() {
          this.showJSON = false;
        };
+       this.flatten  = function() {
+         var flatList = [];
+
+        angular.forEach(this.audioTree, function(element) {
+           var seriesList = element.items;
+           angular.forEach(seriesList, function(element) {
+             flatList.push(element);
+           });
+        });
+        return flatList;
+       };
+      this.backup = function() {
+               var c2String = angular.toJson(this.flatten());
+
+                $http({ method: 'POST', url: '/api/backups/',
+                   data: { "c2_data" : c2String,
+                           "bkfile" : "bigFinish"
+                 } }).success(function(data) {
+                     alert("Backup Successful!\n\n" + data);
+                }).error(function(data, status, headers, config) {
+                  // Handle the error
+                     alert("Backup failed with status: " + status);
+                });
+
+       };
+
 
    }  // End of constructor
 
