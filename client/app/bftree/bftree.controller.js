@@ -189,7 +189,7 @@ class BftreeComponent {
 
      $onInit() {
        console.log("Requesting BF Data");
-       this.$http.get('bigFinish.json').then(response => {
+       this.$http.get('bigFinish.json', { cache : true } ).then(response => {
          this.temp = "done";
          this.audioList = response.data;
          console.log("Got BF Data");

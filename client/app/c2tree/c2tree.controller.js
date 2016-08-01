@@ -18,7 +18,7 @@
 
              treeCtlScope.list = angular.fromJson(c2DataStr);
        } else {
-            $http({ method: 'GET', url: 'c2snapshot_071916.json' }).success(function(data) {
+            $http({ method: 'GET', url: 'c2snapshot_071916.json', cache: true }).success(function(data) {
             //alert("Got data ");
                 treeCtlScope.list = data;
             });

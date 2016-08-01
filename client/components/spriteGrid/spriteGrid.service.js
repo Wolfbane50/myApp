@@ -71,7 +71,7 @@ function spriteGridService($http) {
  var processConfig = function(url, spriteConfig, callbacks) {
 
 
-     $http({ method: 'GET', url: url }).then(function(result) {
+     $http({ method: 'GET', url: url, cache: true }).then(function(result) {
                 //console.log("Got data from spriteSpec.json");
 
                 // process result

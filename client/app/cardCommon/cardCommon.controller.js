@@ -36,7 +36,8 @@
 
       $http({
         method: 'GET',
-        url: 'chachis3.json'
+        url: 'chachis3.json',
+        cache: true
       }).success(function(data) {
         //   $http({ method: 'GET', url: 'chachis4.json' }).success(function(data) {
         chachiScope.cardSets = data;
@@ -51,7 +52,8 @@
         var jsonFile = $scope.myJSON;
         $http({
           method: 'GET',
-          url: jsonFile
+          url: jsonFile,
+          cache: true
         }).success(function(data) {
           chachiScope.cardSets = data;
           chachiScope.mySet = chachiScope.cardSets[0];
