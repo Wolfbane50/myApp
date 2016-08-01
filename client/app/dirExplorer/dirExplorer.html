@@ -1,0 +1,85 @@
+<div class="container">
+
+
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>Directories</h2>
+    </div>
+    <div class="col-lg-8" id="buttonBar">
+      <a ng-show="selItem" class="btn btn-primary" ng-click="macroAdd()">
+        <span>Macro Add</span></a>
+      <a ng-show="selItem" class="btn btn-primary" ng-click="arrayAdd()">
+        <span>Add Array</span></a>
+      <a class="pull-right btn btn-primary" ng-click="showJSONstuff()">
+        <span>Generate JSON</span></a>
+      <a class="pull-right btn btn-primary" ng-click="commitChanges()">
+        <span>Commit Changes</span></a>
+      <a class="pull-right btn btn-primary" ng-click="flushLocal()">
+        <span>Flush Local</span></a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-lg-4">
+          <hr />
+
+          <!-- Nested list template -->
+          <script type="text/ng-template" id="items_renderer.html">
+            <div ui-tree-handle>
+              <a class="btn btn-default btn-xs" data-nodrag ng-click="toggle(this)">
+                <span class="glyphicon" ng-class="itemIcon(this)"></span></a>
+              <span data-nodrag><a ng-click="itemSelect(this)" ng-class="selectedItemClass(this)">{{item.name}}</a></span>
+              <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="sureRemove(this)">
+                <span class="glyphicon glyphicon-minus"></span></a>
+              <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <ol ui-tree-nodes="options" ng-model="item.items" ng-class="{hidden: collapsed}">
+              <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'">
+              </li>
+            </ol>
+          </script>
+          <div ui-tree="options">
+            <a class="btn btn-primary btn-xs" ng-click="myCollapseAll(this)">
+              <span>Collapse Tree</span></a>
+            <a class="btn btn-primary btn-xs" ng-click="myExpandAll(this)">
+              <span>Expand Tree</span></a>
+
+            <ol ui-tree-nodes ng-model="list">
+              <li ng-repeat="item in list" ui-tree-node ng-include="'items_renderer.html'"></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div ng-show="showJSON">
+            <a class="btn btn-default btn-xs" ng-click="doneJSON()">
+              <span>Done with JSON</span></a>
+
+            <pre class="code">{{ list | json }}</pre>
+          </div>
+          <div ng-show="addFromList" class="addListDiv">
+            Add one entry per line...
+            <br />
+            <textarea class="addListText" ng-model="addlist"></textarea>
+            <br />
+            <a class="btn btn-primary" ng-click="addListOK()"><span>OK</span></a>
+            <a class="btn btn-primary" ng-click="addListCancel()"><span>Cancel</span></a>
+
+          </div>
+          <div ng-hide="selItem">
+            <h1>Select an Directory/File from tree ...</h1></div>
+          <div ng-show="selItem">
+            <h1 ng-model="selItem">Comments for {{selItem.name}}</h1>
+
+
+            <textarea class="commText" ng-model="selItem.comment"></textarea>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
