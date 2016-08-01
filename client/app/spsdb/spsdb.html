@@ -1,0 +1,42 @@
+<div>
+  <label>CI Filter:
+    <input type="text" ng-model="search.ciatciallocation" />
+  </label>
+  &nbsp;&nbsp;&nbsp;
+  <label>Req. Only
+    <input type="checkbox" ng-model="isRqt">
+  </label>
+  &nbsp;&nbsp;&nbsp;
+  <label>V1 Only
+    <input type="checkbox" ng-model="isV1">
+  </label>
+  <label style="float:right;">IDs Only
+    <input type="checkbox" ng-model="idOnly">
+  </label>
+  <hr />
+  <div style="height: 700px; overflow-y: scroll;">
+
+    <table>
+      <tr>
+        <th>ID</th>
+        <th ng-hide="idOnly">Rqt?</th>
+        <th ng-hide="idOnly">Requirement</th>
+        <th ng-hide="idOnly">CI's</th>
+        <th ng-hide="idOnly">Ver.</th>
+        <th ng-hide="idOnly">Spiral</th>
+        <th ng-hide="idOnly">Val Method</th>
+        <th ng-hide="idOnly">Tst Phase</th>
+      </tr>
+      <tr ng-repeat="reqmt in spsReqs | filter: search | filter: mySearch">
+        <td ng-class-odd="'sps-num altRow'" ng-class-even="'sps-num'">{{reqmt.id}}</td>
+        <td ng-hide="idOnly" ng-class-odd="'altRow'">{{reqmt.ciatrequirement}}</td>
+        <td ng-hide="idOnly" ng-class-odd="'altRow'">{{reqmt.ciatsystemperformancespecification}}</td>
+        <td ng-hide="idOnly" ng-class-odd="'altRow'">{{reqmt.ciatciallocation}}</td>
+        <td ng-hide="idOnly" ng-class-odd="'altRow'">{{reqmt.ciatversion}}</td>
+        <td ng-hide="idOnly" ng-class-odd="'altRow'">{{reqmt.ciatspiral}}</td>
+        <td ng-hide="idOnly" ng-class-odd="'altRow'">{{reqmt.ciatvalidation}}</td>
+        <td ng-hide="idOnly" ng-class-odd="'altRow'">{{reqmt.ciattestphase}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

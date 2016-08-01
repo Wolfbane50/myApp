@@ -24,8 +24,6 @@
            alert("Request for bigFinish.json yielded error: " + response.status);
         });
 
-      }
-
       $scope.selectedItemClass = function(scope) {
         var nodeData = scope.$modelValue;
         if ($scope.selItem == nodeData) {
