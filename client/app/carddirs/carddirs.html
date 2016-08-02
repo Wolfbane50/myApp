@@ -1,1 +1,110 @@
+<div class="container">
 
+
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>Card Directories</h2>
+    </div>
+    <div class="col-lg-8" id="buttonBar">
+      <a class="pull-right btn btn-primary" ng-click="showJSONstuff()">
+        <span>Generate JSON</span></a>
+      <a class="pull-right btn btn-primary" ng-click="showSelstuff()">
+        <span>Generate Chk List</span></a>
+      <button ng-json-export-excel data="checkedItems" report-fields="{name: 'Name', team: 'Team', brand: 'Brand', type: 'Type', path: 'Path', fname: 'File Name'}" filename="'newCards'" separator=',' class="pull-right btn btn-primary">Export Excel</button>
+
+      <a class="pull-right btn btn-primary" ng-click="deleteChecked()">
+        <span>Delete Checked</span></a>
+      <a class="pull-right btn btn-primary" ng-click="enterChecked()">
+        <span>Enter Checked to DB</span></a>
+      <a class="pull-right btn btn-primary" ng-click="commitChanges()">
+        <span>Commit Changes</span></a>
+      <a class="pull-right btn btn-primary" ng-click="flushLocal()">
+        <span>Flush Local</span></a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-lg-4" style="height: 750px; overflow:scroll;">
+
+          <!-- Nested list template -->
+          <script type="text/ng-template" id="items_renderer.html">
+            <div id="wasui-tree-handle">
+              <input data-nodrag type="checkbox" ng-model="this.$modelValue.checked" ng-change="addDelChecked(this)"></input>
+              <a class="btn btn-default btn-xs" data-nodrag ng-click="toggle(this)">
+                <span class="glyphicon" ng-class="itemIcon(this)"></span></a>
+              <span data-nodrag ng-show="item.fname"><a ng-click="itemSelect(this)" ng-class="selectedItemClass(this)">{{item.fname}} : {{item.name}}</a></span>
+              <span data-nodrag ng-hide="item.fname"><a ng-click="itemSelect(this)" ng-class="selectedItemClass(this)">{{item.path}}</a></span>
+            </div>
+            <ol ui-tree-nodes="options" ng-model="item.items" ng-class="{hidden: collapsed}">
+              <li ng-repeat="item in item.items" ui-tree-node data-nodrag ng-include="'items_renderer.html'">
+              </li>
+            </ol>
+          </script>
+          <div ui-tree="options">
+            <a class="btn btn-primary btn-xs" ng-click="setAllChecks(true)">
+              <span>X All</span></a>
+            <a class="btn btn-primary btn-xs" ng-click="setAllChecks(false)">
+              <span>X None</span></a>
+
+            <a class="btn btn-primary btn-xs" ng-click="myCollapseAll(this)">
+              <span>Collapse Tree</span></a>
+            <a class="btn btn-primary btn-xs" ng-click="myExpandAll(this)">
+              <span>Expand Tree</span></a>
+
+            <ol ui-tree-nodes ng-model="cardTree">
+              <li ng-repeat="item in cardTree" ui-tree-node ng-include="'items_renderer.html'"></li>
+            </ol>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div ng-show="showJSON">
+            <a class="btn btn-default btn-xs" ng-click="doneJSON()">
+              <span>Done with JSON</span></a>
+
+            <pre class="code">{{ cardTree | json }}</pre>
+          </div>
+          <div ng-show="showSel">
+            <a class="btn btn-default btn-xs" ng-click="doneSel()">
+              <span>Done with List</span></a>
+
+            <pre class="code">{{ checkedItems | json }}</pre>
+          </div>
+          <div id="response_pane">
+            <div ng-hide="selItem">
+              <h1>Select an Item from tree ...</h1></div>
+            <div ng-show="selItem">
+              <h1>{{selItem.fname}}</h1>
+
+              <img class="cardpic" ng-show="selItem.fname" ng-src="{{selItem.path}}/{{selItem.fname}}" />
+              <div class="cardinfo">
+                <div ng-show="selItem.fname">Name:
+                  <input ng-model="selItem.name">
+                </div>
+                <div>Team:
+                  <input ng-model="selItem.team">
+                </div>
+                <div>Brand:
+                  <input ng-model="selItem.brand">
+                </div>
+                <div>Type:
+                  <input ng-model="selItem.type">
+                </div>
+                <a class="btn btn-primary btn-xs" ng-hide="selItem.fname" ng-click="applyFolder()">
+                  <span>Apply to Folder</span></a>
+
+              </div>
+            </div>
+
+          </div>
+
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

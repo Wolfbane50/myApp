@@ -2,6 +2,7 @@
 
 var express = require('express');
 var controller = require('./newCards.controller');
+var passport = require('passport');
 
 var router = express.Router();
 
@@ -9,8 +10,8 @@ var router = express.Router();
 //  console.log('Dh route: %s %s %s', req.method, req.url, req.path);
 //  next();
 //});
-router.post('/',
-   controller.newCards);
+router.get('/',
+   controller.index);
 //router.put('/:id', controller.update);
 //router.patch('/:id', controller.update);
 //router.delete('/:id', controller.destroy);

@@ -4,144 +4,49 @@ var app = require('../..');
 import request from 'supertest';
 
 var newBackup;
+var testData = {
+  name: "my backup",
+  info: 'This is the brand new backup!!'
+};
+var testDataString = JSON.stringify(testData);
 
 describe('Backup API:', function() {
 
-  describe('GET /api/backups', function() {
-    var backups;
-
-    beforeEach(function(done) {
-      request(app)
-        .get('/api/backups')
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .end((err, res) => {
-          if (err) {
-            return done(err);
-          }
-          backups = res.body;
-          done();
-        });
-    });
-
-    it('should respond with JSON array', function() {
-      backups.should.be.instanceOf(Array);
-    });
-
-  });
 
   describe('POST /api/backups', function() {
     beforeEach(function(done) {
       request(app)
         .post('/api/backups')
         .send({
-          name: 'New Backup',
-          info: 'This is the brand new backup!!!'
-        })
-        .expect(201)
-        .expect('Content-Type', /json/)
-        .end((err, res) => {
-          if (err) {
-            return done(err);
-          }
-          newBackup = res.body;
-          done();
-        });
-    });
-
-    it('should respond with the newly created backup', function() {
-      newBackup.name.should.equal('New Backup');
-      newBackup.info.should.equal('This is the brand new backup!!!');
-    });
-
-  });
-
-  describe('GET /api/backups/:id', function() {
-    var backup;
-
-    beforeEach(function(done) {
-      request(app)
-        .get('/api/backups/' + newBackup._id)
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .end((err, res) => {
-          if (err) {
-            return done(err);
-          }
-          backup = res.body;
-          done();
-        });
-    });
-
-    afterEach(function() {
-      backup = {};
-    });
-
-    it('should respond with the requested backup', function() {
-      backup.name.should.equal('New Backup');
-      backup.info.should.equal('This is the brand new backup!!!');
-    });
-
-  });
-
-  describe('PUT /api/backups/:id', function() {
-    var updatedBackup;
-
-    beforeEach(function(done) {
-      request(app)
-        .put('/api/backups/' + newBackup._id)
-        .send({
-          name: 'Updated Backup',
-          info: 'This is the updated backup!!!'
+          c2_data: testDataString,
+          bkfile: 'myBackup'
         })
         .expect(200)
-        .expect('Content-Type', /json/)
-        .end(function(err, res) {
-          if (err) {
-            return done(err);
-          }
-          updatedBackup = res.body;
-          done();
-        });
-    });
-
-    afterEach(function() {
-      updatedBackup = {};
-    });
-
-    it('should respond with the updated backup', function() {
-      updatedBackup.name.should.equal('Updated Backup');
-      updatedBackup.info.should.equal('This is the updated backup!!!');
-    });
-
-  });
-
-  describe('DELETE /api/backups/:id', function() {
-
-    it('should respond with 204 on successful removal', function(done) {
-      request(app)
-        .delete('/api/backups/' + newBackup._id)
-        .expect(204)
+        .expect('Content-Type', /text/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
+          newBackup = res.text;
+          //var bodyProps = "\n";
+          //for(var i in res) {
+          //  bodyProps += i + "\n"
+        //  }
+          //console.log('res.text -->' + res.text);
+          //console.log('res properties --> ' + bodyProps);
           done();
         });
     });
 
-    it('should respond with 404 when backup does not exist', function(done) {
-      request(app)
-        .delete('/api/backups/' + newBackup._id)
-        .expect(404)
-        .end((err, res) => {
-          if (err) {
-            return done(err);
-          }
-          done();
-        });
+    it('should respond with the backup file name', function() {
+      newBackup.should.match(/^Data backed up to server\/public\/myBackup_\d\d\d\d\d\d_\d+\.bak/);
+
     });
 
+    // it('should have created the backup file')
+    // it('should have created the backup file with the correct content')
+    // it('should have written the changes to the original json file')
+    // Clean up the backup files
   });
 
 });

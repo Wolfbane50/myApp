@@ -7,7 +7,7 @@ angular.module('myappApp')
        replace: true,
        scope: true,
        controller: 'carddirsCtrl',
-       templateUrl: 'app/cardCommon/carddirs.html',
-       css: 'app/cardCommon/carddirs.css'
+       templateUrl: 'app/carddirs/carddirs.html',
+       css: 'app/carddirs/carddirs.css'
      };
 });
