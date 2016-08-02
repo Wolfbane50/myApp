@@ -1,0 +1,110 @@
+<div class="container">
+  <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+      <h3 class="modal-title">Loading Data</h3>
+    </div>
+    <div class="modal-body">
+      <p>We Are Sorry!</p>
+      <p>Eventually the data will be moved to a database for quicker access. For now, you must wait for it to load...
+    </div>
+  </script>
+
+
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>Dr Who Seasons</h2>
+    </div>
+    <div class="col-lg-8" id="buttonBar">
+      <a class="pull-right btn btn-primary" ng-click="showJSONstuff()">
+        <span>Generate JSON</span></a>
+        <a class="pull-right btn btn-primary" ng-click="backup()"><span>Backup to SVR</span></a>
+        <a ng-show="showShow" class="btn btn-primary" ng-click="prevItem()"><span>&lt;&lt; Previous</span></a>
+        <a ng-show="showShow" class="btn btn-primary" ng-click="nextItem()"><span>Next &gt;&gt;</span></a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-lg-4" style="height: 750px; overflow:scroll;">
+
+          <!-- Nested list template -->
+          <script type="text/ng-template" id="items_renderer.html">
+            <div ui-tree-handle>
+              <a class="btn btn-default btn-xs" data-nodrag ng-click="toggle(this)">
+                <span class="glyphicon" ng-class="itemIcon(this)"></span></a>
+              <span data-nodrag><a ng-click="itemSelect(this)" ng-class="selectedItemClass(this)">{{item.name}}</a></span>
+              <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="sureRemove(this)">
+                <span class="glyphicon glyphicon-remove"></span></a>
+              <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <ol ui-tree-nodes="options" ng-model="item.items" ng-class="{hidden: collapsed}">
+              <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'">
+              </li>
+            </ol>
+          </script>
+          <div ui-tree="options">
+
+            <a class="btn btn-primary btn-xs" ng-click="myCollapseAll(this)">
+              <span>Collapse Tree</span></a>
+            <a class="btn btn-primary btn-xs" ng-click="myExpandAll(this)">
+              <span>Expand Tree</span></a>
+
+            <ol ui-tree-nodes ng-model="list">
+              <li ng-repeat="item in list" ui-tree-node ng-include="'items_renderer.html'"></li>
+            </ol>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div ng-show="showJSON">
+            <a class="btn btn-default btn-xs" ng-click="doneJSON()">
+              <span>Done with JSON</span></a>
+
+            <pre class="code">{{ list | json }}</pre>
+          </div>
+          <div id="response_pane">
+            <div ng-hide="showShow">
+              <h1>Select an Item from tree ...</h1></div>
+            <div ng-show="showShow">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="editMode">Edit Mode</label>
+              </div>
+              <h1 ng-model="selItem">{{selItem.name}}</h1>
+
+              <div style="height: 170px;">
+                <dh-sprite-set config="doctorSpriteSpec.min.json" feat='selItem.Doctor' dh-float="'left'"></dh-sprite-set>
+                Released: {{releaseDate(selItem.Released)}}
+                <p ng-hide="editMode">Featuring: {{selItem.Featuring}}</p>
+                <dh-sprite-set config="spriteSpec.min.json" feat='selItem.Featuring'></dh-sprite-set>
+
+              </div>
+              <div ng-show="selItem.episodes.length">
+                <h2>Episodes:</h2>
+                <a class="btn btn-default btn-xs" ng-hide="epEdit" ng-click="epEdit=true;">Edit</a>
+                <a class="btn btn-default btn-xs" ng-show="epEdit" ng-click="epEdit=false;">Done</a>
+                <ul ng-repeat="ep in selItem.episodes">
+                  <li>&nbsp;<a href="{{ep.link}}" target="_blank">
+                {{ep.name}}
+              </a>
+                    <div ng-show="epEdit">
+                      <br />
+                      <input type="text" ng-model="ep.name" />
+                      <input type="text" ng-model="ep.link" />
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
