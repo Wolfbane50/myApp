@@ -1,6 +1,7 @@
 'use strict';
 
 var app = require('../..');
+var fs = require('fs');
 import request from 'supertest';
 
 var newBackup;
@@ -37,6 +38,16 @@ describe('Backup API:', function() {
           done();
         });
     });
+
+    afterEach(function() {
+      // extract filename from message
+      var prefix = "Data backed up to ";
+      var bkfile = newBackup.substr(prefix.length);
+      var jsonfile = "./server/public/myBackup.json";
+      fs.unlink(bkfile);
+      fs.unlink(jsonfile);
+    });
+
 
     it('should respond with the backup file name', function() {
       newBackup.should.match(/^Data backed up to server\/public\/myBackup_\d\d\d\d\d\d_\d+\.bak/);
