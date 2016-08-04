@@ -41,12 +41,13 @@ parse_chachi_excel = function () {
 //console.log(JSON.stringify(parse_chachi_excel()));
 
 var ch_path = "C:\\Users\\daniel.heaney\\Documents\\c2_tree\\";
+var out_path = "server\\public\\";
 
 var fs = require('fs');
 fs.watchFile(ch_path + 'chachis.xlsx', function (curr, prev) {
    if (curr.mtime.getTime() !== prev.mtime.getTime()) {
        console.log('Updating Chachi.json');
-       fs.writeFile(ch_path + 'chachis3.json',
+       fs.writeFile(out_path + 'chachis3.json',
            JSON.stringify(parse_chachi_excel()));
 
     }
