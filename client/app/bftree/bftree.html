@@ -162,7 +162,7 @@
                 </div>
               </div>
 
-              <div class="row" ng-show="editMode">
+              <div class="row" ng-show="Bftree.editMode">
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="inputdefault">Image URL:</label>
@@ -212,7 +212,7 @@
                   </ul>
                 </div>
                 <div ng-show="Bftree.selItem.Fname">
-                  <a href="{Bftree.{selItem.SPath}}/{{Bftree.selItem.Fname}}" target="_blank">
+                  <a href="{{Bftree.selItem.SPath}}/{{Bftree.selItem.Fname}}" target="_blank">
                    {{Bftree.selItem.Fname}}
                  </a>
                 </div>

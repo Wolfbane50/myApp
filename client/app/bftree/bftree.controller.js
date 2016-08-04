@@ -4,10 +4,9 @@
 
 class BftreeComponent {
   constructor($http, $scope, $uibModal) {
-    console.log("In bftree constructor");
+    //console.log("In bftree constructor");
     this.$http = $http;
     this.showJSON = false;
-    this.temp = "initial";
 
     this.selItem = {};
     this.audioList = [];
@@ -120,9 +119,6 @@ class BftreeComponent {
 
      this.selectedItem = {};
 
-     this.options = {
-     };
-
      this.myCollapseAll = function() {
         $scope.$broadcast('angular-ui-tree:collapse-all');
      };
@@ -207,9 +203,8 @@ class BftreeComponent {
    }  // End of constructor
 
      $onInit() {
-       console.log("Requesting BF Data");
+       //console.log("Requesting BF Data");
        this.$http.get('bigFinish.json', { cache : true } ).then(response => {
-         this.temp = "done";
          this.audioList = response.data;
          console.log("Got BF Data");
 

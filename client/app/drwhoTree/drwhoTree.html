@@ -1,25 +1,15 @@
 <div class="container">
-  <script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header">
-      <h3 class="modal-title">Loading Data</h3>
-    </div>
-    <div class="modal-body">
-      <p>We Are Sorry!</p>
-      <p>Eventually the data will be moved to a database for quicker access. For now, you must wait for it to load...
-    </div>
-  </script>
 
-
-  <div class="row">
+  <div class="row" style="background-color: dark-gray;">
     <div class="col-lg-4">
-      <h2>Dr Who Seasons</h2>
+      <h2>Dr Who Videos by Doctor</h2>
     </div>
     <div class="col-lg-8" id="buttonBar">
       <a class="pull-right btn btn-primary" ng-click="showJSONstuff()">
         <span>Generate JSON</span></a>
-        <a class="pull-right btn btn-primary" ng-click="backup()"><span>Backup to SVR</span></a>
-        <a ng-show="showShow" class="btn btn-primary" ng-click="prevItem()"><span>&lt;&lt; Previous</span></a>
-        <a ng-show="showShow" class="btn btn-primary" ng-click="nextItem()"><span>Next &gt;&gt;</span></a>
+      <a class="pull-right btn btn-primary" ng-click="backup()"><span>Backup to SVR</span></a>
+      <a ng-show="showShow" class="btn btn-primary" ng-click="prevItem()"><span>&lt;&lt; Previous</span></a>
+      <a ng-show="showShow" class="btn btn-primary" ng-click="nextItem()"><span>Next &gt;&gt;</span></a>
     </div>
   </div>
 
@@ -39,20 +29,22 @@
               <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
-            <ol ui-tree-nodes="options" ng-model="item.items" ng-class="{hidden: collapsed}">
+            <ol ui-tree-nodes data-collapsed="true" ng-model="item.items" ng-class="{hidden: collapsed}">
               <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'">
               </li>
             </ol>
           </script>
-          <div ui-tree="options">
+          <div ui-tree>
 
             <a class="btn btn-primary btn-xs" ng-click="myCollapseAll(this)">
               <span>Collapse Tree</span></a>
             <a class="btn btn-primary btn-xs" ng-click="myExpandAll(this)">
               <span>Expand Tree</span></a>
+            <a class="btn btn-primary btn-xs" ng-click="Bftree.newDoctor(this)">
+              <span>New Doctor</span></a>
 
-            <ol ui-tree-nodes ng-model="list">
-              <li ng-repeat="item in list" ui-tree-node ng-include="'items_renderer.html'"></li>
+            <ol ui-tree-nodes data-collapsed="true" ng-model="videoList">
+              <li ng-repeat="item in videoList" ui-tree-node ng-include="'items_renderer.html'"></li>
             </ol>
           </div>
         </div>
@@ -61,7 +53,7 @@
             <a class="btn btn-default btn-xs" ng-click="doneJSON()">
               <span>Done with JSON</span></a>
 
-            <pre class="code">{{ list | json }}</pre>
+            <pre class="code">{{ videoList | json }}</pre>
           </div>
           <div id="response_pane">
             <div ng-hide="showShow">
@@ -71,40 +63,135 @@
                 <label>
                   <input type="checkbox" ng-model="editMode">Edit Mode</label>
               </div>
-              <h1 ng-model="selItem">{{selItem.name}}</h1>
 
-              <div style="height: 170px;">
-                <dh-sprite-set config="doctorSpriteSpec.min.json" feat='selItem.Doctor' dh-float="'left'"></dh-sprite-set>
-                Released: {{releaseDate(selItem.Released)}}
-                <p ng-hide="editMode">Featuring: {{selItem.Featuring}}</p>
-                <dh-sprite-set config="spriteSpec.min.json" feat='selItem.Featuring'></dh-sprite-set>
-
+              <div class="row">
+                <div class="col-sm-6">
+                  <span ng-show="editMode" class="lead">Title:  <input type="text" placeholder="Title" ng-model="selItem.name"></span>
+                  <span ng-hide="editMode" class="lead">{{selItem.name}}</span>
+                </div>
+                <div class="col-sm-6">
+                  <a ng-href="{{getDescrLink()}}" target="_blank"> <img ng-show="selItem.Image" ng-src="{{selItem.Image}}" style="float: right;" /></a>
+                </div>
               </div>
-              <div ng-show="selItem.episodes.length">
-                <h2>Episodes:</h2>
-                <a class="btn btn-default btn-xs" ng-hide="epEdit" ng-click="epEdit=true;">Edit</a>
-                <a class="btn btn-default btn-xs" ng-show="epEdit" ng-click="epEdit=false;">Done</a>
-                <ul ng-repeat="ep in selItem.episodes">
-                  <li>&nbsp;<a href="{{ep.link}}" target="_blank">
-                {{ep.name}}
-              </a>
-                    <div ng-show="epEdit">
-                      <br />
-                      <input type="text" ng-model="ep.name" />
-                      <input type="text" ng-model="ep.link" />
-                    </div>
-                  </li>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div ng-show="editMode" class="form-group">
+                    <label for="sel1">Doctor:</label>
+                    <select class="form-control" id="sel1" ng-model="selItem.Doctor">
+                      <option value="1st">1st W. Hartnell</option>
+                      <option value="2nd">2nd P. Troughton</option>
+                      <option value="3rd">3rd J. Pertwee</option>
+                      <option value="4th">4th T. Baker</option>
+                      <option value="5th">5th P. Davisson</option>
+                      <option value="6th">6th C. Baker</option>
+                      <option value="7th">7th S. McCoy</option>
+                      <option value="8th">8th P. McGann</option>
+                      <option value="9th">9th C. Eccleston</option>
+                      <option value="10th">10th D. Tennant</option>
+                      <option value="11th">11th M. Smith</option>
+                      <option value="12th">12th P. Capaldi</option>
+                      <option value="War">War J. Hurt</option>
+                      <option value="Other">Other</option>
+                      <option value="None">None</option>
+                    </select>
+                  </div>
+                  <dh-sprite-set config="doctorSpriteSpec.min.json" feat='selItem.Doctor' dh-float="'left'"></dh-sprite-set>
+                </div>
+                <div class="col-sm-6">
+                  <div ng-show="editMode" class="form-group">
+                    <label for="inputdefault">Featuring (companions and enemies):</label>
+                    <input class="form-control" id="inputdefault" type="text" ng-model="selItem.Featuring">
+                  </div>
+                  <p ng-hide="editMode">Featuring: {{selItem.Featuring}}</p>
+                  <dh-sprite-set config="spriteSpec.min.json" feat='selItem.Featuring'></dh-sprite-set>
+                </div>
+              </div>
 
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="inputdefault">Season:</label><span ng-hide="editMode">&nbsp;&nbsp;{{selItem.Season}}</span>
+                    <input ng-show="editMode" class="form-control" id="inputdefault" type="text" ng-model="selItem.Season">
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="inputdefault">Number:</label><span ng-hide="editMode">&nbsp;&nbsp;{{selItem.Number}}</span>
+                    <input ng-show="editMode" class="form-control" id="inputdefault" type="text" ng-model="selItem.Number">
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="relDate">Release Date:</label><span ng-hide="editMode">&nbsp;&nbsp;{{selItem.Released | date : 'MMM yyyy' }}</span>
+                    <p ng-show="editMode" class="input-group">
+                      <input id="relDate" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="selItem.Released" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" />
+                      <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                    </p>
+                  </div>
+
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="inputdefault">Number of Episodes:</label><span ng-hide="editMode">&nbsp;&nbsp;{{selItem.Num_Episodes}}</span>
+                    <input ng-show="editMode" class="form-control" id="inputdefault" type="text" ng-model="selItem.Num_Episodes">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" ng-show="editMode">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="inputdefault">Image URL:</label>
+                    <input class="form-control" id="inputdefault" type="url" ng-model="selItem.Image">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="inputdefault">Description URL:</label>
+                    <input class="form-control" id="inputdefault" type="url" ng-model="selItem.descrUrl">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" ng-show="editMode">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="inputdefault"> Server Path:</label>
+                    <input class="form-control" id="inputdefault" type="text" ng-model="selItem.SPath">
+                  </div>
+                </div>
+                <div class="col-sm-6 ">
+                  <h2>Episodes:</h2>
+                  <table class="episodeTable">
+                    <tr>
+                      <th>No.</th>
+                      <th>Name</th>
+                      <th>Filename</th>
+                    </tr>
+                    <tr ng-repeat="ep in selItem.episodes ">
+                      <td center>{{$index + 1}}</td>
+                        <td><input type="text " ng-model="ep.name "></td>
+                        <td><input type="text " ng-model="ep.fname "></td>
+                    </tr>
+                  </table>
+                  <a class="btn btn-primary btn-xs " ng-click="newEpisode() ">
+                    <span>Add...</span></a>
+                </div>
+              </div>
+
+              <div class="row" ng-show="selItem.episodes">
+                <h2 ng-show="selItem.episodes.length">Episode Links:</h2>
+                <ul ng-repeat="ep in selItem.episodes ">
+                  <li>&nbsp;<a href="{{selItem.SPath}}/{{ep.fname}} " target="_blank ">
+                  {{ep.name}}
+                  </a></li>
                 </ul>
               </div>
             </div>
-
-
-
           </div>
         </div>
-
       </div>
-
     </div>
   </div>
