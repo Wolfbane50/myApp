@@ -1,5 +1,21 @@
 <div class="container">
 
+    <script type="text/ng-template" id="carddirModal.html">
+      <div class="modal-header">
+          <h3 class="modal-title">Choose Date to get new cards</h3>
+      </div>
+      <div class="modal-body">
+         <p>"Load cards created modified after what date (mm/dd/yy)"</p>
+         <div style="display:inline-block; min-height:290px;">
+             <div uib-datepicker ng-model="updateDt" class="well well-sm" ></div>
+           </div>
+           Chosen Date: {{updateDt | date:'fullDate' }}
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+          <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      </div>
+    </script>
 
   <div class="row">
     <div class="col-lg-4">
@@ -8,6 +24,8 @@
     <div class="col-lg-8" id="buttonBar">
       <a class="pull-right btn btn-primary" ng-click="showJSONstuff()">
         <span>Generate JSON</span></a>
+        <a class="pull-right btn btn-primary" ng-click="getNewCards()">
+          <span>Get New Cards</span></a>
       <a class="pull-right btn btn-primary" ng-click="showSelstuff()">
         <span>Generate Chk List</span></a>
       <button ng-json-export-excel data="checkedItems" report-fields="{name: 'Name', team: 'Team', brand: 'Brand', type: 'Type', path: 'Path', fname: 'File Name'}" filename="'newCards'" separator=',' class="pull-right btn btn-primary">Export Excel</button>

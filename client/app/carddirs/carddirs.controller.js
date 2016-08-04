@@ -3,7 +3,7 @@
 (function() {
 
   angular.module('myappApp')
-    .controller('carddirsCtrl', ['$scope', '$http', function($scope, $http) {
+    .controller('carddirsCtrl', ['$scope', '$http', '$uibModal', function($scope, $http, $uibModal) {
 
       $scope.showJSON = false;
       $scope.showSel = false;
@@ -302,6 +302,36 @@
         $scope.showSel = false;
       };
 
+      $scope.getNewCards = function() {
+        if (confirm("Are you sure you want to delete local storage working data?  Must be done prior to getting new cards.")) {
+          localStorage.removeItem("cardTree");
+          $scope.updateDate = new Date();
+//          var dt = new Date();
+//          var todayStr = (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+//          var updateDate = prompt ("Load cards created modified after what date (mm/dd/yy)", todayStr);
+
+          var modalInstance = $uibModal.open({
+              templateUrl: 'carddirModal.html',
+              controller: 'carddirModalCtrl',
+              size: 'sm',
+              resolve: {
+                updateDt: function () {
+                  console.log("resolving updateDt");
+                  return $scope.updateDate;
+                }
+              }
+           });
+
+          modalInstance.result.then(function (selectedDate) {
+            $scope.updateDate = selectedDate;
+            // Could do some validations here
+            alert("Want cards after " + $scope.updateDate);
+            // Call API here
+          });
+
+        }
+
+      };
 
 
     }]); // end controller
