@@ -26,6 +26,7 @@ module.exports = function(config) {
       'client/bower_components/angular-ui-tree/dist/angular-ui-tree.js',
       'client/bower_components/file-saver/FileSaver.js',
       'client/bower_components/json-export-excel/src/json-export-excel.js',
+      'client/bower_components/angular-css/angular-css.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'node_modules/socket.io-client/socket.io.js',

@@ -1,0 +1,5 @@
+<uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group ng-repeat="cat in getCategories()" class="panel-default" header"{{cat.name}}" >
+        <p ng-repeat="doc in getDocsByCategory()"><a href="#">{{doc.name}}<a></p>
+    </div>
+  </uib-accordion>

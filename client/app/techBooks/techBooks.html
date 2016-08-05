@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>Technical Books</h2>
+    </div>
+    <div class="col-lg-8" id="buttonBar">
+      <a ng-show="selItem" class="btn btn-primary" ng-click="booksHome()">
+        <span>Home<span></a>
+      <a class="pull-right btn btn-primary" ng-click="booksHome()">
+        <span>New Document</span></a>
+      <a class="pull-right btn btn-primary" ng-click="booksHome()">
+        <span>Tag Cloud</span></a>
+      <a class="pull-right btn btn-primary" ng-click="booksHome()">
+        <span>Storage Directory</span></a>
+      <a class="pull-right btn btn-primary" ng-click="booksHome()">
+        <span>Generate Local DB</span></a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4" style="height: 750px; overflow:scroll;">
+      <uib-tabset active="active">
+        <uib-tab index="0" heading="By Category">
+          <uib-accordion>
+              <div uib-accordion-group ng-repeat="cat in categories" class="panel-default" heading="{{cat.name}}" >
+                  blah blah
+                  <p ng-repeat="doc in getDocsByCategory()"><a href="#">{{doc.name}}<a></p>
+              </div>
+            </uib-accordion>
+
+          blah blah blah
+        </uib-tab>
+        <uib-tab index="1" heading="By Tag">By Tag</uib-tab>
+      </uib-tabset>
+    </div>
+    <div class="col-lg-8">
+      <img src="assets/images/phanatic_in_suit.jpg" alt="Phanatic's time for Business">
+
+    </div>
+
+
+  </div>
+</div>
