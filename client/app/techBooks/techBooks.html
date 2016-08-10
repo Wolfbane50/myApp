@@ -23,13 +23,19 @@
           <uib-accordion>
               <div uib-accordion-group ng-repeat="cat in categories" class="panel-default" heading="{{cat.name}}" >
                   blah blah
-                  <p ng-repeat="doc in getDocsByCategory()"><a href="#">{{doc.name}}<a></p>
+                  <p ng-repeat="doc in getDocsByCategory(cat.id)"><a href="#">{{doc.name}}<a></p>
+              </div>
+            </uib-accordion>
+        </uib-tab>
+        <uib-tab index="1" heading="By Tag">
+          <uib-accordion>
+              <div uib-accordion-group ng-repeat="tag in tags" class="panel-default" heading="{{tag.name}}" >
+                  blah blah
+                  <p ng-repeat="doc in getDocsByTag(tag.id)"><a href="#">{{doc.name}}<a></p>
               </div>
             </uib-accordion>
 
-          blah blah blah
         </uib-tab>
-        <uib-tab index="1" heading="By Tag">By Tag</uib-tab>
       </uib-tabset>
     </div>
     <div class="col-lg-8">

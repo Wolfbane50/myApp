@@ -5,22 +5,38 @@
   angular.module('myappApp')
     .controller('techBooksCtrl', ['$scope', '$http', function($scope, $http) {
 
-    console.log("In techBooks Init");
+////////////////////////////////////////////
+// API to docmgr (RoR implementation)
+////////////////////////////////////////////
+//
+//      resources :posts  - Is this really used ???
+//      resources :categories
+//      resources :documents
+//
+//      get "documents/tag_cloud"  - Returns HTML for a tag cloud
+//              Link to navigate_tag(tag.name)
+//      get "documents/tag"        - Returns HTML for list of documents with a given tag
+//              Link to javascript:navigate_function(doc.id)
+    
+//      get "loadstage/index"
+//      get "loadstage/getfiles"
+//      get "loadstage/getfilelists"
+//      get "loadstage/process_dir"
+
+//      get "catalog/edit"
+//      get "catalog/index"
+//      get "catalog/message"
+//      get "catalog/genlocal"
+//      post "catalog/genlocal"
+
+
+
 
     $scope.getCategories = function () {
       console.log("In getCategories");
       return $scope.categories;
     };
 
-    $scope.getDocsByCategory = function (cat) {
-      console.log("In getDocsByCategory");
-      angular.forEach($scope.documents, function(docSet) {
-        if (docSet.category == cat) {
-          return docSet.docs;
-        }
-      });
-      return [];
-    };
 
     // Create some sample data
     $scope.categories = [{
@@ -91,5 +107,22 @@
         } ]
 
     } ];
+
+    $scope.getDocsByCategory = function (cat) {
+      console.log("In getDocsByCategory, documents length = " + $scope.documents.length);
+      console.log("Looking for cat = " + cat);
+      var i;
+      for(i=0; i < $scope.documents.length; i++) {
+        var docSet = $scope.documents[i];
+        console.log("Checking set with category = " + docSet.category );
+        if (docSet.category == cat) {
+          return docSet.docs;
+        }
+      }
+      console.log("Returning empty...");
+      return [];
+    };
+
+
     }]); // end controller
 })();
