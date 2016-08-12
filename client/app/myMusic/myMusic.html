@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>Music by Artist</h2>
+    </div>
+    <div class="col-lg-8" id="buttonBar">
+      <a class="btn btn-primary" ng-click="freshScan()">
+        <span>freshScan</span></a>
+      <a class="pull-right btn btn-primary" ng-click="updateScan()">
+        <span>Update Scan</span></a>
+      <a class="pull-right btn btn-primary" ng-click="saveChanges()">
+        <span>save Changes</span></a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-lg-4">
+          <hr />
+
+          <!-- Nested list template -->
+          <script type="text/ng-template" id="items_renderer.html">
+            <div ui-tree-handle>
+              <a class="btn btn-default btn-xs" data-nodrag ng-click="toggle(this)">
+                <span class="glyphicon" ng-class="itemIcon(this)"></span></a>
+              <span data-nodrag><a ng-click="itemSelect(this)" ng-class="selectedItemClass(this)">{{item.name}}</a></span>
+            </div>
+            <ol ui-tree-nodes ng-model="item.albums" ng-class="{hidden: collapsed}">
+              <li ng-repeat="item in item.albums" ui-tree-node ng-include="'items_renderer.html'">
+              </li>
+            </ol>
+          </script>
+          <div ui-tree>
+            <a class="btn btn-primary btn-xs" ng-click="myCollapseAll(this)">
+              <span>Collapse Tree</span></a>
+            <a class="btn btn-primary btn-xs" ng-click="myExpandAll(this)">
+              <span>Expand Tree</span></a>
+
+            <ol ui-tree-nodes ng-model="artists">
+              <li ng-repeat="item in artists | orderBy:'name'" ui-tree-node ng-include="'items_renderer.html'"></li>
+            </ol>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
