@@ -216,7 +216,7 @@ function createHash(theArray) {
   for (var i = 0; i < theArray.length; i++) {
     var theRec = theArray[i];
     theHash[theRec.directory] = {
-      found: false;
+      found: false,
       recRef: theRec, // Reference to the real record
       index: i
     }
