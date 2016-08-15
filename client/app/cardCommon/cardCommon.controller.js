@@ -118,7 +118,7 @@
           return card.link
         }
         if (card.fname) {
-          return "cards/" + path + "/" + card.fname;
+          return "http://192.168.1.151/cards/" + card.fname;
         }
         if (card.id) {
           return "https://drive.google.com/uc?export=view&id=" + card.id;

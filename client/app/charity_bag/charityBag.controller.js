@@ -7,7 +7,7 @@
       $scope.output = "";
       $scope.calcTrips = [];
       $scope.donationTrips = [{
-        "date": "01/15/84",
+        "date": new Date(),
         "charity": "Goodwill Industries",
         "bags": 6,
         "added": true
@@ -18,6 +18,15 @@
         "added": false
 
       }];
+      // Uib datepicker stuff
+      $scope.cbpopup1 = {
+        opened: false
+      };
+
+      $scope.cbopen1 = function() {
+        $scope.cbpopup1.opened = true;
+      };
+
 
       var spsScope = $scope;
 

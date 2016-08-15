@@ -132,7 +132,7 @@ function processRecent(auth, sinceDate) {
     auth: auth,
     pageSize: 900,
 //    q: "modifiedTime > '" + sinceDate + "' and mimeType contains 'image/'",
-    q: "modifiedTime > '2016-04-04T12:00:00' and mimeType contains 'image/'",
+    q: "modifiedTime > '2016-07-30T12:00:00' and mimeType contains 'image/'",
     fields: "nextPageToken, files(id, name, mimeType)"
   }, function(err, response) {
     if (err) {
