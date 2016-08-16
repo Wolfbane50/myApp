@@ -7,8 +7,8 @@ parse_chachi_excel = function() {
   var workbook = XLSX.readFile(ch_path + 'buntseries2.xlsx');
   var jsonOut = s_path + "bunt.json";
   var idSheets = {
-    "ID Table": 1
-    //"Insert Old ID Table": 1
+    "ID Table": 1,
+    "Insert Old ID Table": 1
   };
 
   var chachi_db = [];
@@ -22,10 +22,10 @@ parse_chachi_excel = function() {
   for (var ws_num = 0; ws_num < workbook.SheetNames.length; ws_num++) {
     // Each sheet represents a year/set
     var sheet_name = workbook.SheetNames[ws_num];
-    console.log("Sheet = " + sheet_name);
+    //console.log("Sheet = " + sheet_name);
 
     if (idSheets[sheet_name]) {
-      console.log("Sheet OK = " + sheet_name);
+      //console.log("Sheet OK = " + sheet_name);
       var worksheet = workbook.Sheets[sheet_name];
       var chachi_set = {
         "year": sheet_name,
@@ -35,11 +35,12 @@ parse_chachi_excel = function() {
       // Parse through rows
       var roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet_name]);
       roa.forEach(function(row) {
-        console.log("In Row, name = " + row.name);
+        //console.log("In Row, name = " + row.name);
         if (row.name) { // Skip rows with no name
           if (row.id) {
             if (row.id.match(/^No/)) {
-              console.log("ID is No: " + row.id);
+              //console.log("ID is No: " + row.id);
+              // Could put a default image here
             } else {
 
               // Skip any rows without a url
