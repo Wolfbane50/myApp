@@ -44,8 +44,8 @@ parse_chachi_excel = function() {
             } else {
 
               // Skip any rows without a url
-              console.log("name : " + row.name);
-              console.log("id : " + row.id);
+              //console.log("name : " + row.name);
+              //console.log("id : " + row.id);
               var card = {
                 "name": row.name,
                 "id": row.id

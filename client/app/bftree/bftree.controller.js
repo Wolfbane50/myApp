@@ -157,8 +157,7 @@
           var newName = prompt("Name of new Series: ");
           if (newName) {
             var len = this.audioTree.length;
-            console.log("finding ID of series tree: " + JSON.stringify(this.audioTree[len-1]));
-            var newId = this.audioTree[len-1].id + 5000;
+              var newId = this.audioTree[len-1].id + 5000;
             this.audioTree.push({
               "Series": newName,
               "id": newId,
