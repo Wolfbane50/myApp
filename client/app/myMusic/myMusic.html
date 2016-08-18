@@ -17,33 +17,77 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-lg-4">
-          <hr />
 
-          <!-- Nested list template -->
-          <script type="text/ng-template" id="items_renderer.html">
-            <div ui-tree-handle>
-              <a class="btn btn-default btn-xs" data-nodrag ng-click="toggle(this)">
-                <span class="glyphicon" ng-class="itemIcon(this)"></span></a>
-              <span data-nodrag><a ng-click="itemSelect(this)" ng-class="selectedItemClass(this)">{{item.name}}</a></span>
+          <uib-accordion>
+            <div uib-accordion-group class="panel-default" ng-repeat="set in artistSets | orderBy:'letter'">
+              <uib-accordion-heading>
+                <span class="btn btn-primary">
+                <b  class="pull-right glyphicon" >{{set.letter}}</b>
+              </span>
+
+              </uib-accordion-heading>
+
+              <ul>
+                <li ng-repeat="artist in set.artists | orderBy:'name'">
+                  <a ng-click="selectArtist(artist)">{{artist.name}}</a>
+                </li>
+              </ul>
+
             </div>
-            <ol ui-tree-nodes ng-model="item.albums" ng-class="{hidden: collapsed}">
-              <li ng-repeat="item in item.albums" ui-tree-node ng-include="'items_renderer.html'">
-              </li>
-            </ol>
-          </script>
-          <div ui-tree>
-            <a class="btn btn-primary btn-xs" ng-click="myCollapseAll(this)">
-              <span>Collapse Tree</span></a>
-            <a class="btn btn-primary btn-xs" ng-click="myExpandAll(this)">
-              <span>Expand Tree</span></a>
 
-            <ol ui-tree-nodes ng-model="artists">
-              <li ng-repeat="item in artists | orderBy:'name'" ui-tree-node ng-include="'items_renderer.html'"></li>
-            </ol>
+          </uib-accordion>
+
+
+        </div>
+        <div class="col-lg-8">
+          <div ng-hide="selArtist">
+            <h1>Select an Artist ...</h1></div>
+          <div ng-show="selArtist">
+            <div class="row">
+              <div class="col-sm-6">
+                <span ng-hide="selArtist.edit" class="lead">{{selArtist.name}}</span>
+                <span ng-show="selArtist.edit" class="lead">Artist Name: <input type="text" ng-model="selArtist.name"></span>
+              </div>
+              <div class="col-sm-6">
+                <img ng-show="selArtist.image" ng-src="{{selArtist.image}}" style="float: right;" />
+                <button class="pull-right btn btn-primary" ng-click="setArtistImage(selArtist)">Set Image</button>
+              </div>
+              <hr />
+            </div>
+            <div class="row">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"  ng-model="selArtist.edit">Edit Mode</label>
+              </div>
+            </div>
+            <div class="row">
+              <table>
+                <tr>
+                  <th>Name</th>
+                  <th>Year</th>
+                  <th>Archived</th>
+                  <th>Cover</th>
+                  <th class="control">&nbsp;</th>
+                </tr>
+                <tr ng-repeat="album in selArtist.albums">
+                  <td class="namecol">
+                    <span ng-hide="selArtist.edit" >{{album.name}}</span>
+                    <input ng-show="selArtist.edit" class="tableInput" type="text" ng-model="album.name">
+                  </td>
+                  <td>
+                    <span ng-hide="selArtist.edit" >{{album.year}}</span>
+                    <input ng-show="selArtist.edit" class="tableYearInput" type="text" ng-model="album.year">
+                  </td>
+                  <td>{{album.archived | date:'fullDate'}}</td>
+                  <td><img class="cover" ng-show="album.image" ng-src="{{album.image}}"></td>
+                  <td class="control">
+                    <button class="btn btn-primary" ng-click="setAlbumImage(album)">Set Cover</button>
+                  </td>
+                </tr>
+              </table>
+
+            </div>
           </div>
-
-
-
         </div>
       </div>
     </div>

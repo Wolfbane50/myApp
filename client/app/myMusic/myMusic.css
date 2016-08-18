@@ -1,0 +1,45 @@
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  border: 2px solid #666;
+}
+
+.tableInput {
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 390px;
+}
+.tableYearInput {
+  width: 70px;
+}
+th {
+   border: 2px solid #666;
+   background: CADETBLUE;
+   margin: 5px;
+   padding-right: 20px;
+   padding-left: 20px;
+}
+th.control {
+  border: none;
+  background: white;
+}
+td.control {
+  border: none;
+}
+td.namecol {
+  width: 400px;
+}
+
+tr:hover {
+  background: DARKKAHKI;
+}
+
+img.cover {
+  padding: 1px;
+  width: 100px;
+  height: 100px;
+}

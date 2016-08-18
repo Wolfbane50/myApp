@@ -12,7 +12,7 @@ var router = express.Router();
 router.get('/',
    controller.index);
 router.get('/search', controller.albumSearch);
-//router.put('/:id', controller.update);
+router.post('/update', controller.updateTunes);
 //router.patch('/:id', controller.update);
 //router.delete('/:id', controller.destroy);
 

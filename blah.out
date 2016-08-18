@@ -1,0 +1,39 @@
+[10:36:48] Requiring external module babel-register
+[10:36:51] Using gulpfile C:\blah\myapp\gulpfile.babel.js
+[10:36:51] Starting 'serve'...
+[10:36:51] Starting 'clean:tmp'...
+[10:36:51] Starting 'constant'...
+[10:36:51] Starting 'env:all'...
+[10:36:51] Finished 'env:all' after 5.08 ms
+[10:36:51] Finished 'constant' after 84 ms
+[10:36:51] Finished 'clean:tmp' after 120 ms
+[10:36:51] Starting 'inject'...
+[10:36:51] Starting 'inject:js'...
+[10:36:51] Starting 'inject:css'...
+[10:36:51] gulp-inject 18 files into index.html.
+[10:36:51] Finished 'inject:css' after 185 ms
+[10:36:51] gulp-inject 64 files into index.html.
+[10:36:51] Finished 'inject:js' after 238 ms
+[10:36:51] Finished 'inject' after 240 ms
+[10:36:51] Starting 'wiredep:client'...
+[10:36:51] Finished 'wiredep:client' after 55 ms
+[10:36:51] Starting 'transpile:client'...
+[10:36:51] Starting 'styles'...
+[10:36:51] client\app\app.css
+[10:36:52] client\app\admin\admin.css
+[10:36:52] client\app\bftree\bftree.css
+[10:36:52] client\app\c2tree\c2tree.css
+[10:36:52] client\app\bfGrid\bfGrid.css
+[10:36:52] client\app\cardCommon\cardCommon.css
+[10:36:52] client\app\carddirs\carddirs.css
+[10:36:52] client\app\dirExplorer\dirExplorer.css
+[10:36:52] client\app\drwhoTree\drwhoTree.css
+[10:36:52] client\app\charity_bag\charityBag.css
+[10:36:52] client\app\main\main.css
+[10:36:52] client\app\myMusic\myMusic.css
+[10:36:52] client\app\spsdb\spsdb.css
+[10:36:52] client\app\techBooks\techBooks.css
+[10:36:52] client\app\spriteGridExample\spriteGridExample.css
+[10:36:52] client\components\footer\footer.css
+[10:36:52] client\components\oauth-buttons\oauth-buttons.css
+[10:36:52] client\components\modal\modal.css

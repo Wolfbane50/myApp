@@ -4,29 +4,45 @@
 
   angular.module('myappApp')
     .controller('myMusicCtrl', ['$scope', '$http', function($scope, $http) {
-      treeCtlScope = $scope;
+      var treeCtlScope = $scope;
       $scope.artists = [];
       $scope.musicLocation = "";
-      $scope.artistSets = {};
+      $scope.artistSets = [];
+      $scope.selArtist = "";
 
       $http.get('mytunes.json', { cache : true } ).then(function successCb(response) {
 
          console.log("Got Tunes Data");
          treeCtlScope.artists = response.data.artists;
          treeCtlScope.musicLocation = response.data.baseDir;
+         var artistSetsObj = {};
 
          // Walk the artists and sort, create a tree structure
-         angular.foreach(treeCtlScope.artists, function(artist) {
+         angular.forEach(treeCtlScope.artists, function(artist) {
+           console.log("Original Artist Name: " + artist.name);
            var sortableArt = artist.name.replace(/^\W+/, "");  // Remove any non-alphas from beginning
            sortableArt = sortableArt.replace(/^The /, ""); // Remove leading the
-           var letter = sortableArt.subStr(0, 1).toUpperCase();
-           if (treeCtlScope.artistSets[letter]) {
-               treeCtlScope.artistSets[letter].push(artist);
+           console.log("Sortable artist - " + sortableArt);
+           var letter = sortableArt.substring(0, 1).toUpperCase();
+           if (artistSetsObj[letter]) {
+               artistSetsObj[letter].push(artist);
            } else {
-              treeCtlScope.artistSets[letter] = [ artist ];
+              artistSetsObj[letter] =  [ artist ];
            }
 
          });
+
+         // Convert the artistSet object into a sorted array
+         angular.forEach(artistSetsObj, function(value, key) {
+            treeCtlScope.artistSets.push({
+              letter: key,
+              artists: value
+            });
+            // Could do sort here
+
+          });
+
+
 
       }, function errorCb(response) {
       // Handle the error
@@ -34,33 +50,69 @@
       });
 
       $scope.freshScan = function() {
-          alert("Not implemented yet");
+        if (confirm("Are you sure you want to do a fresh Scan?\n\nThis will eleminate all meta-data!")) {
+          $http({ method: 'GET', url: '/api/tunes/search',
+               data: { "directory" : $scope.musicLocation
+           } }).success(function(data) {
+               alert("Scna Successful!\n\nReprocesing Data");
+               console.log(JSON.stringify(data));
+           }).error(function(data, status, headers, config) {
+             // Handle the error
+                alert("Music data scan failed with status: " + status);
+           });
+         }
       };
       $scope.updateScan = function() {
-          alert("Not implemented yet");
+          if (confirm("Make sure you save before any meta-data in browser before updating...")) {
+            $http({ method: 'POST', url: '/api/tunes/update',
+                 data: { "directory" : $scope.musicLocation
+             } }).success(function(data) {
+                 alert("Update Successful!\n\nReprocesing Data");
+                 console.log(JSON.stringify(data));
+             }).error(function(data, status, headers, config) {
+               // Handle the error
+                  alert("Music data save failed with status: " + status);
+             });
+
+          }
       };
       $scope.saveChanges = function() {
-          alert("Not implemented yet");
+          // Delete client side data from all the artists
+          angular.forEach($scope.artists, function(artist) {
+            delete artist.edit;
+          });
+          var c2String = angular.toJson($scope.artists);
+
+          $http({ method: 'POST', url: '/api/backups/',
+               data: { "c2_data" : c2String,
+                       "bkfile" : "mytunes"
+           } }).success(function(data) {
+               alert("Music Data Saved!\n\n" + data);
+           }).error(function(data, status, headers, config) {
+             // Handle the error
+                alert("Music data save failed with status: " + status);
+           });
+
       };
 
-      $scope.toggle = function(scope) {
+      $scope.selectArtist = function(artist) {
+        $scope.selArtist = artist;
+        artist.edit = false;
       };
 
-      $scope.itemIcon = function(scope) {
+      $scope.setArtistImage = function(artist) {
+        var imgUrl = prompt("Enter URL for image of " + artist.name, artist.image);
+        if(imgUrl) {
+          artist.image = imgUrl;
+        }
       };
+      $scope.setAlbumImage = function(album) {
+        var imgUrl = prompt("Enter URL for image of " + album.name, album.image);
+        if(imgUrl) {
+          album.image = imgUrl;
+        }
 
-      $scope.itemSelect = function(scope) {
       };
-
-      $scope.selectedItemClass = function(scope) {
-      };
-
-      $scope.myCollapseAll = function(scope) {
-      };
-
-      $scope.myExpandAll = function(scope) {
-      };
-
 
     }]); // end controller
 })();
