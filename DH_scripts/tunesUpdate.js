@@ -102,7 +102,7 @@ function saveTunesFile(theTunes) {
 }
 
 // tunes/search/
-export function albumSearch(req, res) {
+function albumSearch(req, res) {
   //var tunesBaseDir = "Multimedia/My Music";
   var tunesBaseDir = req.query.directory;
   //  console.log("Starting album search in " + tunesBaseDir);
@@ -124,13 +124,15 @@ export function albumSearch(req, res) {
   }, function(err, results) {
     tunesCollection.artists = results;
     saveTunesFile(tunesCollection);
-    res.redirect(303, '/mytunes.json');
+    res.redirect(303, '/tunes');
   });
+
+  // Write out tunesCollection to a file
 
 }
 
 //  /tunes/
-export function index(req, res) {
+function index(req, res) {
   console.log("Inside index");
   res.redirect(303, '/mytunes.json');
   //res.sendFile("server/public/mytunes.json", function(err) {
@@ -158,15 +160,19 @@ function getTunesFile() {
 
 function updateArtistAlbums(artistRecord, ArCallback) {
   // Create hash of albums
+  console.log("Updating albums for " + artistRecord.name);
   var albumHash = createHash(artistRecord.albums);
 
   filterDirectories(artistRecord.directory, function(filepath, callback) {
     // Iterator for each album
+    console.log("Iterator for album" + filepath);
     var fullpath = artistRecord.directory + '/' + filepath;
     if (albumHash[fullpath]) {
+      console.log("-- Found");
       albumHash[fullpath].found = true;
       findArchiveDate(albumHash[fullpath].recRef, callback);
     } else {
+      console.log("-- Create new album");
       var newAlbum = {
         directory: fullpath,
         name: filepath,
@@ -176,7 +182,7 @@ function updateArtistAlbums(artistRecord, ArCallback) {
       findArchiveDate(newAlbum, callback);
     }
   }, function(err, results) {
-
+console.log("Done walking albums, will now find deleted albums");
     deleteRecords(albumHash, artistRecord.albums, function() {
       ArCallback(null, artistRecord);
     });
@@ -191,11 +197,13 @@ function deleteRecords(theHash, theArray, delCallback) {
   async.forEachOf(theHash, function(descriptor, key, callback) {
     //for (var artist in artistHash) {
     if (!descriptor.found) {
+      console.log("Need to delete " + key);
       deleteIndices.push(descriptor.index);
     }
     callback();
   }, function(err) {
     // Needs to be run when all complete
+    console.log("Done walking records, will delete from array based on index");
     deleteIndices.sort(function(a, b) {
       return b - a;
     }); // Reverse sort numerically
@@ -223,8 +231,8 @@ function createHash(theArray) {
 }
 
 //  /tunes/update
-export function updateTunes(req, res) {
-  //console.log("-------------In tunes server --");
+function updateTunes(req, res) {
+  console.log("-------------In tunes server --");
   // Why do I need this? - Need it to synchronize edited changes from client with
   //    updates to file system - Names of artists and albums will change from client
   //
@@ -244,22 +252,19 @@ export function updateTunes(req, res) {
   //           ii. Find deleted albums
   //           ii. For each existing albums
   //                - Update archived date
-  var tunesBaseDir = req.body.directory;
-  //console.log("Starting album search in " + tunesBaseDir);
+  var tunesBaseDir = req.query.directory;
+  //  console.log("Starting album search in " + tunesBaseDir);
 
   // load our database of existing artists/albums
   var tunesCollection = getTunesFile();
   if (!tunesCollection) {
-    console.log("Cannot open music database!");
-    res.status(500).send('Cannot open music database!');
+    res.send(500, 'Cannot open music database!');
     return;
   }
 
   // Verify we are looking at the same filesystem
   if (tunesBaseDir != tunesCollection.baseDir) {
-    console.log('Database does not match input path for music!');
-    console.log("    DB : " + tunesCollection.baseDir + "<--> Req : " + tunesBaseDir  + "<");
-    res.status(500).send('Database does not match input path for music!');
+    res.send(500, 'Database does not match input path for music!');
     return;
   }
 
@@ -269,12 +274,15 @@ export function updateTunes(req, res) {
   // Find and Add new artists
   filterDirectories(tunesBaseDir, function(filepath, callback) {
     // Iterator - run on each artist directory
+    console.log('Iterating on artist directories: ' + filepath);
     var fullpath = tunesBaseDir + '/' + filepath;
     if (artistHash[fullpath]) {
+      console.log("-- Found it!");
       artistHash[fullpath].found = true;
       updateArtistAlbums(artistHash[fullpath].recRef, callback);
     } else {
       // New artist
+      console.log('--Creating new artist');
       var newArtist = {
         directory: fullpath,
         name: filepath,
@@ -290,15 +298,34 @@ export function updateTunes(req, res) {
 
   }, function(err, results) {
     // results contains list of all artists, but I don't really care since databse was updated
-
+    console.log('Done walking artists, will now purge deleted artists');
     // Walk the hash to find any deleted artists
     deleteRecords(artistHash, tunesCollection.artists, function() {
       // Write out the database
       saveTunesFile(tunesCollection);
       // Redirect to /theTunes
-      res.redirect(303, '/mytunes.json');
+      res.redirect(303, '/tunes');
     });
   });
-
-
 }
+
+// Standalone driver for running outside of mocha and express
+//    Without express, this script knows nothing about requests and responses
+var request = {
+  query: {
+    directory: "/blah/music"
+  }
+};
+
+var response = {
+  redirect: function(code, path) {
+    console.log("Response:  redirect, code = " + code + " path = " + path);
+  },
+  send: function(code, msg) {
+    console.log("Response:  redirect, code = " + code + " msg = " + msg);
+
+  }
+}
+
+updateTunes(request, response);
+console.log("I am done!");

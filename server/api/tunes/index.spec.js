@@ -4,11 +4,13 @@ var proxyquire = require('proxyquire').noPreserveCache();
 
 var tunesCtrlStub = {
   index: 'tunesCtrl.index',
-  albumSearch: 'tunesCtrl.albumSearch'
+  albumSearch: 'tunesCtrl.albumSearch',
+  updateTunes: 'tunesCtrl.updateTunes'
 };
 
 var routerStub = {
   get: sinon.spy(),
+  post: sinon.spy(),
 };
 
 // require the index with our stubbed out modules
@@ -48,5 +50,14 @@ describe('tunes API Router:', function() {
 
   });
 
+  describe('POST /api/tunes/update', function() {
+
+    it('should route to tunes.controller.albumSearch', function() {
+      routerStub.post
+        .withArgs('/update', 'tunesCtrl.updateTunes')
+        .should.have.been.calledOnce;
+    });
+
+  });
 
 });
