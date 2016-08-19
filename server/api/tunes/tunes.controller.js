@@ -151,7 +151,7 @@ function getTunesFile() {
     var buf = fs.readFileSync("server/public/mytunes.json");
     return JSON.parse(buf.toString());
   } catch (err) {
-    console.error(err);
+    console.error("Could not read JSON file : " + err);
     return null;
     // What to return???
   }
@@ -212,9 +212,11 @@ function deleteRecords(theHash, theArray, delCallback) {
 }
 
 function createHash(theArray) {
+  console.log("Creating hash for array");
   var theHash = {};
   for (var i = 0; i < theArray.length; i++) {
     var theRec = theArray[i];
+    console.log("building hash entry for " + theRec.directory);
     theHash[theRec.directory] = {
       found: false,
       recRef: theRec, // Reference to the real record
@@ -247,25 +249,32 @@ export function updateTunes(req, res) {
   //           ii. For each existing albums
   //                - Update archived date
   var tunesBaseDir = req.query.directory;
-  //  console.log("Starting album search in " + tunesBaseDir);
+    console.log("Starting album search in " + tunesBaseDir);
 
   // load our database of existing artists/albums
   var tunesCollection = getTunesFile();
   if (!tunesCollection) {
+    console.log('Cannot open music database!');
     res.send(500, 'Cannot open music database!');
     return;
   }
+console.log("Got data");
+
 
   // Verify we are looking at the same filesystem
   if (tunesBaseDir != tunesCollection.baseDir) {
     res.send(500, 'Database does not match input path for music!');
+    console.log("Database does not match input path for music!");
     return;
   }
+  console.log(JSON.stringify(tuneCollection));
 
   // Build a hash of existing artists
+  console.log("Building hash of artists");
   var artistHash = createHash(tuneCollection.artists);
 
   // Find and Add new artists
+  console.log("Filter directories for artists");
   filterDirectories(tunesBaseDir, function(filepath, callback) {
     // Iterator - run on each artist directory
     var fullpath = tunesBaseDir + '/' + filepath;
@@ -298,6 +307,4 @@ export function updateTunes(req, res) {
       res.redirect(303, '/tunes');
     });
   });
-
-
 }

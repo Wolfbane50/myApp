@@ -1,0 +1,25 @@
+before(function() {
+   // runs before all tests in this block
+   var jsonStats = fs.statSync(jsonFile);
+   if (jsonStats.isFile()) {
+     var backupFN = jsonFile.repl(/\.json$/, '.bak');
+     fs.rename(jsonFile, backupFN);
+   }
+
+   // Create the test data
+   //fs.createReadStream('path/to/archive.zip').pipe(unzip.Extract({ path: 'output/path' }));
+   fs.createReadStream('server/api/tunes/testdata.zip').pipe(unzip.Extract({ path: '/blah' }));
+
+ });
+
+after(function() {
+  // Restore the JSON file if needed
+   var backupFN = jsonFile.repl(/\.json$/, '.bak');
+  var backStats = fs.statSync(backupFN);
+  if (backStats.isFile()) {
+      fs.rename(backupFN, jsonFile);
+  }
+
+  // Delete the test data.
+  del('/blah/music/**');
+});
