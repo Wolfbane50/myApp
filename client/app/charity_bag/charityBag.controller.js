@@ -12,21 +12,50 @@
         "bags": 6,
         "added": true
       }, {
-        "date": "",
+        "date": null,
         "charity": "",
         "bags": 0,
         "added": false
 
       }];
       // Uib datepicker stuff
-      $scope.cbpopup1 = {
+      $scope.popup1 = {
         opened: false
       };
 
-      $scope.cbopen1 = function() {
-        $scope.cbpopup1.opened = true;
+      $scope.open1 = function(index) {
+        console.log("open1 - " + index);
+        $scope.donationTrips[index].opened = true;
       };
 
+
+
+      $scope.cbPopups = [ {
+        opened: false
+      } ];
+
+
+      $scope.cbopen = function(index) {
+        console.log("Calling cbopen with index " + index);
+        if($scope.cbPopups[index]) {
+          $scope.cbPopups[index].opened = true;
+        } else {
+          $scope.cbPopups[index] = { opened : true }
+        }
+      };
+
+
+
+      $scope.dateOptions = {
+  //      dateDisabled: disabled,
+  //      formatYear: 'yy',
+        maxDate: new Date(2020, 5, 22),
+        minDate: new Date(1990, 1, 1) // Will not be appropriate when done with videos
+  //      startingDay: 1
+      };
+
+        $scope.dateFormat = 'dd-MMMM-yyyy'
+      //  $scope.dateFormat = 'M!/d!/yyyy';
 
       var spsScope = $scope;
 
@@ -36,9 +65,10 @@
           alert("Must Specify a charity!");
           return false;
         }
-        pattern = /^\d\d\/\d\d\/\d\d$/;
-        if (!pattern.test(trip.date)) {
-          alert("Must Specify a valid Date (mm/dd/yy) including leading zeros! \n You input >>" + trip.date + "<<");
+        //pattern = /^\d\d\/\d\d\/\d\d$/;
+        //if (!pattern.test(trip.date)) {
+        if(!angular.isDate(trip.date)) {
+          alert("Must Specify a valid Date! \n You input >>" + trip.date + "<<");
           return false;
         }
         if (trip.bags < 1) {

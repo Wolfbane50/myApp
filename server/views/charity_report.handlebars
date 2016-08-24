@@ -5,6 +5,17 @@
   table {
      border-collapse: collapse;
      border: 2px solid #444;
+     width: 500px;
+     margin-left: 25px;
+  }
+  th {
+    border: 2px solid #666;
+    background: CADETBLUE;
+
+    padding-right: 20px;
+    padding-left: 20px;
+    text-align: center;
+
   }
   td {
     border: 2px solid #666;
@@ -13,30 +24,70 @@
      font-weight: bold;
      text-align: right;
   }
+  @media screen {
+    .print-vis {
+      display: none;
+    }
+    .page-break {
+       display: none;
+    }
+  }
+  @media print {
+    /* Style rules */
+    .page-break {
+       page-break-after: always;
+    }
+    .print-invis {
+      display: none;
+    }
+    .print-vis {
+      display: block;
+    }
+  }
+.tripDate {
+  margin-left: 25px;
+}
+.tripDesc {
+  text-align: right;
+}
+.itemCol {
+  margin-left: 10px;
+}
+.costCol {
+  text-align: center;
+}
 
 </style>
 </head>
 <body>
 
+
 {{#each trips}}
-   <h1>Report of Goods</h1>
+  <div class="page-break"></div>
+   <h1>Clothing Donation to {{charity}}</h1>
+   <div>
+     <span class="tripDate"><b>Date:</b>  {{date}}</span>
+     <span class="tripDesc"><b>Description:</b> {{bags}} Bags of Clothing</span>
+   </div>
+   <hr />
    <table>
-	<tr>
-	<td>Charity:</td><td>{{charity}}</td>
-	</tr><tr>
-	<td>Date:</td><td>{{date}}</td>
-	</tr><tr>
-	<td>&nbsp;</td><td>{{bags}} Bags of Clothing</td>
-	</tr>
-	<tr><td>&nbsp;</td></tr>
+  <tr>
+    <th class="itemCol">
+      Item
+    </th>
+    <th>
+      Cost
+    </th>
+  </tr>
 	{{#each items}}
-	    <tr><td>&nbsp;</td><td>{{name}}</td><td class="currency">${{price}}</td></tr>
+	    <tr><td  class="itemCol">{{name}}</td><td class="costCol currency">${{price}}</td></tr>
 	{{/each}}
 	<tr><td>&nbsp;</td></tr>
 	<tr>
-	<td>&nbsp;</td><td><span class="total">Total</span></td><td class="currency">${{total}}</td>
+	<td><span class="total">Total</span></td><td class="currency">${{total}}</td>
 	</tr>
    </table>
+
 {{/each}}
 <hr />
 </body>

@@ -6,23 +6,27 @@
         <th class="charbagtablehdr">Date</th>
         <th class="charbags">Charity</th>
         <th class="charbags">Number of Bags</th>
-        <th class="charbags">&nbsp;</th>
+        <th class="control">&nbsp;</th>
       </tr>
       <tr ng-repeat="trip in donationTrips">
-        <td ng-class-odd="'altRow'">
-          <span class="input-group-btn">
-          <input type="text" class="form-control" uib-datepicker-popup="'M!/d!/yyyy'"
-                  ng-model="trip.date" is-open="cbpopup1.opened" close-text="Close" />
-          <button type="button" class="btn btn-default" ng-click="cbopen1()">
-               <i class="glyphicon glyphicon-calendar"></i></button>
-          </span></td>
+        <td>
+          <p>
+          <input class="dateInput" type="text" uib-datepicker-popup="MM/dd/yyyy"
+
+                  ng-model="trip.date" is-open="trip.opened" />
+
+          <button type="button" class="pull-right" ng-click="open1($index)">
+            <i class="glyphicon glyphicon-calendar"></i>
+               </button>
+             </p>
+        </td>
         <td ng-class-odd="'altRow'">
           <input ng-model="trip.charity">
         </td>
         <td ng-class-odd="'altRow'">
           <input ng-model="trip.bags">
         </td>
-        <td ng-class-odd="'altRow'">
+        <td class="control">
           <button ng-hide="trip.added" ng-click="addTrip(trip)">Add</button>
         </td>
       </tr>

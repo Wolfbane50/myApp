@@ -1,6 +1,5 @@
 table.charbags {
    border-collapse: collapse;
-   border: 2px solid #444;
 }
 .charbags td {
   border: 2px solid #666;
@@ -8,6 +7,17 @@ table.charbags {
 th.charbags {
    border: 2px solid #666;
    background: CADETBLUE;
+}
+th.control {
+  border: none;
+  background: white;
+}
+.dateInput {
+  float: left;
+
+}
+td.control {
+  border: none;
 }
 .charbagtablehdr {
    border: 2px solid #666;
@@ -17,7 +27,7 @@ th.charbags {
   background: DARKKAHKI;
 }
 .charbags .altRow {
-   background: yellow;
+   background: lightgray;
 }
 .charbags .report {
    background: LIGHTGRAY;
