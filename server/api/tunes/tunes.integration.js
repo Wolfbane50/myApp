@@ -90,7 +90,7 @@ describe('Tunes API:', function() {
 
     it('should respond with redirect to /tunes', function() {
       redirect.should.be.true;
-      redirectUrl.should.equal('/tunes');
+      redirectUrl.should.equal('/mytunes.json');
 
     });
 
@@ -104,7 +104,9 @@ describe('Tunes API:', function() {
       // Need to create an image file 'touch ./cards/sample.jpg'
       request(app)
         .post('/api/tunes/update')
-        .body({directory: '/blah/music'})
+        .send( {
+          directory: '/blah/music'
+        })
         .expect(303)
         .expect('Content-Type',  /text/)
         .end((err, res) => {
@@ -118,9 +120,9 @@ describe('Tunes API:', function() {
         });
     });
 
-    it('should respond with redirect to /tunes', function() {
+    it('should respond with redirect to /mytunes.json', function() {
       redirect.should.be.true;
-      redirectUrl.should.equal('/tunes');
+      redirectUrl.should.equal('/mytunes.json');
 
     });
 

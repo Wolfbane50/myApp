@@ -10,16 +10,6 @@ class NavbarController {
     this.isAdmin = Auth.isAdmin;
     this.getCurrentUser = Auth.getCurrentUser;
 
-    this.menu = [
-      {
-        title : 'Sprite Grid Example',
-        state : 'spGridExample'
-      },
-      {
-        title : 'Big Finish Grid View',
-        state : 'bfGrid'
-      }
-    ];
 
   }
 

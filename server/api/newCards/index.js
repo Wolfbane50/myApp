@@ -2,6 +2,8 @@
 
 var express = require('express');
 var controller = require('./newCards.controller');
+var chachiCtrl = require('./chachi.controller')
+var buntCtrl = require('./buntCards.controller')
 var passport = require('passport');
 
 var router = express.Router();
@@ -10,10 +12,12 @@ var router = express.Router();
 //  console.log('Dh route: %s %s %s', req.method, req.url, req.path);
 //  next();
 //});
-router.get('/',
-   controller.index);
-//router.put('/:id', controller.update);
-//router.patch('/:id', controller.update);
-//router.delete('/:id', controller.destroy);
+router.get('/', controller.index);
+router.post('/', controller.update);
+router.get('/bunt', buntCtrl.index);
+router.get('/drive', buntCtrl.getIds);
+router.post('/bunt', buntCtrl.update);
+router.get('/chachi', chachiCtrl.index);
+router.post('/chachi', chachiCtrl.update);
 
 module.exports = router;
