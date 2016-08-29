@@ -1,36 +1,61 @@
-<div>
-  <nav class="navbar navbar-inverse print-invis" data-spy="affix" data-offset-top="1">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <span class="navbar-brand">Card Catalog</span>
+<script type="text/ng-template" id="myModalContent.html">
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Latest files on Google Drive</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>ID</th>
+      </tr>
+      <tr ng-repeat=item in driveMatrix>
+        <td>{{item.name}}</td>
+        <td>{{item.id}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="">Update from Excel</button>
+    <button class="btn btn-warning" type="button" ng-click="">Dismiss</button>
+  </div>
+
+  </<script>
+  <div>
+    <nav class="navbar navbar-inverse print-invis" data-spy="affix" data-offset-top="1">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <span class="navbar-brand">Card Catalog</span>
+        </div>
+        <ul class="nav navbar-nav">
+          <li>
+            <label class="nav-label" for="sel1">Type:</label>
+          </li>
+          <li>
+            <select id="sel1" class="form-control" ng-model="myJSON" ng-options="item for item in jsonFiles" ng-change="loadSets();"></select>
+          </li>
+          <li>
+            <label class="nav-label" for="sel2">Year/Set:</label>
+          </li>
+          <li>
+            <select id="sel2" class="form-control" ng-model="mySet" ng-options="set.year for set in cardSets" ng-change="selYear();"></select>
+          </li>
+          <li><a ng-click="updateJson()">Update {{myJSON}}</a></li>
+        </ul>
       </div>
-      <ul class="nav navbar-nav">
-        <li>
-          <label class="nav-label" for="sel1">Type:</label>
-        </li>
-        <li>
-          <select id="sel1" class="form-control" ng-model="myJSON" ng-options="item for item in jsonFiles" ng-change="loadSets();"></select>
-        </li>
-        <li>
-          <label class="nav-label" for="sel2">Year/Set:</label>
-        </li>
-        <li>
-          <select id="sel2" class="form-control" ng-model="mySet" ng-options="set.year for set in cardSets" ng-change="selYear();"></select>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    </nav>
 
-  <div id="runhead" class="print-vis">{{mySet.year}}</div>
+    <div id="runhead" class="print-vis">{{mySet.year}}</div>
 
-  <div class="cardDisplay">
-    <div ng-repeat="card in cards">
+    <div class="cardDisplay">
+      <div ng-repeat="card in cards">
 
-      <div ng-class="(($index % 3) == 0) ? 'cardRow' : 'cardpic'">
-        <a ng-click="openLightboxModal($index)">
-          <img id="card{{$index}}" ng-src="{{imageLink(card)}}" data-toggle="tooltip" title="{{card.name}}" orientable /></a>
+        <div ng-class="(($index % 3) == 0) ? 'cardRow' : 'cardpic'">
+          <a ng-click="openLightboxModal($index)">
+            <img id="card{{$index}}" ng-src="{{imageLink(card)}}" data-toggle="tooltip"
+                  title="{{card.name}}" orientable />
+            </a>
+        </div>
+
       </div>
-
     </div>
   </div>
-</div>

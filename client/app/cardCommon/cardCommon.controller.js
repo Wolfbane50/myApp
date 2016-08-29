@@ -23,7 +23,22 @@
     });
 
   angular.module('myappApp')
-    .controller('cardCtrl', ['$scope', '$http', 'Lightbox', function($scope, $http, Lightbox) {
+    .controller('ModalInstanceCtrl', function($uibModalInstance, items) {
+      var $ctrl = this;
+      $ctrl.items = items;
+
+      $ctrl.ok = function() {
+        alert("Will update JSON from Excel here!");
+        $uibModalInstance.close();
+      };
+
+      $ctrl.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+      };
+    });
+
+  angular.module('myappApp')
+    .controller('cardCtrl', ['$scope', '$http', 'Lightbox', '$uibModal', function($scope, $http, Lightbox, $uibModal) {
       $scope.myJSON = "chachis3.json";
       $scope.jsonFiles = ['chachis3.json', 'bunt.json', 'ss_cards.json'];
       $scope.cardSets = [];
@@ -114,6 +129,7 @@
       };
 
       $scope.imageLink = function(card) {
+        if(! card) { console.log("Card not existing in imageLink");}
         if (card.link) {
           return card.link
         }
@@ -131,5 +147,74 @@
         Lightbox.openModal($scope.cards, index);
 
       };
+
+      // UIB Modal Dialog for showing name / id pairs from google drive
+      // temp data
+      $scope.driveMatrix = [{
+        name: "Willy Wonka",
+        id: "23232asdad"
+      }, {
+        name: "Doctor Who",
+        id: "alkdjflskdj2132 sdlkjfaslkdjf"
+      }, {
+        name: "James Bond",
+        id: "007"
+      }]
+
+      $scope.openMatrix = function() {
+        var modalInstance = $uibModal.open({
+          templateUrl: 'myModalContent.html',
+          controller: 'ModalInstanceCtrl',
+          controllerAs: '$ctrl',
+          size: 'lg',
+          resolve: {
+            items: function() {
+              return $ctrl.items;
+            }
+          }
+        });
+
+
+        modalInstance.result.then(function() {
+        console.log('Modal OKd');
+        }, function() {
+          console.log('Modal dismissed.');
+        });
+      };
+
+      $scope.updateJson = function() {
+        var jsonFile = $scope.myJSON;
+        if (jsonFile == "chachis3.json") {
+          $http({
+            method: 'POST',
+            url: "/api/newCards/chachi",
+            cache: true
+          }).success(function(data) {
+            chachiScope.cardSets = data;
+            chachiScope.mySet = chachiScope.cardSets[0];
+            chachiScope.cards = chachiScope.mySet.cards;
+          }).error(function(data, status, headers, config) {
+            // Handle the error
+            alert("Request to update Card data yielded error: " + status);
+          });
+
+        } else {
+          if (jsonFile == "bunt.json") {
+            $http({
+              method: 'POST',
+              url: "/api/newCards/bunt",
+              cache: true
+            }).success(function(data) {
+              // Will return an array of Names and IDs
+            }).error(function(data, status, headers, config) {
+              // Handle the error
+              alert("Request to update Card data yielded error: " + status);
+            });
+
+          } else {
+            alert("No update function implemented for this yet!");
+          }
+        }
+      };
     }]); // end controller
-  })();
+})();

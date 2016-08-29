@@ -1,5 +1,6 @@
 'use strict';
 var fs = require("fs");
+var XLSX = require('xlsx');
 
 export function index(req, res) {
   res.redirect(303, '/bunt.json');
@@ -9,19 +10,18 @@ export function getIds(req, res) {
   res.status(200).json([{
     name: "George Washington",
     id: 1
-  } , {
-    name : "Abraham Lincoln",
+  }, {
+    name: "Abraham Lincoln",
     id: 2
   }]);
 };
 
 export function update(req, res) {
-var XLSX = require('xlsx');
-  // replicates functionality of DH_scripts/parse_bunt_excel.js
-  var ch_path = "./";
-  var s_path = "server/public/";
 
-  var parse_chachi_excel = function() {
+  // replicates functionality of DH_scripts/parse_bunt_excel.js
+
+  function parse_bunt_excel() {
+    var ch_path = "./";
     var workbook = XLSX.readFile(ch_path + 'buntseries2.xlsx');
     var jsonOut = s_path + "bunt.json";
     var idSheets = {
@@ -89,11 +89,19 @@ var XLSX = require('xlsx');
 
       }
     }
+    console.log("Finished conversion at " + new Date());
     return chachi_db;
-  };
+  }
+  console.log("Starting excel procoessing at " + new Date());
+  var s_path = "server/public/";
+  try {
+    fs.writeFileSync(s_path + 'bunt.json',
+      JSON.stringify(parse_bunt_excel()));
 
-  fs.writeFile(s_path + 'bunt.json',
-    JSON.stringify(parse_chachi_excel()));
+  } catch (e) {
+    console.log("Caught exception parsing and writing - " + e);
+
+  }
 
 
   res.redirect(303, '/bunt.json');
