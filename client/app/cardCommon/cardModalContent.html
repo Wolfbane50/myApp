@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">Latest files on Google Drive</h3>
+</div>
+<div class="modal-body" id="modal-body">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>ID</th>
+    </tr>
+    <tr ng-repeat="item in $ctrl.items">
+      <td>{{item.name}}</td>
+      <td>{{item.id}}</td>
+    </tr>
+  </table>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Update from Excel</button>
+  <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Dismiss</button>
+</div>

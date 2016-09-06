@@ -1,26 +1,27 @@
-<script type="text/ng-template" id="myModalContent.html">
-  <div class="modal-header">
-    <h3 class="modal-title" id="modal-title">Latest files on Google Drive</h3>
-  </div>
-  <div class="modal-body" id="modal-body">
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>ID</th>
-      </tr>
-      <tr ng-repeat=item in driveMatrix>
-        <td>{{item.name}}</td>
-        <td>{{item.id}}</td>
-      </tr>
-    </table>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="">Update from Excel</button>
-    <button class="btn btn-warning" type="button" ng-click="">Dismiss</button>
-  </div>
-
-  </<script>
   <div>
+
+    <script type="text/ng-template" id="cardModalContent.html">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Latest files on Google Drive</h3>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <h1>foo {{bar}}</h1>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>ID</th>
+          </tr>
+          <tr ng-repeat="item in $ctrl.items">
+            <td>{{item.name}}</td>
+            <td>{{item.id}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">Update from Excel</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Dismiss</button>
+      </div>
+    </script>
     <nav class="navbar navbar-inverse print-invis" data-spy="affix" data-offset-top="1">
       <div class="container-fluid">
         <div class="navbar-header">

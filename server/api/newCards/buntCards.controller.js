@@ -26,6 +26,7 @@ export function update(req, res) {
     var jsonOut = s_path + "bunt.json";
     var idSheets = {
       "ID Table": 1,
+      "2016 Inserts" : 1,
       "Insert Old ID Table": 1
     };
 
