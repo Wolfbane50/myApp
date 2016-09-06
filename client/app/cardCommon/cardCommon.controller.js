@@ -22,8 +22,40 @@
       };
     });
 
+  angular.module('myappApp').component('modalComponent', {
+    templateUrl: 'cardModalContent.html',
+    bindings: {
+      resolve: '<',
+      close: '&',
+      dismiss: '&'
+    },
+    controller: function() {
+      var $ctrl = this;
+      console.log("In Modal component controller");
+
+      $ctrl.$onInit = function() {
+        $ctrl.items = $ctrl.resolve.items;
+        console.log("In Modal Compoent Controller - Items are " + JSON.stringify($ctrl.items));
+
+      };
+
+      $ctrl.ok = function() {
+        $ctrl.close({
+          $value: 'OK'
+        });
+      };
+
+      $ctrl.cancel = function() {
+        $ctrl.dismiss({
+          $value: 'cancel'
+        });
+      };
+    }
+  });
+
+
   angular.module('myappApp')
-    .controller('ModalInstanceCtrl', function($uibModalInstance, items) {
+    .controller('ModalInstanceCtrl', ['$uibModalInstance', 'items', function($uibModalInstance, items) {
       var $ctrl = this;
       console.log("In ModalInstanceCtrl - Items are " + JSON.stringify(items));
       $ctrl.items = items;
@@ -38,13 +70,12 @@
         alert("Dismissing");
         $uibModalInstance.dismiss('cancel');
       };
-    });
+    }]);
 
   angular.module('myappApp')
-    .controller('cardCtrl', ['$scope', '$http', 'Lightbox', '$uibModal',
-      function($scope, $http, Lightbox, $uibModal) {
-$scope.bar = "rootBar";
-        var $ctrl = this;
+    .controller('cardCtrl', ['$scope', '$http', '$uibModal', 'Lightbox',
+      function($scope, $http, $uibModal, Lightbox) {
+        $scope.bar = "rootBar";
         $scope.myJSON = "chachis3.json";
         $scope.jsonFiles = ['chachis3.json', 'bunt.json', 'ss_cards.json'];
         $scope.cardSets = [];
@@ -158,7 +189,7 @@ $scope.bar = "rootBar";
 
         // UIB Modal Dialog for showing name / id pairs from google drive
         // temp data
-        $ctrl.driveMatrix = [{
+        $scope.driveMatrix = [{
           name: "Willy Wonka",
           id: "23232asdad"
         }, {
@@ -171,27 +202,44 @@ $scope.bar = "rootBar";
 
         $scope.findFromGDrive = function() {
           console.log("Creating modal");
-                        var modalInstance = $uibModal.open({
-                          templateUrl: 'cardModalContent.html',
-                          controller: 'ModalInstanceCtrl',
-                         controlledAs: '$ctrl',
-                          size: 'lg',
-                          resolve: {
-                            items: function() {
-                              return $ctrl.driveMatrix;
-                            }
-                          }
-                        });
+          var modalInstance = $uibModal.open({
+            templateUrl: 'cardModalContent.html',
+            component: 'modalComponent',
+            resolve: {
+              items: function() {
+                return $scope.items;
+              }
+            }
+          });
 
-                        modalInstance.result.then(function() {
-                          console.log('Modal OKd');
-                        }, function() {
-                          console.log('Modal dismissed.');
-                        });
+          modalInstance.result.then(function (selectedItem) {
 
-                        //              // Handle the error
-                        //              alert("Request to update Card data yielded error: " + status);
-                        //            });
+            console.log("Modal component OK");
+          }, function () {
+          console.log('modal-component dismissed at: ' + new Date());
+          });
+
+          //          var modalInstance = $uibModal.open({
+          //            templateUrl: 'cardModalContent.html',
+          //            controller: 'ModalInstanceCtrl',
+          //            //controlledAs: '$ctrl',
+          //            size: 'lg',
+          //            resolve: {
+          //              items: function() {
+          //                return $scope.driveMatrix;
+          //              }
+          //            }
+          //          });
+
+          //          modalInstance.result.then(function() {
+          //            console.log('Modal OKd');
+          //          }, function() {
+          //            console.log('Modal dismissed.');
+          //          });
+
+          //              // Handle the error
+          //              alert("Request to update Card data yielded error: " + status);
+          //            });
 
         }
 
@@ -215,18 +263,18 @@ $scope.bar = "rootBar";
           } else {
             if (jsonFile == "bunt.json") {
               $http({
-                  method: 'POST',
-                  url: "/api/newCards/bunt",
+                method: 'POST',
+                url: "/api/newCards/bunt",
                 cache: true
-                }).success(function(data) {
+              }).success(function(data) {
 
-                  chachiScope.cardSets = data;
-                  chachiScope.mySet = chachiScope.cardSets[0];
-                  chachiScope.cards = chachiScope.mySet.cards;
-                }).error(function(data, status, headers, config) {
-                  // Handle the error
-                  alert("Request to update Card data yielded error: " + status);
-                });
+                chachiScope.cardSets = data;
+                chachiScope.mySet = chachiScope.cardSets[0];
+                chachiScope.cards = chachiScope.mySet.cards;
+              }).error(function(data, status, headers, config) {
+                // Handle the error
+                alert("Request to update Card data yielded error: " + status);
+              });
 
             } else {
               alert("No update function implemented for this yet!");

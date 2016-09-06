@@ -5,21 +5,21 @@
         <h3 class="modal-title" id="modal-title">Latest files on Google Drive</h3>
       </div>
       <div class="modal-body" id="modal-body">
-        <h1>foo {{bar}}</h1>
+        <h1>foo {{$ctrl.bar}}</h1>
         <table>
           <tr>
             <th>Name</th>
             <th>ID</th>
           </tr>
-          <tr ng-repeat="item in $ctrl.items">
+          <tr ng-repeat="item in items">
             <td>{{item.name}}</td>
             <td>{{item.id}}</td>
           </tr>
         </table>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="ok()">Update from Excel</button>
-        <button class="btn btn-warning" type="button" ng-click="cancel()">Dismiss</button>
+        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Update from Excel</button>
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Dismiss</button>
       </div>
     </script>
     <nav class="navbar navbar-inverse print-invis" data-spy="affix" data-offset-top="1">
@@ -41,6 +41,7 @@
             <select id="sel2" class="form-control" ng-model="mySet" ng-options="set.year for set in cardSets" ng-change="selYear();"></select>
           </li>
           <li><a ng-click="updateJson()">Update {{myJSON}}</a></li>
+          <li><a ng-click="findFromGDrive()">Google Drive ID Table</a></li>
         </ul>
       </div>
     </nav>
