@@ -54,6 +54,7 @@ describe('Bunt API:', function() {
     });
 
     // Clean up files aftereward
+      console.log("*** /drive returned:  " + JSON.stringify(matrix));
 
     it('should respond with a JSON array', function() {
       matrix.should.be.instanceOf(Array);
