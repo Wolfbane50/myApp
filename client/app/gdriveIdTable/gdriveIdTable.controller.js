@@ -11,7 +11,7 @@
 
         $http.get('/api/newCards/drive').then(function successCb(response) {
 
-          console.log("Got GDrive Data");
+          //console.log("Got GDrive Data" + JSON.stringify(response.data));
           drvScope.items = response.data;
         }, function errorCb(response) {
           // Handle the error

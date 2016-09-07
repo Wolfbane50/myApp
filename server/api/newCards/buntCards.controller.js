@@ -18,7 +18,7 @@ function dateForQuery (dt) {
    mnth++;
    if(mnth < 10) mnth = "0" + mnth;
 
-   var day = dt.getDay();
+   var day = dt.getDate();
    if(day < 10) day="0" + day;
    var yr = dt.getFullYear();
 
@@ -89,7 +89,7 @@ function processRecent(auth, req, res) {
     sinceDate = new Date();
     sinceDate.setDate(sinceDate.getDate() - 7);
   }
-   console.log("Query is: <<" +  "modifiedTime > '" + dateForQuery(sinceDate) + "' and mimeType contains 'image/'");
+   //console.log("Query is: <<" +  "modifiedTime > '" + dateForQuery(sinceDate) + "' and mimeType contains 'image/'");
   service.files.list({
     auth: auth,
     pageSize: 900,
@@ -112,10 +112,10 @@ function processRecent(auth, req, res) {
 
       var newList = [];
 
-      console.log('Files:');
+      //console.log('Files:');
       for (var i = 0; i < files.length; i++) {
         var file = files[i];
-       console.log('%s (%s):%s', file.name, file.id);
+      // console.log('%s (%s):%s', file.name, file.id);
         var newSet = {
           "name": file.name,
           "id": file.id
@@ -124,7 +124,7 @@ function processRecent(auth, req, res) {
       }
 
       if (newList.length) {
-        console.log("****WE ARE GOOD****");
+        //console.log("****WE ARE GOOD****" + JSON.stringify(newList));
         res.status(200).json(newList);
 
       } else {

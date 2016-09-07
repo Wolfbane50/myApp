@@ -8,10 +8,10 @@ var passport = require('passport');
 
 var router = express.Router();
 
-router.use(function(req, res, next){
-  console.log('Dh route: %s %s %s', req.method, req.url, req.path);
-  next();
-});
+//router.use(function(req, res, next){
+//  console.log('Dh route: %s %s %s', req.method, req.url, req.path);
+//  next();
+//});
 router.get('/', controller.index);
 router.post('/', controller.update);
 router.get('/bunt', buntCtrl.index);

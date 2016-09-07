@@ -65,39 +65,39 @@ describe('Bunt API:', function() {
     });
   });
 
-  describe('post /api/newCards/bunt', function() {
-    beforeEach(function(done) {
-      // Need to create an image file 'touch ./cards/sample.jpg'
-      request(app)
-        .post('/api/newCards/bunt')
-        .send()
-        .expect(303)
-        .expect('Content-Type', /text/)
-        .timeout(100000)
-        .end((err, res) => {
-          if (err) {
-            return done(err);
-          }
+//  describe('post /api/newCards/bunt', function() {
+//    beforeEach(function(done) {
+//      // Need to create an image file 'touch ./cards/sample.jpg'
+//      request(app)
+//        .post('/api/newCards/bunt')
+//        .send()
+//        .expect(303)
+//        .expect('Content-Type', /text/)
+//        .timeout(100000)
+//        .end((err, res) => {
+//          if (err) {
+//            return done(err);
+//          }
 //          console.log('headers = ' + res.headers.location);
-          redirect = res.redirect;
-          redirectUrl = res.headers.location;
-          done();
-        });
-    });
+//          redirect = res.redirect;
+//          redirectUrl = res.headers.location;
+//          done();
+//        });
+//    });
 
     // Clean up files aftereward
 
-    it('should respond with redirect to /bunt.json', function() {
-      redirect.should.be.true;
-      redirectUrl.should.equal('/bunt.json');
+//    it('should respond with redirect to /bunt.json', function() {
+//      redirect.should.be.true;
+//      redirectUrl.should.equal('/bunt.json');
 
-    });
+//    });
 
     // it('should have created the backup file')
     // it('should have created the backup file with the correct content')
     // it('should have written the changes to the original json file')
 
-  });
+//  });
 
 
 });
