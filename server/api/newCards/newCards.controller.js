@@ -68,3 +68,10 @@ export function index(req, res) {
    finder.startSearch();
 
 }
+
+export function update(req, res) {
+  // Should get data from tagging and update ss_cards.json
+  console.log("Update not implemented yet");
+  res.redirect(303, '/ss_cards.json');
+
+}

@@ -52,21 +52,26 @@ export default function(app) {
   app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
   app.use(bodyParser.json({limit: '50mb'}));
   app.use(methodOverride());
-  app.use(cookieParser());
-//  app.use(passport.initialize());
+  //app.use(cookieParser(config.secrets.session));
+  app.use(passport.initialize());
 
-  // Persist sessions with MongoStore / sequelizeStore
+  // No -- Do sessions locally in memory xxPersist sessions with MongoStore / sequelizeStore
   // We need to enable sessions for passport-twitter because it's an
   // oauth 1.0 strategy, and Lusca depends on sessions
-  //app.use(session({
-  //  secret: config.secrets.session,
-  //  saveUninitialized: true,
-  //  resave: false,
+app.use(session({
+  secret: config.secrets.session,
+  //
+  //  maxAge:  0,
+  //      By default, no expiration is set, and most clients will consider this
+  //      a "non-persistent cookie" and will delete it on a condition like exiting
+  //      a web browser application.
+    saveUninitialized: true,
+    resave: false,
   //  store: new MongoStore({
   //    mongooseConnection: mongoose.connection,
   //    db: 'myapp'
   //  })
-//  }));
+  }));
 
   /**
    * Lusca - express server security

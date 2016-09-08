@@ -4,10 +4,23 @@
 
   class MainController {
 
-    constructor($http, $scope, socket) {
+    constructor($http, $scope, Modal) {
       this.$http = $http;
-      this.socket = socket;
-      this.awesomeThings = [];
+      this.modal = Modal;
+
+     // Example use of Modal Confirm dialog
+      this.dummyConfirm = function() {
+        console.log('in dummyConfirm');
+        var myModalFn =  this.modal.confirm.delete(function(data1, data2) {
+          console.log('You are confirmed');
+          console.log("Data1 = " + data1);
+          console.log("Data2 = " + data2);
+        });
+
+        myModalFn("My Junk", "additional data", "more additional data");
+
+      };
+
     }
   //    $scope.$on('$destroy', function() {
   //      socket.unsyncUpdates('thing');
@@ -39,6 +52,7 @@
   angular.module('myappApp')
     .component('main', {
       templateUrl: 'app/main/main.html',
-      controller: MainController
+      controller: MainController,
+      controllerAs: 'MnCtrl'
     });
 })();

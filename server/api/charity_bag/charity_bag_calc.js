@@ -101,11 +101,15 @@ var calculate_charity_bags = function(charity, date, num_bags) {
 
   var child_pick_array = build_pick_array(child_eval_data);
   var adult_pick_array = build_pick_array(adult_eval_data);
+  var dt = new Date(date);
+  var months = ["January", "February", "March", "April", "May", "June", "July",
+               "August", "September", "October", "November", "December"];
+  var dateString = dt.getDate() + " " + months[dt.getMonth()] + " " + dt.getFullYear();
 
   var manifest = {
     "bags": num_bags,
     "charity": charity,
-    "date": date,
+    "date": dateString,
     "total": 0,
     "items": []
   };

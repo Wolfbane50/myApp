@@ -53,4 +53,38 @@ describe('New Cards API:', function() {
 
   });
 
+  describe('post /api/newCards', function() {
+    beforeEach(function(done) {
+      // Need to create an image file 'touch ./cards/sample.jpg'
+      request(app)
+        .post('/api/newCards')
+        .send()
+        .expect(303)
+        .expect('Content-Type', /text/)
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+//          console.log('headers = ' + res.headers.location);
+          redirect = res.redirect;
+          redirectUrl = res.headers.location;
+          done();
+        });
+    });
+
+    // Clean up files aftereward
+
+    it('should respond with redirect to /ss_cards.json', function() {
+      redirect.should.be.true;
+      redirectUrl.should.equal('/ss_cards.json');
+
+    });
+
+    // it('should have created the backup file')
+    // it('should have created the backup file with the correct content')
+    // it('should have written the changes to the original json file')
+
+  });
+
+
 });

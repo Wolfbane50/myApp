@@ -38,7 +38,7 @@ angular.module('myappApp')
            * @param  {All}           - any additional args are passed straight to del callback
            */
           return function() {
-            var args = Array.prototype.slice.call(arguments),
+              var args = Array.prototype.slice.call(arguments),
               name = args.shift(),
               deleteModal;
 
