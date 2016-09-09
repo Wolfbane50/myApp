@@ -1,16 +1,18 @@
 'use strict';
 var fs = require("fs");
+var XLSX = require('xlsx');
 
 export function index(req, res) {
+  console.log("In chachi index ...");
   res.redirect(303, '/chachis3.json');
 
 }
 
 export function update(req, res) {
   // replicate functionality of DH_scripts/parse_chachi_excel
-var XLSX = require('xlsx');
 
-  var parse_chachi_excel = function() {
+
+  function parse_chachi_excel() {
     var ch_path = "./";
     var workbook = XLSX.readFile(ch_path + 'chachis.xlsx');
     var jsonOut = ch_path + "chachis3.json";
@@ -94,28 +96,19 @@ var XLSX = require('xlsx');
       }
     }
     return chachi_db;
-  };
-  //console.log(JSON.stringify(parse_chachi_excel()));
-  watch_chachi_change = function() {
-    var ch_path = "C:\\Users\\daniel.heaney\\Documents\\c2_tree\\";
-    var out_path = "server\\public\\";
-
-    var fs = require('fs');
-    fs.watchFile(ch_path + 'chachis.xlsx', function(curr, prev) {
-      if (curr.mtime.getTime() !== prev.mtime.getTime()) {
-        console.log('Updating Chachi.json');
-        fs.writeFile(out_path + 'chachis3.json',
-          JSON.stringify(parse_chachi_excel()));
-
-      }
-    });
   }
 
-  var fs = require('fs');
+  console.log("In chachi update again ...");
+
   var s_path = "server/public/";
   console.log('Updating Chachi.json');
-  fs.writeFile(s_path + 'chachis3.json',
-    JSON.stringify(parse_chachi_excel()));
+  try {
+    fs.writeFileSync(s_path + 'chachis3.json',
+      JSON.stringify(parse_chachi_excel()));
+
+  } catch (e) {
+    console.log("Caught exception parsing and writing - " + e);
+  }
 
   res.redirect(303, '/chachis3.json');
 }

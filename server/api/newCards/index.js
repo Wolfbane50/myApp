@@ -2,8 +2,8 @@
 
 var express = require('express');
 var controller = require('./newCards.controller');
-var chachiCtrl = require('./chachi.controller')
-var buntCtrl = require('./buntCards.controller')
+var chachiCtrl = require('./chachi.controller');
+var buntCtrl = require('./buntCards.controller');
 var passport = require('passport');
 
 var router = express.Router();
