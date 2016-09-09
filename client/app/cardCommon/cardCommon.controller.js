@@ -22,56 +22,6 @@
       };
     });
 
-  angular.module('myappApp').component('modalComponent', {
-    templateUrl: 'cardModalContent.html',
-    bindings: {
-      resolve: '<',
-      close: '&',
-      dismiss: '&'
-    },
-    controller: function() {
-      var $ctrl = this;
-      console.log("In Modal component controller");
-
-      $ctrl.$onInit = function() {
-        $ctrl.items = $ctrl.resolve.items;
-        console.log("In Modal Compoent Controller - Items are " + JSON.stringify($ctrl.items));
-
-      };
-
-      $ctrl.ok = function() {
-        $ctrl.close({
-          $value: 'OK'
-        });
-      };
-
-      $ctrl.cancel = function() {
-        $ctrl.dismiss({
-          $value: 'cancel'
-        });
-      };
-    }
-  });
-
-
-  angular.module('myappApp')
-    .controller('ModalInstanceCtrl', ['$uibModalInstance', 'items', function($uibModalInstance, items) {
-      var $ctrl = this;
-      console.log("In ModalInstanceCtrl - Items are " + JSON.stringify(items));
-      $ctrl.items = items;
-      $ctrl.bar = 'bar';
-
-      $ctrl.ok = function() {
-        alert("Will update JSON from Excel here!");
-        $uibModalInstance.close();
-      };
-
-      $ctrl.cancel = function() {
-        alert("Dismissing");
-        $uibModalInstance.dismiss('cancel');
-      };
-    }]);
-
   angular.module('myappApp')
     .controller('cardCtrl', ['$scope', '$http', '$uibModal', 'Lightbox',
       function($scope, $http, $uibModal, Lightbox) {
@@ -187,61 +137,6 @@
 
         };
 
-        // UIB Modal Dialog for showing name / id pairs from google drive
-        // temp data
-        $scope.driveMatrix = [{
-          name: "Willy Wonka",
-          id: "23232asdad"
-        }, {
-          name: "Doctor Who",
-          id: "alkdjflskdj2132 sdlkjfaslkdjf"
-        }, {
-          name: "James Bond",
-          id: "007"
-        }];
-
-        $scope.findFromGDrive = function() {
-          console.log("Creating modal");
-          var modalInstance = $uibModal.open({
-            templateUrl: 'cardModalContent.html',
-            component: 'modalComponent',
-            resolve: {
-              items: function() {
-                return $scope.items;
-              }
-            }
-          });
-
-          modalInstance.result.then(function (selectedItem) {
-
-            console.log("Modal component OK");
-          }, function () {
-          console.log('modal-component dismissed at: ' + new Date());
-          });
-
-          //          var modalInstance = $uibModal.open({
-          //            templateUrl: 'cardModalContent.html',
-          //            controller: 'ModalInstanceCtrl',
-          //            //controlledAs: '$ctrl',
-          //            size: 'lg',
-          //            resolve: {
-          //              items: function() {
-          //                return $scope.driveMatrix;
-          //              }
-          //            }
-          //          });
-
-          //          modalInstance.result.then(function() {
-          //            console.log('Modal OKd');
-          //          }, function() {
-          //            console.log('Modal dismissed.');
-          //          });
-
-          //              // Handle the error
-          //              alert("Request to update Card data yielded error: " + status);
-          //            });
-
-        }
 
 
         $scope.updateJson = function() {
@@ -277,7 +172,24 @@
               });
 
             } else {
-              alert("No update function implemented for this yet!");
+              if (jsonFile == "ss_cards.json") {
+                $http({
+                  method: 'POST',
+                  url: "/api/newCards",
+                  cache: true
+                }).success(function(data) {
+
+                  chachiScope.cardSets = data;
+                  chachiScope.mySet = chachiScope.cardSets[0];
+                  chachiScope.cards = chachiScope.mySet.cards;
+                }).error(function(data, status, headers, config) {
+                  // Handle the error
+                  alert("Request to update Card data yielded error: " + status);
+                });
+
+              } else {
+                alert("No update function implemented for this yet!");
+              }
             }
           }
         };
