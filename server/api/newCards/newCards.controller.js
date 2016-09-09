@@ -25,6 +25,7 @@ export function index(req, res) {
            trimpath = trimpath.substr(pubDir.length);
            var re = /\\/g;
            trimpath = trimpath.replace(re, '/');
+           trimpath = trimpath.replace('^\./', '');
            //console.log("trimpath: " + trimpath);
            var rec = {
             'path' : trimpath,
@@ -119,6 +120,7 @@ export function update(req, res) {
                 //console.log("url : " + row.link);
                 var card = {
                   "name": row.Name,
+                  "path" : row.Path,
                   "fname": row['File Name'],
                   "type" : row.Type,
                   "brand" : row.Brand,

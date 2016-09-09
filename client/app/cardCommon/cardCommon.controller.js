@@ -9,7 +9,7 @@
           return card.link
         }
         if (card.fname) {
-          return "http://192.168.1.151/cards/" + path + "/" + card.fname;
+          return "http://192.168.1.151/cards/" + card.path + "/" + card.fname;
         }
         if (card.id) {
           return "https://drive.google.com/uc?export=view&id=" + card.id;
@@ -123,7 +123,8 @@
             return card.link
           }
           if (card.fname) {
-            return "http://192.168.1.151/cards/" + card.fname;
+            console.log("Path is " + "http://192.168.1.151/cards/" + card.path + '/' + card.fname);
+            return "http://192.168.1.151/cards/" + card.path + '/' + card.fname;
           }
           if (card.id) {
             return "https://drive.google.com/uc?export=view&id=" + card.id;
