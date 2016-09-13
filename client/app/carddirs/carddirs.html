@@ -26,14 +26,10 @@
         <span>Generate JSON</span></a>
         <a class="pull-right btn btn-primary" ng-click="getNewCards()">
           <span>Get New Cards</span></a>
-      <a class="pull-right btn btn-primary" ng-click="showSelstuff()">
-        <span>Generate Chk List</span></a>
-      <button ng-json-export-excel data="checkedItems" report-fields="{name: 'Name', team: 'Team', brand: 'Brand', type: 'Type', path: 'Path', fname: 'File Name'}" filename="'newCards'" separator=',' class="pull-right btn btn-primary">Export Excel</button>
+      <button ng-json-export-excel data="checkedItems"
+              report-fields="{name: 'Name', team: 'Team', brand: 'Brand', type: 'Type', path: 'Path', fname: 'File Name'}"
+              filename="'newCards'" separator=',' class="pull-right btn btn-primary">Export Excel</button>
 
-      <a class="pull-right btn btn-primary" ng-click="deleteChecked()">
-        <span>Delete Checked</span></a>
-      <a class="pull-right btn btn-primary" ng-click="enterChecked()">
-        <span>Enter Checked to DB</span></a>
       <a class="pull-right btn btn-primary" ng-click="commitChanges()">
         <span>Commit Changes</span></a>
       <a class="pull-right btn btn-primary" ng-click="flushLocal()">
