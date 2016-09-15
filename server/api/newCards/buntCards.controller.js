@@ -151,6 +151,7 @@ export function update(req, res) {
     var idSheets = {
       "ID Table": 1,
       "2016 Inserts": 1,
+      "2016 Huddle" : 1,
       "Insert Old ID Table": 1
     };
 
@@ -165,10 +166,10 @@ export function update(req, res) {
     for (var ws_num = 0; ws_num < workbook.SheetNames.length; ws_num++) {
       // Each sheet represents a year/set
       var sheet_name = workbook.SheetNames[ws_num];
-      //console.log("Sheet = " + sheet_name);
+  //    console.log("Sheet = " + sheet_name);
 
       if (idSheets[sheet_name]) {
-        //console.log("Sheet OK = " + sheet_name);
+//        console.log("Sheet OK = " + sheet_name);
         var worksheet = workbook.Sheets[sheet_name];
         var chachi_set = {
           "year": sheet_name,
