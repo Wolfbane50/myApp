@@ -16,6 +16,38 @@
       $scope.epEdit = false;
       $scope.checkedItems = [];
 
+      function cardTreeFromJson(data) {
+        var seriesIncr = 50000;
+        var dirLookup = {};
+
+        // Walk the data and create a hierarchical list
+        var cardList = data;
+
+        cardList.forEach(function(element, index, array) {
+          var targetList;
+          var inPath = element.path;
+          console.log("Input path = " + element.path);
+          var path = inPath.substring(2, inPath.length);
+          //var path = inPath;
+          var inFname = element.fname;
+
+          element.checked = false;
+          if (dirLookup[path]) {
+            targetList = dirLookup[path];
+            targetList.items.push(element);
+            //console.log("adding " + inFname + " to " + path);
+          } else {
+            targetList = {
+              "path": path,
+              "id": seriesIncr++,
+              "items": [element]
+            };
+            //console.log("Starting  " + path + " with " + inFname);
+            dirLookup[path] = targetList;
+            treeCtlScope.cardTree.push(targetList);
+          }
+        });
+      }
 
       var c2DataStr = localStorage.getItem("cardTree");
       if (c2DataStr) {
@@ -26,39 +58,12 @@
         $http({
           method: 'GET',
           url: 'carddirs.json'
-        }).success(function(data) {
+        }).then(function successCallback(response) {
           //alert("Got data ");
+            cardTreeFromJson(response.data);
 
-          var seriesIncr = 50000;
-          var dirLookup = {};
-
-          // Walk the data and create a hierarchical list
-          var cardList = data;
-
-          cardList.forEach(function(element, index, array) {
-            var targetList;
-            var inPath = element.path;
-            console.log("Input path = " + element.path);
-            var path = inPath.substring(2, inPath.length);
-            //var path = inPath;
-            var inFname = element.fname;
-
-            element.checked = false;
-            if (dirLookup[path]) {
-              targetList = dirLookup[path];
-              targetList.items.push(element);
-              //console.log("adding " + inFname + " to " + path);
-            } else {
-              targetList = {
-                "path": path,
-                "id": seriesIncr++,
-                "items": [element]
-              };
-              //console.log("Starting  " + path + " with " + inFname);
-              dirLookup[path] = targetList;
-              treeCtlScope.cardTree.push(targetList);
-            }
-          });
+        }, function errorCallback(response) {
+          alert("Request for New Cards data yielded error: " + response.status);
         });
 
       }
@@ -325,8 +330,22 @@
           modalInstance.result.then(function (selectedDate) {
             $scope.updateDate = selectedDate;
             // Could do some validations here
-            alert("Want cards after " + $scope.updateDate);
-            // Call API here
+            //alert("Want cards after " + $scope.updateDate);
+            $http({
+              method: 'GET',
+              url: '/api/newCards',
+              params : {
+                directory: "server/public/cards",
+                lastDate: selectedDate
+              }
+            }).then(function successCallback(response) {
+                treeCtlScope.cardTree = [];
+                cardTreeFromJson(response.data);
+
+            }, function errorCallback(response) {
+                        alert("Request for New Cards data yielded error: " + response.data + " (" + response.status + ")");
+            });
+
           });
 
         }

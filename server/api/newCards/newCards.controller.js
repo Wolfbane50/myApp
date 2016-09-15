@@ -1,75 +1,83 @@
 'use strict';
 var fs = require("fs");
- var FindFiles = require("node-find-files");
- var path = require('path');
- var XLSX = require('xlsx');
+var FindFiles = require("node-find-files");
+var path = require('path');
+var XLSX = require('xlsx');
 
 
 export function index(req, res) {
   console.log("-------------In newCards server --");
   //console.log("Request ==>\n" + JSON.stringify(req.body));
 
-   var cardfiles = [];
-   // This will need to change !!!!!!!!!!!
-   var cardDir = "./server/public/cards";
-   var pubDir = "server/public/";
-   var processNewCard = function (strPath, stat) {
-     if (stat.isDirectory()) {
+  var cardfiles = [];
+  var cardDir;
 
-     } else {
-       console.log("Adding " + strPath);
-       if((path.extname(strPath) == '.jpg') || (path.extname(strPath) == '.png')) {
-           var trimpath = path.dirname(strPath);
-           // Strip the public directory particular
-           //console.log("trimpath: " + trimpath + "  pubDir: " + pubDir + " with lenght: " + pubDir.length);
-           trimpath = trimpath.substr(pubDir.length);
-           var re = /\\/g;
-           trimpath = trimpath.replace(re, '/');
-           trimpath = trimpath.replace('^\./', '');
-           //console.log("trimpath: " + trimpath);
-           var rec = {
-            'path' : trimpath,
-            'fname': path.basename(strPath)
-           };
-           //console.log('Pushing into cardfiles');
-           cardfiles.push(rec);
-       }
-     }
+  if (req.query.directory) {
+    cardDir = req.query.directory;
+  } else {
+    cardDir = "./server/public/cards";
 
+  }
 
-   };
-   // Get the last Date processed
-   var lastDateStr = req.body.lastDate;
-   var dtstr = req.body.lastDate.replace(/\D/g," ");
-   var dtcomps = dtstr.split(" ");
-   dtcomps[1]--;
-   var lastDate = new Date(Date.UTC(dtcomps[0],dtcomps[1], dtcomps[2], dtcomps[3], dtcomps[4], dtcomps[5]));
+  var pubDir = "server/public/";
+  var processNewCard = function(strPath, stat) {
+    if (stat.isDirectory()) {
 
-   var finder = new FindFiles({
-     rootFolder : cardDir,
-     fileModifiedDate : lastDate
-   });
-
-   finder.on("match", function(strPath, stat) {
-       //console.log(strPath + " - " + stat.mtime);
-       processNewCard(strPath, stat);
-   })
-   finder.on("patherror", function(err, strPath) {
-       console.log("Error for Path " + strPath + " " + err)  // Note that an error in accessing a particular file does not stop the whole show
-   })
-   finder.on("error", function(err) {
-       console.log("Global Error " + err);
-   })
-   finder.on("complete", function() {
-       console.log("Finished");
-       if(cardfiles.length) {
-          fs.writeFile("server/public/carddirs.json", JSON.stringify(cardfiles));
-      } else {
-          console.log("No new files discovered!");
+    } else {
+      console.log("Adding " + strPath);
+      if ((path.extname(strPath) == '.jpg') || (path.extname(strPath) == '.png')) {
+        var trimpath = path.dirname(strPath);
+        // Strip the public directory particular
+        //console.log("trimpath: " + trimpath + "  pubDir: " + pubDir + " with lenght: " + pubDir.length);
+        trimpath = trimpath.substr(pubDir.length);
+        var re = /\\/g;
+        trimpath = trimpath.replace(re, '/');
+        trimpath = trimpath.replace('^\./', '');
+        //console.log("trimpath: " + trimpath);
+        var rec = {
+          'path': trimpath,
+          'fname': path.basename(strPath)
+        };
+        //console.log('Pushing into cardfiles');
+        cardfiles.push(rec);
       }
-       res.redirect(303, '/carddirs');
-   })
-   finder.startSearch();
+    }
+
+
+  };
+  // Get the last Date processed
+  var lastDateStr = req.body.lastDate;
+  var dtstr = req.query.lastDate.replace(/\D/g, " ");
+  var dtcomps = dtstr.split(" ");
+  dtcomps[1]--;
+  var lastDate = new Date(Date.UTC(dtcomps[0], dtcomps[1], dtcomps[2], dtcomps[3], dtcomps[4], dtcomps[5]));
+
+  var finder = new FindFiles({
+    rootFolder: cardDir,
+    fileModifiedDate: lastDate
+  });
+
+  finder.on("match", function(strPath, stat) {
+    //console.log(strPath + " - " + stat.mtime);
+    processNewCard(strPath, stat);
+  })
+  finder.on("patherror", function(err, strPath) {
+    console.log("Error for Path " + strPath + " " + err) // Note that an error in accessing a particular file does not stop the whole show
+  })
+  finder.on("error", function(err) {
+    console.log("Global Error " + err);
+  })
+  finder.on("complete", function() {
+    console.log("Finished");
+    if (cardfiles.length) {
+      fs.writeFile("server/public/carddirs.json", JSON.stringify(cardfiles));
+    } else {
+      console.log("No new files discovered!");
+      return res.status(500).send("No new files discovered!");
+    }
+    res.redirect(303, '/carddirs.json');
+  })
+  finder.startSearch();
 
 }
 
@@ -120,11 +128,11 @@ export function update(req, res) {
                 //console.log("url : " + row.link);
                 var card = {
                   "name": row.Name,
-                  "path" : row.Path,
+                  "path": row.Path,
                   "fname": row['File Name'],
-                  "type" : row.Type,
-                  "brand" : row.Brand,
-                  "team" : row.Team
+                  "type": row.Type,
+                  "brand": row.Brand,
+                  "team": row.Team
                 };
                 chachi_set.cards.push(card);
               }
@@ -155,8 +163,14 @@ export function update(req, res) {
 
   } catch (e) {
     console.log("Caught exception parsing and writing - " + e);
+    return res.status(502).send("e");
+
   }
 
   res.redirect(303, '/ss_cards.json');
+
+}
+
+export function findNewCards(req, res) {
 
 }
