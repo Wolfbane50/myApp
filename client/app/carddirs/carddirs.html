@@ -91,7 +91,7 @@
             <div ng-show="selItem">
               <h1>{{selItem.fname}}</h1>
 
-              <img class="dircardpic" ng-show="selItem.fname" ng-src="{{selItem.path}}/{{selItem.fname}}" />
+              <img class="dircardpic" ng-show="selItem.fname" ng-src="http://192.168.1.151/cards/{{selItem.path}}/{{selItem.fname}}" />
               <div class="dircardinfo">
                 <div ng-show="selItem.fname">Name:
                   <input ng-model="selItem.name">
