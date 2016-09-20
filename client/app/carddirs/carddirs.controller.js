@@ -335,7 +335,7 @@
               method: 'GET',
               url: '/api/newCards',
               params : {
-                directory: "server/public/cards",
+                directory: "x:\\cards",
                 lastDate: selectedDate
               }
             }).then(function successCallback(response) {
