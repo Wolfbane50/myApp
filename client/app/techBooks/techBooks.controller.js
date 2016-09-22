@@ -17,7 +17,7 @@
 //              Link to navigate_tag(tag.name)
 //      get "documents/tag"        - Returns HTML for list of documents with a given tag
 //              Link to javascript:navigate_function(doc.id)
-    
+
 //      get "loadstage/index"
 //      get "loadstage/getfiles"
 //      get "loadstage/getfilelists"
@@ -34,12 +34,27 @@
 
     $scope.getCategories = function () {
       console.log("In getCategories");
+      $http({
+        method: 'GET',
+        url: 'http://localhost:3000/categories/',
+        headers: {
+          'Accept' : 'application/json'
+        }
+      }).then(function successCallback(response) {
+        alert("Got category data ");
+          $scope.categories = response.data;
+          console.log("--Categories--" + JSON.stringify(response.data) );
+
+      }, function errorCallback(response) {
+        alert("Request for Categories data yielded error: " + response.status);
+      });
       return $scope.categories;
+
     };
 
-
+    $scope.getCategories();
     // Create some sample data
-    $scope.categories = [{
+    $scope.staticCategories = [{
        name: "Perl",
        id : 1
     } , {
