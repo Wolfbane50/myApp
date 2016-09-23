@@ -8,8 +8,8 @@
         <span>Home<span></a>
       <a class="pull-right btn btn-primary" ng-click="booksHome()">
         <span>New Document</span></a>
-      <a class="pull-right btn btn-primary" ng-click="booksHome()">
-        <span>Tag Cloud</span></a>
+      <a class="pull-right btn btn-primary" ng-click="getTagCloud()">
+        <span>Tag Cloud!</span></a>
       <a class="pull-right btn btn-primary" ng-click="booksHome()">
         <span>Storage Directory</span></a>
       <a class="pull-right btn btn-primary" ng-click="booksHome()">
@@ -23,17 +23,15 @@
       <uib-tabset active="active">
         <uib-tab index="0" heading="By Category">
           <uib-accordion>
-              <div uib-accordion-group ng-repeat="cat in categories track by cat.id" class="panel-default" heading="{{cat.name}}" >
-                  blah blah
-                  <p ng-repeat="doc in getDocsByCategory(cat.id)"><a href="#">{{doc.name}}<a></p>
+              <div uib-accordion-group ng-repeat="cat in categories track by cat.id" class="panel-default" heading="{{cat.id}} : {{cat.name}}" >
+                  <p ng-repeat="doc in getDocsByCategory(cat.id)"><a ng-click="itemSelect(doc)">{{doc.title}}<a></p>
               </div>
             </uib-accordion>
         </uib-tab>
         <uib-tab index="1" heading="By Tag">
           <uib-accordion>
-              <div uib-accordion-group ng-repeat="tag in tags" class="panel-default" heading="{{tag.name}}" >
-                  blah blah
-                  <p ng-repeat="doc in getDocsByTag(tag.id)"><a href="#">{{doc.name}}<a></p>
+              <div uib-accordion-group ng-repeat="tag in tagList" class="panel-default" heading="{{tag}}" >
+                  <p ng-repeat="doc in docsByTag[tag]"><a href="#">{{doc.title}}<a></p>
               </div>
             </uib-accordion>
 
@@ -41,8 +39,32 @@
       </uib-tabset>
     </div>
     <div class="col-lg-8">
-      <img src="assets/images/phanatic_in_suit.jpg" alt="Phanatic's time for Business">
+      <img ng-hide="selectedItem" src="assets/images/phanatic_in_suit.jpg" alt="Phanatic's time for Business">
+      <div ng-show="selectedItem">
+        <h1>{{selectedItem.title}}</h1>
+        <p>Doc from catalog</p>
+        <pre class="code">{{ selectedItem | json }}</pre>
+        <hr />
+        <p>Doc from database</p>
+        <pre class="code">{{ dbDocument | json }}</pre>
 
+      </div>
+      <div ng-show="tagCloud">
+          <div ng-repeat="tag in tagCloud">
+            <a>{{tag.name}}</a>
+          </div>
+
+      <hr/>
+      <span class="css4">Lots</span>
+      <br/>
+      <span class="css3">Many</span>
+      <br/>
+      <span class="css2">Not-so Few</span>
+      <br/>
+      <span class="css1">Few</span>
+        <pre class="code">{{ tagCloud | json }}</pre>
+
+      </div>
     </div>
 
 
