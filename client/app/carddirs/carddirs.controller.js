@@ -13,9 +13,8 @@
       var treeCtlScope = $scope;
       this.selItem = {};
       $scope.showShow = false;
-      $scope.epEdit = false;
+      $scope.jsonTable = false;
       $scope.checkedItems = [];
-
       function cardTreeFromJson(data) {
         var seriesIncr = 50000;
         var dirLookup = {};
@@ -196,7 +195,7 @@
         }).then(successCb), errCb;
       };
 
-      var removeChecked = function() {
+      $scope.removeChecked = function() {
         $scope.cardTree.forEach(function(sublist, index, array) {
           for (var i = (sublist.items.length - 1); i >= 0; i--) {
             var element = sublist.items[i];
@@ -213,7 +212,7 @@
         processChecked('DELETE', function(data) {
           // Success
           // Remove each of the items from their respective lists
-          removeChecked();
+          $scope.removeChecked();
           alert("Delete Successful");
         }, function(data, status, headers, config) {
           alert("Delete failed with status: " + status);
@@ -224,7 +223,7 @@
         processChecked('POST', function(data) {
           // Success
           // Remove each of the items from their respective lists
-          removeChecked();
+          $scope.removeChecked();
           alert("Data enterred into Database!");
         }, function(data, status, headers, config) {
           alert("DB entry failed with status: " + status);
@@ -351,7 +350,6 @@
         }
 
       };
-
 
     }]); // end controller
 })();
