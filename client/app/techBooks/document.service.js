@@ -2,26 +2,27 @@
 
 (function() {
 
-  function UserResource($resource) {
-//    return $resource('/api/users/:id/:controller', {
-    return $resource('http://localhost:3000/document/:id', {
-      id: '@_id'
-    }, {
-      changePassword: {
-        method: 'PUT',
-        params: {
-          controller: 'password'
-        }
-      },
-      get: {
-        method: 'GET',
-        params: {
-          id: 'me'
-        }
-      }
-    });
-  }
-
   angular.module('myappApp')
-    .factory('Document', DocumentResource);
+    .factory('Document', function($resource) {
+      return $resource('http://localhost:3000/documents/:id', { id: '@id' }, {
+        query: {
+          method: 'GET',
+          isArray:true,
+          data: false,
+          headers: {
+            'Content_Type': 'application/json',
+            'Accept' : 'application/json'
+          }
+        },
+        get: {
+          method: 'GET',
+          data: false,
+          headers: {
+            'Content_Type': 'application/json',
+            'Accept' : 'application/json'
+          }
+        },
+      });
+    });
+
 })();
