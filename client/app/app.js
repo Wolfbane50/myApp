@@ -2,7 +2,7 @@
 
 // Not currently using
 angular.module('myappApp', ['myappApp.auth', 'myappApp.admin', 'myappApp.constants', 'ngCookies',
-     'ngResource', 'ngSanitize', 'btford.socket-io', 'ui.router', 'angularCSS', 'ui.bootstrap', 'ui.tree',
+     'ngResource', 'ui.select', 'ngSanitize', 'btford.socket-io', 'ui.router', 'angularCSS', 'ui.bootstrap', 'ui.tree',
     'validation.match', 'spriteGrids', 'bootstrapLightbox'
   ])
   .config(function($urlRouterProvider, $locationProvider) {

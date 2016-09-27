@@ -43,48 +43,111 @@
       <div ng-show="selectedItem">
         <h1>{{selectedItem.title}}</h1>
         <p>Doc from catalog</p>
-        <pre class="code">{{ selectedItem | json }}</pre>
-        <hr />
-        <p>Doc from database</p>
-        <pre class="code">{{ dbDocument | json }}</pre>
+        <div class="row">
+          <div class="col-sm-6">
+            <span class="lead">Title:  <input type="text" placeholder="Title" ng-model="selectedItem.title"></span>
+            </div>
+          <div class="col-sm-6">
+            <img ng-show="selectedItem.image_url" ng-src="{{selectedItem.image_url}}" style="float: right;" /></a>
+            </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <span>By:  <input type="text" placeholder="Author(s)" ng-model="selectedItem.author"></span>
+      </div>
+      <div class="col-sm-6">
+        <span>Copywrite:  <input type="text" placeholder="copywrite" ng-model="selectedItem.copywrite"></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="inputdefault">Type:</label>
+          <select class="form-control" id="sel1" ng-model="selectedItem.type_id">
+            <option value="1">Book</option>
+            <option value="2">Presentation</option>
+            <option value="3">Link</option>
+            <option value="4">Whitepaper</option>
+            <option value="5">Schedule</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="inputdefault">Publisher:</label>
+          <ui-select append-to-body="true" sortable="true" ng-model="selectedItem.publisher" title="Choose Publsher">
+            <ui-select-match>{{$item.name}}</ui-select-match>
+            <ui-select-choices repeat="item in publishers.id | filter: $select.search">
+              <div ng-bind-html="item.name | highlight: $select.search"></div>
+            </ui-select-choices>
+          </ui-select>
+
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="CatPick">Category:</label>
+
+
+
+
+        </div>
 
       </div>
-      <div ng-show="tagCloud">
-        <div>
-          <div ng-repeat="tag in tagCloud" ng-class="(($index % 8) == 0) ? 'cloudRow' : 'cloudEntry'">
-            <a ng-class="tagFrequencyClass(tag)">{{tag.name}}</a>
-            </div>
-          </div>
-
-<div>
-            <table  class="legend">
-              <tr><td><span class="tagCss4">Lots</span></td></tr>
-              <tr><td><span class="tagCss3">Many</span></td></tr>
-              <tr><td><span class="tagCss2">Not-so Few</span></td></tr>
-              <tr><td><span class="tagCss1">Few</span></td></tr>
-            </table>
-
-</div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="inputdefault">Something Else:</label>
+        </div>
+      </div>
     </div>
-    <div ng-show="editCategories">
-      <table>
+
+    <pre class="code">{{ selectedItem | json }}</pre>
+
+  </div>
+  <div ng-show="tagCloud">
+    <div>
+      <div ng-repeat="tag in tagCloud" ng-class="(($index % 8) == 0) ? 'cloudRow' : 'cloudEntry'">
+        <a ng-class="tagFrequencyClass(tag)">{{tag.name}}</a>
+      </div>
+    </div>
+
+    <div>
+      <table class="legend">
         <tr>
-          <th>Category</th>
-          <th></th>
-          <th></th>
+          <td><span class="tagCss4">Lots</span></td>
         </tr>
-        <tr ng-repeat="cat in categories" ng-class>
-          <td ng-class-odd="'stripeRow'">{{cat.name}}</td>
-          <td ng-class-odd="'stripeRow'"><a><span class="glyphicon glyphicon-edit "></a></td>
-          <td ng-class-odd="'stripeRow'"><a><span class="glyphicon glyphicon-trash "></a></td>
+        <tr>
+          <td><span class="tagCss3">Many</span></td>
+        </tr>
+        <tr>
+          <td><span class="tagCss2">Not-so Few</span></td>
+        </tr>
+        <tr>
+          <td><span class="tagCss1">Few</span></td>
         </tr>
       </table>
-      <a class="btn btn-primary " ng-click="newCat() ">
-        <span>New Category</span></a>
-        <a class="btn btn-primary " ng-click="editCategories=false">
-          <span>Done</span></a>
+
     </div>
   </div>
+  <div ng-show="editCategories">
+    <table>
+      <tr>
+        <th>Category</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr ng-repeat="cat in categories" ng-class>
+        <td ng-class-odd="'stripeRow'">{{cat.name}}</td>
+        <td ng-class-odd="'stripeRow'"><a><span class="glyphicon glyphicon-edit "></a></td>
+        <td ng-class-odd="'stripeRow'"><a><span class="glyphicon glyphicon-trash "></a></td>
+      </tr>
+    </table>
+    <a class="btn btn-primary " ng-click="newCat() ">
+      <span>New Category</span></a>
+    <a class="btn btn-primary " ng-click="editCategories=false">
+      <span>Done</span></a>
+  </div>
+</div>
 
 
 </div>

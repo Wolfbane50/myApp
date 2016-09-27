@@ -53,6 +53,36 @@
         return $scope.categories;
 
       };
+      // Really should get this from JSON file in rails server
+      $scope.publshers = [{
+        name: "O'Reilly",	      id: 1
+    }, {
+        name: "APress",               id: 2
+    }, {
+        name: "Manning", 	      id: 3
+    }, {
+        name: "McGraw Hill",	      id: 4
+    }, {
+        name: "MS Press", 	      id: 5
+    }, {
+        name: "No Starch", 	      id: 6
+    }, {
+        name: "Packt", 		      id: 7
+    }, {
+        name: "Peachpit Press",       id: 8
+    }, {
+        name: "Pragmatic Publishing", id: 9
+    }, {
+        name: "Sams",		      id: 10
+    }, {
+        name: "7 Summits",	      id: 11
+    }, {
+        name: "Wrox",		      id: 12
+    }, {
+        name: "Addison Wesley",	      id: 13
+
+
+    }  ]
 
       $scope.getCategories();
       // Create some sample data
