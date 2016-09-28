@@ -3,7 +3,7 @@
 (function() {
 
   angular.module('myappApp')
-    .controller('techBooksCtrl', ['$scope', '$http', function($scope, $http) {
+    .controller('techBooksCtrl', ['$scope', '$http', 'Category', 'Document', function($scope, $http, Category, Document) {
 
       ////////////////////////////////////////////
       // API to docmgr (RoR implementation)
@@ -34,23 +34,55 @@
 
       $scope.getCategories = function() {
         //console.log("In getCategories");
-        $http({
-          method: 'GET',
-          url: 'http://localhost:3000/categories/',
-          headers: {
-            'Accept': 'application/json'
-          }
-        }).then(function successCallback(response) {
-          //alert("Got category data ");
-          $scope.categories = response.data;
-          //console.log("--Categories--" + JSON.stringify(response.data) );
-
-        }, function errorCallback(response) {
-          alert("Request for Categories data yielded error: " + response.status);
+        $scope.categories = Category.query(function() {
+          console.log('Got categories');
         });
+        //        $http({
+        //           method: 'GET',
+        //           url: 'http://localhost:3000/categories/',
+        //           headers: {
+        //             'Accept': 'application/json'
+        //           }
+        //         }).then(function successCallback(response) {
+        //           $scope.categories = response.data;
+        //           //console.log("--Categories--" + JSON.stringify(response.data) );
+        //
+        //         }, function errorCallback(response) {
+        //           alert("Request for Categories data yielded error: " + response.status);
+        //         });
         return $scope.categories;
 
       };
+      // Really should get this from JSON file in rails server
+      $scope.publshers = [{
+        name: "O'Reilly",	      id: 1
+    }, {
+        name: "APress",               id: 2
+    }, {
+        name: "Manning", 	      id: 3
+    }, {
+        name: "McGraw Hill",	      id: 4
+    }, {
+        name: "MS Press", 	      id: 5
+    }, {
+        name: "No Starch", 	      id: 6
+    }, {
+        name: "Packt", 		      id: 7
+    }, {
+        name: "Peachpit Press",       id: 8
+    }, {
+        name: "Pragmatic Publishing", id: 9
+    }, {
+        name: "Sams",		      id: 10
+    }, {
+        name: "7 Summits",	      id: 11
+    }, {
+        name: "Wrox",		      id: 12
+    }, {
+        name: "Addison Wesley",	      id: 13
+
+
+    }  ]
 
       $scope.getCategories();
       // Create some sample data
@@ -60,6 +92,7 @@
       $scope.tagList = [];
       $scope.selectedItem;
       $scope.dbDocument = {};
+      $scope.editCategories = false;
 
       $scope.getDocsByCategory = function(cat) {
         //console.log("In getDocsByCategory");
@@ -67,9 +100,9 @@
         if ($scope.docsByCat[cat]) {
           var docArray = $scope.docsByCat[cat];
           //console.log("Found " + docArray.length  + " documents");
-        //  for (var i=0; i<docArray.length; i++) {
-        //    console.log("      " + docArray[i].title);
-      //    }
+          //  for (var i=0; i<docArray.length; i++) {
+          //    console.log("      " + docArray[i].title);
+          //    }
           return docArray;
         } else {
           //console.log("Returning empty...");
@@ -80,16 +113,7 @@
 
       $scope.getAndOrganizeDocuments = function() {
         console.log("In getAndOrganizeDocuments");
-        $http({
-          method: 'GET',
-          url: 'http://localhost:3000/documents/',
-          headers: {
-            'Accept': 'application/json'
-          }
-        }).then(function successCallback(response) {
-          //alert("Got documents data ");
-          $scope.documentList = response.data;
-          //console.log("--Documents--" + JSON.stringify(response.data));
+        $scope.documentList = Document.query(function() {
           angular.forEach($scope.documentList, function(doc) {
             // Index by category
             var myCat = doc.category_id;
@@ -123,31 +147,52 @@
           }
           $scope.tagList = $scope.tagList.sort();
 
-        }, function errorCallback(response) {
-          alert("Request for Categories data yielded error: " + response.status);
         });
-
 
       };
 
       $scope.getAndOrganizeDocuments();
-      $scope.itemSelect = function (doc) {
+      $scope.itemSelect = function(doc) {
         $scope.selectedItem = doc;
-        $http({
-          method: 'GET',
-          url: 'http://localhost:3000/documents/' + doc.id + '/edit',
-          headers: {
-            'Accept': 'application/json'
-          }
-        }).then(function successCallback(response) {
-           $scope.dbDocument = response.data;
-        }, function errorCallback(response) {
-          alert("Request for Document data yielded error: " + response.status);
+        $scope.dbDocument = Document.get({
+          id: doc.id
         });
+        //        $http({
+        //          method: 'GET',
+        //          url: 'http://localhost:3000/documents/' + doc.id + '/edit',
+        //          headers: {
+        //            'Accept': 'application/json'
+        //          }
+        //        }).then(function successCallback(response) {
+        //           $scope.dbDocument = response.data;
+        //        }, function errorCallback(response) {
+        //          alert("Request for Document data yielded error: " + response.status);
+        //        });
+      };
+
+      function getTagThresholds() {
+        var sumHits = 0,
+          maxHits = 0;
+        angular.forEach($scope.tagCloud, function(tag) {
+          maxHits = (tag.count > maxHits) ? tag.count : maxHits;
+        });
+        return maxHits;
+
+      }
+
+      $scope.tagFrequencyClass = function(tag) {
+        var cssIncr;
+        if (tag.count == 1) {
+          cssIncr = 1;
+        } else {
+          var cssIncr = Math.ceil((Math.log(tag.count) / Math.log($scope.tagMaxHits)) * 4);
+        }
+        //console.log("Tag: " + tag.name + " Count: " + tag.count + " Offset = " + cssIncr + ", maxHits = " + $scope.tagMaxHits);
+        return "tagCss" + cssIncr;
       };
 
       $scope.getTagCloud = function() {
-        console.log("In getTagCloud");
+        //console.log("In getTagCloud");
         $http({
           method: 'GET',
           url: 'http://localhost:3000/documents/tag_cloud',
@@ -155,8 +200,9 @@
             'Accept': 'application/json'
           }
         }).then(function successCallback(response) {
-           alert("Got tag cloud");
-           $scope.tagCloud = response.data;
+          // alert("Got tag cloud");
+          $scope.tagCloud = response.data;
+          $scope.tagMaxHits = getTagThresholds();
         }, function errorCallback(response) {
           alert("Request for Tag Cloud yielded error: " + response.status);
         });

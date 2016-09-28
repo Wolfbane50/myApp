@@ -1,3 +1,56 @@
 form.tab-form-demo .tab-pane {
   margin: 20px 20px;
 }
+
+.stripeRow {
+  background-color: LIGHTSKYBLUE;
+}
+
+.tagCss1 { font-size: 1.0em; background-color: YELLOW; }
+.tagCss2 { font-size: 1.2em; background-color: DARKGRAY; }
+.tagCss3 { font-size: 1.4em; background-color: ORANGE; }
+.tagCss4 { font-size: 1.6em; background-color: LIGHTGREEN; }
+
+.cloudEntry {
+  float:left;
+  width: 12%;
+  height: 25x;
+  text-align: center;
+
+.legend {
+  float: left;
+  clear: left;
+  background-color: LIGHTGRAY;
+  border: 1px solid #fff;
+}
+td.legend {
+    align: center;
+
+}
+.cloudRow {
+  float: left;
+  height: 25px;
+  clear: left;
+  width: 100px;
+  text-align: center;
+  border: 1px solid #fff
+}
+.blah {
+  padding: 10px;
+
+}
+.bs-glyphicons-list {
+  padding-left: 0;
+  list-style: none
+}
+.bs-glyphicons li {
+  float: left;
+  width: 25%;
+  height: 115px;
+  padding: 10px;
+  font-size: 10px;
+  line-height: 1.4;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 1px solid #fff
+}
