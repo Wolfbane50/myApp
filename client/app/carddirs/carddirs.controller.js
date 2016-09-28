@@ -167,6 +167,9 @@
               if ($scope.selItem.type) {
                 element.type = $scope.selItem.type;
               }
+              if ($scope.selItem.path) {
+                element.path = $scope.selItem.path;
+              }
             });
           }
         });

@@ -90,7 +90,8 @@ export function update(req, res) {
     // Specify worksheets to process
     var idSheets = {
       "Bunt": 1,
-      "Huddle Offseason": 1
+      "Huddle Offseason": 1,
+      "1986" : 1
     };
 
     var chachi_db = [];
