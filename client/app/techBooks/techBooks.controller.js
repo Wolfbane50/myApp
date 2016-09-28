@@ -209,5 +209,33 @@
 
       };
 
+      $scope.queryGoogle = function() {
+        var parms = {
+          title: $scope.selectedItem.title,
+        };
+        if (($scope.selectedItem.author) && ($scope.selectedItem.author != 'Unknown')) {
+          parms.author = $scope.selectedItem.author;
+        }
+        if (($scope.selectedItem.publisher) && ($scope.selectedItem.publisher != 'Unknown')) {
+          parms.publisher = $scope.selectedItem.publisher;
+        }
+        $http({
+          method: 'GET',
+          url: '/api/books',
+          params : parms
+        }).then(function successCallback(response) {
+            alert("Query successful:  " + JSON.stringify(response.data));
+            console.log("Query successful:  " + JSON.stringify(response.data));
+            $scope.selectedItem.title = response.data.title;
+            $scope.selectedItem.author = response.data.author;
+            $scope.selectedItem.publisher = response.data.publisher;
+            $scope.selectedItem.copywrite = response.data.copywrite;
+            $scope.selectedItem.image_url = response.data.image_url;
+
+        }, function errorCallback(response) {
+            alert("Google Query Request yielded error(" + response.status + "): " + response.statusText);
+        });
+      }
+
     }]); // end controller
 })();
