@@ -64,7 +64,7 @@ console.log("Query String: " + theQuery);
          var results = response.items;
          if(response.totalItems == 0) {
            console.log("The Google Books AP returned no results!");
-           return res.status(502).send("Request to Google Books returned no results!");
+           return res.status(200).json({ msg: "Request to Google Books returned no results!" });
          }
         console.log("From API ==> " + JSON.stringify(results));
          var bookRec = results[0];

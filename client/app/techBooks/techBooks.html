@@ -6,7 +6,7 @@
     <div class="col-lg-8" id="buttonBar">
       <a ng-show="selItem" class="btn btn-primary" ng-click="booksHome()">
         <span>Home<span></a>
-      <a class="pull-right btn btn-primary" ng-click="booksHome()">
+      <a class="pull-right btn btn-primary" ng-click="newDoc()">
         <span>New Document</span></a>
       <a class="pull-right btn btn-primary" ng-click="getTagCloud()">
         <span>Tag Cloud!</span></a>
@@ -23,7 +23,10 @@
       <uib-tabset active="active">
         <uib-tab index="0" heading="By Category">
           <uib-accordion>
-            <div uib-accordion-group ng-repeat="cat in categories track by cat.id" class="panel-default" heading="{{cat.id}} : {{cat.name}}">
+            <div uib-accordion-group ng-repeat="cat in categories track by cat.id" class="panel-default" heading="{{cat.name}}">
+              <a class="pull-right btn btn-primary btn-xs" ng-click="newDoc(cat.id)" style="margin-right: 8px;">
+                <span class="glyphicon glyphicon-plus"></span></a>
+
               <p ng-repeat="doc in getDocsByCategory(cat.id)"><a ng-click="itemSelect(doc)">{{doc.title}}<a></p>
               </div>
             </uib-accordion>
@@ -42,7 +45,6 @@
       <img ng-hide="selectedItem" src="assets/images/phanatic_in_suit.jpg" alt="Phanatic's time for Business">
       <div ng-show="selectedItem">
         <h1>{{selectedItem.title}}</h1>
-        <p>Doc from catalog</p>
         <div class="row">
           <div class="col-sm-6">
             <span class="lead">Title:  <input type="text" placeholder="Title" ng-model="selectedItem.title"></span>
@@ -98,8 +100,33 @@
         <div class="form-group">
           <a class="pull-right btn btn-primary" ng-click="queryGoogle()">
             <span>Query Google</span></a>
+          <a class="pull-right btn btn-primary" ng-click="revert()">
+            <span>Revert</span></a>
+          <a class="pull-right btn btn-primary" ng-click="saveDoc()">
+            <span>Save</span></a>
+          <a class="pull-right btn btn-primary" ng-click="deleteDoc()">
+            <span>Delete</span></a>
 
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <span>URL:  <input type="text" placeholder="URL" ng-model="selectedItem.url"></span>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <span>Image URL:  <input type="text" placeholder="Image URL" ng-model="selectedItem.image_url"></span>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <textarea id="descriptionText" class="form-control" rows="10" ng-model="selectedItem.description"></textarea>
+
+
       </div>
     </div>
 
@@ -135,11 +162,13 @@
     <table>
       <tr>
         <th>Category</th>
+        <th>ID</th>
         <th></th>
         <th></th>
       </tr>
       <tr ng-repeat="cat in categories" ng-class>
         <td ng-class-odd="'stripeRow'">{{cat.name}}</td>
+        <td ng-class-odd="'stripeRow'">{{cat.id}}</td>
         <td ng-class-odd="'stripeRow'"><a><span class="glyphicon glyphicon-edit "></a></td>
         <td ng-class-odd="'stripeRow'"><a><span class="glyphicon glyphicon-trash "></a></td>
       </tr>

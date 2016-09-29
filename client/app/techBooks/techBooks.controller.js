@@ -15,7 +15,7 @@
       //
       //      get "documents/tag_cloud"  - Returns HTML for a tag cloud
       //              Link to navigate_tag(tag.name)
-      //      get "documents/tag"        - Returns HTML for list of documents with a given tag
+      //      get "documents/tagged"        - Returns HTML for list of documents with a given tag
       //              Link to javascript:navigate_function(doc.id)
 
       //      get "loadstage/index"
@@ -55,34 +55,47 @@
       };
       // Really should get this from JSON file in rails server
       $scope.publshers = [{
-        name: "O'Reilly",	      id: 1
-    }, {
-        name: "APress",               id: 2
-    }, {
-        name: "Manning", 	      id: 3
-    }, {
-        name: "McGraw Hill",	      id: 4
-    }, {
-        name: "MS Press", 	      id: 5
-    }, {
-        name: "No Starch", 	      id: 6
-    }, {
-        name: "Packt", 		      id: 7
-    }, {
-        name: "Peachpit Press",       id: 8
-    }, {
-        name: "Pragmatic Publishing", id: 9
-    }, {
-        name: "Sams",		      id: 10
-    }, {
-        name: "7 Summits",	      id: 11
-    }, {
-        name: "Wrox",		      id: 12
-    }, {
-        name: "Addison Wesley",	      id: 13
+        name: "O'Reilly",
+        id: 1
+      }, {
+        name: "APress",
+        id: 2
+      }, {
+        name: "Manning",
+        id: 3
+      }, {
+        name: "McGraw Hill",
+        id: 4
+      }, {
+        name: "MS Press",
+        id: 5
+      }, {
+        name: "No Starch",
+        id: 6
+      }, {
+        name: "Packt",
+        id: 7
+      }, {
+        name: "Peachpit Press",
+        id: 8
+      }, {
+        name: "Pragmatic Publishing",
+        id: 9
+      }, {
+        name: "Sams",
+        id: 10
+      }, {
+        name: "7 Summits",
+        id: 11
+      }, {
+        name: "Wrox",
+        id: 12
+      }, {
+        name: "Addison Wesley",
+        id: 13
 
 
-    }  ]
+      }]
 
       $scope.getCategories();
       // Create some sample data
@@ -152,23 +165,131 @@
       };
 
       $scope.getAndOrganizeDocuments();
+
+      $scope.newDoc = function(catid) {
+        console.log("In newDoc...");
+        var myCatId = (catid) ? catid : 10; //'Uncategorized';
+
+        //var myDoc = Document.new();
+        // Server just returns empty record - No IDs, so no point calling it
+        //$http({
+        //  method: 'GET',
+        //  url: 'http://localhost:3000/documents/new',
+        //  headers: {
+        //              'Accept': 'application/json'
+        //     }
+        //  }).then(function successCallback(response) {
+        //       console.log("Got new item from server... " + JSON.stringify(response.data));
+        //
+        //         $scope.itemSelect($scope.documentList.push(response.data));
+        //          // Add to the list and Select it
+        //          // So, this doesnt add it to the categories or the list on the side.
+        //  }, function errorCallback(response) {
+        //            alert("Request for Document data yielded error: " + response.status);
+        //  });
+        var myDoc = {
+          id: null, // What the server would expect on save for create.
+          title: "New Book",
+          author: null,
+          // publisher: null,    // May need this
+          image_url: "http://localhost:3000/assets/document.gif",
+          category_id: myCatId
+        };
+        $scope.documentList.push(myDoc);
+        $scope.docsByCat[myCatId].push(myDoc);
+        $scope.itemSelect(myDoc);
+      };
+
+      $scope.revert = function() {
+        // User may select other document before call to database is complete
+        console.log("In revert...");
+        var revertDoc = $scope.selectedItem;
+
+        var revertedDoc = Document.get({
+          id: revertDoc.id
+        }, function() {
+          // Deepcopy over local copy from database
+          angular.copy(revertedDoc, revertDoc);
+          //alert("Document Updated");
+        });
+
+      };
+
       $scope.itemSelect = function(doc) {
         $scope.selectedItem = doc;
-        $scope.dbDocument = Document.get({
-          id: doc.id
-        });
-        //        $http({
-        //          method: 'GET',
-        //          url: 'http://localhost:3000/documents/' + doc.id + '/edit',
-        //          headers: {
-        //            'Accept': 'application/json'
-        //          }
-        //        }).then(function successCallback(response) {
-        //           $scope.dbDocument = response.data;
-        //        }, function errorCallback(response) {
-        //          alert("Request for Document data yielded error: " + response.status);
-        //        });
+        //  $scope.dbDocument = Document.get({
+        //    id: doc.id
+        //  });
       };
+
+      function findDocIndexFromList(id) {
+        for (var i = 0; i < $scope.documentList.length; i++) {
+          if ($scope.documentList[i].id == id) {
+            return i;
+          }
+        }
+        return null;
+
+      }
+
+      function findDocIndexFromCatList(catid, id) {
+        var catlist = $scope.docsByCat[catid];
+        for (var i = 0; i < catlist.length; i++) {
+          if (catlist[i].id == id) {
+            return i;
+          }
+        }
+        return null;
+      }
+
+      $scope.deleteDoc = function() {
+        function cleanup(delDoc) {
+          $scope.docsByCat[delDoc.category_id].splice(findDocIndexFromCatList(delDoc.category_id, delDoc.id), 1);
+          $scope.documentList.splice(findDocIndexFromList(delDoc.id), 1);
+          $scope.selectedItem = null;
+
+        }
+        if (confirm("Are you sure you want to delete this document?\n\n" + $scope.selectedItem.title)) {
+          var delDoc = $scope.selectedItem;
+          if (delDoc.id) {
+            Document.delete({
+              id: delDoc.id
+            }, function() {
+              console.log("Delete successful");
+              cleanup(delDoc);
+            }, function(error) {
+              alert("Document.delete returned error -> " + JSON.stringify(error));
+            });
+          } else {
+            // No ID, so this must be a 'new' record, so skip the database delete
+            console.log("Delete an item with no ID -- assuming its not in the database");
+            cleanup(delDoc);
+          }
+        }
+
+      };
+
+      $scope.saveDoc = function() {
+        alert("Saving Document\n\n" + $scope.selectedItem.title);
+
+        if ($scope.selectedItem.id) {
+          Document.update({
+            id: $scope.selectedItem.id
+          }, $scope.selectedItem, function() {
+            console.log("Update successful");
+            // Write Message to Toast
+          }, function(error) {
+            alert("Document.update returned error -> " + JSON.stringify(error));
+          });
+        } else {
+          Document.create( $scope.selectedItem, function() {
+            console.log("Create successful");
+            // Write Message to Toast
+          }, function(error) {
+            alert("Document.create returned error -> " + JSON.stringify(error));
+          });
+        }
+      }
 
       function getTagThresholds() {
         var sumHits = 0,
@@ -222,18 +343,23 @@
         $http({
           method: 'GET',
           url: '/api/books',
-          params : parms
+          params: parms
         }).then(function successCallback(response) {
-            alert("Query successful:  " + JSON.stringify(response.data));
-            console.log("Query successful:  " + JSON.stringify(response.data));
+          //alert("Query successful:  " + JSON.stringify(response.data));
+          console.log("Query successful:  " + JSON.stringify(response.data));
+          if (response.data.title) {
             $scope.selectedItem.title = response.data.title;
             $scope.selectedItem.author = response.data.author;
             $scope.selectedItem.publisher = response.data.publisher;
             $scope.selectedItem.copywrite = response.data.copywrite;
             $scope.selectedItem.image_url = response.data.image_url;
+            $scope.selectedItem.description = response.data.description;
+          } else {
+            alert("No results for Google Query!");
+          }
 
         }, function errorCallback(response) {
-            alert("Google Query Request yielded error(" + response.status + "): " + response.statusText);
+          alert("Google Query Request yielded error(" + response.status + "): " + response.statusText);
         });
       }
 
