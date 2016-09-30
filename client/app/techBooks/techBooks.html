@@ -65,7 +65,7 @@
       <div class="col-sm-3">
         <div class="form-group">
           <label for="inputdefault">Type:</label>
-          <select class="form-control" id="sel1" ng-model="selectedItem.type_id">
+          <select id="sel1" ng-model="selectedItem.type_id">
             <option value="1">Book</option>
             <option value="2">Presentation</option>
             <option value="3">Link</option>
@@ -74,21 +74,32 @@
           </select>
         </div>
       </div>
-      <div class="col-sm-3">
+      <div class="col-lg-8">
         <div class="form-group">
           <label for="inputdefault">Publisher:</label>
-          <ui-select append-to-body="true" sortable="true" ng-model="selectedItem.publisher" title="Choose Publsher">
-            <ui-select-match>{{$item.name}}</ui-select-match>
-            <ui-select-choices repeat="item in publishers.id | filter: $select.search">
-              <div ng-bind-html="item.name | highlight: $select.search"></div>
-            </ui-select-choices>
-          </ui-select>
+          <span class="combobox_toggle" uib-dropdown on-toggle="toggled(open)">
+          <input type="text" placeholder="Publisher" ng-model="selectedItem.publisher">
+  <a href id="simple-dropdown" uib-dropdown-toggle>
+     <span class="glyphicon glyphicon-chevron-down" style="border: 1px solid BLACK;"></span>
+          </a>
+          <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+            <li ng-repeat="choice in publishers">
+              <a ng-click="selectedItem.publisher = choice">{{choice}}</a>
+            </li>
+          </ul>
+          </span>
+
 
         </div>
       </div>
       <div class="col-sm-3">
         <div class="form-group">
+          <p>Current Category = {{selectedItem.category_id}}</p>
           <label for="CatPick">Category:</label>
+          <select ng-model="selectedCategory" ng-options="cat.name for cat in categories track by cat.id"
+                  ng-change="selecteItem.category_id = selectedCategory.id">
+
+          </select>
 
 
 

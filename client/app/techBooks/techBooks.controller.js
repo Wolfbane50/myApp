@@ -3,7 +3,8 @@
 (function() {
 
   angular.module('myappApp')
-    .controller('techBooksCtrl', ['$scope', '$http', 'Category', 'Document', function($scope, $http, Category, Document) {
+    .controller('techBooksCtrl', ['$scope', '$http', 'Category', 'Document', 'Publisher',
+           function($scope, $http, Category, Document, Publisher) {
 
       ////////////////////////////////////////////
       // API to docmgr (RoR implementation)
@@ -53,50 +54,27 @@
         return $scope.categories;
 
       };
-      // Really should get this from JSON file in rails server
-      $scope.publshers = [{
-        name: "O'Reilly",
-        id: 1
-      }, {
-        name: "APress",
-        id: 2
-      }, {
-        name: "Manning",
-        id: 3
-      }, {
-        name: "McGraw Hill",
-        id: 4
-      }, {
-        name: "MS Press",
-        id: 5
-      }, {
-        name: "No Starch",
-        id: 6
-      }, {
-        name: "Packt",
-        id: 7
-      }, {
-        name: "Peachpit Press",
-        id: 8
-      }, {
-        name: "Pragmatic Publishing",
-        id: 9
-      }, {
-        name: "Sams",
-        id: 10
-      }, {
-        name: "7 Summits",
-        id: 11
-      }, {
-        name: "Wrox",
-        id: 12
-      }, {
-        name: "Addison Wesley",
-        id: 13
-
-
-      }]
-
+      //$scope.publishers = Publisher.query(function() {
+      //  console.log("Got publishers: " + JSON.stringify($scope.publishers));
+      //}, function(error) {
+      //console.log("Get publishers returned error: " + JSON.stringify(error));
+      //});
+      $scope.publishers = [
+        "O\'Reilly" ,
+        'APress' ,
+        'Manning' ,
+        'McGraw Hill' ,
+        'MS Press' ,
+        'No Starch' ,
+        'Packt' ,
+        'Peachpit Press' ,
+        'Prentice Hall' ,
+        'Pragmatic Publishing' ,
+        'Sams' ,
+        '7 Summits' ,
+        'Wrox' ,
+        'Addison Wesley'
+      ];
       $scope.getCategories();
       // Create some sample data
 
@@ -217,6 +195,7 @@
 
       $scope.itemSelect = function(doc) {
         $scope.selectedItem = doc;
+        $scope.selectedCategory = doc.category_id;
         //  $scope.dbDocument = Document.get({
         //    id: doc.id
         //  });
