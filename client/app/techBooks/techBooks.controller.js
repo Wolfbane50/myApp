@@ -37,6 +37,7 @@
         //console.log("In getCategories");
         $scope.categories = Category.query(function() {
           console.log('Got categories');
+          console.log(JSON.stringify($scope.categories));
         });
         //        $http({
         //           method: 'GET',
@@ -75,6 +76,7 @@
         'Wrox' ,
         'Addison Wesley'
       ];
+      $scope.docTypes = { 'Book' : 1, 'Presentation' : 2, 'Link' : 3, 'Whitepaper' : 4, 'Schedule' : 5};
       $scope.getCategories();
       // Create some sample data
 
@@ -192,14 +194,40 @@
         });
 
       };
+      function catNameFromIndex (idx) {
+        for (var i=0; i<$scope.cateories.length; i++) {
+          cat = $scope.categories[i];
+          if (cat.id == idx) {
+            return cat.name;
+          }
+        }
+        return null;
+      }
 
       $scope.itemSelect = function(doc) {
         $scope.selectedItem = doc;
-        $scope.selectedCategory = doc.category_id;
+        $scope.selectedCategory = $scope.categories[parseInt(doc.category_id) - 1];
         //  $scope.dbDocument = Document.get({
         //    id: doc.id
         //  });
       };
+      $scope.typeChange = function() {
+        console.log("In typeChange");
+      };
+      $scope.changeCategory = function() {
+        //console.log("In changeCategory");
+        var oldCat = $scope.selectedItem.category_id;
+        $scope.selectedItem.category_id = $scope.selectedCategory.id;
+
+        //  Need to move document from one category list to the other
+        //console.log("Calling function with " + $scope.selectedCategory.id + " and " + $scope.selectedItem.id);
+        var catListIndex = findDocIndexFromCatList(oldCat, $scope.selectedItem.id);
+        //console.log("Need to delete item " + catListIndex);
+        $scope.docsByCat[oldCat].splice(catListIndex, 1);
+        $scope.docsByCat[$scope.selectedCategory.id].push($scope.selectedItem);
+
+      };
+
 
       function findDocIndexFromList(id) {
         for (var i = 0; i < $scope.documentList.length; i++) {

@@ -55,7 +55,11 @@ td.legend {
   border: 1px solid #fff;
 }
 
-combobox_toggle {
+.combobox_toggle {
   background-color: DARKGRAY;
   border: 1px solid BLACK;
+}
+
+.bktitle {
+  width: 100%;
 }

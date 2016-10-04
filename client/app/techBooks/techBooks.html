@@ -34,9 +34,9 @@
         <uib-tab index="1" heading="By Tag">
           <uib-accordion>
               <div uib-accordion-group ng-repeat="tag in tagList" class="panel-default" heading="{{tag}}" >
-                  <p ng-repeat="doc in docsByTag[tag]"><a href="#">{{doc.title}}<a></p>
-              </div>
-            </uib-accordion>
+                  <p ng-repeat="doc in docsByTag[tag]"><a href="#">{{doc.title}}</a></p>
+            </div>
+          </uib-accordion>
 
         </uib-tab>
       </uib-tabset>
@@ -46,151 +46,142 @@
       <div ng-show="selectedItem">
         <h1>{{selectedItem.title}}</h1>
         <div class="row">
-          <div class="col-sm-6">
-            <span class="lead">Title:  <input type="text" placeholder="Title" ng-model="selectedItem.title"></span>
-            </div>
-          <div class="col-sm-6">
+          <div class="col-md-10">
+            <span class="lead">Title:  <input class="fill" type="text" placeholder="Title" ng-model="selectedItem.title"></span>
+          </div>
+          <div class="col-md-2">
             <img ng-show="selectedItem.image_url" ng-src="{{selectedItem.image_url}}" style="float: right;" /></a>
-            </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <span>By:  <input type="text" placeholder="Author(s)" ng-model="selectedItem.author"></span>
-      </div>
-      <div class="col-sm-6">
-        <span>Copywrite:  <input type="text" placeholder="copywrite" ng-model="selectedItem.copywrite"></span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="form-group">
-          <label for="inputdefault">Type:</label>
-          <select id="sel1" ng-model="selectedItem.type_id">
-            <option value="1">Book</option>
-            <option value="2">Presentation</option>
-            <option value="3">Link</option>
-            <option value="4">Whitepaper</option>
-            <option value="5">Schedule</option>
-          </select>
+          </div>
         </div>
-      </div>
-      <div class="col-lg-8">
-        <div class="form-group">
-          <label for="inputdefault">Publisher:</label>
-          <span class="combobox_toggle" uib-dropdown on-toggle="toggled(open)">
+        <div class="row">
+          <div class="col-md-8">
+            <label for="author_inp">By: </label>
+            <input id="author_inp" class="fill" type="text" placeholder="Author(s)" ng-model="selectedItem.author" >
+          </div>
+          <div class="col-md-4">
+            <label for="CatPick">Category: </label>
+            <select id="CatPick" ng-model="selectedCategory" ng-options="cat.name for cat in categories track by cat.id" ng-change='changeCategory()'>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <br /><br /><label for="inputdefault">Type:</label>
+
+              <select id="sel1" ng-model="selectedItem.type_id"
+                  ng-options="typid as typname for (typname, typid) in docTypes" >
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <br /><label for="inputdefault">Publisher:</label>
+              <span class="combobox_toggle" uib-dropdown on-toggle="toggled(open)">
           <input type="text" placeholder="Publisher" ng-model="selectedItem.publisher">
   <a href id="simple-dropdown" uib-dropdown-toggle>
      <span class="glyphicon glyphicon-chevron-down" style="border: 1px solid BLACK;"></span>
-          </a>
-          <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
-            <li ng-repeat="choice in publishers">
-              <a ng-click="selectedItem.publisher = choice">{{choice}}</a>
-            </li>
-          </ul>
-          </span>
+              </a>
+              <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                <li ng-repeat="choice in publishers">
+                  <a ng-click="selectedItem.publisher = choice">{{choice}}</a>
+                </li>
+              </ul>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <br /><label for="cc_inp"><span uib-tooltip="Copyright" class="glyphicon glyphicon-copyright-mark"></span></label>
+            <input id="cc_inp" uib-tooltip="Copyright" type="text" placeholder="copyright" ng-model="selectedItem.copywrite">
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <a class="pull-right btn btn-primary" uib-tooltip="Populate from Google" ng-click="queryGoogle()">
+                <span  class="glyphicon glyphicon-question-sign"></span>&nbsp;</a>
+              <a class="pull-right btn btn-primary" uib-tooltip="Revert to last saved" ng-click="revert()">
+                <span class="glyphicon glyphicon-repeat"></span>&nbsp;</a>
+              <a class="pull-right btn btn-primary" uib-tooltip="Save to DB" ng-click="saveDoc()">
+                <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;</a>
+              <a class="pull-right btn btn-primary" uib-tooltip="Delete from DB" ng-click="deleteDoc()">
+                <span  class="glyphicon glyphicon-trash"></span>&nbsp;</a>
 
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <br />
+            <label for="url_inp">URL: </label>
+            <input id="url_inp" class="fill" type="text" placeholder="URL" ng-model="selectedItem.url">
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <br />
+            <label for="img_inp">Image URL: </label>
+            <input id="img_inp" class="fill" type="text" placeholder="Image URL" ng-model="selectedItem.image_url">
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <br />
+            <label for="descriptionText">Description: </label>
+            <textarea id="descriptionText" class="form-control" rows="10" ng-model="selectedItem.description"></textarea>
+
+
+          </div>
+        </div>
+        <br />
+        <pre class="code">{{ selectedItem | json }}</pre>
+
+      </div>
+      <div ng-show="tagCloud">
+        <div>
+          <div ng-repeat="tag in tagCloud" ng-class="(($index % 8) == 0) ? 'cloudRow' : 'cloudEntry'">
+            <a ng-class="tagFrequencyClass(tag)">{{tag.name}}</a>
+          </div>
+        </div>
+
+        <div>
+          <table class="legend">
+            <tr>
+              <td><span class="tagCss4">Lots</span></td>
+            </tr>
+            <tr>
+              <td><span class="tagCss3">Many</span></td>
+            </tr>
+            <tr>
+              <td><span class="tagCss2">Not-so Few</span></td>
+            </tr>
+            <tr>
+              <td><span class="tagCss1">Few</span></td>
+            </tr>
+          </table>
 
         </div>
       </div>
-      <div class="col-sm-3">
-        <div class="form-group">
-          <p>Current Category = {{selectedItem.category_id}}</p>
-          <label for="CatPick">Category:</label>
-          <select ng-model="selectedCategory" ng-options="cat.name for cat in categories track by cat.id"
-                  ng-change="selecteItem.category_id = selectedCategory.id">
-
-          </select>
-
-
-
-
-        </div>
-
+      <div ng-show="editCategories">
+        <table>
+          <tr>
+            <th>Category</th>
+            <th>ID</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr ng-repeat="cat in categories" ng-class>
+            <td ng-class-odd="'stripeRow'">{{cat.name}}</td>
+            <td ng-class-odd="'stripeRow'">{{cat.id}}</td>
+            <td ng-class-odd="'stripeRow'"><a><span class="glyphicon glyphicon-edit "></a></td>
+            <td ng-class-odd="'stripeRow'"><a><span class="glyphicon glyphicon-trash "></a></td>
+          </tr>
+        </table>
+        <a class="btn btn-primary " ng-click="newCat() ">
+          <span>New Category</span></a>
+        <a class="btn btn-primary " ng-click="editCategories=false">
+          <span>Done</span></a>
       </div>
-      <div class="col-sm-3">
-        <div class="form-group">
-          <a class="pull-right btn btn-primary" ng-click="queryGoogle()">
-            <span>Query Google</span></a>
-          <a class="pull-right btn btn-primary" ng-click="revert()">
-            <span>Revert</span></a>
-          <a class="pull-right btn btn-primary" ng-click="saveDoc()">
-            <span>Save</span></a>
-          <a class="pull-right btn btn-primary" ng-click="deleteDoc()">
-            <span>Delete</span></a>
-
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-8">
-        <span>URL:  <input type="text" placeholder="URL" ng-model="selectedItem.url"></span>
-
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-8">
-        <span>Image URL:  <input type="text" placeholder="Image URL" ng-model="selectedItem.image_url"></span>
-
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-8">
-        <textarea id="descriptionText" class="form-control" rows="10" ng-model="selectedItem.description"></textarea>
-
-
-      </div>
-    </div>
-
-    <pre class="code">{{ selectedItem | json }}</pre>
-
-  </div>
-  <div ng-show="tagCloud">
-    <div>
-      <div ng-repeat="tag in tagCloud" ng-class="(($index % 8) == 0) ? 'cloudRow' : 'cloudEntry'">
-        <a ng-class="tagFrequencyClass(tag)">{{tag.name}}</a>
-      </div>
-    </div>
-
-    <div>
-      <table class="legend">
-        <tr>
-          <td><span class="tagCss4">Lots</span></td>
-        </tr>
-        <tr>
-          <td><span class="tagCss3">Many</span></td>
-        </tr>
-        <tr>
-          <td><span class="tagCss2">Not-so Few</span></td>
-        </tr>
-        <tr>
-          <td><span class="tagCss1">Few</span></td>
-        </tr>
-      </table>
-
     </div>
   </div>
-  <div ng-show="editCategories">
-    <table>
-      <tr>
-        <th>Category</th>
-        <th>ID</th>
-        <th></th>
-        <th></th>
-      </tr>
-      <tr ng-repeat="cat in categories" ng-class>
-        <td ng-class-odd="'stripeRow'">{{cat.name}}</td>
-        <td ng-class-odd="'stripeRow'">{{cat.id}}</td>
-        <td ng-class-odd="'stripeRow'"><a><span class="glyphicon glyphicon-edit "></a></td>
-        <td ng-class-odd="'stripeRow'"><a><span class="glyphicon glyphicon-trash "></a></td>
-      </tr>
-    </table>
-    <a class="btn btn-primary " ng-click="newCat() ">
-      <span>New Category</span></a>
-    <a class="btn btn-primary " ng-click="editCategories=false">
-      <span>Done</span></a>
-  </div>
-</div>
-
-
-</div>
 </div>

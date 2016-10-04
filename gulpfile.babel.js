@@ -79,6 +79,7 @@ var config;
 
 const clientPath = require('./bower.json').appPath || 'client';
 const serverPath = 'server';
+const railsPath = '/Ruby193/doc_mgr';
 const paths = {
     client: {
         assets: `${clientPath}/assets/**/*`,
@@ -107,7 +108,14 @@ const paths = {
         }
     },
     karma: 'karma.conf.js',
-    dist: 'dist'
+    dist: 'dist',
+    rails: {
+      rscripts: [
+        '${railsPath}/app/assets/javascripts/**/*.js',
+        '${railsPath}/app/**/*.rb',
+        '${railsPath}/app/views/**/*.erb'
+      ]
+    }
 };
 
 /********************
@@ -345,6 +353,14 @@ gulp.task('start:client', cb => {
         open('http://localhost:' + config.port);
         cb();
     });
+});
+
+gulp.task('start:rails', () => {
+    process.env.PATH = process.env.PATH + ';c:\\Ruby193\\bin';
+    process.env.http_proxy = 'http://NMCIProxyB1.nrfk.nadsusea.nads.navy.mil:8080';
+    process.chdir( '/Ruby193/doc_mgr' );
+    //open('rails server');  // Doesnt work
+    open('start_doc_mgr.cmd');  // That works
 });
 
 gulp.task('start:server', () => {
