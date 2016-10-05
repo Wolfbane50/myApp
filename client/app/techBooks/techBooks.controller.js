@@ -3,8 +3,8 @@
 (function() {
 
   angular.module('myappApp')
-    .controller('techBooksCtrl', ['$scope', '$http', 'Category', 'Document', 'Publisher',
-           function($scope, $http, Category, Document, Publisher) {
+    .controller('techBooksCtrl', ['$scope', '$http', '$state', 'Category', 'Document', 'Publisher',
+           function($scope, $http, $state, Category, Document, Publisher) {
 
       ////////////////////////////////////////////
       // API to docmgr (RoR implementation)
@@ -37,7 +37,7 @@
         //console.log("In getCategories");
         $scope.categories = Category.query(function() {
           console.log('Got categories');
-          console.log(JSON.stringify($scope.categories));
+          //console.log(JSON.stringify($scope.categories));
         });
         //        $http({
         //           method: 'GET',
@@ -145,6 +145,7 @@
       };
 
       $scope.getAndOrganizeDocuments();
+      $state.go('techBooks.default');
 
       $scope.newDoc = function(catid) {
         console.log("In newDoc...");
@@ -229,15 +230,23 @@
       };
 
 
-      function findDocIndexFromList(id) {
+
+      $scope.findDocIndexFromList = function (id) {
         for (var i = 0; i < $scope.documentList.length; i++) {
           if ($scope.documentList[i].id == id) {
             return i;
           }
         }
         return null;
-
-      }
+      };
+      $scope.findDocFromList = function (id) {
+        for (var i = 0; i < $scope.documentList.length; i++) {
+          if ($scope.documentList[i].id == id) {
+            return $scope.documentList[i];
+          }
+        }
+        return null;
+      };
 
       function findDocIndexFromCatList(catid, id) {
         var catlist = $scope.docsByCat[catid];

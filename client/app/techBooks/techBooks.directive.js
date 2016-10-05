@@ -8,6 +8,6 @@ angular.module('myappApp')
        scope: true,
        controller: 'techBooksCtrl',
        templateUrl: 'app/techBooks/techBooks.html',
-       css: 'app/dirExplorer/techBooks.css'
+       css: 'app/techBooks/techBooks.css'
      };
 });

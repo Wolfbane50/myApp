@@ -1,0 +1,32 @@
+<div>
+  <h2>Categories</h2>
+  <table>
+    <tr>
+      <th>Category</th>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr ng-repeat="cat in categories" ng-class>
+      <td ng-class-odd="'stripeRow'">
+        <span ng-hide="isEditCat(cat.id)">{{cat.name}}</span>
+        <input ng-show="isEditCat(cat.id)" type="text" ng-model="cat.name">
+      </td>
+      <td ng-class-odd="'stripeRow'">{{cat.id}}</td>
+      <td ng-class-odd="'stripeRow'">
+        <a  ng-hide="isEditCat(cat.id)" class="btn btn-primary" uib-tooltip="Edit Category" ng-click="toggleEdit(cat.id)">
+             <span class="glyphicon glyphicon-edit">&nbsp;</a>
+        <a  ng-show="isEditCat(cat.id)" class="btn btn-primary" uib-tooltip="Save to DB" ng-click="updateCat(cat)">
+              <span class="glyphicon glyphicon-floppy-disk">&nbsp;</a>
+      </td>
+      <td ng-class-odd="'stripeRow'">
+        <a  ng-hide="isEditCat(cat.id)" class="btn btn-primary" uib-tooltip="Delete Category" ng-click="deleteCat(cat)">
+             <span class="glyphicon glyphicon-trash">&nbsp;</a>
+        <a  ng-show="isEditCat(cat.id)" class="btn btn-primary" uib-tooltip="Cancel" ng-click="toggleEdit(cat.id)">
+              <span class="glyphicon glyphicon-remove">&nbsp;</a>
+    </td>
+    </tr>
+  </table>
+  <a class="btn btn-primary " ng-click=createCat() ">
+    <span>New Category</span></a>
+</div>
