@@ -377,7 +377,32 @@
         }, function errorCallback(response) {
           alert("Google Query Request yielded error(" + response.status + "): " + response.statusText);
         });
+      };
+
+      $scope.getStageDocs = function() {
+        $scope.stageDir = prompt("Enter Staging Directory", "C:/Users/daniel.heaney/Documents/ebooks");
+        if($scope.stageDir) {
+          //console.log("In getTagCloud");
+          $http({
+            method: 'GET',
+            url: 'http://localhost:3000/loadstage/getfiles',
+            params: {
+              stage_directory : $scope.stageDir
+            },
+            headers: {
+              'Accept': 'application/json'
+            }
+          }).then(function successCallback(response) {
+            // alert("Got staged docs");
+            console.log("Received data: " + JSON.stringify(response.data));
+            $scope.stageDocs = response.data.items;
+          }, function errorCallback(response) {
+            alert("Request for Staged Docs yielded error: " + response.status);
+          });
+
+        }
       }
+
 
     }]); // end controller
 })();

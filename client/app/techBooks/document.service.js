@@ -12,7 +12,8 @@
           headers: {
             'Content_Type': 'application/json',
             'Accept' : 'application/json'
-          }
+          },
+          xsrfCookieName: "_doc_mgr_session"
         },
         get: {
           method: 'GET',
@@ -20,7 +21,8 @@
           headers: {
             'Content_Type': 'application/json',
             'Accept' : 'application/json'
-          }
+          },
+          xsrfCookieName: "_doc_mgr_session"
         },
         create: {
           method: 'POST',
@@ -28,7 +30,8 @@
           headers: {
             'Content_Type': 'application/json',
             'Accept' : 'application/json'
-          }
+          },
+          xsrfCookieName: "_doc_mgr_session"
         },
         update: {
           method: 'PUT',
@@ -36,7 +39,8 @@
           headers: {
             'Content_Type': 'application/json',
             'Accept' : 'application/json'
-          }
+          },
+          xsrfCookieName: "_doc_mgr_session"
         },
         delete: {
           method: 'DELETE',
@@ -44,7 +48,8 @@
           headers: {
             'Content_Type': 'application/json',
             'Accept' : 'application/json'
-          }
+          },
+          xsrfCookieName: "_doc_mgr_session"
         }
       });
     });

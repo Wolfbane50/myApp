@@ -31,6 +31,16 @@ angular.module('myappApp')
         $scope.itemSelect($scope.findDocFromList($stateParams.id));
       }
     })
+    .state('techBooks.stageDocument', {
+      url: '/document/:index',
+      templateUrl: 'app/techBooks/document.html',
+      controller: function($scope, $stateParams) {
+        // Need to move this out into its own file
+        var rec = $scope.stageDocs[$stateParams.index];
+        console.log("In stage document controller");
+        $scope.itemSelect(rec);
+      }
+    })
       .state('techBooks.default', {
         url: '/default',
         template: '<img src="assets/images/phanatic_in_suit.jpg" >'

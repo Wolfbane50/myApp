@@ -28,7 +28,7 @@
                 <span class="glyphicon glyphicon-plus"></span></a>
 
               <p ng-repeat="doc in getDocsByCategory(cat.id)">
-                <a  ui-sref="techBooks.document({id: doc.id})">{{doc.title}}<a></p>
+                <a  ui-sref="techBooks.document({id: doc.id})">{{doc.title}}</a></p>
               </div>
             </uib-accordion>
         </uib-tab>
@@ -39,6 +39,13 @@
             </div>
           </uib-accordion>
 
+        </uib-tab>
+        <uib-tab index="2" heading="Load Stage">
+          <a class="btn btn-primary" ng-click="getStageDocs()">
+            <span>Retrieve Docs</span></a>
+          <ul>
+            <li ng-repeat="doc in stageDocs"><a ui-sref="techBooks.stageDocument({index: $index})">{{doc.title}}</a></li>
+          </ul>
         </uib-tab>
       </uib-tabset>
     </div>

@@ -1,4 +1,5 @@
 'use strict';
+
 var fs = require("fs");
 var FindFiles = require("node-find-files");
 var path = require('path');
