@@ -52,7 +52,7 @@ function findArchiveDate(albumRec, callback) {
 // Note: Using old (v1.5) async for async.filter - API changes for later versions
 //       Changes for newer API are commented out.
 function filterDirectories(basePath, mapIter, mapDone) {
-  //console.log("filterDirectories called on basePath: " + basePath);
+  console.log("filterDirectories called on basePath: " + basePath);
   fs.readdir(basePath, function(err, files) {
     async.filter(files, function(filepath, callback) {
       var fullpath = basePath + '/' + filepath;
@@ -82,7 +82,9 @@ function filterDirectories(basePath, mapIter, mapDone) {
 }
 
 function findAlbums(artistRec, ArCallback) {
+  //console.log("Find Albums in " + artistRec.directory);
   filterDirectories(artistRec.directory, function(filepath, callback) {
+    //console.log("Found Album " + filepath);
     var newAlbum = {
       directory: artistRec.directory + '/' + filepath,
       name: filepath,
@@ -91,6 +93,7 @@ function findAlbums(artistRec, ArCallback) {
     findArchiveDate(newAlbum, callback);
 
   }, function(err, results) {
+    console.log("Done albums for " + artistRec.name);
     artistRec.albums = results;
     ArCallback(null, artistRec);
   });
@@ -106,7 +109,7 @@ function saveTunesFile(theTunes) {
 export function albumSearch(req, res) {
   //var tunesBaseDir = "Multimedia/My Music";
   var tunesBaseDir = req.query.directory;
-  //  console.log("Starting album search in " + tunesBaseDir);
+   console.log("Starting album search in " + tunesBaseDir);
 
   // Blank database to start
   var tunesCollection = {

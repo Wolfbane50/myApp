@@ -6,7 +6,7 @@
     .controller('myMusicCtrl', ['$scope', '$http', function($scope, $http) {
       var treeCtlScope = $scope;
       $scope.artists = [];
-      $scope.musicLocation = "";
+      $scope.musicLocation = "Y:/My Music";
       $scope.artistSets = [];
       $scope.selArtist = "";
 
@@ -63,8 +63,9 @@
           $http({
             method: 'GET',
             url: '/api/tunes/search',
-            data: {
-              "directory": $scope.musicLocation
+            params: {
+//              "directory": $scope.musicLocation
+              "directory": "Y:/My Music"
             }
           }).success(function(data) {
             alert("Scan Successful!\n\nReprocesing Data");
