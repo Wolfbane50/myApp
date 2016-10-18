@@ -28,7 +28,7 @@
                 <span class="glyphicon glyphicon-plus"></span></a>
 
               <p ng-repeat="doc in getDocsByCategory(cat.id)">
-                <a  ui-sref="techBooks.document({id: doc.id})">{{doc.title}}</a></p>
+                <a  ui-sref="techBooks.document({doc: doc})">{{doc.title}}</a></p>
               </div>
             </uib-accordion>
         </uib-tab>
