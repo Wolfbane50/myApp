@@ -30,7 +30,7 @@ angular.module('myappApp')
       },
       url: '/document/:id',
       templateUrl: 'app/techBooks/document.html',
-      controller: function($scope, $stateParams) {
+      controller: function($scope, $stateParams, $state) {
         console.log("In document controller, stateParams = " + JSON.stringify($stateParams));
         if ($stateParams.doc) {
             console.log("Starting document view with passed document...");

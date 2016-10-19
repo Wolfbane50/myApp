@@ -124,6 +124,7 @@
                 $scope.docsByCat[myCat] = [doc];
               }
 
+
               // index by tag
               if (doc.tag_id) {
                 console.log("Processing tag " + doc.tag_id);
@@ -138,6 +139,16 @@
               }
 
             });
+            // Sort the Docs in each category
+            angular.forEach($scope.docsByCat, function(docs, catId, obj) {
+                obj[catId] = docs.sort(function(a, b) {
+                  //console.log("Looking at " + a.title + "\n    vice\n    " + b.title);
+                  if( a.title.toLowerCase() < b.title.toLowerCase()) { return -1; }
+                  return 1;
+                });
+            });
+
+
             // Create sorted list of tags
             $scope.tagList = [];
             for (var key in $scope.docsByTag) {
