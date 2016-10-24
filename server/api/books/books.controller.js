@@ -2,10 +2,11 @@
 var google = require('googleapis');
 var myGoogle = require('../../config/myGoogleApiCfg');
 var encodeUrl = require('encodeurl');
+var myRequest = require('request');
 import config from '../../config/environment';
 
 export function query(req, res) {
-  myGoogle.authThenProcess(req, res, bookQuery)
+  myGoogle.authThenProcess(req, res, bookQuery);
 }
 
 function sanitize(interm) {
@@ -80,6 +81,65 @@ console.log("Query String: " + theQuery);
          res.status(200).json(qresult);
 
     });
+}
+
+// Load Stage functionality - Search input directory for all document types and return to client
+export function loadstage(req, res) {
+  var directory = req.query.directory;
+
+
+}
+
+// Tag Cloud Functionality --> Proxy to RoR implementation
+export function tagCloud(req, res) {
+  console.log("In tag_cloud...");
+  var reqOptions = {
+    url : 'http://localhost:3000/documents/tag_cloud',
+    headers: {
+      'Content_Type': 'application/json',
+      'Accept' : 'application/json'
+    }
+  } ;
+
+  myRequest(reqOptions, function(error, response, body) {
+    if(error) {
+      console.log("Request returned error -> " + error);
+      return res.status(response.status).send(body);
+    } else {
+//      console.log(": " +  response.headers['content-type']);
+//      console.log('Request OK: ' + body);
+
+      //return res.status(response.status).json(body);
+      res.set('Content-Type', 'application/json');
+      res.send(body);
+    }
+  });
+
+}
+
+export function docsWithTag(req, res) {
+  var tagId = req.query.id;
+  var reqOptions = {
+    url : 'http://localhost:3000/documents/tag',
+    qs : req.query,
+    headers: {
+      'Content_Type': 'application/json',
+      'Accept' : 'application/json'
+    }
+  } ;
+  myRequest(reqOptions, function(error, response, body) {
+    if(error) {
+      console.log("Request returned error -> " + error);
+      return res.status(response.statusCode).send(body);
+    } else {
+//      console.log(": " +  response.headers['content-type']);
+//      console.log('Request OK: ' + body);
+
+      //return res.status(response.status).json(body);
+      res.set('Content-Type', 'application/json');
+      res.status(response.statusCode).send(body);
+    }
+  });
 
 
 }

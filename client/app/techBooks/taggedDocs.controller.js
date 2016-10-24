@@ -12,7 +12,8 @@
           // go get the tagged documents
           $http({
             method: 'GET',
-            url: 'http://localhost:3000/documents/tag',
+//            url: 'http://localhost:3000/documents/tag',
+            url: '/api/books/tag',
             params: { id: $scope.selectedTag },
             headers: {
               'Accept': 'application/json'

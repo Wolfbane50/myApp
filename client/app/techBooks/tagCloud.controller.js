@@ -29,12 +29,14 @@
              console.log("In tagCloud Controller, about to get tagCloud");
              $http({
                method: 'GET',
-               url: 'http://localhost:3000/documents/tag_cloud',
+//               url: 'http://localhost:3000/documents/tag_cloud',
+               url: '/api/books/tag_cloud',
                headers: {
                  'Accept': 'application/json'
                }
              }).then(function successCallback(response) {
                //alert("Got tag cloud");
+               console.log("Got " + response.data);
                $scope.tagCloud = response.data;
                $scope.tagMaxHits = getTagThresholds();
              }, function errorCallback(response) {
