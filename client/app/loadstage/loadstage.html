@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>Enter NEW Technical Books from a Stage Directory</h2>
+    </div>
+    <div class="col-lg-8" id="buttonBar">
+      <a ng-show="selItem" class="btn btn-primary" ng-click="booksHome()">
+        <span>Home<span></a>
+      <a class="pull-right btn btn-primary" ng-click="newDoc()">
+        <span>New Document</span></a>
+        <a class="pull-right btn btn-primary" ui-sref="techBooks.tagCloud">
+          <span>Tag Cloud!</span></a>
+      <a class="pull-right btn btn-primary" ng-click="booksHome()">
+        <span>Storage Directory</span></a>
+      <a class="pull-right btn btn-primary" ng-click="booksHome()">
+        <span>Generate Local DB</span></a>
+      <a class="pull-right btn btn-primary" ui-sref="techBooks.categories" >
+        <span>Edit Categories</span></a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4" style="height: 750px; overflow:scroll;">
+      <a class="btn btn-primary" ng-click="getStageDocs()">
+        <span>Retrieve Docs</span></a>
+      <ul>
+        <li ng-repeat="doc in stageDocs">
+          <span  ng-show="doc.id" class="glyphicon glyphicon-check"></span>
+          <a ui-sref="loadstage.stageDocument({index: $index})">{{doc.title}}</a>
+        </li>
+      </ul>
+
+    </div>
+
+    <div class="col-lg-8">
+      <div class="detail" ui-view></div>
+
+    </div>
+  </div>
+
+</div>

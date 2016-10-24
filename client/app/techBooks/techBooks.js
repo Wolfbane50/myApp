@@ -24,11 +24,26 @@ angular.module('myappApp')
       controller: 'taggedDocsController'
     })
     .state('techBooks.document', {
+      params: {
+        id: null,
+        doc: null
+      },
       url: '/document/:id',
       templateUrl: 'app/techBooks/document.html',
-      controller: function($scope, $stateParams) {
-        console.log("In document controller");
-        $scope.itemSelect($scope.findDocFromList($stateParams.id));
+      controller: function($scope, $stateParams, $state) {
+        console.log("In document controller, stateParams = " + JSON.stringify($stateParams));
+        if ($stateParams.doc) {
+            console.log("Starting document view with passed document...");
+            $scope.itemSelect($stateParams.doc);
+        } else {
+          if($stateParams.id) {
+            console.log("Starting document view with passed id...");
+            $scope.itemSelect($scope.findDocFromList($stateParams.id));
+          } else {
+            $state.go('techBooks.default');
+          }
+
+        }
       }
     })
     .state('techBooks.stageDocument', {
