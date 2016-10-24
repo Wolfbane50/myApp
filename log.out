@@ -1,0 +1,83 @@
+[12:53:16] Requiring external module babel-register
+[12:53:19] Using gulpfile C:\blah\myapp\gulpfile.babel.js
+[12:53:19] Starting 'test:server:integration'...
+[12:53:19] Starting 'env:all'...
+[12:53:19] Finished 'env:all' after 8.37 ms
+[12:53:19] Starting 'env:test'...
+[12:53:19] Finished 'env:test' after 902 μs
+[12:53:19] Starting 'mocha:integration'...
+*** /drive returned:  undefined
+
+
+  Backup API:
+Express server listening on 9000, in test mode
+    POST /api/backups
+POST /api/backups -
+-------------In Backup--
+backup file  = myBackup_102416_1477328001785.bak
+      √ should respond with the backup file name
+
+  Books Query (Google) API:
+    get /api/books
+GET /api/books?title=war%20and%20peace -
+In authThennProcess
+Query String: war+and+peace
+Calling books.volumes.list
+Will use key: AIzaSyAvbYb-45PnuskklTU_V3pAnMfd6b_x-z4
+From API ==> [{"kind":"books#volume","id":"LB-OLxQWzPcC","etag":"dkJP6W4VkH4","selfLink":"https://www.googleapis.com/books/v1/volumes/LB-OLxQWzPcC","volumeInfo":{"title":"War and Peace Vol. 5 &6","authors":["Leo Nikolayevich Tolstoy","Leo Tolstoy"],"publisher":"Wildside Press LLC","publishedDate":"2010-06-01","description":"Leo Tolstoy, or Count Lev Nikolayevich Tolstoy (1828-1910), was a Russian writer widely regarded as among the greatest of novelists for his masterpieces War and Peace and Anna Karenina. War and Peace's vast canvas includes 580 characters, many historical, others fictional. The story moves from family life to the headquarters of Napoleon, from the court of Alexander I of Russia to the battlefields of Austerlitz and Borodino. The novel explores Tolstoy's theory of history, and in particular the insignificance of individuals such as Napoleon and Alexander.","industryIdentifiers":[{"type":"ISBN_13","identifier":"9781434419996"},{"type":"ISBN_10","identifier":"1434419991"}],"readingModes":{"text":false,"image":false},"pageCount":640,"printType":"BOOK","categories":["Fiction"],"maturityRating":"NOT_MATURE","allowAnonLogging":false,"contentVersion":"0.0.1.0.preview.0","imageLinks":{"smallThumbnail":"http://books.google.com/books/content?id=LB-OLxQWzPcC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api","thumbnail":"http://books.google.com/books/content?id=LB-OLxQWzPcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"},"language":"en","previewLink":"http://books.google.com/books?id=LB-OLxQWzPcC&printsec=frontcover&dq=war%2Band%2Bpeace&hl=&cd=1&source=gbs_api","infoLink":"http://books.google.com/books?id=LB-OLxQWzPcC&dq=war%2Band%2Bpeace&hl=&source=gbs_api","canonicalVolumeLink":"http://books.google.com/books/about/War_and_Peace_Vol_5_6.html?hl=&id=LB-OLxQWzPcC"},"saleInfo":{"country":"US","saleability":"NOT_FOR_SALE","isEbook":false},"accessInfo":{"country":"US","viewability":"PARTIAL","embeddable":true,"publicDomain":false,"textToSpeechPermission":"ALLOWED","epub":{"isAvailable":false},"pdf":{"isAvailable":false},"webReaderLink":"http://books.google.com/books/reader?id=LB-OLxQWzPcC&hl=&printsec=frontcover&output=reader&source=gbs_api","accessViewStatus":"SAMPLE","quoteSharingAllowed":false},"searchInfo":{"textSnippet":"The novel explores Tolstoy&#39;s theory of history, and in particular the insignificance of individuals such as Napoleon and Alexander."}}]
+      √ should have records with title, author, publisher, copywrite, description, image_url
+    get /api/books/tag_cloud
+GET /api/books/tag_cloud -
+In tag_cloud...
+Content-Type: application/json; charset=utf-8
+Request OK: [{"count":1,"id":104,"name":"access"},{"count":1,"id":76,"name":"ace"},{"count":2,"id":45,"name":"actionscript"},{"count":4,"id":21,"name":"agile"},{"count":21,"id":20,"name":"ajax"},{"count":2,"id":57,"name":"algorithms"},{"count":2,"id":15,"name":"Ant"},{"count":12,"id":3,"name":"apache"},{"count":2,"id":46,"name":"applescript"},{"count":8,"id":30,"name":"arduino"},{"count":1,"id":49,"name":"asp.net"},{"count":2,"id":74,"name":"blackberry"},{"count":4,"id":96,"name":"blog"},{"count":2,"id":91,"name":"cisco"},{"count":1,"id":102,"name":"cloud"},{"count":1,"id":47,"name":"cocoa"},{"count":1,"id":51,"name":"coffeescript"},{"count":5,"id":12,"name":"cookbook"},{"count":2,"id":77,"name":"cryptography"},{"count":16,"id":25,"name":"css"},{"count":1,"id":107,"name":"cvs"},{"count":2,"id":98,"name":"django"},{"count":1,"id":2,"name":"dojo"},{"count":1,"id":61,"name":"drupal"},{"count":2,"id":8,"name":"Ebay"},{"count":4,"id":53,"name":"eclipse"},{"count":5,"id":16,"name":"ejb"},{"count":22,"id":4,"name":"excel"},{"count":4,"id":36,"name":"facebook"},{"count":8,"id":44,"name":"flash"},{"count":2,"id":84,"name":"flex"},{"count":6,"id":50,"name":"gimp"},{"count":3,"id":109,"name":"git"},{"count":1,"id":78,"name":"gnu"},{"count":20,"id":31,"name":"google"},{"count":1,"id":70,"name":"google glass"},{"count":1,"id":66,"name":"gpu"},{"count":19,"id":7,"name":"Hacks"},{"count":27,"id":37,"name":"head first"},{"count":4,"id":82,"name":"hibernate"},{"count":2,"id":59,"name":"hsi"},{"count":10,"id":26,"name":"html"},{"count":19,"id":73,"name":"html5"},{"count":2,"id":97,"name":"http"},{"count":1,"id":83,"name":"j2ee"},{"count":1,"id":43,"name":"jabber"},{"count":3,"id":88,"name":"javafx"},{"count":27,"id":27,"name":"javascript"},{"count":4,"id":75,"name":"jboss"},{"count":2,"id":79,"name":"jini"},{"count":1,"id":85,"name":"joomla"},{"count":11,"id":28,"name":"jquery"},{"count":2,"id":41,"name":"jsp"},{"count":1,"id":112,"name":"ldap"},{"count":2,"id":63,"name":"linkedin"},{"count":3,"id":111,"name":"linux"},{"count":1,"id":92,"name":"media center"},{"count":2,"id":99,"name":"mootools"},{"count":4,"id":89,"name":"netbeans"},{"count":2,"id":69,"name":"node.js"},{"count":3,"id":22,"name":"oo"},{"count":5,"id":33,"name":"openGL"},{"count":1,"id":103,"name":"outlook"},{"count":6,"id":38,"name":"patterns"},{"count":1,"id":64,"name":"php"},{"count":3,"id":40,"name":"pm"},{"count":2,"id":72,"name":"pomodoro"},{"count":5,"id":34,"name":"powerpoint"},{"count":4,"id":105,"name":"powershell"},{"count":3,"id":32,"name":"project"},{"count":1,"id":94,"name":"radar"},{"count":27,"id":1,"name":"rails"},{"count":7,"id":71,"name":"raspberry pi"},{"count":1,"id":48,"name":"rdf"},{"count":4,"id":87,"name":"regex"},{"count":1,"id":56,"name":"requirements"},{"count":1,"id":95,"name":"rss"},{"count":8,"id":101,"name":"sharepoint"},{"count":1,"id":100,"name":"silverlight"},{"count":1,"id":106,"name":"sms"},{"count":10,"id":86,"name":"spring"},{"count":1,"id":62,"name":"statistics"},{"count":7,"id":81,"name":"struts"},{"count":2,"id":108,"name":"subversion"},{"count":2,"id":24,"name":"SVG"},{"count":1,"id":110,"name":"svn"},{"count":1,"id":18,"name":"swing"},{"count":1,"id":10,"name":"sysadmin"},{"count":3,"id":93,"name":"sysml"},{"count":1,"id":11,"name":"TK"},{"count":3,"id":80,"name":"tomcat"},{"count":11,"id":23,"name":"uml"},{"count":2,"id":29,"name":"Visual Studio"},{"count":5,"id":19,"name":"VMware"},{"count":2,"id":60,"name":"voip"},{"count":4,"id":14,"name":"web_services"},{"count":7,"id":90,"name":"wifi"},{"count":6,"id":52,"name":"word"},{"count":4,"id":42,"name":"wordpress"},{"count":3,"id":13,"name":"XML"}]
+      1) should be an array with  have records with name and id
+
+  Bunt API:
+    get /api/newCards/bunt
+GET /api/newCards/bunt -
+      √ should respond with redirect to /bunt.json
+    get /api/newCards/drive
+GET /api/newCards/drive -
+In getIds
+      √ should respond with a JSON array
+GET /api/newCards/drive -
+In getIds
+      √ should have records with name and id
+
+  Chachi API:
+    get /api/newCards/chachi
+GET /api/newCards/chachi -
+In chachi index ...
+      √ should respond with redirect to /chachis3.json
+    post /api/newCards/chachi
+POST /api/newCards/chachi -
+In chachi update again ...
+Updating Chachi.json
+      √ should respond with redirect to /chachis3.json
+
+
+  7 passing (3s)
+  1 failing
+
+  1) Books Query (Google) API: get /api/books/tag_cloud should be an array with  have records with name and id:
+     AssertionError: expected '[{"count":1,"id":104,"name":"access"},{"count":1,"id":76,"name":"ace"},{"count":2,"id":45,"name":"actionscript"},{"count":4,"id":21,"name":"agile"},{"count":21,"id":20,"name":"ajax"},{"count":2,"id":57,"name":"algorithms"},{"count":2,"id":15,"name":"Ant"},{"count":12,"id":3,"name":"apache"},{"count":2,"id":46,"name":"applescript"},{"count":8,"id":30,"name":"arduino"},{"count":1,"id":49,"name":"asp.net"},{"count":2,"id":74,"name":"blackberry"},{"count":4,"id":96,"name":"blog"},{"count":2,"id":91,"name":"cisco"},{"count":1,"id":102,"name":"cloud"},{"count":1,"id":47,"name":"cocoa"},{"count":1,"id":51,"name":"coffeescript"},{"count":5,"id":12,"name":"cookbook"},{"count":2,"id":77,"name":"cryptography"},{"count":16,"id":25,"name":"css"},{"count":1,"id":107,"name":"cvs"},{"count":2,"id":98,"name":"django"},{"count":1,"id":2,"name":"dojo"},{"count":1,"id":61,"name":"drupal"},{"count":2,"id":8,"name":"Ebay"},{"count":4,"id":53,"name":"eclipse"},{"count":5,"id":16,"name":"ejb"},{"count":22,"id":4,"name":"excel"},{"count":4,"id":36,"name":"facebook"},{"count":8,"id":44,"name":"flash"},{"count":2,"id":84,"name":"flex"},{"count":6,"id":50,"name":"gimp"},{"count":3,"id":109,"name":"git"},{"count":1,"id":78,"name":"gnu"},{"count":20,"id":31,"name":"google"},{"count":1,"id":70,"name":"google glass"},{"count":1,"id":66,"name":"gpu"},{"count":19,"id":7,"name":"Hacks"},{"count":27,"id":37,"name":"head first"},{"count":4,"id":82,"name":"hibernate"},{"count":2,"id":59,"name":"hsi"},{"count":10,"id":26,"name":"html"},{"count":19,"id":73,"name":"html5"},{"count":2,"id":97,"name":"http"},{"count":1,"id":83,"name":"j2ee"},{"count":1,"id":43,"name":"jabber"},{"count":3,"id":88,"name":"javafx"},{"count":27,"id":27,"name":"javascript"},{"count":4,"id":75,"name":"jboss"},{"count":2,"id":79,"name":"jini"},{"count":1,"id":85,"name":"joomla"},{"count":11,"id":28,"name":"jquery"},{"count":2,"id":41,"name":"jsp"},{"count":1,"id":112,"name":"ldap"},{"count":2,"id":63,"name":"linkedin"},{"count":3,"id":111,"name":"linux"},{"count":1,"id":92,"name":"media center"},{"count":2,"id":99,"name":"mootools"},{"count":4,"id":89,"name":"netbeans"},{"count":2,"id":69,"name":"node.js"},{"count":3,"id":22,"name":"oo"},{"count":5,"id":33,"name":"openGL"},{"count":1,"id":103,"name":"outlook"},{"count":6,"id":38,"name":"patterns"},{"count":1,"id":64,"name":"php"},{"count":3,"id":40,"name":"pm"},{"count":2,"id":72,"name":"pomodoro"},{"count":5,"id":34,"name":"powerpoint"},{"count":4,"id":105,"name":"powershell"},{"count":3,"id":32,"name":"project"},{"count":1,"id":94,"name":"radar"},{"count":27,"id":1,"name":"rails"},{"count":7,"id":71,"name":"raspberry pi"},{"count":1,"id":48,"name":"rdf"},{"count":4,"id":87,"name":"regex"},{"count":1,"id":56,"name":"requirements"},{"count":1,"id":95,"name":"rss"},{"count":8,"id":101,"name":"sharepoint"},{"count":1,"id":100,"name":"silverlight"},{"count":1,"id":106,"name":"sms"},{"count":10,"id":86,"name":"spring"},{"count":1,"id":62,"name":"statistics"},{"count":7,"id":81,"name":"struts"},{"count":2,"id":108,"name":"subversion"},{"count":2,"id":24,"name":"SVG"},{"count":1,"id":110,"name":"svn"},{"count":1,"id":18,"name":"swing"},{"count":1,"id":10,"name":"sysadmin"},{"count":3,"id":93,"name":"sysml"},{"count":1,"id":11,"name":"TK"},{"count":3,"id":80,"name":"tomcat"},{"count":11,"id":23,"name":"uml"},{"count":2,"id":29,"name":"Visual Studio"},{"count":5,"id":19,"name":"VMware"},{"count":2,"id":60,"name":"voip"},{"count":4,"id":14,"name":"web_services"},{"count":7,"id":90,"name":"wifi"},{"count":6,"id":52,"name":"word"},{"count":4,"id":42,"name":"wordpress"},{"count":3,"id":13,"name":"XML"}]' to be an instance of Array
+    at Context.<anonymous> (C:\blah\myapp\server\api\books\books.integration.js:47:26)
+    at callFn (C:\blah\myapp\node_modules\mocha\lib\runnable.js:326:21)
+    at Test.Runnable.run (C:\blah\myapp\node_modules\mocha\lib\runnable.js:319:7)
+    at Runner.runTest (C:\blah\myapp\node_modules\mocha\lib\runner.js:422:10)
+    at C:\blah\myapp\node_modules\mocha\lib\runner.js:528:12
+    at next (C:\blah\myapp\node_modules\mocha\lib\runner.js:342:14)
+    at C:\blah\myapp\node_modules\mocha\lib\runner.js:352:7
+    at next (C:\blah\myapp\node_modules\mocha\lib\runner.js:284:14)
+    at C:\blah\myapp\node_modules\mocha\lib\runner.js:315:7
+    at done (C:\blah\myapp\node_modules\mocha\lib\runnable.js:287:5)
+    at C:\blah\myapp\node_modules\mocha\lib\runnable.js:360:7
+    at Test.<anonymous> (C:\blah\myapp\server\api\books\books.integration.js:42:9)
+    at Test.assert (C:\blah\myapp\node_modules\supertest\lib\test.js:156:6)
+    at Server.assert (C:\blah\myapp\node_modules\supertest\lib\test.js:127:12)
+    at emitCloseNT (net.js:1527:8)
+  
+
+
+
