@@ -1,0 +1,52 @@
+
+var NB = require('nodebrainz');
+var nb = new NB({userAgent:'my-awesome-app/0.0.1 ( http://my-awesome-app.com )'});
+
+
+// Artist Search
+nb.search('artist', {artist:'tool', country:'US'}, function(err, response){
+    console.log(response);
+});
+
+//There are different search fields depending on the entity.
+//
+//  Artist
+//  Label
+//  Recording
+//  Release
+//  Release-group
+//  Work
+//  Area
+
+// Browse requests are a direct lookup of all the entities directly linked to another entity. For example, if you wanted to look up all the release-groups for a particularly talented artist:
+
+nb.browse('release-group', {artist:'e0140a67-e4d1-4f13-8a01-364355bee46e'}, function(err, response){
+    console.log(response);
+});
+
+var CA = require('coverart');
+ 
+// Initialize Cover Art 
+var ca = new CA({userAgent:'my-awesome-app/0.0.1 ( http://my-awesome-app.com )'});
+
+// Fetches a JSON listing of available cover art for a MusicBrainz release.
+
+ca.release('660c1995-c6a0-4c90-b158-2f2d9caff78f', function(err, response){
+    console.log(response);
+});
+
+
+With the option piece set to front, fetch the image that is most suitable to be called the "front" of a release. piece also accepts back and an image id
+
+ca.release('660c1995-c6a0-4c90-b158-2f2d9caff78f', {piece: 'front'}, function(err, response){
+    console.log(response);
+    //  { 
+    //      "contentType": "image/jpeg", 
+    //      "extension": ".jpeg", 
+    //      "image": ... binary image ... 
+    //  } 
+});
+
+ca.release('660c1995-c6a0-4c90-b158-2f2d9caff78f', {piece: 'back', size: 'small'}, function(err, response){
+    console.log(response);
+});

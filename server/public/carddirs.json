@@ -1,1 +1,1621 @@
-[{"path":"","fname":"Screenshot_2016-10-03-08-23-22.png"},{"path":"","fname":"Screenshot_2016-10-10-09-22-46.png"},{"path":"","fname":"Screenshot_2016-10-04-18-01-43.png"},{"path":"","fname":"Screenshot_2016-10-09-10-49-09.png"},{"path":"","fname":"Screenshot_2016-10-09-11-20-17.png"},{"path":"","fname":"Screenshot_2016-10-09-10-42-10.png"},{"path":"","fname":"Screenshot_2016-10-09-10-27-46.png"},{"path":"","fname":"Screenshot_2016-10-04-18-03-10.png"},{"path":"","fname":"Screenshot_2016-10-03-19-22-19.png"},{"path":"","fname":"Screenshot_2016-10-09-10-47-37.png"},{"path":"","fname":"Screenshot_2016-10-10-09-23-48.png"},{"path":"","fname":"Screenshot_2016-10-09-10-55-51.png"},{"path":"","fname":"Screenshot_2016-10-09-10-53-23.png"},{"path":"","fname":"Screenshot_2016-10-09-10-40-17.png"},{"path":"","fname":"Screenshot_2016-10-04-18-08-45.png"},{"path":"","fname":"Screenshot_2016-10-09-10-39-14.png"},{"path":"","fname":"Screenshot_2016-10-09-10-59-03.png"},{"path":"","fname":"Screenshot_2016-10-03-08-24-26.png"},{"path":"","fname":"Screenshot_2016-10-09-10-54-15.png"},{"path":"","fname":"Screenshot_2016-10-05-16-24-27.png"},{"path":"","fname":"Screenshot_2016-10-09-10-30-49.png"},{"path":"","fname":"Screenshot_2016-10-09-10-51-20.png"},{"path":"","fname":"Screenshot_2016-10-09-10-33-02.png"},{"path":"","fname":"Screenshot_2016-10-09-10-26-53.png"},{"path":"","fname":"Screenshot_2016-10-09-10-35-00.png"},{"path":"","fname":"Screenshot_2016-10-04-18-05-50.png"},{"path":"","fname":"Screenshot_2016-10-09-10-24-56.png"},{"path":"","fname":"Screenshot_2016-10-09-10-50-15.png"},{"path":"","fname":"Screenshot_2016-10-09-10-31-51.png"}]
+[{
+  "path": "",
+  "fname": "Screenshot_2016-10-12-22-09-18.png"
+}, {
+  "path": "",
+  "fname": "Screenshot_2016-10-11-19-37-59.png"
+}, {
+  "path": "",
+  "fname": "Screenshot_2016-10-11-19-29-52.png"
+}, {
+  "path": "",
+  "fname": "Screenshot_2016-10-11-19-36-28.png"
+}, {
+  "path": "",
+  "fname": "Screenshot_2016-10-12-22-08-38.png"
+}, {
+  "path": "",
+  "fname": "Screenshot_2016-10-12-22-10-34.png"
+}, {
+  "path": "",
+  "fname": "Screenshot_2016-10-12-22-07-01.png"
+}, {
+  "path": "",
+  "fname": "Screenshot_2016-10-11-19-33-56.png"
+}, {
+  "path": "",
+  "fname": "Screenshot_2016-10-12-22-02-12.png"
+}, {
+  "path": "",
+  "fname": "Screenshot_2016-10-12-22-12-44.png"
+}, {
+  "path": "",
+  "fname": "Screenshot_2016-10-11-19-36-55.png"
+}, {
+  "path": "",
+  "fname": "Screenshot_2016-10-11-19-27-25.png"
+}, {
+  "path": "",
+  "fname": "Screenshot_2016-10-12-22-05-10.png"
+}, {
+  "path": "",
+  "fname": "Screenshot_2016-10-12-22-13-27.png"
+}, {
+  "path": "",
+  "fname": "Screenshot_2016-10-11-19-24-41.png"
+}, {
+  "path": "now",
+  "fname": "Jimmy Paredes Walkoff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0214-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0286-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0201-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0036-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0034-1_2.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0229-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0135-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0108-1_5_.jpg"
+}, {
+  "path": "now",
+  "fname": "Cueto-Samardzija-Moore.png"
+}, {
+  "path": "now",
+  "fname": "Yoenis Cespedes walkoff.png"
+}, {
+  "path": "now",
+  "fname": "Mark Teixeira WalkOff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0062-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "Sean Redriguez shot.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0281-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Ichiro Pinch Hit.png"
+}, {
+  "path": "now",
+  "fname": "Gregorius Elsbury.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0025-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Conor Gilaspie.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0092-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0270.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0168-1.jpg"
+}, {
+  "path": "now",
+  "fname": "David Ross - Aroldis Chapman.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0199-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jose Loboton.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0172-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0264-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Ty Blach.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0209-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0298-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Joe Mauer walkoff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0269-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Yulieski Gurriel call-up.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0195-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0006-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-143-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Chris Sale 200 Ks.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0184-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jason Kipness Walkoff.png"
+}, {
+  "path": "now",
+  "fname": "Trey Mancini Call-Up.png"
+}, {
+  "path": "now",
+  "fname": "Ichiro - Al Kaline.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0115-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jon Jaso Cycle.png"
+}, {
+  "path": "now",
+  "fname": "Mark Trumbo hr.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0167-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0112-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Carlos Correa - Alex Rodriguez.png"
+}, {
+  "path": "now",
+  "fname": "Jose DeLeon Call-Up.png"
+}, {
+  "path": "now",
+  "fname": "Daniel Murphy Mookie Betts.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0283-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0063-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Matt Moore 8 innings.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0157-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-154-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0288-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0246-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0103-1.jpg"
+}, {
+  "path": "now",
+  "fname": "screen-shot-2016-06-07-at-1-19-59-pm.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0017-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Brandon Guyer Walkoff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0265-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0107-1_5_.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0055-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Brian Dozier 3hr gam.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0202-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0240-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0045-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jacob Stallings Callup.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0023-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0267-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0050-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0231-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Bartolo Colon mets yankees.png"
+}, {
+  "path": "now",
+  "fname": "Carlos Correa - Evan Gattis.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0254-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0250-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0206-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0087-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0125-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0134-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0156-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-149-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Madison Bumgarrner Wildcard.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0251-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0073-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0137-1_2.jpg"
+}, {
+  "path": "now",
+  "fname": "Rob Segedin Call-up.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-145-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Adam Eaton bubble.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0242-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0169-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0138-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0280-1.jpg"
+}, {
+  "path": "now",
+  "fname": "David Ortiz oldest 30hrs.png"
+}, {
+  "path": "now",
+  "fname": "Miguel Montero Walkoff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-144-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0222-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Rick Porcello 20 wins.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0086-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0130-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0275-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Aaron Judge callup hr.png"
+}, {
+  "path": "now",
+  "fname": "Angels 6 Runs.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0248-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Manny Muchado 100hrs.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0019-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Max Kepler 3hrs.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0106-1_4_.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0075-1.jpg"
+}, {
+  "path": "now",
+  "fname": "David Ross Final Game.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0008-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0011-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0287-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0291-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-147-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Calhoun Trout Pujols.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0180-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Encarnacion - Martin.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0244-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0031-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Brandon Crawford 7hits.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0037-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jose Altuve 200 hits.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0084-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jose Ramirez Walkoff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-236-1_4_.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-158-1_1_.jpg"
+}, {
+  "path": "now",
+  "fname": "Aaron Judge Call-Up.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0003-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0245-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Mike Trout Leaps.png"
+}, {
+  "path": "now",
+  "fname": "Noah Syndergaard Tom Seaver.png"
+}, {
+  "path": "now",
+  "fname": "Dansby Swanson Callup.png"
+}, {
+  "path": "now",
+  "fname": "Jon Lester Squeeze.png"
+}, {
+  "path": "now",
+  "fname": "Andrew Toles-Rob Segedin.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-as1-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0294-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0020-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0116-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0194-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0039-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-197-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0219-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0241-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0027-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Curtis Granderson consecutive hrs.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-297.jpg"
+}, {
+  "path": "now",
+  "fname": "Ichiro Lou Brock.png"
+}, {
+  "path": "now",
+  "fname": "Corey Seager Hits.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0032-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0095-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jacoby Jones Call-Up.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0277-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Carlos Correa walkoff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0175-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Dansby Swanson Alex Bregman.png"
+}, {
+  "path": "now",
+  "fname": "Zach Britton 39 saves.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0249-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0274-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Ortiz Final Homestand.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0105-1_4__1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jeurys Familia 50 Saves.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0189-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0065-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0129-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Miguel Cabrera 100 RBIs.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0085-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0127-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Chase Utley Return.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0083-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0026-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0191-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Kris Bryant3 4 hit.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0101-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0028-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0273-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0133-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0056-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0049-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0266-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Robinson Cano WalkOff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0203-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0113-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-152-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jeurys Familia 44 saves.png"
+}, {
+  "path": "now",
+  "fname": "Miguel Cabrera 2500 hits.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0091-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Manny Machado 3hr game.png"
+}, {
+  "path": "now",
+  "fname": "Ben Zobrist Bike.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0118-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0220-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0232-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0014-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0257-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Andrew Miller closes.png"
+}, {
+  "path": "now",
+  "fname": "Pat Venditte ambidextous.png"
+}, {
+  "path": "now",
+  "fname": "Conor Gilaspie Wildcard.png"
+}, {
+  "path": "now",
+  "fname": "The Rally Mantis.png"
+}, {
+  "path": "now",
+  "fname": "Big Popi Farewell.png"
+}, {
+  "path": "now",
+  "fname": "Blue Jays Celebrate.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0166-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Stephen Piscotty hr.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0238-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Ender Inciarte leaping grab.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0001-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0070-1_2_.jpg"
+}, {
+  "path": "now",
+  "fname": "Miguel Cabrera - Freddie Freeman.png"
+}, {
+  "path": "now",
+  "fname": "Adam Rosales walkoff.png"
+}, {
+  "path": "now",
+  "fname": "Madison Bumgarner 100th Win.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0204-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "Joe Musgrove Call-Up.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0176-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Arrieta Homer.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0230-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0140-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0122-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0300-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Yadier Molina.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0038-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Todd Frazier walkoff.png"
+}, {
+  "path": "now",
+  "fname": "Javier Baez NLDS.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0225-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Michael Fulmer era.png"
+}, {
+  "path": "now",
+  "fname": "Ian Desmond Walkoff.png"
+}, {
+  "path": "now",
+  "fname": "AROD farewell.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0120-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Gary Sanchez fastes 11hrs.png"
+}, {
+  "path": "now",
+  "fname": "Curtis Granderson Wildcard.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-as2-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0170-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jose Reyes - Asdrubal Cabrera.png"
+}, {
+  "path": "now",
+  "fname": "Aledmys Diaz game tying hr.png"
+}, {
+  "path": "now",
+  "fname": "Jose Abreu 25 hr.png"
+}, {
+  "path": "now",
+  "fname": "Bryant Homer.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0256-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Josh Reddick dodgers debut.png"
+}, {
+  "path": "now",
+  "fname": "Tyler Austin callup2.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0196-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0182-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Matt Wieters.png"
+}, {
+  "path": "now",
+  "fname": "Yu Darvish Clinch.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0052-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Tyler Austin CallUp.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0239-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0013-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Gary Sanchez player and rookie.png"
+}, {
+  "path": "now",
+  "fname": "Mike Napoli Party.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0114-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jay Bruce mets debut.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0046-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0048-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Mark Teixeira announce.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0076-1.jpg"
+}, {
+  "path": "now",
+  "fname": "screen-shot-2016-06-19-at-1-23-19-pm.png"
+}, {
+  "path": "now",
+  "fname": "Devon Travis bookend.png"
+}, {
+  "path": "now",
+  "fname": "Josh Donaldson ALDS.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0261-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0131-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "Mark Teixeira Last Game.png"
+}, {
+  "path": "now",
+  "fname": "Yoan Moncada Debut.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0213-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0259-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Encarnacion Walkoff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0128-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0096-1 (1).jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0044-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Albert Pujols 14 seasons.png"
+}, {
+  "path": "now",
+  "fname": "Danny Duffy bid.png"
+}, {
+  "path": "now",
+  "fname": "TJ Rivera hometown hero.png"
+}, {
+  "path": "now",
+  "fname": "Adrian Gonzalez gone.png"
+}, {
+  "path": "now",
+  "fname": "Jon Lester flirts.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0185-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0099-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Christhian Adames Walkoff.png"
+}, {
+  "path": "now",
+  "fname": "Andrew Toles Call-Up.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0117-1_1_.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0094-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Mark Trumbo 40hr.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0290-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Rougned Odor Walkoff.png"
+}, {
+  "path": "now",
+  "fname": "David Ortiz 36 hr.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0187-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0188-1.jpg"
+}, {
+  "path": "now",
+  "fname": "screen-shot-2016-06-19-at-1-23-10-pm.png"
+}, {
+  "path": "now",
+  "fname": "Prince Fielder over.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0208-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0255-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0009-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Ryan Schimpf walkoff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0289-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0171-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0190-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0043-1_2__1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0181-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0243-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Marco Estrada ALDS.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0126-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "Chris Carter.png"
+}, {
+  "path": "now",
+  "fname": "Daniel Murphy revenge.png"
+}, {
+  "path": "now",
+  "fname": "Taijuan Walkder CG.png"
+}, {
+  "path": "now",
+  "fname": "Rendon-Werth.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0104-1_4_.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0223-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0247a-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Noah Syndergaard Wildcard.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0100-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0282-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-153-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0205-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0123-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0163-1.jpg"
+}, {
+  "path": "now",
+  "fname": "perez kipness lindor ALDS.png"
+}, {
+  "path": "now",
+  "fname": "Josh Donaldson hat trick.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0253-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0268-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Bartolo Colon multihit.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0041-_2_-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0077-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "Kris Bryant comeback.png"
+}, {
+  "path": "now",
+  "fname": "Derek Dietrich walkoff.png"
+}, {
+  "path": "now",
+  "fname": "Hyun-Soo Kim.png"
+}, {
+  "path": "now",
+  "fname": "Tulo Pillar ALDS.png"
+}, {
+  "path": "now",
+  "fname": "Gary Sanchez sac fly.png"
+}, {
+  "path": "now",
+  "fname": "Kendall Graveman CG.png"
+}, {
+  "path": "now",
+  "fname": "Jason Heward walkoff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0066-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Hunter Renfro Call-Up.png"
+}, {
+  "path": "now",
+  "fname": "Ortiz Jimmy Fox.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0079-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0054-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Adonis Garcia walkoff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-142-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0005-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jeremy Hellickson CG.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0053-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0033-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0228-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Gary Sanches 1st hr.png"
+}, {
+  "path": "now",
+  "fname": "Andrew Benintendi callup2.png"
+}, {
+  "path": "now",
+  "fname": "Alex Reyes Call-Up.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0271-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jose Bautista Wildcard.png"
+}, {
+  "path": "now",
+  "fname": "Daniel Murphy.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0078-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Lonnie Chisenhall ALDS.png"
+}, {
+  "path": "now",
+  "fname": "Jason Werth onbase.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0136-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0211-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0301-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0080-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Charlie Blackmon 3hrs.png"
+}, {
+  "path": "now",
+  "fname": "Aaron Blair First Win.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0162-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Red Sox 23 Strikeouts.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0012-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0164-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Carlos Beltran - Jonathan Lucroy.png"
+}, {
+  "path": "now",
+  "fname": "Ben Revere catch.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0198-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Trey Mancini Call-Up2.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0302-primary.jpg"
+}, {
+  "path": "now",
+  "fname": "Jorge Soler returns.png"
+}, {
+  "path": "now",
+  "fname": "Wilmer Flores walkoff.png"
+}, {
+  "path": "now",
+  "fname": "Gary Sanches fastest hr.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0111-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0069-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Wilson Ramos Walkoff.png"
+}, {
+  "path": "now",
+  "fname": "JD Martinez pinch.png"
+}, {
+  "path": "now",
+  "fname": "Rich Hill perfect game bid.png"
+}, {
+  "path": "now",
+  "fname": "Ichiro 3000hits.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0299-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0102-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Gary Sanchez 5 hr.png"
+}, {
+  "path": "now",
+  "fname": "Corey Kluber NLDS.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0068-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0119-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0015-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0227-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jay Bruce Mets.png"
+}, {
+  "path": "now",
+  "fname": "Gary Sanchez 20 HRs.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0030-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Ichiro Wade Boggs.png"
+}, {
+  "path": "now",
+  "fname": "Travis Wood NLDS Homer.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0218-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-148-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Rick Porcello CG.png"
+}, {
+  "path": "now",
+  "fname": "Steven Wright shutout.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-150-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0177-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0217-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0276-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-146-1.jpg"
+}, {
+  "path": "now",
+  "fname": "David Dahl Callup.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0061-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Chad Bettis CG.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0022-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Corie Seager Charlie Culbertson.png"
+}, {
+  "path": "now",
+  "fname": "Jake Thompson Call-up.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0293-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0016-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0018-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-295_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0042-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0221-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0193-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Mike Trout blast.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0058-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jon Gray 16Ks.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0252-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Buster Posey 1000 Hits.png"
+}, {
+  "path": "now",
+  "fname": "Jose Altuve 1000hits.png"
+}, {
+  "path": "now",
+  "fname": "Corey Seager NLDS.png"
+}, {
+  "path": "now",
+  "fname": "Trade Deadline Frenzy.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0110-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0186-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0089-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0051-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0207-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Brian Dozier HR Record.png"
+}, {
+  "path": "now",
+  "fname": "Carlos Gomez hr.png"
+}, {
+  "path": "now",
+  "fname": "Ryan Schimpf comeback.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0174-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Daniel Descalso walkoff.png"
+}, {
+  "path": "now",
+  "fname": "Anthony Rizzo Circus.png"
+}, {
+  "path": "now",
+  "fname": "Tyler Naquin walkoff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0278-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Corey Seager hr record.png"
+}, {
+  "path": "now",
+  "fname": "Byron Buxton Rob Homer.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0064-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0233-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0124-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0183-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0279-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0081-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0040-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Kris Bryant Gary Sanchez.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0057-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0292-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jorge Soler Miguel Montero.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0093-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Mookie Betts Ted Williams.png"
+}, {
+  "path": "",
+  "fname": "screen-shot-2016-06-19-at-1-23-03-pm.png"
+}, {
+  "path": "now",
+  "fname": "Adrian Gonzalez Comeback.png"
+}, {
+  "path": "now",
+  "fname": "Brett Gardiner Grab.png"
+}, {
+  "path": "now",
+  "fname": "Ryan Raburn walkoff.png"
+}, {
+  "path": "now",
+  "fname": "Jon Lester NLDS.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0047-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Dozier Killebrew.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0082-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0067-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Andrew Benintendi ALDS.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0258-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Dustin Pedroia - Xander Bogaerts.png"
+}, {
+  "path": "now",
+  "fname": "Albert Pujols Sig.png"
+}, {
+  "path": "now",
+  "fname": "artbb_16c2s-16tn-0224-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0121-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Carlos Rodon.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0002-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0285-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Corey Seager NLDS Homer.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0098-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0139-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-151-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0215-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Roberto Clemente Ichiro.png"
+}, {
+  "path": "now",
+  "fname": "mookie Betts - nomar.png"
+}, {
+  "path": "now",
+  "fname": "Gary Sanchez 16 hrs.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0007-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Martin Prado Player Mgr.png"
+}, {
+  "path": "now",
+  "fname": "Jace Peterson walkoff.png"
+}, {
+  "path": "now",
+  "fname": "Max Scherzer 200K.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0004-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0029-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0024-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0235-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0260-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Dansby Swanson Callup2.png"
+}, {
+  "path": "now",
+  "fname": "Cardinals Pinch Hit.png"
+}, {
+  "path": "now",
+  "fname": "Dallas Keuchel rivalry.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0178-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0088-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0284-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0097-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Jedd Gyorko.png"
+}, {
+  "path": "now",
+  "fname": "Kyle Hendricks CG.png"
+}, {
+  "path": "now",
+  "fname": "Andrew Benintendi call-up.png"
+}, {
+  "path": "now",
+  "fname": "Yaz - Ortiz - Williams.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0262-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0216-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Giancarlo Stanton 504ft.png"
+}, {
+  "path": "now",
+  "fname": "Lonnie Chisenhall walkoff single.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0226-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-237-1_2_.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0132-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0165-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Yu Darvish HR.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0179-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Ricky Nolasco CG.png"
+}, {
+  "path": "now",
+  "fname": "Khris Davis walkoff.png"
+}, {
+  "path": "now",
+  "fname": "Freddie Freeman Hit Streak.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0109-1_9_.jpg"
+}, {
+  "path": "now",
+  "fname": "Trea Turner Walkoff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0035-1_1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0021-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0212-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0173-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Miguel Sano Roof.png"
+}, {
+  "path": "now",
+  "fname": "Donaldson Walkoff.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0141-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0071-1_4_.jpg"
+}, {
+  "path": "now",
+  "fname": "Mike Trout 100 walks.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0010-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Billy Hamilton swipes.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-296.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0210-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Lorenzo Cain.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0060-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Hunter Renfro.png"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0200-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0263-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0234-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0074-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0072-1.jpg"
+}, {
+  "path": "now",
+  "fname": "artbb-16c2s-16tn-0059-1.jpg"
+}, {
+  "path": "now",
+  "fname": "Bartolo Colon Walk.png"
+}]
