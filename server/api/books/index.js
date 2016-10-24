@@ -2,7 +2,9 @@
 
 var express = require('express');
 var controller = require('./books.controller');
-var documentCtrl = require('./document.controller');
+var restProxy = require('./proxy.controller');
+var categoryCtrl = restProxy("http://localhost:3000/categories")
+var documentCtrl = restProxy("http://localhost:3000/documents");
 var publisherCtrl = require('./publisher.controller');
 var categoryCtrl = require('./category.controller');
 // var tagCloudCtrl = require('./tagCloud.controller'); Put in books
