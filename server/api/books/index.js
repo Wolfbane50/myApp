@@ -3,10 +3,9 @@
 var express = require('express');
 var controller = require('./books.controller');
 var restProxy = require('./proxy.controller');
-var categoryCtrl = restProxy("http://localhost:3000/categories")
-var documentCtrl = restProxy("http://localhost:3000/documents");
+var categoryCtrl = new restProxy.Proxy("http://localhost:3000/categories");
+var documentCtrl = new restProxy.Proxy("http://localhost:3000/documents");
 var publisherCtrl = require('./publisher.controller');
-var categoryCtrl = require('./category.controller');
 // var tagCloudCtrl = require('./tagCloud.controller'); Put in books
 
 var router = express.Router();
@@ -36,9 +35,9 @@ router.delete('/documents/:id', documentCtrl.del);
 
 // Publishers
 router.get('/publishers', publisherCtrl.query);
-router.get('/publishers/:id', publisherCtrl.get); // Not really needed
+//router.get('/publishers/:id', publisherCtrl.get); // Not really needed
 router.post('/publishers', publisherCtrl.create);
-router.put('/publishers/:id', publisherCtrl.update);
+//router.put('/publishers/:id', publisherCtrl.update);
 router.delete('/publishers/:id', publisherCtrl.del);
 
 

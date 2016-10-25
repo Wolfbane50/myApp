@@ -1,6 +1,6 @@
 'use strict';
 var myRequest = require('request');
-var url;
+
 
 function sendIt(opts, callback) {
   myRequest(opts, function(error, response, body) {
@@ -17,11 +17,10 @@ function sendIt(opts, callback) {
 
 exports.Proxy = function(url) {
   this.baseUrl = url;
-  this.print = function() {
-    console.log("My URL is " + url);
-  }
 
   this.query = function(req, res) {
+    console.log("Sending Get to " + this.baseUrl);
+
     var reqOptions = {
       url : ths.baseUrl,
       headers: {
@@ -44,6 +43,7 @@ exports.Proxy = function(url) {
         'Accept' : 'application/json'
       }
     } ;
+    console.log("Sending Get to " + this.baseUrl + "for id=" + req.params.id);
     sendIt(reqOptions, function(response, body) {
         res.set('Content-Type', 'application/json');
         res.status(response.statusCode).send(body);

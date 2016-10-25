@@ -1,0 +1,20 @@
+{ label: 'name',
+  identifier: 'name',
+   items: [
+   
+     { name:"O\'Reilly" },
+     { name:'APress' },
+     { name:'Manning' },
+     { name:'McGraw Hill' },
+     { name:'MS Press' },
+     { name:'No Starch' },
+     { name:'Packt' },
+     { name:'Peachpit Press' },
+     { name:'Prentice Hall' },
+     { name:'Pragmatic Publishing' },
+     { name:'Sams' },
+     { name:'7 Summits' },
+     { name:'Wrox' },
+     { name:'Addison Wesley'}
+   ]
+}

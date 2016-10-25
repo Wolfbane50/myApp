@@ -197,4 +197,130 @@ describe('Delete /api/books/categories/$id', function() {
         done();
       });
   });
+
+  describe('get /api/books/documents', function() {
+    beforeEach(function(done) {
+
+      request(app)
+        .get('/api/books/documents')
+        .send()
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+
+          cloudRec = res.body;
+          done();
+        });
+    });
+
+    it('should be an array ', function() {
+      cloudRec.should.be.instanceOf(Array);
+    });
+  });
+
+  describe('POST /api/books/documents', function() {
+    beforeEach(function(done) {
+
+      request(app)
+        .post('/api/books/documents')
+        .send({
+          title: "New Book",
+          author: "New Author",
+          publisher: "New Publisher",
+          image_url: "http://localhost:3000/assets/document.gif",
+          type_id: 1,
+          category_id: 10,
+          url: "http://mybook.com/book1.epub"
+        })
+        .expect(201)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+
+          catRec = res.body;
+          newRecId = catRec.id;
+          done();
+        });
+    });
+
+    it('should be an record with ID, title, etc ', function() {
+      catRec.should.have.keys('id', 'title', 'author', 'publisher', 'image_url', 'type_id', 'category_id', 'url', 'created_at', 'updated_at');
+      catRec.title.should.equal('New Book');
+    });
+  });
+
+});
+
+describe('PUT /api/books/documents/$id', function() {
+  it('should respond with 204 on successful update', function(done) {
+
+    request(app)
+    .put('/api/books/documents/' + newRecId)
+    .send({
+      title: "Newer Book"
+    })
+    .expect(204)
+    .end((err, res) => {
+      if (err) {
+        return done(err);
+      }
+
+      catRec = res.body;
+      done();
+    });
+  });
+
+
+  it('should return get of the document', function(done) {
+
+    request(app)
+    .get('/api/books/documents/' + newRecId)
+    .send()
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .end((err, res) => {
+      if (err) {
+        return done(err);
+      }
+
+      catRec = res.body;
+      done();
+    });
+  });
+
+  it('should be an record with ID and Name ', function() {
+    catRec.title.should.equal('Newer Book');
+  });
+});
+
+
+
+describe('Delete /api/books/documents/$id', function() {
+  it('should respond with 204 on successful removal', function(done) {
+    request(app)
+      .delete('/api/books/documents/' + newRecId)
+      .expect(204)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        done();
+      });
+  });
+  it('should respond with 404 when thing does not exist', function(done) {
+    request(app)
+      .delete('/api/books/documents/' + newRecId)
+      .expect(404)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        done();
+      });
+  });
 });
