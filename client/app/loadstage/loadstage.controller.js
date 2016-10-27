@@ -135,7 +135,7 @@
                  //console.log("In getTagCloud");
                  $http({
                    method: 'GET',
-                   url: 'http://localhost:3000/loadstage/getfiles',
+                   url: '/api/books/loadstage',
                    params: {
                      stage_directory : $scope.stageDir
                    },

@@ -102,8 +102,28 @@ describe('Books API:', function() {
     });
   });
 
-  //describe('get /api/books/loadstage', function() {
-  //});
+describe('get /api/books/loadstage', function() {
+  beforeEach(function(done) {
+    var qstring = '?stage_directory' + '=' + 'C:/Users/daniel.heaney/Documents/ebooks';
+    request(app)
+      .get('/api/books/loadstage' + qstring)
+      .send()
+      .expect(200)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+
+        cloudRec = res.body;
+        done();
+      });
+  });
+  it('should be an array ', function() {
+    cloudRec.items.should.be.instanceOf(Array);
+    cloudRec.items[0].should.have.keys( 'name', 'title' );
+  });
+
+});
 
   var redirect, redirectUrl;
 describe('get /api/books/publishers', function() {

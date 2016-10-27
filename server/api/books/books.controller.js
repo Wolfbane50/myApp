@@ -85,8 +85,29 @@ function bookQuery(auth, req, res) {
 
 // Load Stage functionality - Search input directory for all document types and return to client
 export function loadstage(req, res) {
-  var directory = req.query.directory;
-  return res.status(401).send();
+  // Proxy to start
+  var reqOptions = {
+    url : 'http://localhost:3000/loadstage/getfiles',
+    qs : req.query,
+    headers: {
+      'Accept' : 'application/json'
+    }
+  } ;
+
+console.log("Sending GET to loadstage/getfiles" + req.query);
+  myRequest(reqOptions, function(error, response, body) {
+    if(error) {
+      console.log("Request returned error -> " + error);
+      return res.status(response.statusCode).send(body);
+    } else {
+//     console.log(": " +  response.headers['content-type']);
+      //console.log('Request OK: ' + JSON.stringify(body));
+
+      //return res.status(response.status).json(body);
+      res.set('Content-Type', 'application/json');
+      res.status(response.statusCode).send(body);
+    }
+  });
 
 
 }
@@ -105,14 +126,14 @@ export function tagCloud(req, res) {
   myRequest(reqOptions, function(error, response, body) {
     if(error) {
       console.log("Request returned error -> " + error);
-      return res.status(response.status).send(body);
+      return res.status(response.statusCode).send(body);
     } else {
 //      console.log(": " +  response.headers['content-type']);
 //      console.log('Request OK: ' + body);
 
       //return res.status(response.status).json(body);
       res.set('Content-Type', 'application/json');
-      res.send(body);
+      res.status(response.statusCode).send(body);
     }
   });
 
