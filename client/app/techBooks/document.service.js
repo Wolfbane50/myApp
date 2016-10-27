@@ -4,7 +4,7 @@
 
   angular.module('myappApp')
     .factory('Document', function($resource) {
-      return $resource('http://localhost:3000/documents/:id', { id: '@id' }, {
+      return $resource('/api/books/documents/:id', { id: '@id' }, {
         query: {
           method: 'GET',
           isArray:true,
@@ -12,8 +12,7 @@
           headers: {
             'Content_Type': 'application/json',
             'Accept' : 'application/json'
-          },
-          xsrfCookieName: "_doc_mgr_session"
+          }
         },
         get: {
           method: 'GET',
@@ -21,8 +20,7 @@
           headers: {
             'Content_Type': 'application/json',
             'Accept' : 'application/json'
-          },
-          xsrfCookieName: "_doc_mgr_session"
+          }
         },
         create: {
           method: 'POST',
@@ -30,8 +28,7 @@
           headers: {
             'Content_Type': 'application/json',
             'Accept' : 'application/json'
-          },
-          xsrfCookieName: "_doc_mgr_session"
+          }
         },
         update: {
           method: 'PUT',
@@ -39,8 +36,7 @@
           headers: {
             'Content_Type': 'application/json',
             'Accept' : 'application/json'
-          },
-          xsrfCookieName: "_doc_mgr_session"
+          }
         },
         delete: {
           method: 'DELETE',
@@ -48,8 +44,7 @@
           headers: {
             'Content_Type': 'application/json',
             'Accept' : 'application/json'
-          },
-          xsrfCookieName: "_doc_mgr_session"
+          }
         }
       });
     });

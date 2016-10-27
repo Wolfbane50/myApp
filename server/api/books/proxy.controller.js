@@ -2,12 +2,15 @@
 var myRequest = require('request');
 
 
-function sendIt(opts, callback) {
+function sendIt(opts, res, callback) {
   myRequest(opts, function(error, response, body) {
     if(error) {
       console.log("Request returned error -> " + error);
       return res.status(response.statusCode).send(body);
     } else {
+      if(response.statusCode >= 400) {
+        return res.status(response.statusCode).send(body);
+      }
       callback(response, body);
     }
 
@@ -22,13 +25,13 @@ exports.Proxy = function(url) {
     console.log("Sending Get to " + this.baseUrl);
 
     var reqOptions = {
-      url : ths.baseUrl,
+      url : this.baseUrl,
       headers: {
         'Content_Type': 'application/json',
         'Accept' : 'application/json'
       }
     } ;
-    sendIt(reqOptions, function(response, body) {
+    sendIt(reqOptions, res, function(response, body) {
         res.set('Content-Type', 'application/json');
         res.status(response.statusCode).send(body);
     });
@@ -44,7 +47,7 @@ exports.Proxy = function(url) {
       }
     } ;
     console.log("Sending Get to " + this.baseUrl + "for id=" + req.params.id);
-    sendIt(reqOptions, function(response, body) {
+    sendIt(reqOptions, res, function(response, body) {
         res.set('Content-Type', 'application/json');
         res.status(response.statusCode).send(body);
     });
@@ -62,7 +65,8 @@ exports.Proxy = function(url) {
       },
       body: req.body
     } ;
-    sendIt(reqOptions, function(response, body) {
+    sendIt(reqOptions, res, function(response, body) {
+       console.log("Create: Response Code = " + response.statusCode);
         res.set('Content-Type', 'application/json');
         res.status(response.statusCode).send(body);
     });
@@ -80,7 +84,7 @@ exports.Proxy = function(url) {
       },
       body: req.body
     } ;
-    sendIt(reqOptions, function(response, body) {
+    sendIt(reqOptions, res, function(response, body) {
         //res.set('Content-Type', 'application/json');
         res.status(response.statusCode).send();
     });
@@ -95,9 +99,9 @@ exports.Proxy = function(url) {
         'Accept' : 'application/json'
       }
     } ;
-    sendIt(reqOptions, function(response, body) {
+    sendIt(reqOptions, res, function(response, body) {
         //res.set('Content-Type', 'application/json');
-        console.log("Delete success with status " + response.status);
+        //console.log("Delete success with status " + response.statusCode);
         res.status(response.statusCode).send();
     });
 

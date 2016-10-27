@@ -38,7 +38,7 @@ function bookQuery(auth, req, res) {
 //     theQuery = theQuery + "inpublisher:" + req.query.publisher.replace('/ /', '+');
 //     theQuery = theQuery + "inpublisher:" + encodeUrl(req.query.publisher);
    }
-console.log("Query String: " + theQuery);
+    //console.log("Query String: " + theQuery);
    // Should not send if there is no query
    if (theQuery == "") {
       console.log("No Query terms for Google Book search!")
@@ -47,10 +47,10 @@ console.log("Query String: " + theQuery);
 
 
     var booksService = google.books('v1');
-    console.log("Calling books.volumes.list");
+  //  console.log("Calling books.volumes.list");
     // For now, let's just use the API key
     var myKey = config.google.apiKey;
-    console.log("Will use key: " + myKey);
+    //console.log("Will use key: " + myKey);
     booksService.volumes.list({
       auth: myKey,
 //      auth: auth,
@@ -67,7 +67,7 @@ console.log("Query String: " + theQuery);
            console.log("The Google Books AP returned no results!");
            return res.status(200).json({ msg: "Request to Google Books returned no results!" });
          }
-        console.log("From API ==> " + JSON.stringify(results));
+        //console.log("From API ==> " + JSON.stringify(results));
          var bookRec = results[0];
          var qresult = {
            title: bookRec.volumeInfo.title,
@@ -86,13 +86,14 @@ console.log("Query String: " + theQuery);
 // Load Stage functionality - Search input directory for all document types and return to client
 export function loadstage(req, res) {
   var directory = req.query.directory;
+  return res.status(401).send();
 
 
 }
 
 // Tag Cloud Functionality --> Proxy to RoR implementation
 export function tagCloud(req, res) {
-  console.log("In tag_cloud...");
+  //console.log("In tag_cloud...");
   var reqOptions = {
     url : 'http://localhost:3000/documents/tag_cloud',
     headers: {
@@ -141,5 +142,28 @@ export function docsWithTag(req, res) {
     }
   });
 
+}
 
+export function tagsForDoc(req, res) {
+  var docId = req.query.id;
+  var reqOptions = {
+    url : 'http://localhost:3000/documents/' + docId + '/docTags',
+    headers: {
+      'Content_Type': 'application/json',
+      'Accept' : 'application/json'
+    }
+  } ;
+  myRequest(reqOptions, function(error, response, body) {
+    if(error) {
+      console.log("Request returned error -> " + error);
+      return res.status(response.statusCode).send(body);
+    } else {
+//      console.log(": " +  response.headers['content-type']);
+      console.log('Request OK: ' + JSON.stringify(body));
+
+      //return res.status(response.status).json(body);
+      res.set('Content-Type', 'application/json');
+      res.status(response.statusCode).send(body);
+    }
+  });
 }

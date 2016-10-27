@@ -55,27 +55,39 @@
           return $scope.categories;
 
         };
-        //$scope.publishers = Publisher.query(function() {
-        //  console.log("Got publishers: " + JSON.stringify($scope.publishers));
-        //}, function(error) {
-        //console.log("Get publishers returned error: " + JSON.stringify(error));
-        //});
-        $scope.publishers = [
-          "O\'Reilly",
-          'APress',
-          'Manning',
-          'McGraw Hill',
-          'MS Press',
-          'No Starch',
-          'Packt',
-          'Peachpit Press',
-          'Prentice Hall',
-          'Pragmatic Publishing',
-          'Sams',
-          '7 Summits',
-          'Wrox',
-          'Addison Wesley'
-        ];
+
+        console.log("Will query publishers");
+        $scope.publishers = [];
+        $http({
+          method: 'GET',
+          url: '/publishers.json'
+        }).then(function successCallback(response) {
+          var publisherRec = response.data;
+          console.log("Got publishers");
+          angular.forEach(publisherRec.items, function (item) {
+            $scope.publishers.push(item.name);
+          });
+         }, function errorCallback(response) {
+                alert("Request for Publishers data yielded error: " + response.status);
+
+            $scope.publishers = [
+             "O\'Reilly",
+              'APress',
+              'Manning',
+              'McGraw Hill',
+              'MS Press',
+              'No Starch',
+              'Packt',
+              'Peachpit Press',
+              'Prentice Hall',
+              'Pragmatic Publishing',
+              'Sams',
+              '7 Summits',
+              'Wrox',
+              'Addison Wesley'
+            ];
+          });
+
         $scope.docTypes = {
           'Book': 1,
           'Presentation': 2,

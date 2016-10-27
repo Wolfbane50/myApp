@@ -18,6 +18,11 @@ angular.module('myappApp')
       templateUrl: 'app/techBooks/categories.html',
       controller: 'categoriesController'
     })
+    .state('techBooks.publishers', {
+      url: '/publishers',
+      templateUrl: 'app/techBooks/publishers.html',
+      controller: 'publishersController'
+    })
     .state('techBooks.taggedDocs', {
       url: '/taggedDocs/:tag',
       templateUrl: 'app/techBooks/taggedDocs.html',

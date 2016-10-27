@@ -78,6 +78,60 @@ describe('Books API:', function() {
     });
   });
 
+  describe('get /api/books/tagsForDoc', function() {
+    beforeEach(function(done) {
+      var qstring = '?id' + '=' + '367';
+
+      request(app)
+        .get('/api/books/tagsForDoc' + qstring)
+        .send()
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+
+          cloudRec = res.body;
+          done();
+        });
+    });
+
+    it('should be an array ', function() {
+      cloudRec.should.be.instanceOf(Array);
+    });
+  });
+
+  //describe('get /api/books/loadstage', function() {
+  //});
+
+  var redirect, redirectUrl;
+describe('get /api/books/publishers', function() {
+  beforeEach(function(done) {
+
+    request(app)
+      .get('/api/books/publishers')
+      .send()
+      .expect(303)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+
+        redirect = res.redirect;
+        redirectUrl = res.headers.location;
+        done();
+      });
+  });
+
+  it('should respond with redirect to /publishers.json', function() {
+    redirect.should.be.true;
+    redirectUrl.should.equal('/publishers.json');
+
+  });
+});
+
+
   describe('get /api/books/categories', function() {
     beforeEach(function(done) {
 
@@ -138,7 +192,7 @@ describe('PUT /api/books/categories/$id', function() {
     .send({
       name: "Newer Test Category"
     })
-    .expect(204)
+    .expect(200)
     .end((err, res) => {
       if (err) {
         return done(err);
@@ -227,18 +281,22 @@ describe('Delete /api/books/categories/$id', function() {
       request(app)
         .post('/api/books/documents')
         .send({
+          authenticity_token: 'ubZSUcBiMemqZi06YTAEhxEL4NO9CDUdyyyGFpKYdYM=',
+          document: {
           title: "New Book",
           author: "New Author",
           publisher: "New Publisher",
           image_url: "http://localhost:3000/assets/document.gif",
           type_id: 1,
           category_id: 10,
+          tag_list: "",
           url: "http://mybook.com/book1.epub"
-        })
+        }})
         .expect(201)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
+            console.log("We FAILED...." + err);
             return done(err);
           }
 
@@ -249,7 +307,7 @@ describe('Delete /api/books/categories/$id', function() {
     });
 
     it('should be an record with ID, title, etc ', function() {
-      catRec.should.have.keys('id', 'title', 'author', 'publisher', 'image_url', 'type_id', 'category_id', 'url', 'created_at', 'updated_at');
+      catRec.should.have.keys('id', 'title', 'author', 'publisher', 'image_url', 'type_id', 'category_id', 'url', 'created_at', 'updated_at', 'copywrite', 'description', 'tag_id');
       catRec.title.should.equal('New Book');
     });
   });
@@ -264,7 +322,7 @@ describe('PUT /api/books/documents/$id', function() {
     .send({
       title: "Newer Book"
     })
-    .expect(204)
+    .expect(200)
     .end((err, res) => {
       if (err) {
         return done(err);
@@ -304,7 +362,7 @@ describe('Delete /api/books/documents/$id', function() {
   it('should respond with 204 on successful removal', function(done) {
     request(app)
       .delete('/api/books/documents/' + newRecId)
-      .expect(204)
+      .expect(200)
       .end((err, res) => {
         if (err) {
           return done(err);

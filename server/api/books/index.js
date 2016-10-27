@@ -2,11 +2,12 @@
 
 var express = require('express');
 var controller = require('./books.controller');
-var restProxy = require('./proxy.controller');
-var categoryCtrl = new restProxy.Proxy("http://localhost:3000/categories");
-var documentCtrl = new restProxy.Proxy("http://localhost:3000/documents");
+//var restProxy = require('./proxy.controller');
+//var categoryCtrl = new restProxy.Proxy("http://localhost:3000/categories");
+//var documentCtrl = new restProxy.Proxy("http://localhost:3000/documents");
 var publisherCtrl = require('./publisher.controller');
-// var tagCloudCtrl = require('./tagCloud.controller'); Put in books
+var categoryCtrl = require('./category.controller');
+var documentCtrl = require('./document.controller');
 
 var router = express.Router();
 
@@ -18,6 +19,7 @@ router.get('/', controller.query);
 router.get('/loadstage', controller.loadstage);
 router.get('/tag_cloud', controller.tagCloud);
 router.get('/tag', controller.docsWithTag);
+router.get('/tagsForDoc', controller.tagsForDoc);
 
 // Categories
 router.get('/categories', categoryCtrl.query);
@@ -39,6 +41,7 @@ router.get('/publishers', publisherCtrl.query);
 router.post('/publishers', publisherCtrl.create);
 //router.put('/publishers/:id', publisherCtrl.update);
 router.delete('/publishers/:id', publisherCtrl.del);
+router.delete('/publishers', publisherCtrl.del);
 
 
 module.exports = router;

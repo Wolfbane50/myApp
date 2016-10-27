@@ -1,0 +1,20 @@
+<div>
+  <h2>Publishers</h2>
+  <table>
+    <tr>
+      <th>Publisher</th>
+      <th></th>
+    </tr>
+    <tr ng-repeat="pub in publishers" ng-class>
+      <td ng-class-odd="'stripeRow'">
+        {{pub}}
+      </td>
+      <td ng-class-odd="'stripeRow'">
+        <a  class="btn btn-primary" uib-tooltip="Delete Publisher" ng-click="deletePub(pub, $index)">
+             <span class="glyphicon glyphicon-trash">&nbsp;</a>
+      </td>
+    </tr>
+  </table>
+  <a class="btn btn-primary " ng-click=newPublisher() ">
+    <span>New Publisher</span></a>
+</div>
