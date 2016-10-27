@@ -1,0 +1,208 @@
+[15:52:50] Requiring external module babel-register
+[15:52:53] Using gulpfile C:\blah\myapp\gulpfile.babel.js
+[15:52:53] Starting 'test:server:integration'...
+[15:52:53] Starting 'env:all'...
+[15:52:53] Finished 'env:all' after 8.53 ms
+[15:52:53] Starting 'env:test'...
+[15:52:53] Finished 'env:test' after 855 μs
+[15:52:53] Starting 'mocha:integration'...
+*** /drive returned:  undefined
+
+
+  Books API:
+Express server listening on 9000, in test mode
+    Query (Google), get /api/books
+GET /api/books?title=war%20and%20peace -
+In authThennProcess
+      √ should have records with title, author, publisher, copywrite, description, image_url
+    get /api/books/tag_cloud
+GET /api/books/tag_cloud -
+      √ should be an array 
+    get /api/books/tag
+GET /api/books/tag?id=sharepoint -
+      √ should be an array 
+    get /api/books/tagsForDoc
+GET /api/books/tagsForDoc?id=367 -
+Request OK: "[\"css\",\"html\"]"
+      √ should be an array 
+    get /api/books/loadstage
+GET /api/books/loadstage?stage_directory=C:/Users/daniel.heaney/Documents/ebooks -
+Match: C:\Users\daniel.heaney\Documents\ebooks\852D__manual_instruction_Englishcompressed.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Algorithms-4th--RobertSedgewick- KevinWayne.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\AngularJS Directives Cookbook - Fernando Monteiro.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\AngularJS Easy Guide on Web Application Development by Henry Rowland {Zer07}.epub
+Match: C:\Users\daniel.heaney\Documents\ebooks\Apache Cookbook.chm
+Match: C:\Users\daniel.heaney\Documents\ebooks\Apress.Android.for.Work.Productivity.for.Professionals.Aug.2010.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Apress.Beginning.Rails.3.Sep.2010.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Beginning Android 2 (7Summits).pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Beginning_JavaScript_and_CSS_Development_with_jQuery_3_to_62.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Bootstrap Site Blueprints Volume II.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Budgeting - How to Set up a Family Budget to Manage Your Home Finances.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\CoffeeScript Programming with jQuery, Rails, and Node.js.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Getting-a-job-ebook.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Google_App_Engine_Java_and_GWT_Application_Development.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\HTML5 Web Application Development By Example.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Hacking Google Maps And Google Earth.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Html Xhtml And Css Bible 3rd Edition.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Interactive_html5_video.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Intro_to_3D_Modeling_Complete_Guide.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\LeanSoftwareDevelopment.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Linux in a Nutshell, 6th Edition.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Manning Node.js in Practice (2015).pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\MongoDB Cookbook.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Node.js in Action by Mike Cantelon {Zer07}.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\O'REILLY-AngularJS by Brad Green.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\O'Reilly - Java Script And DHTML Cookbook.chm
+Match: C:\Users\daniel.heaney\Documents\ebooks\OReilly - Learning Perl Objects, References and Modules - 20.chm
+Match: C:\Users\daniel.heaney\Documents\ebooks\OReilly Excel Hacks.chm
+Match: C:\Users\daniel.heaney\Documents\ebooks\OpenStack Essentials.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Oreilly.HTML5.Up.and.Running.Aug.2010.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\PCHowToGuide.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Packtpub.JavaScript.Testing.Beginners.Guide.Aug.2010.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Pro Java 8 Programming - Brett Spell.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\ProAndroid2.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Running Linux, 5th Edition.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Software Defined Networks A Comprehensive Approach [2014].pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\ThePomodoroTechnique_v1-3.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Time+Management+-+Proven+Techniques+for+Making+Every+Minute+Count.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Twitter API- Up and Running.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Understanding the Linux Kernel, 3rd Edition.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\W1n10B3yondtheM4nual.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Web Development with Node and Express - Ethan Brown.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\Win XP Hacks oreilly 2003.chm
+Match: C:\Users\daniel.heaney\Documents\ebooks\Windows 2000 Commands Pocket Reference.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\angularjs_novice_to_ninja.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\career-satisfaction-from-within.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\getting-mean-with-mongo-express-angular-and-node.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\introduction-to-okrs.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\lifehacker.com-turn-your-old-router-into-a-range-boosting-wi-fi-repeater.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\make.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\manageyourjobsearch.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\modern-javascript.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\modern_perl_2011_2012_draft.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\what-matters-now-2.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\xwindowsystemadm08muimiss_200KB_jp2.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\progit-en.1067.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\blah\FoundationsOfProgramming.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\blah\IYOCGwP_book1.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\blah\Maximum PC - July 2010 (7Summits).pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\blah\Maximum Pc - Unleash The Raw Power Of Your Pc (September 2015) [CPUL].pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\blah\MaximumPC0410-web.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\blah\Robert-S-De-Ropp-The-Master-Game.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\blah\Software_by_Rob _How_to_Become_a _Programmer_1.0.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\blah\TeachKidsCodeSpecial.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\blah\Yoga Heals Your Back 10-Minute Routines that End Back and Neck Pain.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\blah\Your Critical First 10 Days as a Leader.pdf
+Match: C:\Users\daniel.heaney\Documents\ebooks\blah\no_magic_quick_reference_guide_uml.pdf
+Returning => {"identifier":"name","label":"name","stage_path":"C:/Users/daniel.heaney/Documents/ebooks","items":[]}
+      1) should be an array 
+    get /api/books/publishers
+GET /api/books/publishers -
+      √ should respond with redirect to /publishers.json
+    get /api/books/categories
+GET /api/books/categories -
+Sending Get to http://localhost:3000/categories
+      √ should be an array 
+    POST /api/books/categories
+POST /api/books/categories -
+Create: Response Code = 201
+      √ should be an record with ID and Name 
+
+  PUT /api/books/categories/$id
+PUT /api/books/categories/75 -
+    √ should respond with 204 on successful update (97ms)
+GET /api/books/categories/75 -
+Sending Get to http://localhost:3000/categoriesfor id=75
+    √ should return get of the category
+    √ should be an record with ID and Name 
+
+  Delete /api/books/categories/$id
+DELETE /api/books/categories/75 -
+    √ should respond with 204 on successful removal (125ms)
+DELETE /api/books/categories/75 -
+    √ should respond with 404 when thing does not exist (80ms)
+    get /api/books/documents
+GET /api/books/documents -
+Sending Get to http://localhost:3000/documents
+      √ should be an array 
+    POST /api/books/documents
+POST /api/books/documents -
+Create: Response Code = 201
+      √ should be an record with ID, title, etc 
+
+  PUT /api/books/documents/$id
+PUT /api/books/documents/1259 -
+    √ should respond with 204 on successful update (138ms)
+GET /api/books/documents/1259 -
+Sending Get to http://localhost:3000/documentsfor id=1259
+    √ should return get of the document (60ms)
+    √ should be an record with ID and Name 
+
+  Delete /api/books/documents/$id
+DELETE /api/books/documents/1259 -
+    √ should respond with 204 on successful removal (112ms)
+DELETE /api/books/documents/1259 -
+    √ should respond with 404 when thing does not exist (72ms)
+
+  Bunt API:
+    get /api/newCards/bunt
+GET /api/newCards/bunt -
+      √ should respond with redirect to /bunt.json
+    get /api/newCards/drive
+GET /api/newCards/drive -
+In getIds
+No files found.
+      2) "before each" hook for "should respond with a JSON array"
+
+  Chachi API:
+    get /api/newCards/chachi
+GET /api/newCards/chachi -
+In chachi index ...
+      √ should respond with redirect to /chachis3.json
+    post /api/newCards/chachi
+POST /api/newCards/chachi -
+In chachi update again ...
+Updating Chachi.json
+      √ should respond with redirect to /chachis3.json
+
+  Backup API:
+    POST /api/backups
+POST /api/backups -
+-------------In Backup--
+backup file  = myBackup_102716_1477597978749.bak
+      √ should respond with the backup file name
+
+
+  23 passing (3s)
+  2 failing
+
+  1) Books API: get /api/books/loadstage should be an array :
+     AssertionError: expected 0 to be above 0
+    at Context.<anonymous> (C:\blah\myapp\server\api\books\books.integration.js:104:39)
+    at callFn (C:\blah\myapp\node_modules\mocha\lib\runnable.js:326:21)
+    at Test.Runnable.run (C:\blah\myapp\node_modules\mocha\lib\runnable.js:319:7)
+    at Runner.runTest (C:\blah\myapp\node_modules\mocha\lib\runner.js:422:10)
+    at C:\blah\myapp\node_modules\mocha\lib\runner.js:528:12
+    at next (C:\blah\myapp\node_modules\mocha\lib\runner.js:342:14)
+    at C:\blah\myapp\node_modules\mocha\lib\runner.js:352:7
+    at next (C:\blah\myapp\node_modules\mocha\lib\runner.js:284:14)
+    at C:\blah\myapp\node_modules\mocha\lib\runner.js:315:7
+    at done (C:\blah\myapp\node_modules\mocha\lib\runnable.js:287:5)
+    at C:\blah\myapp\node_modules\mocha\lib\runnable.js:360:7
+    at Test.<anonymous> (C:\blah\myapp\server\api\books\books.integration.js:99:9)
+    at Test.assert (C:\blah\myapp\node_modules\supertest\lib\test.js:156:6)
+    at Server.assert (C:\blah\myapp\node_modules\supertest\lib\test.js:127:12)
+    at emitCloseNT (net.js:1527:8)
+  
+
+  2) Bunt API: get /api/newCards/drive "before each" hook for "should respond with a JSON array":
+     Error: expected 200 "OK", got 502 "Bad Gateway"
+    at Test._assertStatus (C:\blah\myapp\node_modules\supertest\lib\test.js:232:12)
+    at Test._assertFunction (C:\blah\myapp\node_modules\supertest\lib\test.js:247:11)
+    at Test.assert (C:\blah\myapp\node_modules\supertest\lib\test.js:148:18)
+    at Server.assert (C:\blah\myapp\node_modules\supertest\lib\test.js:127:12)
+    at emitCloseNT (net.js:1527:8)
+  
+
+
+

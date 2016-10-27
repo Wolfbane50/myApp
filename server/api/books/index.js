@@ -8,6 +8,7 @@ var controller = require('./books.controller');
 var publisherCtrl = require('./publisher.controller');
 var categoryCtrl = require('./category.controller');
 var documentCtrl = require('./document.controller');
+var loadstageCtrl = require('./loadstage.controller');
 
 var router = express.Router();
 
@@ -16,10 +17,12 @@ var router = express.Router();
 //  next();
 //});
 router.get('/', controller.query);
-router.get('/loadstage', controller.loadstage);
 router.get('/tag_cloud', controller.tagCloud);
 router.get('/tag', controller.docsWithTag);
 router.get('/tagsForDoc', controller.tagsForDoc);
+
+//router.get('/loadstage', controller.loadstage);  // Proxy version
+router.get('/loadstage', loadstageCtrl.newLoadstage);
 
 // Categories
 router.get('/categories', categoryCtrl.query);

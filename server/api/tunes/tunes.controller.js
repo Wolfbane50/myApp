@@ -271,7 +271,7 @@ console.log("Got data");
     console.log("Database does not match input path for music!");
     return;
   }
-  console.log(JSON.stringify(tuneCollection));
+  //console.log(JSON.stringify(tuneCollection));
 
   // Build a hash of existing artists
   console.log("Building hash of artists");

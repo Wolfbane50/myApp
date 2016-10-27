@@ -120,6 +120,7 @@ describe('get /api/books/loadstage', function() {
   });
   it('should be an array ', function() {
     cloudRec.items.should.be.instanceOf(Array);
+    cloudRec.items.length.should.be.greaterThan(0);
     cloudRec.items[0].should.have.keys( 'name', 'title' );
   });
 
