@@ -480,6 +480,17 @@ gulp.task('test:server:integration', cb => {
         'mocha:integration',
         cb);
 });
+gulp.task('test:server:savestage', cb => {
+    runSequence(
+        'env:all',
+        'env:test',
+        'mocha:savestage',
+        cb);
+});
+gulp.task('mocha:savestage', () => {
+    return gulp.src(paths.server.test.integration)
+        .pipe(mocha({ grep: 'savestage'} ));
+});
 
 gulp.task('mocha:unit', () => {
     return gulp.src(paths.server.test.unit)

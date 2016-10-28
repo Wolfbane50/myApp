@@ -23,6 +23,7 @@ router.get('/tagsForDoc', controller.tagsForDoc);
 
 //router.get('/loadstage', controller.loadstage);  // Proxy version
 router.get('/loadstage', loadstageCtrl.newLoadstage);
+router.post('/savestage', loadstageCtrl.saveStage);
 
 // Categories
 router.get('/categories', categoryCtrl.query);

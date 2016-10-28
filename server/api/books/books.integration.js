@@ -126,6 +126,71 @@ describe('get /api/books/loadstage', function() {
 
 });
 
+describe('get /api/books/savestage', function() {
+  var stageDir = 'C:/Users/daniel.heaney/Documents/ebooks';
+  var targetDir = 'C:/blah/ebooks';
+  var myDocs = [
+    {
+      "title": "Book1",
+      "author": "Roseanne Roseannadanna",
+      "image_url": "http://localhost:3000/assets/document.gif",
+      "category_id": 10,
+      "type_id": 1,
+      "url": "AngularJS Easy Guide on Web Application Development by Henry Rowland {Zer07}.epub",
+      "publisher": "WBANE",
+      "copywrite": "2008-02-21",
+      "description": "This record is part of integration testing and may be deleted."
+    }, {
+      "title": "Book2",
+      "author": "John Jacob Dingleberry Schmidt",
+      "image_url": "http://localhost:3000/assets/document.gif",
+      "category_id": 10,
+      "type_id": 1,
+      "url": "Budgeting - How to Set up a Family Budget to Manage Your Home Finances.pdf",
+      "publisher": "WBANE",
+      "copywrite": "2008-02-21",
+      "description": "This record is part of integration testing and may be deleted."
+    }, {
+      "title": "Book3",
+      "author": "Biggus Dickus",
+      "image_url": "http://localhost:3000/assets/document.gif",
+      "category_id": 10,
+      "type_id": 1,
+      "url": "OReilly - Learning Perl Objects, References and Modules - 20.chm",
+      "publisher": "WBANE",
+      "copywrite": "2008-02-21",
+      "description": "This record is part of integration testing and may be deleted."
+
+    }
+  ];
+  beforeEach(function(done) {
+    request(app)
+      .post('/api/books/savestage')
+      .send({
+        stage_directory: stageDir,
+        target: targetDir,
+        documents: myDocs
+      })
+      .expect(200)
+      .end((err, res) => {
+        if (err) {
+          console.log("We FAILED...." + err);
+          return done(err);
+        }
+
+        cloudRec = res.body;
+        done();
+      });
+  });
+  it('should return a structure indicating success ', function() {
+    cloudRec.overallStatus.should.be.true
+    cloudRec.docStatus.should.be.instanceOf(Array);
+    cloudRec.docStatus.length.should.be.greaterThan(0);
+
+  });
+
+});
+
   var redirect, redirectUrl;
 describe('get /api/books/publishers', function() {
   beforeEach(function(done) {

@@ -4,10 +4,15 @@ var proxyquire = require('proxyquire').noPreserveCache();
 
 var booksCtrlStub = {
   query: 'booksCtrl.query',
-  loadstage: 'booksCtrl.loadstage',
+  //loadstage: 'booksCtrl.loadstage', Used to proxy over to RoR
   tagCloud: 'booksCtrl.tagCloud',
   docsWithTag: 'booksCtrl.docsWithTag',
   tagsForDoc: 'booksCtrl.tagsForDoc'
+};
+
+var loadstageCtrlStub = {
+  newLoadstage: 'loadstageCtrl.newLoadstage',
+  saveStage: 'loadstageCtrl.saveStage'
 };
 
 var categoryCtrlStub = {
@@ -47,6 +52,7 @@ var booksIndex = proxyquire('./index.js', {
     }
   },
   './books.controller': booksCtrlStub,
+  './loadstage.controller': loadstageCtrlStub,
   './category.controller': categoryCtrlStub,
   './document.controller': documentCtrlStub,
   './publisher.controller': publisherCtrlStub
@@ -70,9 +76,17 @@ describe('Books API Router:', function() {
 
   describe('GET /api/books/loadstage', function() {
 
-    it('should route to books.controller.loadstage', function() {
+    it('should route to loadstage.controller.newLoadstage', function() {
       routerStub.get
-        .withArgs('/loadstage', 'booksCtrl.loadstage')
+        .withArgs('/loadstage', 'loadstageCtrl.newLoadstage')
+        .should.have.been.calledOnce;
+    });
+  });
+  describe('POST /api/books/savestage', function() {
+
+    it('should route to books.controller.loadstage', function() {
+      routerStub.post
+        .withArgs('/savestage', 'loadstageCtrl.saveStage')
         .should.have.been.calledOnce;
     });
   });
