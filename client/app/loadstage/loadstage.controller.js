@@ -35,12 +35,21 @@
                'Wrox' ,
                'Addison Wesley'
              ];
+             $scope.stageDocs = [];
              $scope.docTypes = { 'Book' : 1, 'Presentation' : 2, 'Link' : 3, 'Whitepaper' : 4, 'Schedule' : 5};
              $scope.getCategories();
              $scope.selectedItem;
-             $state.go('loadstage.default');
-             var stachedDoc = {};
 
+             $scope.storageDir = "C:/Users/Daniel/myapp/server/api/books/test_dest_dir";
+             var stachedDoc = {};
+             $scope.stageResults = {};
+             $state.go('loadstage.default');
+
+
+             $scope.setStorageDir = function () {
+               var tmpDir = prompt("Set Storage Directory for Document Library:", "C:/Users/Daniel/myapp/server/api/books/test_dest_dir" )
+               if (tmpDir) { $scope.storageDir = tmpDir; }
+             };
 
              $scope.revert = function() {
                // User may select other document before call to database is complete
@@ -52,9 +61,11 @@
                angular.copy($scope.selectedItem, stachedDoc);
              };
 
-             $scope.itemSelect = function(doc) {
+             $scope.itemSelect = function(doc, index) {
                $scope.selectedItem = doc;
                $scope.selectedCategory = $scope.categories[parseInt(doc.category_id) - 1];
+               $scope.selectedIndex = index;
+
                //  $scope.dbDocument = Document.get({
                //    id: doc.id
                //  });
@@ -65,7 +76,13 @@
                $scope.selectedItem.category_id = $scope.selectedCategory.id;
              };
 
-             $scope.deleteDoc = function() {
+             $scope.removeDoc = function(index) {
+               var docToDel = $scope.stageDocs[index];
+               $scope.stageDocs.splice(index, 1);
+               $state.go('loadstage.default');
+             };
+
+           $scope.deleteDoc = function() {
                if (confirm("Are you sure you want to delete this document?\n\n" + $scope.selectedItem.title)) {
                  $scope.stageDocs.splice( $scope.selectedIndex, 1);
                  $scope.selectedItem = null;
@@ -73,6 +90,23 @@
                }
              };
 
+             $scope.newDoc = function(catid) {
+               console.log("In loadstage newDoc...");
+               var myCatId = (catid) ? catid : 10; //'Uncategorized';
+               var myDoc = {
+                 title: "New Book",
+                 author: null,
+                 // publisher: null,    // May need this
+                 image_url: "http://localhost:3000/assets/document.gif",
+                 type_id: 1,
+                 category_id: myCatId
+               };
+               $scope.stageDocs.push(myDoc);
+               $state.go('loadstage.stageDocument', {
+                 index: ($scope.stageDocs.length - 1)
+               });
+
+             };
              $scope.saveDoc = function() {
                alert("Saving Document\n\n" + $scope.selectedItem.title);
 
@@ -128,9 +162,40 @@
                  alert("Google Query Request yielded error(" + response.status + "): " + response.statusText);
                });
              };
+             $scope.retrieveLocal = function() {
+               var c2DataStr = localStorage.getItem("stageDocs");
+               if (c2DataStr) {
+                 $scope.stageDocs = angular.fromJson(c2DataStr);
+                 var tmpstr = localStorage.getItem("stageDir");
+                 if(tmpstr) $scope.stageDir = tmpstr;
+                 tmpstr = localStorage.getItem("storageDir");
+                  if(tmpstr) $scope.storageDir = tmpstr;
+                  $state.go('loadstage.default');
+               }
+             };
+             $scope.commitChanges = function() {
+               console.log("commitChanges ...");
+               var c2String = angular.toJson($scope.stageDocs);
+               localStorage.setItem("stageDocs", c2String);
+               localStorage.setItem("stageDir", $scope.stageDir);
+               localStorage.setItem("storageDir",  $scope.storageDir)
+               alert("Stage Document Data saved to Local Storage");
+
+             };
+             $scope.flushLocal = function() {
+               if (confirm("Are you really really sure you want to delete local storage?")) {
+                 localStorage.removeItem("stageDocs");
+                 localStorage.removeItem("stageDir");
+                 localStorage.removeItem("storageDir");
+                 alert("Local Storage Deleted!");
+               }
+             };
+
 
              $scope.getStageDocs = function() {
-               $scope.stageDir = prompt("Enter Staging Directory", "C:/Users/daniel.heaney/Documents/ebooks");
+              // $scope.stageDir = prompt("Enter Staging Directory", "C:/Users/daniel.heaney/Documents/ebooks");
+               $scope.stageDir = prompt("Enter Staging Directory", "C:/blah/myapp/server/api/books/test_stage_dir");
+
                if($scope.stageDir) {
                  //console.log("In getTagCloud");
                  $http({
@@ -158,12 +223,44 @@
                        doc.url = doc.name;
 
                    });
+                   $state.go('loadstage.default');
+
                  }, function errorCallback(response) {
                    alert("Request for Staged Docs yielded error: " + response.status);
                  });
 
                }
+             };
+             var validateStageDocs = function() {
+               return true;
+               angular.forEach($scope.stageDocs, function(doc) {
+
+               });
+             };
+             $scope.saveStage = function () {
+               if (validateStageDocs()) {
+                 $http({
+                   method: 'POST',
+                   url: '/api/books/savestage',
+                   body: {
+                     target: $scope.storageDir,
+                     documents: $scope.stageDocs,
+                     stage_directory : $scope.stageDir
+                   },
+                   headers: {
+                     'Accept': 'application/json'
+                   }
+                 }).then(function successCallback(response) {
+                   // alert("Got staged docs");
+                   console.log("Received data: " + JSON.stringify(response.data));
+                    $scope.stageResults = response.data;
+                    $state.go('loadstage.displayResults');
+               }, function errorCallback(response) {
+                 alert("Request for Staged Docs yielded error: " + response.status
+                        + ": " + response.data);
+               });
              }
+           };
 
     }]); // end controller
 })();
