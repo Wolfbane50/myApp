@@ -126,9 +126,10 @@ describe('get /api/books/loadstage', function() {
 
 });
 
-describe('get /api/books/savestage', function() {
-  var stageDir = 'C:/Users/daniel.heaney/Documents/ebooks';
-  var targetDir = 'C:/blah/ebooks';
+describe.only('get /api/books/savestage', function() {
+  //var stageDir = 'C:/Users/daniel.heaney/Documents/ebooks';
+  var stageDir = 'C:/Users/Daniel/myapp/server/api/books/test_stage_dir';
+  var targetDir = 'C:/Users/Daniel/myapp/server/api/books/test_dest_dir';
   var myDocs = [
     {
       "title": "Book1",
@@ -136,7 +137,7 @@ describe('get /api/books/savestage', function() {
       "image_url": "http://localhost:3000/assets/document.gif",
       "category_id": 10,
       "type_id": 1,
-      "url": "AngularJS Easy Guide on Web Application Development by Henry Rowland {Zer07}.epub",
+      "url": "CoffeeScript Quick Ref.pdf",
       "publisher": "WBANE",
       "copywrite": "2008-02-21",
       "description": "This record is part of integration testing and may be deleted."
@@ -146,7 +147,7 @@ describe('get /api/books/savestage', function() {
       "image_url": "http://localhost:3000/assets/document.gif",
       "category_id": 10,
       "type_id": 1,
-      "url": "Budgeting - How to Set up a Family Budget to Manage Your Home Finances.pdf",
+      "url": "coffeescript-trevor-burnham.pdf",
       "publisher": "WBANE",
       "copywrite": "2008-02-21",
       "description": "This record is part of integration testing and may be deleted."
@@ -156,7 +157,7 @@ describe('get /api/books/savestage', function() {
       "image_url": "http://localhost:3000/assets/document.gif",
       "category_id": 10,
       "type_id": 1,
-      "url": "OReilly - Learning Perl Objects, References and Modules - 20.chm",
+      "url": "Doctor Who_ The Legends of Ashildr - Justin Richards.epub",
       "publisher": "WBANE",
       "copywrite": "2008-02-21",
       "description": "This record is part of integration testing and may be deleted."

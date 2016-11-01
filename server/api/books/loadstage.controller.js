@@ -4,7 +4,7 @@ var fs = require("fs");
 var fse = require("fs-extra"); // Used for copy, move of files
 var FindFiles = require("node-find-files");
 var path = require('path');
-var each = require('async-each');
+var async = require('async');
 var myRequest = require('request');
 
 function isDocumentFile(filePath) {
@@ -75,8 +75,13 @@ export function newLoadstage(req, res) {
 function validateDirectory(dir, writeable) {
   console.log("Validating " + dir + " is " + ((writeable) ? "rw" : "readable"));
   if (dir) {
-
-    var stats = fs.statSync(dir);
+    var stats;
+    try {
+      stats = fs.statSync(dir);
+    } catch (err) {
+      console.log("Failed statSync: " + error);
+      return false;
+    }
     if (stats.isDirectory()) {
       try {
         var mode = ((writeable) ? (fs.R_OK | fs.W_OK) : (fs.R_OK));
@@ -101,14 +106,14 @@ export function saveStage(req, res) {
   var stageDir = req.body.stage_directory;
   if (!validateDirectory(stageDir, false)) {
     console.log("Invalid stage directory");
-    return res.status(502).send("Invalid stage directory");
+    return res.status(422).send("Invalid stage directory");
   }
 
 console.log("Checking target directory");
   var targetDir = req.body.target;
   if (!validateDirectory(targetDir, true)) {
     console.log("Invalid target directory");
-    return res.status(502).send("Invalid target directory");
+    return res.status(422).send("Invalid target directory");
   }
 
   var stageDocs = req.body.documents;
@@ -148,14 +153,22 @@ console.log("Done with descriptor");
     console.log("Moving from stage to target");
     var src = stageFilePath(docRec.doc);
     var dest = targetFilePath(docRec.doc);
+    try {
     fse.move(src, dest, function(err) {
       if (err) {
+        console.log("Move of " + docRec.doc.title + " bad: " + err);
         docRec.moveError = err;
       } else {
+        console.log("Move of " + docRec.doc.title + "is good!");
         docRec.moved = true;
       }
+      console.log("Calling final doneCB from move " + docRec.doc.title);
       doneCB();
     });
+    } catch (err) {
+      console.log("Move threw error!  doc = " + docRec.doc.title);
+    }
+    console.log("Returning from move " + docRec.doc.title);
   }
 
   function addDatabase(docRec, doneCB) {
@@ -178,18 +191,23 @@ console.log("Done with descriptor");
         console.log("Request returned error -> " + error);
         // It would be nice to save what happened
         docRec.dbError = "Create returned " + response.statusCode + "; err = " + error;
+        console.log("Calling doneCB from save to DB");
+        return doneCB();
       } else {
         // Successful Status code out of document.create should be 201
         if (response.statusCode == 201) {
+          console.log("Db saved good!");
           docRec.id = body.id;
           docRec.savedToDb = true;
           moveStageToTarget(docRec, doneCB);
         } else {
+          console.log( "Create returned " + response.statusCode + "; expected 201");
           docRec.dbError = "Create returned " + response.statusCode + "; expected 201";
+          console.log("Calling doneCB from save to DB");
+          return doneCB();
         }
-
       }
-      return doneCB();
+
     });
 
   }
@@ -212,6 +230,7 @@ console.log("Done with descriptor");
           console.log("Not a file: " + file);
           docRec.fileValErr = "Not a file";
         }
+        console.log("Calling doneCB from validateFile");
         return doneCB();
       });
     }
@@ -244,8 +263,9 @@ console.log("Done with descriptor");
   }
 
  console.log("Starting to process each document");
-  each(docDescrs, validateFile, function(error, contents) {
+  async.each(docDescrs, validateFile, function(error) {
     // Create skeleton status object
+    console.log("Done Callback");
     var stageStatus = distillStatus(docDescrs);
 
     if (error) {
@@ -253,7 +273,7 @@ console.log("Done with descriptor");
       stageStatus.overallStatus = false;
       stateStatus.error = error;
       console.log("Found error in completion of each: " + error);
-      return res.status(502).json(stageStatus);
+      return res.status(422).json(stageStatus);
     }
     console.log("Returning good with status => " + JSON.stringify(stageStatus));
     return res.json(stageStatus);
