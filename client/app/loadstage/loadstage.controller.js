@@ -8,7 +8,7 @@
              $scope.getCategories = function() {
                //console.log("In getCategories");
                $scope.categories = Category.query(function() {
-                 console.log('Got categories');
+                // console.log('Got categories');
                  //console.log(JSON.stringify($scope.categories));
                });
                return $scope.categories;
@@ -48,12 +48,19 @@
 
              $scope.setStorageDir = function () {
                var tmpDir = prompt("Set Storage Directory for Document Library:", "C:/Users/Daniel/myapp/server/api/books/test_dest_dir" )
-               if (tmpDir) { $scope.storageDir = tmpDir; }
+               if (tmpDir) {
+                 $scope.storageDir = tmpDir;
+                 if ($scope.storageDir.match(/^\w\:\\/)) {
+                    $scope.storageDir = $scope.storageDir.replace(/\\/g, '/');
+//                   console.log("Transforming directory to " +  $scope.stageDir);
+                 }
+
+               }
              };
 
              $scope.revert = function() {
                // User may select other document before call to database is complete
-               console.log("In revert...");
+//               console.log("In revert...");
                angular.copy(stachedDoc, $scope.selectedItem);
              };
 
@@ -91,7 +98,7 @@
              };
 
              $scope.newDoc = function(catid) {
-               console.log("In loadstage newDoc...");
+//               console.log("In loadstage newDoc...");
                var myCatId = (catid) ? catid : 10; //'Uncategorized';
                var myDoc = {
                  title: "New Book",
@@ -114,14 +121,14 @@
                  Document.update({
                    id: $scope.selectedItem.id
                  }, $scope.selectedItem, function() {
-                   console.log("Update successful");
+                   //console.log("Update successful");
                    // Write Message to Toast
                  }, function(error) {
                    alert("Document.update returned error -> " + JSON.stringify(error));
                  });
                } else {
                  Document.create( $scope.selectedItem, function() {
-                   console.log("Create successful");
+                  // console.log("Create successful");
                    // Write Message to Toast
                  }, function(error) {
                    alert("Document.create returned error -> " + JSON.stringify(error));
@@ -146,7 +153,7 @@
                  params: parms
                }).then(function successCallback(response) {
                  //alert("Query successful:  " + JSON.stringify(response.data));
-                 console.log("Query successful:  " + JSON.stringify(response.data));
+                 //console.log("Query successful:  " + JSON.stringify(response.data));
                  if (response.data.title) {
                    $scope.selectedItem.title = response.data.title;
                    $scope.selectedItem.author = response.data.author;
@@ -174,7 +181,6 @@
                }
              };
              $scope.commitChanges = function() {
-               console.log("commitChanges ...");
                var c2String = angular.toJson($scope.stageDocs);
                localStorage.setItem("stageDocs", c2String);
                localStorage.setItem("stageDir", $scope.stageDir);
@@ -198,6 +204,11 @@
 
                if($scope.stageDir) {
                  //console.log("In getTagCloud");
+                 // Convert slashes if needed
+                 //     Assume windows file would be of format c:\blah\blah
+                 if ($scope.stageDir.match(/^\w\:\\/)) {
+                    $scope.stageDir = $scope.stageDir.replace(/\\/g, '/');
+                 }
                  $http({
                    method: 'GET',
                    url: '/api/books/loadstage',
@@ -209,7 +220,7 @@
                    }
                  }).then(function successCallback(response) {
                    // alert("Got staged docs");
-                   console.log("Received data: " + JSON.stringify(response.data));
+                   //console.log("Received data: " + JSON.stringify(response.data));
                    $scope.stageDocs = response.data.items;
                    // Set up defaults for document fields
                    angular.forEach($scope.stageDocs, function(doc) {
@@ -220,7 +231,14 @@
                        doc.image_url = "http://localhost:3000/assets/document.gif";
                        doc.category_id = 10;  // Uncategorized
                        doc.type_id = 1;       // Book
+                       // URL should not have the stage path in it
                        doc.url = doc.name;
+                       if (doc.url.indexOf($scope.stageDir) == 0) {  // StageDir in the url
+                         doc.url = doc.name.substr($scope.stageDir.length);
+                       } else {
+                         doc.url = doc.name;
+                       }
+                       delete doc.name;
 
                    });
                    $state.go('loadstage.default');
@@ -232,17 +250,19 @@
                }
              };
              var validateStageDocs = function() {
-               return true;
                angular.forEach($scope.stageDocs, function(doc) {
-
+                 if(doc.name) {
+                   delete doc.name;
+                 }
                });
+               return true;
              };
              $scope.saveStage = function () {
                if (validateStageDocs()) {
                  $http({
                    method: 'POST',
                    url: '/api/books/savestage',
-                   body: {
+                   data: {
                      target: $scope.storageDir,
                      documents: $scope.stageDocs,
                      stage_directory : $scope.stageDir
@@ -252,7 +272,7 @@
                    }
                  }).then(function successCallback(response) {
                    // alert("Got staged docs");
-                   console.log("Received data: " + JSON.stringify(response.data));
+                   //console.log("Received data: " + JSON.stringify(response.data));
                     $scope.stageResults = response.data;
                     $state.go('loadstage.displayResults');
                }, function errorCallback(response) {

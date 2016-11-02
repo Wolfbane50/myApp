@@ -5,20 +5,33 @@
     </div>
     <div class="col-lg-8" id="buttonBar">
       <a class="btn btn-primary" ui-sref='loadstage.default'>
-        <span>Home<span></a>
-      <a class="pull-right btn btn-primary" ng-click="newDoc()">
-        <span>New Document</span></a>
+        <span  class="glyphicon glyphicon-home"><span>&nbsp;</a>
+          <ul style="list-style-type:none">
+            <li>
       <a class="pull-right btn btn-primary" ng-click="commitChanges()">
         <span>Save Progress</span></a>
+
+            </li>
+            <li>
       <a class="pull-right btn btn-primary" ng-click="retrieveLocal()">
         <span>Retrieve Local</span></a>
+
+            </li>
+            <li>
       <a class="pull-right btn btn-primary" ng-click="flushLocal()">
         <span>Flush Local</span></a>
+              
+            </li>
+          </ul>
 
+
+        <a class="pull-right btn btn-primary" ng-click="newDoc()">
+          <span>New...</span></a>
       <a class="pull-right btn btn-primary" ng-click="setStorageDir()">
         <span>Storage Directory</span></a>
       <a class="pull-right btn btn-primary" ng-click="saveStage()">
         <span>Save Stage</span></a>
+
     </div>
   </div>
   <div class="row">

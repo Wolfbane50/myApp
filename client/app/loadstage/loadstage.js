@@ -13,11 +13,11 @@ angular.module('myappApp')
           // Need to move this out into its own file
           var rec = $scope.stageDocs[$stateParams.index];
           if (! rec) {
-            console.log("Trying to select non-existent document");
+            //console.log("Trying to select non-existent document");
               $state.go('loadstage.default');
           }
           $scope.selectedIndex = $stateParams.index;
-          console.log("In stage document controller");
+          //console.log("In stage document controller");
           $scope.itemSelect(rec, $stateParams.index);
         }
       })

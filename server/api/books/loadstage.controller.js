@@ -52,9 +52,14 @@ export function newLoadstage(req, res) {
   });
   finder.on("match", function(strPath, stat) {
     //console.log("Match: " + strPath);
-
+    var name = strPath.replace(/\\/g, '/');
+  //  console.log("Name of file in stage (after slash replace) is " + name);
+    if (name.indexOf(stageBaseDir) == 0) {  // StageDir in the url
+        //console.log("Cutting stage dir out of filename");
+       name = name.substr(stageBaseDir.length + 1);
+    }
     var newDoc = {
-      name: strPath,
+      name: name,
       title: sanitizeTitle(strPath)
     };
     items.push(newDoc);
@@ -79,7 +84,7 @@ function validateDirectory(dir, writeable) {
     try {
       stats = fs.statSync(dir);
     } catch (err) {
-      console.log("Failed statSync: " + error);
+      console.log("Failed statSync: " + err);
       return false;
     }
     if (stats.isDirectory()) {
@@ -105,8 +110,8 @@ export function saveStage(req, res) {
   console.log("Checking stage directory");
   var stageDir = req.body.stage_directory;
   if (!validateDirectory(stageDir, false)) {
-    console.log("Invalid stage directory");
-    return res.status(422).send("Invalid stage directory");
+    console.log("Invalid stage directory: " + stageDir);
+    return res.status(422).send("Invalid stage directory: " + stageDir);
   }
 
 console.log("Checking target directory");
@@ -128,7 +133,6 @@ console.log("Checking target directory");
       moved: false
     });
   }
-console.log("Done with descriptor");
   // foreach document via async
   //     is it a file and is it readable -
   //          should I use name or URL?
@@ -150,29 +154,42 @@ console.log("Done with descriptor");
   }
 
   function moveStageToTarget(docRec, doneCB) {
-    console.log("Moving from stage to target");
+    //console.log("Moving from stage to target");
     var src = stageFilePath(docRec.doc);
     var dest = targetFilePath(docRec.doc);
     try {
     fse.move(src, dest, function(err) {
       if (err) {
+        // Particular problem - Getting EBUSY on unlink portion of move.
+        //    --> Explicitly try unlink
+      if ((err.code == 'EBUSY') &&  (err.syscall == 'unlink')) {
+        try {
+          console.log("Got EBUSY, retrying unlink");
+          fs.unlinkSync(src);
+        } catch(err) {
+          // Still didn't work, so return error
+          docRec.moveError = err;
+          //console.log("Calling final doneCB from move " + docRec.doc.title);
+          return doneCB();
+        }
+      }
         console.log("Move of " + docRec.doc.title + " bad: " + err);
         docRec.moveError = err;
       } else {
-        console.log("Move of " + docRec.doc.title + "is good!");
+        //console.log("Move of " + docRec.doc.title + "is good!");
         docRec.moved = true;
       }
-      console.log("Calling final doneCB from move " + docRec.doc.title);
+      //console.log("Calling final doneCB from move " + docRec.doc.title);
       doneCB();
     });
     } catch (err) {
       console.log("Move threw error!  doc = " + docRec.doc.title);
     }
-    console.log("Returning from move " + docRec.doc.title);
+    //console.log("Returning from move " + docRec.doc.title);
   }
 
   function addDatabase(docRec, doneCB) {
-    console.log("adding file to database");
+  //  console.log("adding file to database");
     var reqOptions = {
       url: 'http://localhost:3000/documents',
       method: 'POST',
@@ -189,21 +206,29 @@ console.log("Done with descriptor");
     myRequest(reqOptions, function(error, response, body) {
       if (error) {
         console.log("Request returned error -> " + error);
+        //console.log("Return -> " + body);
         // It would be nice to save what happened
         docRec.dbError = "Create returned " + response.statusCode + "; err = " + error;
-        console.log("Calling doneCB from save to DB");
+        if (body.message) {
+          docRec.dbError += "\n  error: " + body.message;
+        }
+      //  console.log("Calling doneCB from save to DB");
         return doneCB();
       } else {
         // Successful Status code out of document.create should be 201
         if (response.statusCode == 201) {
-          console.log("Db saved good!");
+        //  console.log("Db saved good!");
           docRec.id = body.id;
           docRec.savedToDb = true;
           moveStageToTarget(docRec, doneCB);
         } else {
           console.log( "Create returned " + response.statusCode + "; expected 201");
           docRec.dbError = "Create returned " + response.statusCode + "; expected 201";
-          console.log("Calling doneCB from save to DB");
+          if (body.message) {
+            docRec.dbError += "\n  error: " + body.message;
+          }
+//          console.log("Return -> " + JSON.stringify(body));
+          //console.log("Calling doneCB from save to DB");
           return doneCB();
         }
       }
@@ -213,7 +238,7 @@ console.log("Done with descriptor");
   }
 
   function validateFile(docRec, doneCB) {
-    console.log("Validationg file");
+    //console.log("Validating file");
     var file = stageFilePath(docRec.doc);
     fs.stat(file, function(err, stats) {
         if (err) {
@@ -262,7 +287,7 @@ console.log("Done with descriptor");
     };
   }
 
- console.log("Starting to process each document");
+//console.log("Starting to process each document");
   async.each(docDescrs, validateFile, function(error) {
     // Create skeleton status object
     console.log("Done Callback");
@@ -275,7 +300,7 @@ console.log("Done with descriptor");
       console.log("Found error in completion of each: " + error);
       return res.status(422).json(stageStatus);
     }
-    console.log("Returning good with status => " + JSON.stringify(stageStatus));
+//    console.log("Returning good with status => " + JSON.stringify(stageStatus));
     return res.json(stageStatus);
   });
 
