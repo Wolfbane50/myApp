@@ -1,0 +1,102 @@
+
+####  Tags not put
+Started PUT "/documents/1157" for 127.0.0.1 at 2016-11-07 15:08:19 -0500
+Processing by DocumentsController#update as JSON
+  Parameters: {
+     "author"=>"Brad Green, Shyam Seshadri", 
+     "category_id"=>7, 
+     "copywrite"=>"2013-04-08", 
+     "created_at"=>"2013-10-09T13:39:57Z", 
+     "description"=>"Develop smaller, lighter web apps that are simple to create and easy to test, extend, and maintain as they grow. This hands-on guide introduces you to AngularJS, the open source JavaScript framework that uses Model–view–controller (MVC) architecture, data binding, client-side templates, and dependency injection to create a much-needed structure for building web apps. Guided by two engineers who worked on AngularJS at Google, you’ll walk through the framework’s key features, and then build a working AngularJS app—from layout to testing, compiling, and debugging. If you have JavaScript experience, you’ll learn how AngularJS helps reduce the complexity of your web app. Dive deep into Angular’s building blocks and learn how they work together Gain maximum flexibility by separating logic, data, and presentation responsibilities with MVC Assemble your full app in the browser, using client-side templates Use AngularJS directives to extend HTML with declarative syntax Communicate with the server and implement simple caching with the $http service Use dependency injection to improve refactoring, testability, and multiple environment design Get code samples for common problems you face in most web apps",
+     "id"=>"1157",
+     "image_url"=>"http://books.google.com/books/content?id=EjAhSZpynsYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", 
+     "publisher"=>"OReilly", 
+     "tag_id"=>nil, 
+     "title"=>"AngularJS", 
+     "type_id"=>1, 
+     "updated_at"=>"2014-04-10T16:42:05Z", 
+     "url"=>"O'REILLY-AngularJS%20by%20Brad%20Green.pdf", 
+     "tag_list"=>"javascript angular", 
+      "document"=>{
+          "id"=>"1157", 
+          "title"=>"AngularJS", 
+          "author"=>"Brad Green, Shyam Seshadri", 
+          "publisher"=>"OReilly", 
+          "description"=>"Develop smaller, lighter web apps that are simple to create and easy to test, extend, and maintain as they grow. This hands-on guide introduces you to AngularJS, the open source JavaScript framework that uses Model–view–controller (MVC) architecture, data binding, client-side templates, and dependency injection to create a much-needed structure for building web apps. Guided by two engineers who worked on AngularJS at Google, you’ll walk through the framework’s key features, and then build a working AngularJS app—from layout to testing, compiling, and debugging. If you have JavaScript experience, you’ll learn how AngularJS helps reduce the complexity of your web app. Dive deep into Angular’s building blocks and learn how they work together Gain maximum flexibility by separating logic, data, and presentation responsibilities with MVC Assemble your full app in the browser, using client-side templates Use AngularJS directives to extend HTML with declarative syntax Communicate with the server and implement simple caching with the $http service Use dependency injection to improve refactoring, testability, and multiple environment design Get code samples for common problems you face in most web apps",
+          "url"=>"O'REILLY-AngularJS%20by%20Brad%20Green.pdf", 
+          "image_url"=>"http://books.google.com/books/content?id=EjAhSZpynsYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", 
+          "tag_id"=>nil, 
+          "type_id"=>1, 
+          "category_id"=>7, 
+          "created_at"=>"2013-10-09T13:39:57Z", 
+          "updated_at"=>"2014-04-10T16:42:05Z", 
+          "copywrite"=>"2013-04-08"}}
+
+
+  [1m[35mDocument Load (0.0ms)[0m  SELECT "documents".* FROM "documents" WHERE "documents"."id" = ? LIMIT 1  [["id", "1157"]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mCategory Load (0.0ms)[0m  SELECT "categories".* FROM "categories" WHERE "categories"."id" = 7 LIMIT 1
+  [1m[36mType Load (0.0ms)[0m  [1mSELECT "types".* FROM "types" WHERE "types"."id" = 1 LIMIT 1[0m
+  [1m[35m (1.0ms)[0m  UPDATE "documents" SET "publisher" = 'OReilly', "description" = 'Develop smaller, lighter web apps that are simple to create and easy to test, extend, and maintain as they grow. This hands-on guide introduces you to AngularJS, the open source JavaScript framework that uses Model–view–controller (MVC) architecture, data binding, client-side templates, and dependency injection to create a much-needed structure for building web apps. Guided by two engineers who worked on AngularJS at Google, you’ll walk through the framework’s key features, and then build a working AngularJS app—from layout to testing, compiling, and debugging. If you have JavaScript experience, you’ll learn how AngularJS helps reduce the complexity of your web app. Dive deep into Angular’s building blocks and learn how they work together Gain maximum flexibility by separating logic, data, and presentation responsibilities with MVC Assemble your full app in the browser, using client-side templates Use AngularJS directives to extend HTML with declarative syntax Communicate with the server and implement simple caching with the $http service Use dependency injection to improve refactoring, testability, and multiple environment design Get code samples for common problems you face in most web apps',
+  "image_url" = 'http://books.google.com/books/content?id=EjAhSZpynsYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api', "copywrite" = 2013, "updated_at" = '2016-11-07 20:08:19.572908' WHERE "documents"."id" = 1157
+  [1m[36m (131.0ms)[0m  [1mcommit transaction[0m
+Completed 200 OK in 225ms (ActiveRecord: 132.0ms)
+
+
+Started PUT "/documents/1157" for 127.0.0.1 at 2016-11-07 15:12:32 -0500
+Processing by DocumentsController#update as JS
+  Parameters: {
+     "utf8"=>"✓", 
+     "authenticity_token"=>"n7JWu4mD0Haef9obW3gizrkDdU/efFZRKne4t1uRRJ4=", 
+     "document"=>{
+          "title"=>"AngularJS", 
+          "category_id"=>"7", 
+          "type_id"=>"1", 
+          "author"=>"Brad Green, Shyam Seshadri", 
+          "publisher"=>"OReilly", 
+          "copywrite"=>"2013", 
+          "description"=>"Develop smaller, lighter web apps that are simple to create and easy to test, extend, and maintain as they grow. This hands-on guide introduces you to AngularJS, the open source JavaScript framework that uses Model–view–controller (MVC) architecture, data binding, client-side templates, and dependency injection to create a much-needed structure for building web apps. Guided by two engineers who worked on AngularJS at Google, you’ll walk through the framework’s key features, and then build a working AngularJS app—from layout to testing, compiling, and debugging. If you have JavaScript experience, you’ll learn how AngularJS helps reduce the complexity of your web app. Dive deep into Angular’s building blocks and learn how they work together Gain maximum flexibility by separating logic, data, and presentation responsibilities with MVC Assemble your full app in the browser, using client-side templates Use AngularJS directives to extend HTML with declarative syntax Communicate with the server and implement simple caching with the $http service Use dependency injection to improve refactoring, testability, and multiple environment design Get code samples for common problems you face in most web apps",
+          "url"=>"O'REILLY-AngularJS%20by%20Brad%20Green.pdf", 
+          "image_url"=>"http://books.google.com/books/content?id=EjAhSZpynsYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", 
+          "tag_list"=>"angular, javascript"
+       }, 
+       "id"=>"1157"}
+
+
+  [1m[35mDocument Load (1.0ms)[0m  SELECT "documents".* FROM "documents" WHERE "documents"."id" = ? LIMIT 1  [["id", "1157"]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mActsAsTaggableOn::Tag Load (1.0ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."taggable_id" = 1157 AND "taggings"."taggable_type" = 'Document' AND (taggings.context = 'tags' AND taggings.tagger_id IS NULL)
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT "categories".* FROM "categories" WHERE "categories"."id" = 7 LIMIT 1[0m
+  [1m[35mType Load (0.0ms)[0m  SELECT "types".* FROM "types" WHERE "types"."id" = 1 LIMIT 1
+  [1m[36m (3.0ms)[0m  [1mUPDATE "documents" SET "updated_at" = '2016-11-07 20:12:32.902908' WHERE "documents"."id" = 1157[0m
+  [1m[35mActsAsTaggableOn::Tag Load (1.0ms)[0m  SELECT "tags".* FROM "tags" WHERE (lower(name) = 'angular' OR lower(name) = 'javascript')
+  [1m[36mActsAsTaggableOn::Tag Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "tags" WHERE "tags"."name" = 'angular' LIMIT 1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "tags" ("name") VALUES (?)  [["name", "angular"]]
+  [1m[36mActsAsTaggableOn::Tag Load (0.0ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags"."id" = "taggings"."tag_id" WHERE "taggings"."taggable_id" = 1157 AND "taggings"."taggable_type" = 'Document' AND (taggings.context = 'tags' AND taggings.tagger_id IS NULL)[0m
+  [1m[35mActsAsTaggableOn::Tagging Exists (0.0ms)[0m  SELECT 1 AS one FROM "taggings" WHERE ("taggings"."tag_id" = 27 AND "taggings"."taggable_type" = 'Document' AND "taggings"."taggable_id" = 1157 AND "taggings"."context" = 'tags' AND "taggings"."tagger_id" IS NULL AND "taggings"."tagger_type" IS NULL) LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "taggings" ("context", "created_at", "tag_id", "taggable_id", "taggable_type", "tagger_id", "tagger_type") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["context", "tags"], ["created_at", Mon, 07 Nov 2016 20:12:32 UTC +00:00], ["tag_id", 27], ["taggable_id", 1157], ["taggable_type", "Document"], ["tagger_id", nil], ["tagger_type", nil]]
+  [1m[35mActsAsTaggableOn::Tagging Exists (0.0ms)[0m  SELECT 1 AS one FROM "taggings" WHERE ("taggings"."tag_id" = 114 AND "taggings"."taggable_type" = 'Document' AND "taggings"."taggable_id" = 1157 AND "taggings"."context" = 'tags' AND "taggings"."tagger_id" IS NULL AND "taggings"."tagger_type" IS NULL) LIMIT 1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "taggings" ("context", "created_at", "tag_id", "taggable_id", "taggable_type", "tagger_id", "tagger_type") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["context", "tags"], ["created_at", Mon, 07 Nov 2016 20:12:32 UTC +00:00], ["tag_id", 114], ["taggable_id", 1157], ["taggable_type", "Document"], ["tagger_id", nil], ["tagger_type", nil]]
+  [1m[35m (118.0ms)[0m  commit transaction
+Completed 200 OK in 175ms (ActiveRecord: 125.0ms)
+
+
+########## Integration Test
+    .put('/api/books/documents/' + newRecId)
+    .send({
+      title: "Newer Book"
+    })
+
+Started PUT "/documents/1294" for 127.0.0.1 at 2016-10-28 14:32:55 -0400
+Processing by DocumentsController#update as JSON
+  Parameters: {"title"=>"Newer Book", 
+               "id"=>"1294", 
+               "document"=>{"title"=>"Newer Book"}}
+  [1m[36mDocument Load (1.0ms)[0m  [1mSELECT "documents".* FROM "documents" WHERE "documents"."id" = ? LIMIT 1[0m  [["id", "1294"]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT "categories".* FROM "categories" WHERE "categories"."id" = 10 LIMIT 1[0m
+  [1m[35mType Load (0.0ms)[0m  SELECT "types".* FROM "types" WHERE "types"."id" = 1 LIMIT 1
+  [1m[36m (2.0ms)[0m  [1mUPDATE "documents" SET "title" = 'Newer Book', "updated_at" = '2016-10-28 18:32:55.264780' WHERE "documents"."id" = 1294[0m
+  [1m[35m (275.0ms)[0m  commit transaction
+Completed 200 OK in 284ms (ActiveRecord: 278.0ms)
+

@@ -241,9 +241,32 @@
           return null;
         }
 
+        function getTagsForDoc(doc) {
+          // GET /docTags/:id
+          $http({
+            method: 'GET',
+            url: '/api/books/tagsForDoc',
+            params: { id: doc.id },
+            headers: {
+              'Accept': 'application/json'
+            }
+
+          }).then(function successCallback(response) {
+            var tlist = response.data;
+            doc.tag_list = tlist.join(', ');
+            console.log("Got tag_list: " + doc.tag_list);
+           }, function errorCallback(response) {
+             alert("Request for tags on document yielded error(" + response.status + "): " + response.statusText);
+          });
+
+        }
+
         $scope.itemSelect = function(doc) {
           $scope.selectedItem = doc;
           $scope.selectedCategory = $scope.categories[parseInt(doc.category_id) - 1];
+          if(! doc.tag_list) {
+            getTagsForDoc(doc);
+          }
           //  $scope.dbDocument = Document.get({
           //    id: doc.id
           //  });
