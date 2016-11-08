@@ -6,6 +6,29 @@
     .controller('techBooksCtrl', ['$scope', '$http', '$state', 'Category', 'Document', 'Publisher',
       function($scope, $http, $state, Category, Document, Publisher) {
 
+        // Configuration data
+        var lconfig = localStorage.getItem("docMgrConfig");
+        $scope.config = angular.fromJson(lconfig);
+        console.log("Retrieved Config => " + JSON.stringify($scope.config));
+        if ($scope.config) {
+          if($scope.config.starredIds) {
+            for (var i=0; i<$scope.config.starredIds.lenth; i++) {
+              $scope.starredHash[$scope.config.starredIds[i] = true;
+            }
+          } else {
+            $scope.config.starredIds =[];
+            $scope.starredHash = {};
+          }
+        } else {
+          alert("No configuration in local storage");
+          $scope.config = {
+            starredIds : []
+          };
+          $scope.starredHash = {};
+        }
+        $scope.serverPath = "/ebooks/";  // work
+        // $scope.serverPath = "http://nasd???/Multimedia/techbooks/";  // home
+
         ////////////////////////////////////////////
         // API to docmgr (RoR implementation)
         ////////////////////////////////////////////
@@ -103,6 +126,7 @@
         $scope.selectedItem;
         $scope.dbDocument = {};
         $scope.editCategories = false;
+        $scope.starredDocs = [];
 
         $scope.getDocsByCategory = function(cat) {
           //console.log("In getDocsByCategory");
@@ -124,7 +148,16 @@
         $scope.getAndOrganizeDocuments = function() {
           console.log("In getAndOrganizeDocuments");
           $scope.documentList = Document.query(function() {
-            angular.forEach($scope.documentList, function(doc) {
+            // Create hash for starred documents
+          angular.forEach($scope.documentList, function(doc) {
+                delete doc.tag_id;
+
+              // Build starred documents list
+              if($scope.starredHash[doc.id]) {
+                $scope.starredDocs.push(doc);
+              }
+
+
               // Index by category
               var myCat = doc.category_id;
               //console.log("Putting " + doc.title + " into category " + myCat);
@@ -135,21 +168,6 @@
                 // Create the category
                 $scope.docsByCat[myCat] = [doc];
               }
-
-
-              // index by tag
-              if (doc.tag_id) {
-                console.log("Processing tag " + doc.tag_id);
-                var myTags = doc.tag_id.split(", ");
-                anglular.forEach(myTags, function(myTag) {
-                  if ($scope.docsByTag[myTag]) {
-                    $scope.docsByTag[myTag].push(doc);
-                  } else {
-                    $scope.docsByTag[myTag] = [doc];
-                  }
-                });
-              }
-
             });
             // Sort the Docs in each category
             angular.forEach($scope.docsByCat, function(docs, catId, obj) {
@@ -161,12 +179,6 @@
             });
 
 
-            // Create sorted list of tags
-            $scope.tagList = [];
-            for (var key in $scope.docsByTag) {
-              $scope.taglist.push(key);
-            }
-            $scope.tagList = $scope.tagList.sort();
 
           });
 
@@ -351,14 +363,15 @@
           if ($scope.selectedItem.id) {
             Document.update({
               id: $scope.selectedItem.id
-            }, $scope.selectedItem, function() {
+//            }, $scope.selectedItem, function() {
+}, { document: $scope.selectedItem }, function() {
               console.log("Update successful");
               // Write Message to Toast
             }, function(error) {
               alert("Document.update returned error -> " + JSON.stringify(error));
             });
           } else {
-            Document.create($scope.selectedItem, function() {
+            Document.create( { document: $scope.selectedItem }, function() {
               console.log("Create successful");
               // Write Message to Toast
             }, function(error) {
@@ -439,22 +452,23 @@
           });
         };
 
-        function preProcessStage(items) {
-          angular.forEach(items, function(element) {
-            var myDoc = {
-              id: null, // What the server would expect on save for create.
-              title: "New Book",
-              author: null,
-              // publisher: null,    // May need this
-              image_url: "http://localhost:3000/assets/document.gif",
-              category_id: 10 // Uncategorized
-            };
+      $scope.addToStarred = function () {
+        $scope.starredDocs.push($scope.selectedItem);
+        $scope.config.starredIds.push($scope.selectedItem.id);
+        var storeString = angular.toJson($scope.config);
+        localStorage.setItem("docMgrConfig", storeString);
+      };
 
-          });
+      $scope.starredIcon = function() {
+        console.log("In starred Icon");
+        if ($scope.starredHash[$scope.selectedItem.id]) {
+          console.log("Returning filled star");
+          return 'glyphicon glyphicon-star';
+        } else {
+          console.log("Returning empty star");
+          return 'glyphicon glyphicon-star-empty';
         }
-
-
-
       }
-    ]); // end controller
+
+    }]); // end controller
 })();

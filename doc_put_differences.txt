@@ -43,6 +43,13 @@ Processing by DocumentsController#update as JSON
 Completed 200 OK in 225ms (ActiveRecord: 132.0ms)
 
 
+<form accept-charset="UTF-8" action="/documents/400" class="edit_document" data-remote="true" id="edit_document_400" method="post">
+<div style="margin:0;padding:0;display:inline">
+<input name="utf8" type="hidden" value="&#x2713;" />
+<input name="_method" type="hidden" value="put" />
+<input name="authenticity_token" type="hidden" value="n7JWu4mD0Haef9obW3gizrkDdU/efFZRKne4t1uRRJ4=" /></div>
+
+
 Started PUT "/documents/1157" for 127.0.0.1 at 2016-11-07 15:12:32 -0500
 Processing by DocumentsController#update as JS
   Parameters: {
@@ -100,3 +107,46 @@ Processing by DocumentsController#update as JSON
   [1m[35m (275.0ms)[0m  commit transaction
 Completed 200 OK in 284ms (ActiveRecord: 278.0ms)
 
+
+Started PUT "/documents/400" for 127.0.0.1 at 2016-11-08 09:25:55 -0500
+Processing by DocumentsController#update as JSON
+  Parameters: {
+   "author"=>"Christian Gross", 
+   "category_id"=>7, 
+   "copywrite"=>"2007-03-01", 
+   "created_at"=>"2013-03-27T18:42:35Z", 
+   "description"=>"Ajax is one of the hottest new methodologies on the web, bit it requires a lot of coding, and there are some inherent problems with Ajax applications.
+         This book offers more than 50 adaptable recipes for common tasks using Ajax, DOM Scripting, and REST techniques, saving hours of development time. These provide
+         complete solutions for form validation, drag and drop functionality, data sorting, data presentation techniques, application architecture, debugging,
+         performance enhancements, server-side techniques for web services, and much more. The book makes use of REST and other design patterns, and many popular 
+         JavaScript libraries, focusing is on efficiency, optimization and reusability.", 
+    "id"=>"400",
+    "image_url"=>"http://books.google.com/books/content?id=ikXNJhaCfzEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", 
+    "publisher"=>"Apress", 
+    "tag_id"=>nil, 
+    "title"=>"Ajax and REST Recipes",
+    "type_id"=>1, 
+    "updated_at"=>"2014-04-10T16:40:47Z", 
+    "url"=>"Ajax%20and%20REST%20Recipes.pdf", 
+    "tag_list"=>"ajax, REST", 
+    "document"=>{
+        "id"=>"400", 
+        "title"=>"Ajax and REST Recipes", 
+        "author"=>"Christian Gross", 
+        "publisher"=>"Apress", 
+        "description"=>"Ajax is one of the hottest new methodologies on the web, bit it requires a lot of coding, and there are some inherent problems with Ajax applications. This book offers more than 50 adaptable recipes for common tasks using Ajax, DOM Scripting, and REST techniques, saving hours of development time. These provide complete solutions for form validation, drag and drop functionality, data sorting, data presentation techniques, application architecture, debugging, performance enhancements, server-side techniques for web services, and much more. The book makes use of REST and other design patterns, and many popular JavaScript libraries, focusing is on efficiency, optimization and reusability.", 
+        "url"=>"Ajax%20and%20REST%20Recipes.pdf", 
+        "image_url"=>"http://books.google.com/books/content?id=ikXNJhaCfzEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", 
+        "tag_id"=>nil, 
+        "type_id"=>1, 
+        "category_id"=>7, 
+        "created_at"=>"2013-03-27T18:42:35Z", 
+        "updated_at"=>"2014-04-10T16:40:47Z", 
+        "copywrite"=>"2007-03-01"}}
+  [1m[36mDocument Load (0.0ms)[0m  [1mSELECT "documents".* FROM "documents" WHERE "documents"."id" = ? LIMIT 1[0m  [["id", "400"]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mCategory Load (0.0ms)[0m  [1mSELECT "categories".* FROM "categories" WHERE "categories"."id" = 7 LIMIT 1[0m
+  [1m[35mType Load (0.0ms)[0m  SELECT "types".* FROM "types" WHERE "types"."id" = 1 LIMIT 1
+  [1m[36m (3.0ms)[0m  [1mUPDATE "documents" SET "title" = 'Ajax and REST Recipes', "publisher" = 'Apress', "description" = 'Ajax is one of the hottest new methodologies on the web, bit it requires a lot of coding, and there are some inherent problems with Ajax applications. This book offers more than 50 adaptable recipes for common tasks using Ajax, DOM Scripting, and REST techniques, saving hours of development time. These provide complete solutions for form validation, drag and drop functionality, data sorting, data presentation techniques, application architecture, debugging, performance enhancements, server-side techniques for web services, and much more. The book makes use of REST and other design patterns, and many popular JavaScript libraries, focusing is on efficiency, optimization and reusability.', "image_url" = 'http://books.google.com/books/content?id=ikXNJhaCfzEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api', "copywrite" = 2007, "updated_at" = '2016-11-08 14:25:56.029212' WHERE "documents"."id" = 400[0m
+  [1m[35m (203.0ms)[0m  commit transaction
+Completed 200 OK in 262ms (ActiveRecord: 206.0ms)

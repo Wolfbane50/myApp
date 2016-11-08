@@ -30,20 +30,9 @@
               </div>
             </uib-accordion>
         </uib-tab>
-        <uib-tab index="1" heading="By Tag">
-          <uib-accordion>
-              <div uib-accordion-group ng-repeat="tag in tagList" class="panel-default" heading="{{tag}}" >
-                  <p ng-repeat="doc in docsByTag[tag]"><a href="#">{{doc.title}}</a></p>
-            </div>
-          </uib-accordion>
-
-        </uib-tab>
-        <uib-tab index="2" heading="Load Stage">
-          <a class="btn btn-primary" ng-click="getStageDocs()">
-            <span>Retrieve Docs</span></a>
-          <ul>
-            <li ng-repeat="doc in stageDocs"><a ui-sref="techBooks.stageDocument({index: $index})">{{doc.title}}</a></li>
-          </ul>
+        <uib-tab index="1" heading="Starred">
+              <p ng-repeat="doc in starredDocs">
+                <a  ui-sref="techBooks.document({doc: doc})">{{doc.title}}</a></p>
         </uib-tab>
       </uib-tabset>
     </div>

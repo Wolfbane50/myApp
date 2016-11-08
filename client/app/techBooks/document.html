@@ -1,5 +1,8 @@
 <div>
-  <h1>{{selectedItem.title}}</h1>
+  <h1>{{selectedItem.title}}
+</h1>
+     <a class="pull-right btn btn-primary" uib-tooltip="Add to Starred list" ng-click="addToStarred()">
+            <span ng-class="starredIcon()"></span>b</a>
   <div class="row">
     <div class="col-md-10">
       <span class="lead">Title:  <input class="fill" type="text" placeholder="Title" ng-model="selectedItem.title"></span>
@@ -76,6 +79,7 @@
       <br />
       <label for="url_inp">URL: </label>
       <input id="url_inp" class="fill" type="text" placeholder="URL" ng-model="selectedItem.url">
+      <a ng-href="{{ serverPath + selectedItem.url }}" target="_blank">Link: </a>&quot;{{ serverPath + selectedItem.url }}&quot;
 
     </div>
   </div>
