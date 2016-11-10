@@ -188,3 +188,9 @@ export function tagsForDoc(req, res) {
     }
   });
 }
+
+export function epubReader(req, res) {
+    // Get URL to epub
+    var epubUrl = req.body.url;
+    res.render('epub_reader', { url: epubUrl});
+}
