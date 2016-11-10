@@ -1,8 +1,13 @@
 <div>
-  <h1>{{selectedItem.title}}</h1>
+  <h1>{{selectedItem.title}}
+     <a class="pull-right btn btn-success btn-lg" uib-tooltip="Toggle Starred list" ng-click="toggleStarred()">
+            <span ng-class="starredIcon()"></span></a>
+
+</h1>
   <div class="row">
     <div class="col-md-10">
       <span class="lead">Title:  <input class="fill" type="text" placeholder="Title" ng-model="selectedItem.title"></span>
+      <p>ID:  {{selectedItem.id}}</p>
     </div>
     <div class="col-md-2">
       <img ng-show="selectedItem.image_url" ng-src="{{selectedItem.image_url}}" style="float: right;" /></a>
@@ -66,8 +71,20 @@
   <div class="row">
     <div class="col-md-12">
       <br />
+      <label for="tags_inp">Tags: </label>
+      <input id="tags_inp" class="fill" type="text" placeholder="tags" ng-model="selectedItem.tag_list">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <br />
       <label for="url_inp">URL: </label>
       <input id="url_inp" class="fill" type="text" placeholder="URL" ng-model="selectedItem.url">
+      <a ng-href="{{ config.serverPath + selectedItem.url }}" target="_blank">Link: </a>&quot;{{ config.serverPath + selectedItem.url }}&quot;
+      <br />
+      <a ng-show="(selectedType == 'epub')" class="pull-right btn btn-primary" uib-tooltip="Save to DB" ng-click="readEpub( config.serverPath + selectedItem.url)">
+        <span></span>Read Epub;</a>
 
     </div>
   </div>

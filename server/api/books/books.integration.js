@@ -126,7 +126,7 @@ describe('get /api/books/loadstage', function() {
 
 });
 
-describe.only('get /api/books/savestage', function() {
+describe('get /api/books/savestage', function() {
   //var stageDir = 'C:/Users/daniel.heaney/Documents/ebooks';
   var stageDir = 'C:/Users/Daniel/myapp/server/api/books/test_stage_dir';
   var targetDir = 'C:/Users/Daniel/myapp/server/api/books/test_dest_dir';
@@ -376,7 +376,7 @@ describe('Delete /api/books/categories/$id', function() {
           image_url: "http://localhost:3000/assets/document.gif",
           type_id: 1,
           category_id: 10,
-          tag_list: "",
+          tag_list: "test1, test2",
           url: "http://mybook.com/book1.epub"
         }})
         .expect(201)
@@ -407,7 +407,9 @@ describe('PUT /api/books/documents/$id', function() {
     request(app)
     .put('/api/books/documents/' + newRecId)
     .send({
-      title: "Newer Book"
+      document: {
+         title: "Newer Book"
+       }
     })
     .expect(200)
     .end((err, res) => {
@@ -468,4 +470,27 @@ describe('Delete /api/books/documents/$id', function() {
         done();
       });
   });
+});
+
+describe.only('Play with Documents API to get tags working', function() {
+  it('should respond with 204 on successful update', function(done) {
+    newRecId = 400;   // web dev/Ajax and REST recipes
+    request(app)
+    .put('/api/books/documents/' + newRecId)
+    .send({
+      document: {
+        tag_list: "ajax, REST"
+       }
+    })
+    .expect(200)
+    .end((err, res) => {
+      if (err) {
+        return done(err);
+      }
+
+      catRec = res.body;
+      done();
+    });
+  });
+
 });

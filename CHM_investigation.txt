@@ -1,0 +1,33 @@
+
+Article from 2007
+
+kchmviewer from KDE
+GnoCHM from GNOME
+xchm
+
+Open Source Python Project
+	https://github.com/dottedmag/archmage
+	Supports serving CHM content via http
+	
+	archmage -p <port> <chmfile|dir with chm files>
+    entry_points={ 
+34         'console_scripts': ['archmage = archmod.cli:main'], 
+35     }, 
+36 
+
+
+Main source module: https://github.com/dottedmag/archmage/blob/master/archmod/cli.py
+
+Limitation: Looking only at files on filesystem
+
+End up calling
+                    Filename             Port Number
+	ChmServer(options.chmfile, '', options.port).serve_forever()
+	
+from archmod.CHMServer import ChmServer  i.e. CHMServer.py
+def __init__(self, basedir, bind_address, port):  Maps to call above
+  basedir-Filename, bind_address: null, port: port number
+  
+  
+Actual CHM work done in CHM.py
+  
