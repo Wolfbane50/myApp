@@ -39,7 +39,6 @@
             letter: key,
             artists: value
           });
-          // Could do sort here
 
         });
 

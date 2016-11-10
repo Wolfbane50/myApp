@@ -1,5 +1,13 @@
 'use strict';
 
+//  Server Side contorller to manage a database of metadata on music in a directory structure
+//     Directory Structure:
+//        Base
+//          - Artists (d)
+//          -    Albums (d)
+//                  - <subdirectories> (d) Optional
+//                       Music Files (.mp3, .flac, etc.)
+
 var fs = require("fs");
 var FindFiles = require("node-find-files");
 var path = require('path');
@@ -49,6 +57,8 @@ function findArchiveDate(albumRec, callback) {
 
 }
 
+// filterDirectories : Wrapper around async.filter to find only subdirectories and
+//    call client operations for each entry and upon completion.
 // Note: Using old (v1.5) async for async.filter - API changes for later versions
 //       Changes for newer API are commented out.
 function filterDirectories(basePath, mapIter, mapDone) {
@@ -105,11 +115,12 @@ function saveTunesFile(theTunes) {
 
 }
 
-// tunes/search/
+// GET /api/tunes/search
+//   Will create music database from scratch
 export function albumSearch(req, res) {
   //var tunesBaseDir = "Multimedia/My Music";
   var tunesBaseDir = req.query.directory;
-   console.log("Starting album search in " + tunesBaseDir);
+  console.log("Starting album search in " + tunesBaseDir);
 
   // Blank database to start
   var tunesCollection = {
@@ -135,9 +146,10 @@ export function albumSearch(req, res) {
 
 }
 
-//  /tunes/
+//  GET /api/tunes
+//    Just redirect to JSON file
 export function index(req, res) {
-  console.log("Inside index");
+  //console.log("Inside index");
   res.redirect(303, '/mytunes.json');
   //res.sendFile("server/public/mytunes.json", function(err) {
   //  if (err) {
@@ -162,6 +174,7 @@ function getTunesFile() {
 
 }
 
+// For a given artist, find all changed albums (new, deleted) and update
 function updateArtistAlbums(artistRecord, ArCallback) {
   // Create hash of albums
   var albumHash = createHash(artistRecord.albums);
@@ -215,6 +228,10 @@ function deleteRecords(theHash, theArray, delCallback) {
 
 }
 
+// Build a hash with key directory name and values
+//     found - If a match found with database and directory structure
+//     recRef - Reference to the actual metadata for this directory
+//     index - Index into array of records.  Will be used in deletion
 function createHash(theArray) {
   console.log("Creating hash for array");
   var theHash = {};
@@ -230,7 +247,7 @@ function createHash(theArray) {
   return theHash;
 }
 
-//  /tunes/update
+//  POST /api/tunes/update
 export function updateTunes(req, res) {
   console.log("-------------In tunes server --");
   // Why do I need this? - Need it to synchronize edited changes from client with
@@ -253,7 +270,7 @@ export function updateTunes(req, res) {
   //           ii. For each existing albums
   //                - Update archived date
   var tunesBaseDir = req.query.directory;
-    console.log("Starting album search in " + tunesBaseDir);
+  console.log("Starting album search in " + tunesBaseDir);
 
   // load our database of existing artists/albums
   var tunesCollection = getTunesFile();
@@ -262,7 +279,7 @@ export function updateTunes(req, res) {
     res.send(500, 'Cannot open music database!');
     return;
   }
-console.log("Got data");
+  console.log("Got data");
 
 
   // Verify we are looking at the same filesystem

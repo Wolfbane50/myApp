@@ -57,7 +57,7 @@
             <div class="row">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox"  ng-model="selArtist.edit">Edit Mode</label>
+                  <input type="checkbox" ng-model="selArtist.edit">Edit Mode</label>
               </div>
             </div>
             <div class="row">
@@ -71,11 +71,11 @@
                 </tr>
                 <tr ng-repeat="album in selArtist.albums">
                   <td class="namecol">
-                    <span ng-hide="selArtist.edit" >{{album.name}}</span>
+                    <span ng-hide="selArtist.edit">{{album.name}}</span>
                     <input ng-show="selArtist.edit" class="tableInput" type="text" ng-model="album.name">
                   </td>
                   <td>
-                    <span ng-hide="selArtist.edit" >{{album.year}}</span>
+                    <span ng-hide="selArtist.edit">{{album.year}}</span>
                     <input ng-show="selArtist.edit" class="tableYearInput" type="text" ng-model="album.year">
                   </td>
                   <td>{{album.archived | date:'fullDate'}}</td>
