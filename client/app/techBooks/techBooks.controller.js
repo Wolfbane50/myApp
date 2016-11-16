@@ -258,7 +258,7 @@
           var revertDoc = $scope.selectedItem;
 
           // This doesn't work if the doc is not in the database (ie id=null)
-          if (revertedDoc.id) {
+          if (revertDoc.id) {
             var revertedDoc = Document.get({
               id: revertDoc.id
             }, function() {
@@ -315,7 +315,13 @@
 
         $scope.itemSelect = function(doc) {
           $scope.selectedItem = doc;
-          $scope.selectedCategory = $scope.categories[parseInt(doc.category_id) - 1];
+          // Problem child - Categories are not consecutive
+          for (var i=0; i<$scope.categories.length; i++) {
+            if (doc.category_id == $scope.categories[i].id) {
+              $scope.selectedCategory = $scope.categories[i];
+            }
+          }
+
           if ((doc.id) && (!doc.tag_list)) {
             getTagsForDoc(doc);
           }
