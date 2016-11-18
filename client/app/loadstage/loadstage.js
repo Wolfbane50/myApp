@@ -21,6 +21,10 @@ angular.module('myappApp')
           $scope.itemSelect(rec, $stateParams.index);
         }
       })
+      .state('loadstage.displayJSON', {
+        url: '/showjson',
+        template: "<pre class='code'>{{ stageDocs | json }}</pre>"
+      })
       .state('loadstage.displayResults', {
         url: '/stageResults',
         templateUrl: 'app/loadstage/stageResults.html'
