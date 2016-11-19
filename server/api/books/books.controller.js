@@ -50,7 +50,7 @@ function bookQuery(auth, req, res) {
   //  console.log("Calling books.volumes.list");
     // For now, let's just use the API key
     var myKey = config.google.apiKey;
-    //console.log("Will use key: " + myKey);
+    console.log("Will use key: " + myKey);
     booksService.volumes.list({
       auth: myKey,
 //      auth: auth,
@@ -60,6 +60,7 @@ function bookQuery(auth, req, res) {
     } ,  function(err, response) {
          if(err) {
            console.log("The Google Books AP returned an error: " + err);
+           console.log("Response => " + JSON.stringify(response));
            return res.status(502).send("Request to Google Books returned " + err);
          }
          var results = response.items;
