@@ -3,8 +3,8 @@
 (function() {
 
   angular.module('myappApp')
-    .controller('loadstageCtrl', ['$scope', '$http', '$state', 'Category', 'Document', 'Publisher',
-           function($scope, $http, $state, Category, Document, Publisher) {
+    .controller('loadstageCtrl', ['$scope', '$http', '$state', 'Category', 'Document', 'Publisher', 'googleBooks',
+           function($scope, $http, $state, Category, Document, Publisher, googleBooks) {
              $scope.getCategories = function() {
                //console.log("In getCategories");
                $scope.categories = Category.query(function() {
@@ -136,39 +136,8 @@
                }
              };
 
-             $scope.queryGoogle = function() {
-               $scope.stachDoc();
-               var parms = {
-                 title: $scope.selectedItem.title,
-               };
-               if (($scope.selectedItem.author) && ($scope.selectedItem.author != 'Unknown')) {
-                 parms.author = $scope.selectedItem.author;
-               }
-               if (($scope.selectedItem.publisher) && ($scope.selectedItem.publisher != 'Unknown')) {
-                 parms.publisher = $scope.selectedItem.publisher;
-               }
-               $http({
-                 method: 'GET',
-                 url: '/api/books',
-                 params: parms
-               }).then(function successCallback(response) {
-                 //alert("Query successful:  " + JSON.stringify(response.data));
-                 //console.log("Query successful:  " + JSON.stringify(response.data));
-                 if (response.data.title) {
-                   $scope.selectedItem.title = response.data.title;
-                   $scope.selectedItem.author = response.data.author;
-                   $scope.selectedItem.publisher = response.data.publisher;
-                   $scope.selectedItem.copywrite = response.data.copywrite;
-                   $scope.selectedItem.image_url = response.data.image_url;
-                   $scope.selectedItem.description = response.data.description;
-                 } else {
-                   alert("No results for Google Query!");
-                 }
+             $scope.queryGoogle = googleBooks.queryGoogle;
 
-               }, function errorCallback(response) {
-                 alert("Google Query Request yielded error(" + response.status + "): " + response.statusText);
-               });
-             };
              $scope.retrieveLocal = function() {
                var c2DataStr = localStorage.getItem("stageDocs");
                if (c2DataStr) {
