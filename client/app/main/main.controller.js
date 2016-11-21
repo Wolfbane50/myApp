@@ -9,7 +9,6 @@
       this.modal = Modal;
 
       this.makeToast = function(msg) {
-        console.log("Main local making toast");
         ngToast.create(msg);
       }
 
