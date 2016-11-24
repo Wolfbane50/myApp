@@ -1,9 +1,9 @@
 'use strict';
 
 (function() {
-  function GoogleBooksService(selectedItem) {
+  function GoogleBooksService($http) {
     return {
-      queryGoogle : function() {
+      queryGoogle : function(selectedItem) {
         var parms = {
           title: selectedItem.title,
         };
@@ -34,7 +34,7 @@
         }, function errorCallback(response) {
           alert("Google Query Request yielded error(" + response.status + "): " + response.statusText);
         });
-      };
+      }
 
     };
   }  // end factory function

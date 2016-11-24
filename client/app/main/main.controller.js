@@ -4,9 +4,16 @@
 
   class MainController {
 
-    constructor($http, $scope, Modal) {
+    constructor($http, $scope, Modal, ngToast) {
       this.$http = $http;
       this.modal = Modal;
+
+      this.makeToast = function(msg) {
+        ngToast.create(msg);
+      }
+
+      this.clearToast = ngToast.dismiss;
+
 
      // Example use of Modal Confirm dialog
       this.dummyConfirm = function() {
