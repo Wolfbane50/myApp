@@ -14,12 +14,13 @@ function sanitize(interm) {
      term = term.replace(/:/g, '');
      term = term.replace(/\-/g, '');
      term = term.replace(/\./g, '');
+     term = term.replace(/\+and\+/g, '+');
      return encodeUrl(term);
 
 }
 
 function bookQuery(auth, req, res) {
-
+   //  Should probably take the search terms out of the querystring and move to the request body
    var theQuery = "";
    if(req.query.title) {
 
