@@ -5,12 +5,14 @@
 Example Controls:
 <button class="btn btn-primary" ng-click="MnCtrl.makeToast('Sample Message')">Toast</button>
 <button class="btn btn-primary" ng-click="MnCtrl.clearToast()">Clr Toast</button>
+<input type="file" multiple onchange="angular.element(this).scope().captureFile(this)">Select File</input>
 
   <oauth-buttons></oauth-buttons>
     <button class="btn btn-primary" ng-print print-element-id="dhgreet"><i class="fa fa-print"></i> Print</button>
     <button class="btn btn-primary" ng-print preview="true" print-element-id="dhgreet"><i class="fa fa-print"></i> Print Preview</button>
     <button class="btn btn-primary" ng-click="MnCtrl.dummyConfirm()" >Confirm?</button>
     <br />
+    <pre class="code">{{ MnCtrl.content | json }}</pre>
     <img src="assets/images/family.jpg" alt="The most important family">
   </div>
 </header>
