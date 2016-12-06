@@ -251,5 +251,33 @@
              }
            };
 
+           $scope.backup = function() {
+             var c2String = angular.toJson($scope.stageDocs);
+
+             $http({ method: 'POST', url: '/api/backups/',
+                  data: { "c2_data" : c2String,
+                          "bkfile" : "loadstage_snapshot"
+              } }).success(function(data) {
+                  alert("Backup Successful!\n\n" + data);
+              }).error(function(data, status, headers, config) {
+                // Handle the error
+                   alert("Backup failed with status: " + status);
+              });
+
+
+           };
+
+           $scope.restore = function() {
+             alert("Not implemented yet!");
+             $http({
+               method: 'GET',
+               url: '/loadstage_snapshot.json'
+             }).then(function successCallback(response) {
+               $scope.stageDocs = response.data;
+             }, function errorCallback(response) {
+               alert("Request for Staged Docs yielded error: " + response.status);
+             });
+           };
+
     }]); // end controller
 })();
