@@ -268,7 +268,6 @@
            };
 
            $scope.restore = function() {
-             alert("Not implemented yet!");
              $http({
                method: 'GET',
                url: '/loadstage_snapshot.json'
