@@ -5,34 +5,52 @@
   class MainController {
 
     constructor($http, $scope, Modal, ngToast) {
-      this.$http = $http;
-      this.modal = Modal;
+        this.$http = $http;
+        this.modal = Modal;
 
-      this.makeToast = function(msg) {
-        ngToast.create(msg);
+        this.makeToast = function(msg) {
+          ngToast.create(msg);
+        }
+
+        this.clearToast = ngToast.dismiss;
+
+
+        // Example use of Modal Confirm dialog
+        this.dummyConfirm = function() {
+          console.log('in dummyConfirm');
+          var myModalFn = this.modal.confirm.delete(function(data1, data2) {
+            console.log('You are confirmed');
+            console.log("Data1 = " + data1);
+            console.log("Data2 = " + data2);
+          });
+
+          myModalFn("My Junk", "additional data", "more additional data");
+
+        };
+        this.content = { name: "none" }
+
+      $scope.captureFile = function(ele) {
+         var mainScope = this;
+          var files = ele.files;
+          if (files.length) {
+            alert("Selected:\nPath: " + files[0].webkitRelativePath + "\nFile: " + files[0].name);
+            var reader = new FileReader();
+            reader.onload = function() {
+              mainScope.content = JSON.parse(this.result);
+              mainScope.$apply();
+              alert("Loading content " + JSON.stringify(mainScope.content));
+            };
+            reader.readAsText(files[0]);
+          } else {
+            alert("No files selected!")
+          }
+        };
+
       }
-
-      this.clearToast = ngToast.dismiss;
-
-
-     // Example use of Modal Confirm dialog
-      this.dummyConfirm = function() {
-        console.log('in dummyConfirm');
-        var myModalFn =  this.modal.confirm.delete(function(data1, data2) {
-          console.log('You are confirmed');
-          console.log("Data1 = " + data1);
-          console.log("Data2 = " + data2);
-        });
-
-        myModalFn("My Junk", "additional data", "more additional data");
-
-      };
-
-    }
-  //    $scope.$on('$destroy', function() {
-  //      socket.unsyncUpdates('thing');
-//      });
-//    }
+      //    $scope.$on('$destroy', function() {
+      //      socket.unsyncUpdates('thing');
+      //      });
+      //    }
 
     //$onInit() {
     //  this.$http.get('/api/things')
@@ -51,9 +69,9 @@
     //  }
     //}
 
-  //  deleteThing(thing) {
-  //    this.$http.delete('/api/things/' + thing._id);
-  //  }
+    //  deleteThing(thing) {
+    //    this.$http.delete('/api/things/' + thing._id);
+    //  }
   }
 
   angular.module('myappApp')
