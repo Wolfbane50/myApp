@@ -47,7 +47,7 @@
           <!-- Nested list template -->
           <script type="text/ng-template " id="items_renderer.html ">
             <div id="wasui-tree-handle ">
-              <input data-nodrag type="checkbox" ng-model="this.$modelValue.checked " ng-change="addDelChecked(this) "></input>
+              <input data-nodrag type="checkbox" ng-model="this.$modelValue.checked  " ng-change="addDelChecked(this) "></input>
               <a class="btn btn-default btn-xs" data-nodrag ng-click="toggle(this) ">
                 <span class="glyphicon " ng-class="itemIcon(this) "></span></a>
               <span data-nodrag ng-show="item.fname "><a ng-click="itemSelect(this) " ng-class="selectedItemClass(this) ">{{item.fname}} : {{item.name}}</a></span>
