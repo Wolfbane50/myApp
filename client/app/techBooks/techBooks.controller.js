@@ -429,6 +429,8 @@
               document: $scope.selectedItem
             }, function() {
               console.log("Create successful");
+              // Update ID  !!!  May need to add interceptor on response to resource post request
+
               // Write Message to Toast
             }, function(error) {
               alert("Document.create returned error -> " + JSON.stringify(error));

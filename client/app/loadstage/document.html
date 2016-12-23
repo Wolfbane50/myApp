@@ -1,6 +1,22 @@
 <div>
   <h1>{{selectedItem.title}}</h1>
   <div class="row">
+    <div class="col-md-4">
+      <div ng-show="selectedItem.id" class="alert alert-success">
+        <strong>Saved to Database!</strong>
+      </div>
+
+      <div  ng-hide="selectedItem.id" class="alert alert-info">
+        Not saved to Database
+      </div>
+
+    </div>
+    <div class="col-md-2">
+      <a class="pull-right btn btn-primary" ng-click="saveDoc()">
+        Save to DB</a>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-10">
       <span class="lead">Title:  <input class="fill" type="text" placeholder="Title" ng-model="selectedItem.title"></span>
     </div>
@@ -11,7 +27,7 @@
   <div class="row">
     <div class="col-md-8">
       <label for="author_inp">By: </label>
-      <input id="author_inp" class="fill" type="text" placeholder="Author(s)" ng-model="selectedItem.author" >
+      <input id="author_inp" class="fill" type="text" placeholder="Author(s)" ng-model="selectedItem.author">
     </div>
     <div class="col-md-4">
       <label for="CatPick">Category: </label>
@@ -24,8 +40,7 @@
       <div class="form-group">
         <br /><br /><label for="inputdefault">Type:</label>
 
-        <select id="sel1" ng-model="selectedItem.type_id"
-            ng-options="typid as typname for (typname, typid) in docTypes" >
+        <select id="sel1" ng-model="selectedItem.type_id" ng-options="typid as typname for (typname, typid) in docTypes">
         </select>
       </div>
     </div>
@@ -52,11 +67,11 @@
     <div class="col-md-2">
       <div class="form-group">
         <a class="pull-right btn btn-primary" uib-tooltip="Populate from Google" ng-click="queryGoogle(selectedItem)">
-          <span  class="glyphicon glyphicon-question-sign"></span>&nbsp;</a>
+          <span class="glyphicon glyphicon-question-sign"></span>&nbsp;</a>
         <a class="pull-right btn btn-primary" uib-tooltip="Revert to last saved" ng-click="revert()">
           <span class="glyphicon glyphicon-repeat"></span>&nbsp;</a>
         <a class="pull-right btn btn-primary" uib-tooltip="Delete from DB" ng-click="deleteDoc()">
-          <span  class="glyphicon glyphicon-trash"></span>&nbsp;</a>
+          <span class="glyphicon glyphicon-trash"></span>&nbsp;</a>
 
       </div>
     </div>
