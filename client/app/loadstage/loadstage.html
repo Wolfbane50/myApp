@@ -42,8 +42,6 @@
 
         <a class="pull-right btn btn-primary" ng-click="newDoc()">
           <span>New...</span></a>
-      <a class="pull-right btn btn-primary" ng-click="setStorageDir()">
-        <span>Storage Directory</span></a>
       <a class="pull-right btn btn-primary" ng-click="saveStage()">
         <span>Save Stage</span></a>
 
@@ -65,8 +63,10 @@
 
     <div class="col-lg-8">
 
-      <p>Storage: {{storageDir}}</p>
-      <p>Stage: {{stageDir}}</p>
+      <p>Storage: {{storageDir}} <a class="btn btn-primary" ng-click="setStorageDir()">
+        <span>Set</span></a></p>
+      <p>Stage: {{stageDir}} <a class="btn btn-primary" ng-click="setStageDir()">
+        <span>Set</span></a></p>
       <div class="detail" ui-view></div>
 
     </div>
