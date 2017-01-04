@@ -53,11 +53,22 @@
 
 
         $scope.setStorageDir = function() {
-          var tmpDir = prompt("Set Storage Directory for Document Library:", "C:/Users/Daniel/myapp/server/api/books/test_dest_dir")
+          var tmpDir = prompt("Set Storage Directory for Document Library:", "C:/Users/Daniel/myapp/server/api/books/test_dest_dir");
           if (tmpDir) {
             $scope.storageDir = tmpDir;
             if ($scope.storageDir.match(/^\w\:\\/)) {
               $scope.storageDir = $scope.storageDir.replace(/\\/g, '/');
+              //                   console.log("Transforming directory to " +  $scope.stageDir);
+            }
+
+          }
+        };
+        $scope.setStageDir = function() {
+          var tmpDir = prompt("Set Stage Directory for Document Library:", "C:/Users/Daniel/myapp/server/api/books/test_stage_dir");
+          if (tmpDir) {
+            $scope.stageDir = tmpDir;
+            if ($scope.stageDir.match(/^\w\:\\/)) {
+              $scope.stageDir = $scope.stageDir.replace(/\\/g, '/');
               //                   console.log("Transforming directory to " +  $scope.stageDir);
             }
 
@@ -152,21 +163,26 @@
                 'Accept': 'application/json'
               }
             }).then(function successCallback(response) {
-              alert("Got staged docs");
-              //console.log("Received data: " + JSON.stringify(response.data));
+              console.log("Received data: " + JSON.stringify(response.data));
               $scope.stageResults = response.data;
-              var docDesc = $scope.stageResults[0];
-              if (docDesc.savedToDb) {
+              var docDesc = $scope.stageResults.docStatus[0];
+              if ($scope.stageResults.overallStatus) {
                 doc.id = docDesc.id;
+                alert("Stage was successful!")
+              } else {
+
+                if (docDesc.savedToDb) {
+                  doc.id = docDesc.id;
+                  alert("Staging failed but document saved to database.")
+                } else {
+                  alert("Staging failed, document not saved to database.")
+                }
+
               }
               $state.go('loadstage.displayResults');
             }, function errorCallback(response) {
               alert("Request for Staged Doc yielded error: " + response.status +
                 ": " + response.data);
-              var docDesc = response.data[0];
-              if (docDesc.savedToDb) {
-                doc.id = docDesc.id;
-              }
 
             });
           }
@@ -288,7 +304,12 @@
         };
 
         $scope.backup = function() {
-          var c2String = angular.toJson($scope.stageDocs);
+          var bkupData = {
+            storageDir: $scope.storageDir,
+            stageDir: $scope.stageDir,
+            stageDocs: $scope.stageDocs
+          };
+          var c2String = angular.toJson(bkupData);
 
           $http({
             method: 'POST',
@@ -312,7 +333,9 @@
             method: 'GET',
             url: '/loadstage_snapshot.json'
           }).then(function successCallback(response) {
-            $scope.stageDocs = response.data;
+            $scope.storageDir = response.data.storageDir;
+            $scope.stageDir = response.data.stageDir;
+            $scope.stageDocs = response.data.stageDocs;
           }, function errorCallback(response) {
             alert("Request for Staged Docs yielded error: " + response.status);
           });
