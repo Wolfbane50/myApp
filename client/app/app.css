@@ -41,3 +41,7 @@
 input.fill {
   width: 100%;
 }
+
+img, embed, object, video {
+  max-width: 100%;
+}
