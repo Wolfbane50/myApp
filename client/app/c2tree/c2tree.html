@@ -1,20 +1,37 @@
 
 <div class="container">
-  <div class="row">
-    <div class="col-lg-4">
-      <h2>C2 Documents</h2>
+  <div class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+      <div class="navbar-header ">
+        <a class="navbar-toggle pull-right btn btn-primary" ng-click="isCollapsed = !isCollapsed">
+          <span  class="glyphicon glyphicon-align-justify"></span>&nbsp;</a>
+        <a href="/" class="navbar-brand">C2 Documents</a>
+      </div>
+      <div uib-collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav pull-right">
+        <li role="menuitem">
+        <a ng-show="selItem" class="navbar-link" ng-click="docAdd()">
+          <span>Add Document</span></a>
+        </li>
+        <li role="menuitem">
+        <a class="pull-right navbar-link" ng-click="showJSONstuff()">
+          <span>Generate JSON</span></a>
+        </li>
+        <li role="menuitem">
+        <a class="pull-right navbar-link" ng-click="commitChanges()">
+          <span>Commit Changes</span></a>
+        </li>
+        <li role="menuitem">
+        <a class="pull-right navbar-link" ng-click="backup()">
+          <span>Backup</span></a>
+        </li>
+        <li role="menuitem">
+        <a class="pull-right navbar-link" ng-click="flushLocal()">
+          <span>Flush Local</span></a>
+        </li>
+
+      </ul>
     </div>
-    <div class="col-lg-8" id="buttonBar">
-      <a ng-show="selItem" class="btn btn-primary" ng-click="docAdd()">
-        <span>Add Document</span></a>
-      <a class="pull-right btn btn-primary" ng-click="showJSONstuff()">
-        <span>Generate JSON</span></a>
-      <a class="pull-right btn btn-primary" ng-click="commitChanges()">
-        <span>Commit Changes</span></a>
-      <a class="pull-right btn btn-primary" ng-click="backup()">
-        <span>Backup</span></a>
-      <a class="pull-right btn btn-primary" ng-click="flushLocal()">
-        <span>Flush Local</span></a>
     </div>
   </div>
 

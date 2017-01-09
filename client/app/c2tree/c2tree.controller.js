@@ -6,6 +6,7 @@
   angular.module('myappApp')
     .controller('c2Ctrl', [ '$scope', '$http', function($scope, $http) {
 
+      $scope.isCollapsed = true;
       $scope.showJSON = false;
       this.docs = [];
 
