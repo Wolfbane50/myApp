@@ -1,0 +1,97 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+span.glyphicon {
+  height: 24px;
+  width: 24px;
+  color: black;
+  font-weight: bold;
+}
+
+.title {
+  font-size: 2.5em;
+  text-align: center;
+}
+
+.box {
+  width: 100%;
+  min-height: 150px;
+}
+
+
+/*  Side tree view */
+.dark_blue, .main_container {
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.main_container {
+  width: 100%;
+  height: 100%;
+}
+
+.dark_blue {
+  background-color: #2A457A;
+  color: #efefef;
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  -webkit-transform: translate(-300px, 0);
+  transform: translate(-300px, 0);
+  transition: transform 0.3s ease;
+}
+
+.dark_blue.open {
+  -webkit-transform: translate(0,0);
+  transform: translate(0, 0);
+}
+
+.light_blue {
+  background-color: #099DD9;
+}
+
+.green {
+  background-color: #0C8542;
+}
+
+.lime {
+  background-color: rgb(179, 210, 52);
+}
+
+.seafoam {
+  background-color: rgb(77, 190, 161);
+}
+
+.red {
+  background-color: #EC1D3B;
+}
+
+.orange {
+  background-color: #F79420;
+}
+
+
+/*
+These are the responsive styles. Throw some breakpoints in here!
+*/
+
+.box {
+  width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+  .dark_blue {
+    poition: relative;
+    transform: translate(0, 0);
+  }
+  .view_container {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+  .main_container {
+    width: auto;
+    flex-grow: 1;
+  }
+}

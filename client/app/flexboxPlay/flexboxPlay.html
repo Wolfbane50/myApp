@@ -1,0 +1,20 @@
+<div class="view_container">
+  <div class="dark_blue" ng-class="{ open: isSideOpen }">
+    <button type="button" class="pull-right btn btn-default btn-lg" uib-tooltip="Open Tree" ng-click="toggleSide()">
+      <span  class="glyphicon glyphicon-triangle-right fa-lg" ></span>
+      <span  class="glyphicon glyphicon-trash" ></span>Yo
+    </button>
+
+  </div>
+  <div class="main_container">
+    <a id="menu" class="pull-right" ng-click="toggleSide()">>
+       <svg xmlns="http://www.w3.org/2000/svg" height="24px"  widht="24px" viewBox="0 0 24 24">
+         <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
+        </svg>
+    </a>
+    <div class="box light_blue"></div>
+    <div class="box green"></div>
+    <div class="box red"></div>
+    <div class="box orange"></div>
+  </div>
+</div>
