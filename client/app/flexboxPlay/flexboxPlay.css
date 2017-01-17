@@ -33,19 +33,37 @@ span.glyphicon {
 }
 
 .dark_blue {
+  padding-right: 0;
   background-color: #2A457A;
   color: #efefef;
   width: 300px;
   height: 100%;
   position: absolute;
-  -webkit-transform: translate(-300px, 0);
-  transform: translate(-300px, 0);
+  -webkit-transform: translate(-275px, 0);
+  transform: translate(-275px, 0);
   transition: transform 0.3s ease;
 }
 
 .dark_blue.open {
   -webkit-transform: translate(0,0);
   transform: translate(0, 0);
+}
+
+.side-button {
+  background-color: #2A457A;
+  border-color: #099DD9;
+  padding-right: 0;
+  padding-left: 0;
+  height: 100%;
+}
+
+.side-button-icon {
+  color: white;
+}
+
+.outline-box {
+  height: 100%;
+  overflow:scroll;
 }
 
 .light_blue {
@@ -86,6 +104,10 @@ These are the responsive styles. Throw some breakpoints in here!
     poition: relative;
     transform: translate(0, 0);
   }
+  .side-button {
+     display: none;
+  }
+
   .view_container {
     display: flex;
     flex-flow: row nowrap;

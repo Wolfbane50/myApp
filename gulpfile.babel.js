@@ -286,7 +286,6 @@ gulp.task('inject:css', () => {
     return gulp.src(paths.client.mainView)
         .pipe(plugins.inject(
             gulp.src(`${clientPath}/{app,components}/**/*.css`, {read: false})
-//                .pipe(plugins.print),
                 .pipe(plugins.sort()),
             {
                 starttag: '<!-- injector:css -->',
@@ -295,6 +294,10 @@ gulp.task('inject:css', () => {
             }))
         .pipe(gulp.dest(clientPath));
 });
+
+//gulp.task('printStyles', () => {
+//  return gulp.src(paths.)
+//});
 
 gulp.task('styles', () => {
     return gulp.src(paths.client.styles)
@@ -509,12 +512,17 @@ gulp.task('test:client', ['wiredep:test', 'constant'], (done) => {
 gulp.task('wiredep:client', () => {
     return gulp.src(paths.client.mainView)
         .pipe(wiredep({
+            directory: paths.client.bower,
             exclude: [
                 /bootstrap.js/,
                 '/json3/',
                 '/es5-shim/'
             ],
-            ignorePath: clientPath
+//            ignorePath: clientPath,
+            onPathInjected: function(fileObject) {
+              console.log("Injected " + fileObject.path);
+            }
+
         }))
         .pipe(gulp.dest(`${clientPath}/`));
 });

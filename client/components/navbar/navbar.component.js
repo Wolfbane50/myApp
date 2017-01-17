@@ -18,7 +18,7 @@
         // Collapse the Navbar when changing state.
         $rootScope.$on('$stateChangeStart',
            function(event, toState, toParams, fromState, fromParams) {
-             //console.log("Changing state...");
+             console.log("Changing state...");
              navScope.isCollapsed = true;
            });
 
