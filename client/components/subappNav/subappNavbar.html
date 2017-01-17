@@ -1,0 +1,14 @@
+<div class="navbar navbar-inverse navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header ">
+      <a class="navbar-toggle pull-right btn btn-primary" ng-click="isCollapsed = !isCollapsed">
+        <span class="glyphicon glyphicon-align-justify"></span>&nbsp;</a>
+      <a ui-sref="$ctrl.state" class="navbar-brand">{{$ctrl.name}}</a>
+    </div>
+    <div uib-collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+    <ul class="nav navbar-nav pull-right">
+      <div class="navbar-content" ng-transclude></div>
+    </ul>
+    </div>
+  </div>
+</div>

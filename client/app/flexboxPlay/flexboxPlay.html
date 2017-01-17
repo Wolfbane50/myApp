@@ -1,4 +1,8 @@
 <div class="view_container">
+  <subapp-navbar name="Flex Box play" state="flexbox_play">
+     <subapp-nav action="cb1()">Callback 1</subapp-nav>
+     <subapp-nav action="cb2()">Callback 2</subapp-nav>
+  </subapp-navbar>
   <div class="dark_blue" ng-class="{ open: isSideOpen }">
     <button type="button" class="pull-right side-button" uib-tooltip="Open Tree" ng-click="toggleSide()">
       <span  ng-hide="isSideOpen" class="glyphicon glyphicon-menu-right fa-lg side-button-icon" ></span>
