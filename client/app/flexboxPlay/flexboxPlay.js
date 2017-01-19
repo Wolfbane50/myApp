@@ -3,7 +3,7 @@ angular.module('myappApp')
     $stateProvider
       .state('flexboxPlay', {
         url: '/flexbox_play',
-        template: '<flexboxplay></flexboxplay>',
+        component: 'flexboxPlayComponent',
         css: 'app/flexboxPlay/flexboxPlay.css'
       });
   });

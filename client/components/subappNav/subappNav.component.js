@@ -4,7 +4,7 @@
 (function() {
 
   angular.module('myappApp')
-    .component('subapp-navbar', {
+    .component('subappNavbar', {
       transclude: true,
       bindings : {
         name: '@',
@@ -14,7 +14,10 @@
         var navs = this.navs = [];
         this.isCollapsed = true;
         this.$onInit = function() {
-          console.log("In navbar.onInit");
+          console.log("In navbar.onInit, name = " + this.name + ", state =  "+ this.state);
+        };
+        this.toggleNav - function() {
+          this.isCollapsed = !(this.isCollapsed);
         };
         this.addNav = function(nav) {
           navs.push(nav);
@@ -23,20 +26,25 @@
       templateUrl: 'components/subappNav/subappNavbar.html'
 
     })
-    .component('subapp-nav', {
+    .component('subappNav', {
       transclude: true,
       bindings: {
-        action: '@'
+        onAction: '&'
       },
       require: {
-        navsCtrl: '^subapp-navbar'
+        navsCtrl: '^subappNavbar'
       },
-      templateUrl: 'components/subappNav/subappNavbar.html',
+      templateUrl: 'components/subappNav/subappNav.html',
       controller: function() {
         this.$onInit = function() {
-          console.log("Adding nav from nav.onInit");
-          this.navsCtlr.addNav(this);
-        }
+          console.log("Adding nav from nav.onInit, action = " + this.action);
+          this.navsCtrl.addNav(this);
+        };
+        this.action = function() {
+          //alert("Callback in Nav, will forward to " + this.onAction);
+          this.onAction();
+        };
+
       }
     });
 

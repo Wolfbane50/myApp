@@ -1,12 +1,16 @@
-<div class="view_container">
   <subapp-navbar name="Flex Box play" state="flexbox_play">
-     <subapp-nav action="cb1()">Callback 1</subapp-nav>
-     <subapp-nav action="cb2()">Callback 2</subapp-nav>
+     <subapp-nav on-action="$ctrl.cb1()">Callback 1</subapp-nav>
+     <subapp-nav on-action="$ctrl.cb2()">Callback 2</subapp-nav>
+     <subapp-nav on-action="$ctrl.cb2()">Callback 2</subapp-nav>
+     <subapp-nav on-action="$ctrl.cb2()">Callback 2</subapp-nav>
+     <subapp-nav on-action="$ctrl.cb2()">Callback 2</subapp-nav>
+     <subapp-nav on-action="$ctrl.cb2()">Callback 2</subapp-nav>
   </subapp-navbar>
-  <div class="dark_blue" ng-class="{ open: isSideOpen }">
-    <button type="button" class="pull-right side-button" uib-tooltip="Open Tree" ng-click="toggleSide()">
-      <span  ng-hide="isSideOpen" class="glyphicon glyphicon-menu-right fa-lg side-button-icon" ></span>
-      <span  ng-show="isSideOpen" class="glyphicon glyphicon-menu-left fa-lg side-button-icon" ></span>
+<div class="view_container">
+  <div class="dark_blue" ng-class="{ open: $ctrl.isSideOpen }">
+    <button type="button" class="pull-right side-button" uib-tooltip="Open Tree" ng-click="$ctrl.toggleSide()">
+      <span  ng-hide="$ctrl.isSideOpen" class="glyphicon glyphicon-menu-right fa-lg side-button-icon" ></span>
+      <span  ng-show="$ctrl.isSideOpen" class="glyphicon glyphicon-menu-left fa-lg side-button-icon" ></span>
     </button>
     <div class="outline-box">
 
@@ -106,7 +110,7 @@
 
   </div>
   <div class="main_container">
-    <a id="menu" class="pull-right" ng-click="toggleSide()">>
+    <a id="menu" class="pull-right" ng-click="$ctrl.toggleSide()">>
        <svg xmlns="http://www.w3.org/2000/svg" height="24px"  widht="24px" viewBox="0 0 24 24">
          <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
         </svg>
