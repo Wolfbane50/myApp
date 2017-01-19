@@ -46,13 +46,14 @@ img, embed, object, video {
   max-width: 100%;
 }
 
+/**
 span.glyphicon {
   height: 24px;
   width: 24px;
   color: white;
   font-weight: bold;
 }
-
+*/
 .title {
   font-size: 2.5em;
   text-align: center;
@@ -65,34 +66,35 @@ span.glyphicon {
 
 
 /*  Side tree view */
-.dark_blue, .main_container {
+.sidebar, .main_container {
   padding: 1em;
   box-sizing: border-box;
 }
 
 .main_container {
+  padding-left: 10px;
   width: 100%;
   height: 100%;
 }
 
-.dark_blue {
+.sidebar {
   padding-right: 0;
   background-color: #2A457A;
   color: #efefef;
   width: 300px;
   height: 100%;
   position: absolute;
-  -webkit-transform: translate(-275px, 0);
-  transform: translate(-275px, 0);
+  -webkit-transform: translate(-290px, 0);
+  transform: translate(-290px, 0);
   transition: transform 0.3s ease;
 }
 
-.dark_blue.open {
+.sidebar.open {
   -webkit-transform: translate(0,0);
   transform: translate(0, 0);
 }
 
-.side-button {
+.sidebar-button {
   background-color: #2A457A;
   border-color: #099DD9;
   padding-right: 0;
@@ -100,13 +102,13 @@ span.glyphicon {
   height: 100%;
 }
 
-.side-button-icon {
+.sidebar-button-icon {
   color: white;
 }
 
-.outline-box {
+.sidebar-content-box {
   height: 100%;
-  overflow:scroll;
+  overflow: auto;
 }
 
 .light_blue {
@@ -143,11 +145,11 @@ These are the responsive styles. Throw some breakpoints in here!
 }
 
 @media screen and (min-width: 600px) {
-  .dark_blue {
-    poition: relative;
+  .sidebar {
+    position: relative;
     transform: translate(0, 0);
   }
-  .side-button {
+  .sidebar-button {
      display: none;
   }
 
@@ -156,6 +158,7 @@ These are the responsive styles. Throw some breakpoints in here!
     flex-flow: row nowrap;
   }
   .main_container {
+    padding-left: 0;
     width: auto;
     flex-grow: 1;
   }

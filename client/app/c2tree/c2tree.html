@@ -1,169 +1,128 @@
-
-<div class="container">
-  <div class="navbar navbar-inverse navbar-static-top">
-    <div class="container-fluid">
-      <div class="navbar-header ">
-        <a class="navbar-toggle pull-right btn btn-primary" ng-click="isCollapsed = !isCollapsed">
-          <span  class="glyphicon glyphicon-align-justify"></span>&nbsp;</a>
-        <a href="/" class="navbar-brand">C2 Documents</a>
+<subapp-navbar name="C2 Documents" state="c2tree">
+  <subapp-nav on-action="$ctrl.docAdd()">Add Document</subapp-nav>
+  <subapp-nav on-action="$ctrl.showJSONstuff()">Generate JSON</subapp-nav>
+  <subapp-nav on-action="$ctrl.commitChanges()">Commit Changes</subapp-nav>
+  <subapp-nav on-action="$ctrl.backup()">Backup</subapp-nav>
+  <subapp-nav on-action="$ctrl.flushLocal()">Flush Local</subapp-nav>
+</subapp-navbar>
+<div class="view_container">
+  <sidebar>
+    <!-- Nested list template -->
+    <script type="text/ng-template" id="items_renderer.html">
+      <div ui-tree-handle>
+        <a class="btn btn-default btn-xs" data-nodrag ng-click="$ctrl.toggle(this)">
+          <span class="glyphicon" ng-class="$ctrl.itemIcon(this)"></span></a>
+        <span data-nodrag><a ng-click="$ctrl.itemSelect(this)" ng-class="$ctrl.selectedItemClass(this)">{{item.name}}</a></span>
+        <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="$ctrl.sureRemove(this)">
+          <span class="glyphicon glyphicon-remove"></span></a>
+        <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="$ctrl.newSubItem(this)" style="margin-right: 8px;">
+          <span class="glyphicon glyphicon-plus"></span></a>
       </div>
-      <div uib-collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
-      <ul class="nav navbar-nav pull-right">
-        <li role="menuitem">
-        <a ng-show="selItem" class="navbar-link" ng-click="docAdd()">
-          <span>Add Document</span></a>
+      <ol ui-tree-nodes="$ctrl.options" ng-model="item.items" ng-class="{hidden: collapsed}">
+        <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'">
         </li>
-        <li role="menuitem">
-        <a class="pull-right navbar-link" ng-click="showJSONstuff()">
-          <span>Generate JSON</span></a>
-        </li>
-        <li role="menuitem">
-        <a class="pull-right navbar-link" ng-click="commitChanges()">
-          <span>Commit Changes</span></a>
-        </li>
-        <li role="menuitem">
-        <a class="pull-right navbar-link" ng-click="backup()">
-          <span>Backup</span></a>
-        </li>
-        <li role="menuitem">
-        <a class="pull-right navbar-link" ng-click="flushLocal()">
-          <span>Flush Local</span></a>
-        </li>
+      </ol>
+    </script>
+    <div ui-tree="$ctrl.options">
 
-      </ul>
+      <a class="btn btn-primary btn-xs" ng-click="$ctrl.myCollapseAll()">
+        <span>Collapse Tree</span></a>
+      <a class="btn btn-primary btn-xs" ng-click="$ctrl.myExpandAll()">
+        <span>Expand Tree</span></a>
+
+      <ol ui-tree-nodes ng-model="$ctrl.list">
+        <li ng-repeat="item in $ctrl.list track by $index" ui-tree-node data-collapsed="true" ng-include="'items_renderer.html'"></li>
+      </ol>
     </div>
+
+  </sidebar>
+  <div class="main_container">
+    <div ng-show="$ctrl.showJSON">
+      <a class="btn btn-default btn-xs" ng-click="$ctrl.doneJSON()">
+        <span>Done with JSON</span></a>
+
+      <pre class="code">{{ $ctrl.list | json }}</pre>
     </div>
-  </div>
+    <div id="response_pane">
+      <div ng-hide="$ctrl.selItem">
+        <h1>Select an Item from tree ...</h1></div>
+      <div ng-show="$ctrl.selItem">
+        <div ng-show="$ctrl.docs.length">
+          <h1 ng-model="$ctrl.selItem">{{$ctrl.selItem.name}} Documents</h1>
+          <table border="1" cellpadding="5" cellspacing="2" ng-model="$ctrl.docs">
+            <thead>
+              <tr>
+                <th align=center><b>Name</b></th>
+                <th align=center><b>Author</b></th>
+                <th align=center><b>Date</b></th>
+              </tr>
+            </thead>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-lg-4" style="height: 750px; overflow:scroll;">
-
-          <!-- Nested list template -->
-          <script type="text/ng-template" id="items_renderer.html">
-            <div ui-tree-handle>
-              <a class="btn btn-default btn-xs" data-nodrag ng-click="toggle(this)">
-                <span class="glyphicon" ng-class="itemIcon(this)"></span></a>
-              <span data-nodrag><a ng-click="itemSelect(this)" ng-class="selectedItemClass(this)">{{item.name}}</a></span>
-              <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="sureRemove(this)">
-                <span class="glyphicon glyphicon-remove"></span></a>
-              <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-            <ol ui-tree-nodes="options" ng-model="item.items" ng-class="{hidden: collapsed}">
-              <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'">
-              </li>
-            </ol>
-          </script>
-          <div ui-tree="options">
-
-            <a class="btn btn-primary btn-xs" ng-click="myCollapseAll()">
-              <span>Collapse Tree</span></a>
-            <a class="btn btn-primary btn-xs" ng-click="myExpandAll()">
-              <span>Expand Tree</span></a>
-
-            <ol ui-tree-nodes ng-model="list">
-              <li ng-repeat="item in list track by $index" ui-tree-node data-collapsed="true" ng-include="'items_renderer.html'"></li>
-            </ol>
-          </div>
-        </div>
-        <div class="col-lg-8">
-          <div ng-show="showJSON">
-            <a class="btn btn-default btn-xs" ng-click="doneJSON()">
-              <span>Done with JSON</span></a>
-
-            <pre class="code">{{ list | json }}</pre>
-          </div>
-          <div id="response_pane">
-            <div ng-hide="selItem">
-              <h1>Select an Item from tree ...</h1></div>
-            <div ng-show="selItem">
-              <div ng-show="docs.length">
-                <h1 ng-model="selItem">{{selItem.name}} Documents</h1>
-                <table border="1" cellpadding="5" cellspacing="2" ng-model="docs">
-                  <thead>
-                    <tr>
-                      <th align=center><b>Name</b></th>
-                      <th align=center><b>Author</b></th>
-                      <th align=center><b>Date</b></th>
-                    </tr>
-                  </thead>
-
-                  <tbody ng-repeat="doc in docs">
-                    <tr>
-                      <td>&nbsp;<a href="{{doc.link}}" target="_blank">
+            <tbody ng-repeat="doc in $ctrl.docs">
+              <tr>
+                <td>&nbsp;<a href="{{doc.link}}" target="_blank">
                 {{doc.name}}
               </a></td>
-                      <td>&nbsp;{{doc.author}}</td>
-                      <td>&nbsp;{{doc.date}}</td>
-                      <td>
-                        <a class="btn btn-default btn-xs" ng-click="docUp($index)">
-                          <span class="glyphicon glyphicon-arrow-up"></span></a>
-                      </td>
-                      <td>
-                        <a class="btn btn-default btn-xs" ng-click="docDown($index)">
-                          <span class="glyphicon glyphicon-arrow-down"></span></a>
-                      </td>
-                      <td>
-                        <a class="btn btn-default btn-xs" ng-click="docEdit($index)">
-                          <span class="glyphicon glyphicon-pencil"></span></a>
-                      </td>
-                      <td>
-                        <a class="btn btn-default btn-xs" ng-click="docDel($index)">
-                          <span class="glyphicon glyphicon-remove"></span></a>
-                      </td>
+                <td>&nbsp;{{doc.author}}</td>
+                <td>&nbsp;{{doc.date}}</td>
+                <td>
+                  <a class="btn btn-default btn-xs" ng-click="$ctrl.docUp($index)">
+                    <span class="glyphicon glyphicon-arrow-up"></span></a>
+                </td>
+                <td>
+                  <a class="btn btn-default btn-xs" ng-click="$ctrl.docDown($index)">
+                    <span class="glyphicon glyphicon-arrow-down"></span></a>
+                </td>
+                <td>
+                  <a class="btn btn-default btn-xs" ng-click="$ctrl.docEdit($index)">
+                    <span class="glyphicon glyphicon-pencil"></span></a>
+                </td>
+                <td>
+                  <a class="btn btn-default btn-xs" ng-click="$ctrl.docDel($index)">
+                    <span class="glyphicon glyphicon-remove"></span></a>
+                </td>
 
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div ng-hide="docs.length">
-                <h2>No documents to show</h2></div>
-            </div>
-            <div ng-show="editDoc.name">
-              <h3>Enter Document Information</h3>
-              <table>
-                <tr>
-                  <td>Title</td>
-                  <td>Author</td>
-                  <td>Date</td>
-                  <td>Link</td>
-                </tr>
-                <tr>
-                  <td>
-                    <input ng-model="editDoc.name">
-                  </td>
-                  <td>
-                    <input ng-model="editDoc.author">
-                  </td>
-                  <td>
-                    <input ng-model="editDoc.date">
-                  </td>
-                  <td>
-                    <input ng-model="editDoc.link">
-                  </td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>
-                    <button ng-click="docEditCancel()">Cancel</button>
-                    &nbsp;
-                    <button ng-click="docEditOK()">OK</button>
-                  </td>
-                </tr>
-              </table>
-            </div>
-
-
-
-          </div>
+              </tr>
+            </tbody>
+          </table>
         </div>
-
+        <div ng-hide="$ctrl.docs.length">
+          <h2>No documents to show</h2></div>
       </div>
-
+      <div ng-show="$ctrl.editDoc.name">
+        <h3>Enter Document Information</h3>
+        <table>
+          <tr>
+            <td>Title</td>
+            <td>Author</td>
+            <td>Date</td>
+            <td>Link</td>
+          </tr>
+          <tr>
+            <td>
+              <input ng-model="$ctrl.editDoc.name">
+            </td>
+            <td>
+              <input ng-model="$ctrl.editDoc.author">
+            </td>
+            <td>
+              <input ng-model="$ctrl.editDoc.date">
+            </td>
+            <td>
+              <input ng-model="$ctrl.editDoc.link">
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>
+              <button ng-click="$ctrl.docEditCancel()">Cancel</button> &nbsp;
+              <button ng-click="$ctrl.docEditOK()">OK</button>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>

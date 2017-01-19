@@ -5,11 +5,6 @@
   class FlexboxPlayComponent {
     constructor() {
       // Do I need the navbar/nav here ?
-      this.isSideOpen = false;
-      this.toggleSide = function() {
-        this.isSideOpen = !(this.isSideOpen);
-        console.log("Toggling Side Open to " +  this.isSideOpen);
-      };
       this.cb1 = function() {
           alert("Callback One");
         };

@@ -2,201 +2,213 @@
 
 (function() {
 
-
-  angular.module('myappApp')
-    .controller('c2Ctrl', [ '$scope', '$http', function($scope, $http) {
-
-      $scope.isCollapsed = true;
-      $scope.showJSON = false;
+  class C2treeComponent {
+    constructor($http, $scope, $uibModal) {
+      this.$http = $http;
+      this.isCollapsed = true;
+      this.showJSON = false;
       this.docs = [];
 
       this.selItem = {};
-      var treeCtlScope = $scope;
+      this.selectedItem = {};
 
+       this.options = {};
+
+      this.addingDoc = false;
+      var treeCtlScope = $scope;
+      //=================================
+      // Scope methods
+      //=================================
+      this.selectedItemClass = function(scope) {
+          var nodeData = scope.$modelValue;
+          if (this.selItem == nodeData) {
+              return 'dhitem-selected';
+          } else {
+              return 'dhitem';
+          }
+      };
+
+    this.itemIcon = function(scope) {
+         if (scope.hasChild()) {
+           return scope.collapsed ? 'glyphicon-folder-close' :'glyphicon-folder-open';
+         } else {
+           return 'glyphicon-file';
+         }
+      };
+
+    this.myCollapseAll = function() {
+        $scope.$broadcast('angular-ui-tree:collapse-all');
+      };
+      this.myExpandAll = function() {
+         $scope.$broadcast('angular-ui-tree:expand-all');
+      };
+      this.sureRemove = function(scope) {
+        if (confirm("Are you sure you want to delete this node?")) {
+           scope.remove();
+         }
+      };
+
+      this.toggle = function(scope) {
+        scope.toggle();
+      };
+
+      this.newSubItem = function(scope) {
+        var nodeData = scope.$modelValue;
+        if (nodeData.items == null) {
+         nodeData.items = [];
+        }
+
+        var newName = prompt("Name of new item: ");
+        nodeData.items.push({
+          //id: nodeData.id * 10 + nodeData.items.length,
+          id: new Date(),
+          name: newName,
+          docs: [],
+          items: []
+        });
+      };
+
+      this.itemSelect = function (scope) {
+         this.selItem = scope.$modelValue;
+         //alert("Selected item:  " + this.selItem.name);
+         this.docs = this.selItem.docs;
+      };
+
+      this.docDown = function (docNum) {
+        if (docNum == (this.docs.length - 1)) {
+          return;
+        }
+        var tmpDoc = this.docs[docNum + 1];
+
+        this.docs[docNum + 1] = this.docs[docNum];
+        this.docs[docNum] = tmpDoc;
+
+      };
+
+    this.docUp = function (docnum) {
+         if (docnum == 0) {
+           return;
+         }
+         var tmpDoc = this.docs[docnum - 1];
+
+         this.docs[docnum - 1] =things.docs[docnum];
+         this.docs[docnum] = tmpDoc;
+
+      };
+
+    this.docDel = function (docnum) {
+         if (confirm("Are you sure you want to delete this document?")) {
+           this.docs.splice(docnum, 1);
+         }
+      };
+
+    this.docEdit = function (docNum) {
+           //alert("editing " + docNum);
+           this.editDoc = this.docs[docNum];
+           this.oldName = this.editDoc.name;
+           this.oldAuthor = this.editDoc.author;
+           this.oldDate = this.editDoc.date;
+           this.oldLink = this.editDoc.link;
+      };
+
+      this.docEditCancel = function() {
+         if (this.oldName) {
+            this.editDoc.name = this.oldName;
+            this.editDoc.author = this.oldAuthor;
+            this.editDoc.date = this.oldDate;
+            this.editDoc.link = this.oldLink;
+         }
+         this.editDoc = {};
+         this.addingDoc = false;
+      };
+
+      this.docEditOK = function() {
+          if (this.addingDoc == true) {
+             if (this.docs) {
+                 // Some Validation would be nice here
+                 this.docs.push(this.editDoc);
+                 this.addingDoc = false;
+             } else {
+                  this.selItem.docs = [ this.editDoc ];
+             }
+          }
+          this.editDoc = {};
+      };
+
+      this.docAdd = function() {
+         this.addingDoc = true;
+         this.editDoc = {
+           name: " ",
+           author: "",
+           date: "",
+           link: ""
+         };
+      };
+
+      this.showJSONstuff = function() {
+           this.showJSON = true;
+      };
+
+      this.doneJSON = function() {
+           this.showJSON = false;
+      };
+
+      this.commitChanges = function() {
+         var c2String = angular.toJson(this.list);
+         localStorage.setItem("c2portal", c2String);
+         alert("C2 Data saved to Local Storage");
+      };
+
+      this.flushLocal = function() {
+         if (confirm("Are you really really sure you want to delete local storage?")) {
+           localStorage.removeItem("c2portal");
+           alert("Local Storage Deleted!");
+         }
+      };
+
+      this.backup = function() {
+              var c2String = angular.toJson(this.list);
+
+              $http({ method: 'POST', url: '/api/backups/',
+                   data: { "c2_data" : c2String,
+                           "bkfile" : "c2snapshot"
+               } }).success(function(data) {
+                   alert("Backup Successful!\n\n" + data);
+               }).error(function(data, status, headers, config) {
+                 // Handle the error
+                    alert("Backup failed with status: " + status);
+               });
+
+      };
+
+  } // end constructor
+    $onInit() {
+      //console.log("Ran onInit for c2tree component");
       var c2DataStr = localStorage.getItem("c2portal");
       if (c2DataStr) {
           //alert("Getting data from local store");
 
-             treeCtlScope.list = angular.fromJson(c2DataStr);
+             this.list = angular.fromJson(c2DataStr);
        } else {
-            $http({ method: 'GET', url: 'c2snapshot.json', cache: true }).success(function(data) {
-            //alert("Got data ");
-                treeCtlScope.list = data;
+            this.$http.get('c2snapshot.json', {
+              cache: true
+            }).then(response => {
+            //alert("Got c2 tree data ");
+               this.list = response.data;
+            }, function errorCallback(response) {
+                alert("Request for C2 data yielded error: " + response.status);
             });
        }
-       $scope.selectedItem = {};
+    } // end onInit
 
-       $scope.options = {};
+  } // end class for component
 
-       $scope.addingDoc = false;
+  angular.module('myappApp')
+    .component('c2treeComponent', {
+      controller: C2treeComponent,
+      // styleUrls: [ 'app/flexboxPlay/flexboxPlay.css' ],  Angular 2 feature
+      templateUrl: 'app/c2tree/c2tree.html'
+    });
 
-
-       //=================================
-       // Scope methods
-       //=================================
-       $scope.selectedItemClass = function(scope) {
-           var nodeData = scope.$modelValue;
-       	   if ($scope.selItem == nodeData) {
-       		     return 'dhitem-selected';
-       	   } else {
-       		     return 'dhitem';
-       	   }
-       };
-
-       $scope.itemIcon = function(scope) {
-        	if (scope.hasChild()) {
-       	  	return scope.collapsed ? 'glyphicon-folder-close' :'glyphicon-folder-open';
-        	} else {
-        		return 'glyphicon-file';
-        	}
-       };
-
-       $scope.myCollapseAll = function() {
-         $scope.$broadcast('angular-ui-tree:collapse-all');
-       };
-       $scope.myExpandAll = function() {
-          $scope.$broadcast('angular-ui-tree:expand-all');
-       };
-       $scope.sureRemove = function(scope) {
-     	   if (confirm("Are you sure you want to delete this node?")) {
-     	      scope.remove();
-        	}
-       };
-
-       $scope.toggle = function(scope) {
-         scope.toggle();
-       };
-
-       $scope.newSubItem = function(scope) {
-         var nodeData = scope.$modelValue;
-         if (nodeData.items == null) {
-         	nodeData.items = [];
-         }
-
-         var newName = prompt("Name of new item: ");
-         nodeData.items.push({
-           //id: nodeData.id * 10 + nodeData.items.length,
-           id: new Date(),
-           name: newName,
-           docs: [],
-           items: []
-         });
-       };
-
-       $scope.itemSelect = function (scope) {
-       	  $scope.selItem = scope.$modelValue;
-       	  //alert("Selected item:  " + $scope.selItem.name);
-       	  $scope.docs = $scope.selItem.docs;
-       };
-
-       $scope.docDown = function (docNum) {
-   	     if (docNum == ($scope.docs.length - 1)) {
-   		     return;
-   	     }
-   	     var tmpDoc = $scope.docs[docNum + 1];
-
-      	 $scope.docs[docNum + 1] = $scope.docs[docNum];
-       	 $scope.docs[docNum] = tmpDoc;
-
-       };
-
-       $scope.docUp = function (docnum) {
-        	if (docnum == 0) {
-        		return;
-        	}
-        	var tmpDoc = $scope.docs[docnum - 1];
-
-        	$scope.docs[docnum - 1] = $scope.docs[docnum];
-        	$scope.docs[docnum] = tmpDoc;
-
-       };
-
-       $scope.docDel = function (docnum) {
-        	if (confirm("Are you sure you want to delete this document?")) {
-        		$scope.docs.splice(docnum, 1);
-        	}
-       };
-
-       $scope.docEdit = function (docNum) {
-          	//alert("editing " + docNum);
-          	$scope.editDoc = $scope.docs[docNum];
-          	$scope.oldName = $scope.editDoc.name;
-          	$scope.oldAuthor = $scope.editDoc.author;
-          	$scope.oldDate = $scope.editDoc.date;
-          	$scope.oldLink = $scope.editDoc.link;
-       };
-
-       $scope.docEditCancel = function() {
-         	if ($scope.oldName) {
-           	 $scope.editDoc.name = $scope.oldName;
-           	 $scope.editDoc.author = $scope.oldAuthor;
-           	 $scope.editDoc.date = $scope.oldDate;
-           	 $scope.editDoc.link = $scope.oldLink;
-         	}
-         	$scope.editDoc = {};
-         	$scope.addingDoc = false;
-       };
-
-       $scope.docEditOK = function() {
-           if ($scope.addingDoc == true) {
-            	if ($scope.docs) {
-              	  // Some Validation would be nice here
-              	  $scope.docs.push($scope.editDoc);
-              	  $scope.addingDoc = false;
-            	} else {
-            	     $scope.selItem.docs = [ $scope.editDoc ];
-            	}
-           }
-        	 $scope.editDoc = {};
-       };
-
-       $scope.docAdd = function() {
-       	  $scope.addingDoc = true;
-         	$scope.editDoc = {
-         		name: " ",
-         		author: "",
-         		date: "",
-         		link: ""
-         	};
-       };
-
-       $scope.showJSONstuff = function() {
-          	$scope.showJSON = true;
-       };
-
-       $scope.doneJSON = function() {
-          	$scope.showJSON = false;
-       };
-
-       $scope.commitChanges = function() {
-        	var c2String = angular.toJson($scope.list);
-   	      localStorage.setItem("c2portal", c2String);
-   	      alert("C2 Data saved to Local Storage");
-       };
-
-       $scope.flushLocal = function() {
-   	      if (confirm("Are you really really sure you want to delete local storage?")) {
-   		      localStorage.removeItem("c2portal");
-   		      alert("Local Storage Deleted!");
-   	      }
-       };
-
-       $scope.backup = function() {
-               var c2String = angular.toJson($scope.list);
-
-   	           $http({ method: 'POST', url: '/api/backups/',
-      	            data: { "c2_data" : c2String,
-      	                    "bkfile" : "c2snapshot"
-   	            } }).success(function(data) {
-                 		alert("Backup Successful!\n\n" + data);
-                }).error(function(data, status, headers, config) {
-                  // Handle the error
-                     alert("Backup failed with status: " + status);
-                });
-
-       };
-
-
-  }]);   // end controller
 
 })();

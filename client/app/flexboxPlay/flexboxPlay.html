@@ -1,19 +1,15 @@
-  <subapp-navbar name="Flex Box play" state="flexbox_play">
-     <subapp-nav on-action="$ctrl.cb1()">Callback 1</subapp-nav>
-     <subapp-nav on-action="$ctrl.cb2()">Callback 2</subapp-nav>
-     <subapp-nav on-action="$ctrl.cb2()">Callback 2</subapp-nav>
-     <subapp-nav on-action="$ctrl.cb2()">Callback 2</subapp-nav>
-     <subapp-nav on-action="$ctrl.cb2()">Callback 2</subapp-nav>
-     <subapp-nav on-action="$ctrl.cb2()">Callback 2</subapp-nav>
-  </subapp-navbar>
-<div class="view_container">
-  <div class="dark_blue" ng-class="{ open: $ctrl.isSideOpen }">
-    <button type="button" class="pull-right side-button" uib-tooltip="Open Tree" ng-click="$ctrl.toggleSide()">
-      <span  ng-hide="$ctrl.isSideOpen" class="glyphicon glyphicon-menu-right fa-lg side-button-icon" ></span>
-      <span  ng-show="$ctrl.isSideOpen" class="glyphicon glyphicon-menu-left fa-lg side-button-icon" ></span>
-    </button>
-    <div class="outline-box">
 
+  <subapp-navbar name="Flex Box play" state="flexbox_play">
+     <subapp-nav on-action="$ctrl.cb1()"><span class="btn btn-primary">Callback 1</span></subapp-nav>
+     <subapp-nav on-action="$ctrl.cb2()"><span class="btn btn-primary">Callback 2</span></subapp-nav>
+     <subapp-nav on-action="$ctrl.cb2()"><span class="btn btn-primary">Callback 2</span></subapp-nav>
+     <subapp-nav on-action="$ctrl.cb2()"><span class="btn btn-primary">Callback 2</span></subapp-nav>
+     <subapp-nav on-action="$ctrl.cb2()"><span class="btn btn-primary">Callback 2</span></subapp-nav>
+     <subapp-nav on-action="$ctrl.cb2()"><span class="btn btn-primary">Callback 2</span></subapp-nav>
+  </subapp-navbar>
+
+<div class="view_container">
+  <sidebar>
     <ul>
       <li>Item One</li>
       <ul><li>item one-one</li><li>item one-two</li></ul>
@@ -30,92 +26,15 @@
       <li>Item One</li>
       <li>Item One</li>
       <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-      <li>Item One</li>
-    </ul>
-    </div>
-
-  </div>
-  <div class="main_container">
+      </ul>
+</sidebar>
+<div class="main_container">
     <a id="menu" class="pull-right" ng-click="$ctrl.toggleSide()">>
        <svg xmlns="http://www.w3.org/2000/svg" height="24px"  widht="24px" viewBox="0 0 24 24">
          <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
         </svg>
     </a>
-    <div class="box light_blue"></div>
+    <div class="box light_blue"><p>Here is a whole lot of text to show how this will all work.  And so on and so on.  Forever we go.  Keep typing.  Yeah.</p></div>
     <div class="box green"></div>
     <div class="box red"></div>
     <div class="box orange"></div>

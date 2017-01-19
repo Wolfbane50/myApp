@@ -1,0 +1,9 @@
+<div class="sidebar" ng-class="{ open: $ctrl.isSideOpen }">
+  <button type="button" class="pull-right sidebar-button" uib-tooltip="Open Tree" ng-click="$ctrl.toggleSide()">
+    <span  ng-hide="$ctrl.isSideOpen" class="glyphicon glyphicon-menu-right fa-lg side-button-icon" ></span>
+    <span  ng-show="$ctrl.isSideOpen" class="glyphicon glyphicon-menu-left fa-lg side-button-icon" ></span>
+  </button>
+  <div class="sidebar-content-box" ng-transclude>
+  </div>
+
+</div>

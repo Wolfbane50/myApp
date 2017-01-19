@@ -10,9 +10,4 @@ angular.module('myappApp')
       url: '/spriteGridExample',
       template: '<sprite-grid-example></sprite-grid-example>'
     });
-    $stateProvider.state('c2tree', {
-        url: '/c2tree',
-       template: '<c2tree></c2tree>',
-       css: 'app/c2tree/c2tree.css'
-    });
   });
