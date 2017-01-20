@@ -5,6 +5,6 @@ angular.module('myappApp')
     $stateProvider
       .state('bftree', {
         url: '/bftree',
-        template: '<bftree></bftree>'
+        component: 'bftreeComponent'
       });
   });

@@ -299,6 +299,8 @@
           }, this);
 
           this.modalInstance.dismiss('cancel');
+        }, function errorCallback(response) {
+            alert("Request for BF data yielded error: " + response.status);
 
         });
       } // end of $onInit
@@ -307,7 +309,7 @@
 
 
   angular.module('myappApp')
-    .component('bftree', {
+    .component('bftreeComponent', {
       templateUrl: 'app/bftree/bftree.html',
       controller: BftreeComponent,
       controllerAs: 'Bftree'

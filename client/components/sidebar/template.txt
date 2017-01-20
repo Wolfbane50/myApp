@@ -1,0 +1,8 @@
+<div class="view_container">
+  <sidebar>
+<<<<<< Sidebar content >>>>>>
+  </sidebar>
+    <div class="main_container">
+<<<<<< Main content >>>>>>
+   </div>
+</div>
