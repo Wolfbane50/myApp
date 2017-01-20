@@ -144,7 +144,9 @@ These are the responsive styles. Throw some breakpoints in here!
   width: 100%;
 }
 
+
 @media screen and (min-width: 600px) {
+
   .sidebar {
     position: relative;
     transform: translate(0, 0);
@@ -162,4 +164,7 @@ These are the responsive styles. Throw some breakpoints in here!
     width: auto;
     flex-grow: 1;
   }
+}
+
+
 }
