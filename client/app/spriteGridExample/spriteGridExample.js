@@ -5,6 +5,6 @@ angular.module('myappApp')
     $stateProvider
       .state('spriteGridExample', {
         url: '/spriteGridExample',
-        template: '<sprite-grid-example></sprite-grid-example>'
+        component: 'spriteGridExampleComponent'
       });
   });

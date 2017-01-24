@@ -23,8 +23,8 @@ Filters:  <label>Series:
    <th>Released</th>
    <th>Audio Files</th>
 </tr>
-<tr ng-repeat="rec in bfGridCtrl.audioList | filter:search">
-<td ng-class-odd="'altRow'"><img ng-src="{{gotIt(rec)}}" ></td>
+<tr ng-repeat="rec in $ctrl.audioList | filter:search">
+<td ng-class-odd="'altRow'"><img ng-src="{{$ctrl.gotIt(rec)}}" ></td>
 <td ng-class-odd="'altRow'">{{rec.Series}}</td>
 <td ng-class-odd="'altRow'">{{rec.Number}}</td>
 <td ng-class-odd="'altRow'">{{rec.Title}}</td>

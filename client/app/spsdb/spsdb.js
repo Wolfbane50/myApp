@@ -3,7 +3,6 @@ angular.module('myappApp')
     $stateProvider
       .state('spsdb', {
         url: '/spsdb',
-        template: '<spsdb></spsdb>',
-        css: 'app/spsdb/spsdb.css'
+        component: 'spsdbComponent'
       });
   });

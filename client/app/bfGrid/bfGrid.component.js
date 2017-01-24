@@ -2,7 +2,7 @@
 
 (function(){
 
-class bfGridComponent {
+class BfGridComponent {
   constructor($http, $scope) {
     this.$http = $http;
     this.audioList = [];
@@ -46,10 +46,9 @@ class bfGridComponent {
 }
 
 angular.module('myappApp')
-  .component('bfGrid', {
+  .component('bfGridComponent', {
     templateUrl: 'app/bfGrid/bfGrid.html',
-    controller: bfGridComponent,
-    controllerAs: 'bfGridCtrl'
+    controller: BfGridComponent
   });
 
 })();

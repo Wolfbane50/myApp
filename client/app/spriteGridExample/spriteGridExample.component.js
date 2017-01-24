@@ -12,7 +12,7 @@ class SpriteGridExampleComponent {
 }
 
 angular.module('myappApp')
-  .component('spriteGridExample', {
+  .component('spriteGridExampleComponent', {
     templateUrl: 'app/spriteGridExample/spriteGridExample.html',
     controller: SpriteGridExampleComponent,
     controllerAs: 'SpriteGridExample'

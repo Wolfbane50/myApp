@@ -3,7 +3,6 @@ angular.module('myappApp')
     $stateProvider
       .state('dirExplorer', {
         url: '/dir-explorer',
-        template: '<dir-explorer></dir-explorer>',
-        css: 'app/dirExplorer/dirExplorer.css'
+        component: 'dirExplorerComponent'
       });
   });

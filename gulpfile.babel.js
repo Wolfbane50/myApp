@@ -286,6 +286,7 @@ gulp.task('inject:css', () => {
     return gulp.src(paths.client.mainView)
         .pipe(plugins.inject(
             gulp.src(`${clientPath}/{app,components}/**/*.css`, {read: false})
+            .pipe(plugins.print())
                 .pipe(plugins.sort()),
             {
                 starttag: '<!-- injector:css -->',
@@ -294,6 +295,13 @@ gulp.task('inject:css', () => {
             }))
         .pipe(gulp.dest(clientPath));
 });
+
+gulp.task('check_css_path', () => {
+  gulp.src(`${clientPath}/{app,components}/**/*.css`, {read: false})
+       .pipe(plugins.print());
+
+});
+
 
 //gulp.task('printStyles', () => {
 //  return gulp.src(paths.)
@@ -714,6 +722,7 @@ gulp.task('test:e2e', ['env:all', 'env:test', 'start:server', 'webdriver_update'
             process.exit();
         });
 });
+
 
 /********************
  * Grunt ported tasks

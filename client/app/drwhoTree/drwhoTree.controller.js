@@ -2,38 +2,41 @@
 
 (function() {
 
-    angular.module('myappApp')
-      .controller('drwhoTreeCtrl', ['$scope', '$http', function($scope, $http) {
+    class drwhoTreeComponent {
+      constructor($http, $scope) {
+          //console.log("In bftree constructor");
+          this.episodes = [];
+          this.episodeListText = "";
 
+          this.selItem = {};
+          this.showShow = false;
+          this.videoList = [];
+          this.editMode = false;
 
-          $scope.episodes = [];
-          $scope.selItem = {};
-          $scope.showShow = false;
-          $scope.videoList = [];
-          $scope.editMode = false;
+          this.featuring = [];
+          this.questionMark = "-851px -417px";
+          this.selectedItem = {};
 
-          $scope.featuring = [];
-          $scope.questionMark = "-851px -417px";
+          this.options = {};
+          this.format = 'MMM yyyy';
 
-          var treeCtlScope = $scope;
+          this.popup1 = {
+            opened: false
+          };
 
-          $http.get('drwho_tv_tree.json', {
-            cache: true
-          }).then(response => {
-            console.log("Got Dr Who video data");
-            treeCtlScope.videoList = response.data;
-          });
+          this.$scope = $scope;
+          this.$http = $http;
 
-          $scope.selectedItemClass = function(scope) {
+          this.selectedItemClass = function(scope) {
             var nodeData = scope.$modelValue;
-            if ($scope.selItem == nodeData) {
+            if (this.selItem == nodeData) {
               return 'dhitem-selected';
             } else {
               return 'dhitem';
             }
           };
 
-          $scope.itemIcon = function(scope) {
+          this.itemIcon = function(scope) {
             if (scope.hasChild()) {
               return scope.collapsed ? 'glyphicon-folder-close' : 'glyphicon-folder-open';
             } else {
@@ -41,27 +44,24 @@
             }
           };
 
-          $scope.selectedItem = {};
 
-          $scope.options = {};
-
-          $scope.myCollapseAll = function(scope) {
-            $scope.$broadcast('angular-ui-tree:collapse-all');
+          this.myCollapseAll = function(scope) {
+            this.$scope.$broadcast('angular-ui-tree:collapse-all');
           };
-          $scope.myExpandAll = function(scope) {
-            $scope.$broadcast('angular-ui-tree:expand-all');
+          this.myExpandAll = function(scope) {
+            this.$scope.$broadcast('angular-ui-tree:expand-all');
           };
-          $scope.sureRemove = function(scope) {
+          this.sureRemove = function(scope) {
             if (confirm("Are you sure you want to delete this node?")) {
               scope.remove();
             }
           };
 
-          $scope.toggle = function(scope) {
+          this.toggle = function(scope) {
             scope.toggle();
           };
 
-          $scope.newSubItem = function(scope) {
+          this.newSubItem = function(scope) {
             var nodeData = scope.$modelValue;
             if (nodeData.items == null) {
               nodeData.items = [];
@@ -77,138 +77,147 @@
           };
 
 
-          $scope.setSelectItem = function(item) {
-            $scope.episodeListText = "";
-            $scope.selItem = item;
+          this.setSelectItem = function(item) {
+              this.episodeListText = "";
+              this.selItem = item;
 
-            // If not already done, convert Release Date from ISO string Javascript Date object
-            if ($scope.selItem.Released) {
-              if (! angular.isDate($scope.selItem.Released)) {
-                if (typeof $scope.selItem.Released == "string") {
-                   // Convert ISO 8601 Date string representation ("1999-07-01T00:00:00.000Z") to Javascript Date Object
-                   //console.log("Converting date from ISO string to object...");
-                   var dtstr = $scope.selItem.Released.replace(/\D/g," ");
-                   var dtcomps = dtstr.split(" ");
-                   dtcomps[1]--;
-                   $scope.selItem.Released = new Date(Date.UTC(dtcomps[0],dtcomps[1], dtcomps[2], dtcomps[3], dtcomps[4], dtcomps[5]));
-                } else {
-                  alert("Unknown format for release date of " + $scope.selItem.name + " : " + $scope.selItem.Released);
-                  throw("Database format Error");
+              // If not already done, convert Release Date from ISO string Javascript Date object
+              if (this.selItem.Released) {
+                if (!angular.isDate(this.selItem.Released)) {
+                  if (typeof this.selItem.Released == "string") {
+                    // Convert ISO 8601 Date string representation ("1999-07-01T00:00:00.000Z") to Javascript Date Object
+                    //console.log("Converting date from ISO string to object...");
+                    var dtstr = this.selItem.Released.replace(/\D/g, " ");
+                    var dtcomps = dtstr.split(" ");
+                    dtcomps[1]--;
+                    this.selItem.Released = new Date(Date.UTC(dtcomps[0], dtcomps[1], dtcomps[2], dtcomps[3], dtcomps[4], dtcomps[5]));
+                  } else {
+                    alert("Unknown format for release date of " + this.selItem.name + " : " + this.selItem.Released);
+                    throw ("Database format Error");
 
+                  }
                 }
               }
-            }
-            if (($scope.selItem.episodes) && ($scope.selItem.episodes.length)) {
-              angular.forEach(this.selItem.episodes, function(ep) {
-                  // NOOOOOOOOOOOOOOOOOOOOO!!!!!!!!!!
-                  // Should be able to template this
-                  $scope.episodeListText = $scope.episodeListText + ep.name + "\n";
-                });
-              }
             };
 
-            $scope.itemSelect = function(scope) {
-              $scope.editMode = false;
+              this.itemSelect = function(scope) {
+                this.editMode = false;
 
-              if (scope.hasChild()) {
-                $scope.selItem = scope.$modelValue;
-                $scope.showShow = false;
-                return;
-              }
+                if (scope.hasChild()) {
+                  this.selItem = scope.$modelValue;
+                  this.showShow = false;
+                  return;
+                }
 
-              // $scope.listIndex points to where we are in the current branch of items
-              $scope.listIndex = scope.index();
-              // $scope.list points to the list of items or within a tree branch
-              $scope.list = scope.$parentNodeScope.$modelValue;
-              $scope.showShow = true;
-              $scope.setSelectItem(scope.$modelValue);
-            };
+                // this.listIndex points to where we are in the current branch of items
+                this.listIndex = scope.index();
+                // this.list points to the list of items or within a tree branch
+                this.list = scope.$parentNodeScope.$modelValue;
+                this.showShow = true;
+                this.setSelectItem(scope.$modelValue);
+              };
 
-            $scope.showJSONstuff = function() {
-              $scope.showJSON = true;
-            };
-            $scope.doneJSON = function() {
-              $scope.showJSON = false;
-            };
+              this.showJSONstuff = function() {
+                this.showJSON = true;
+              };
+              this.doneJSON = function() {
+                this.showJSON = false;
+              };
 
-            $scope.nextItem = function() {
+              this.nextItem = function() {
 
-              if ($scope.listIndex == ($scope.list.length - 1)) {
-                $scope.listIndex = 0;
-              } else {
-                $scope.listIndex++;
-              }
+                if (this.listIndex == (this.list.length - 1)) {
+                  this.listIndex = 0;
+                } else {
+                  this.listIndex++;
+                }
 
-              $scope.setSelectItem($scope.list.items[$scope.listIndex]);
-            };
+                this.setSelectItem(this.list.items[this.listIndex]);
+              };
 
-            $scope.prevItem = function() {
-              if ($scope.listIndex == 0) {
-                $scope.listIndex = $scope.list.length - 1;
-              } else {
-                $scope.listIndex--;
-              }
-              $scope.setSelectItem($scope.list.items[$scope.listIndex]);
-            };
+              this.prevItem = function() {
+                if (this.listIndex == 0) {
+                  this.listIndex = this.list.length - 1;
+                } else {
+                  this.listIndex--;
+                }
+                this.setSelectItem(this.list.items[this.listIndex]);
+              };
 
-            $scope.dateOptions = {
-               //dateDisabled: disabled,
-              // datepickerMode : 'month',
-               maxDate: new Date(2020, 5, 22),
-               minDate: new Date(1963, 1, 1)  // Will not be appropriate when done with videos
-               //startingDay: 1
-             };
+              this.dateOptions = {
+                //dateDisabled: disabled,
+                // datepickerMode : 'month',
+                maxDate: new Date(2020, 5, 22),
+                minDate: new Date(1963, 1, 1) // Will not be appropriate when done with videos
+                  //startingDay: 1
+              };
 
-             $scope.format = 'MMM yyyy';
 
-             $scope.popup1 = {
-               opened: false
-             };
+              this.open1 = function() {
+                this.popup1.opened = true;
+              };
 
-             $scope.open1 = function() {
-               $scope.popup1.opened = true;
-             };
+              this.newEpisode = function() {
+                if (this.selItem.episodes) {
+                  this.selItem.episodes.push({
+                    name: "",
+                    fname: ""
+                  });
+                } else {
+                  this.selItem.episodes = [{
+                    name: "",
+                    fname: ""
+                  }];
+                }
+              };
 
-             $scope.newEpisode = function() {
-               if ($scope.selItem.episodes) {
-                 $scope.selItem.episodes.push({
-                   name: "",
-                   fname: ""
-                 });
-               } else {
-                 $scope.selItem.episodes = [ {
-                   name: "",
-                   fname: ""
-                 } ];
-               }
-             }
-
-            $scope.newDoctor = function(scope) {
+              this.newDoctor = function(scope) {
                 alert("New Doctor Not Implemented Yet");
-            };
+              };
 
-            $scope.getDescrLink = function() {
-              if ($scope.selItem.descrUrl) {
-                return $scope.selItem.descrUrl
-              } else {
-                return '#';
-              }
-            }
-            $scope.backup = function() {
-                     var c2String = angular.toJson($scope.videoList);
+              this.getDescrLink = function() {
+                if (this.selItem.descrUrl) {
+                  return this.selItem.descrUrl
+                } else {
+                  return '#';
+                }
+              };
+              this.backup = function() {
+                var c2String = angular.toJson(this.videoList);
 
-                      $http({ method: 'POST', url: '/api/backups/',
-                         data: { "c2_data" : c2String,
-                                 "bkfile" : "drwho_tv_tree"
-                       } }).success(function(data) {
-                           alert("Backup Successful!\n\n" + data);
-                      }).error(function(data, status, headers, config) {
-                        // Handle the error
-                           alert("Backup failed with status: " + status);
-                      });
+                $http({
+                  method: 'POST',
+                  url: '/api/backups/',
+                  data: {
+                    "c2_data": c2String,
+                    "bkfile": "drwho_tv_tree"
+                  }
+                }).success(function(data) {
+                  alert("Backup Successful!\n\n" + data);
+                }).error(function(data, status, headers, config) {
+                  // Handle the error
+                  alert("Backup failed with status: " + status);
+                });
 
-             };
+              };
+            } // end constructor
 
+          $onInit() {
+              this.$http.get('drwho_tv_tree.json', {
+                cache: true
+              }).then(response => {
+                console.log("Got Dr Who video data");
+                this.videoList = response.data;
+              }, function errorCallback(response) {
+                alert("Request for Dr Who video data yielded error: " + response.status);
+              });
+            } // end onInit
+        } // end component class
 
-          }]); // end controller
-      })();
+      angular.module('myappApp')
+        .component('drwhoTreeComponent', {
+          templateUrl: 'app/drwhoTree/drwhoTree.html',
+          controller: drwhoTreeComponent
+        });
+
+    })();

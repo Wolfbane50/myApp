@@ -1,39 +1,29 @@
 'use strict';
 
 (function() {
-
-  angular.module('myappApp')
-    .controller('dirExplorerCtrl', ['$scope', '$http', function($scope, $http) {
-      $scope.showJSON = false;
-
+  class DirExplorerComponent {
+    constructor($http, $scope) {
+      this.showJSON = false;
       this.selItem = {};
-      var treeCtlScope = $scope;
+      this.list = [];
+      this.selectedItem = {};
+      this.options = {};
+      this.addlist = "";
+      this.addFromList = false;
 
-      //var dirDataStr = localStorage.getItem("dir_list");
-    //  if (dirDataStr) {
-    //    alert("Getting data from local store");
+      this.$scope = $scope;
+      this.$http = $http;
 
-    //    treeCtlScope.list = angular.fromJson(dirDataStr);
-    //  } else {
-        $http.get('dir_data_hier.json', { cache : true } ).then(function successCb(response) {
-
-           console.log("Got Directory Data");
-           treeCtlScope.list = response.data;
-        }, function errorCb(response) {
-        // Handle the error
-           alert("Request for bigFinish.json yielded error: " + response.status);
-        });
-
-      $scope.selectedItemClass = function(scope) {
+      this.selectedItemClass = function(scope) {
         var nodeData = scope.$modelValue;
-        if ($scope.selItem == nodeData) {
+        if (this.selItem == nodeData) {
           return 'dhitem-selected';
         } else {
           return 'dhitem';
         }
       };
 
-      $scope.itemIcon = function(scope) {
+      this.itemIcon = function(scope) {
         if (scope.hasChild()) {
           return scope.collapsed ? 'glyphicon-folder-close' : 'glyphicon-folder-open';
         } else {
@@ -41,27 +31,24 @@
         }
       };
 
-      $scope.selectedItem = {};
 
-      $scope.options = {};
-
-      $scope.myCollapseAll = function(scope) {
-        scope.collapseAll();
+      this.myCollapseAll = function(scope) {
+         this.$scope.$broadcast('angular-ui-tree:collapse-all');
       };
-      $scope.myExpandAll = function(scope) {
-        scope.expandAll();
+      this.myExpandAll = function(scope) {
+        this.$scope.$broadcast('angular-ui-tree:expand-all');
       };
-      $scope.sureRemove = function(scope) {
+      this.sureRemove = function(scope) {
         if (confirm("Are you sure you want to delete this node?")) {
           scope.remove();
         }
       };
 
-      $scope.toggle = function(scope) {
+      this.toggle = function(scope) {
         scope.toggle();
       };
 
-      $scope.newSubItem = function(scope) {
+      this.newSubItem = function(scope) {
         var nodeData = scope.$modelValue;
         if (nodeData.items == null) {
           nodeData.items = [];
@@ -76,37 +63,34 @@
         });
       };
 
-      $scope.bulkAdd = function(entries) {
-        if ($scope.selItem.items == null) {
-          $scope.selItem.items = [];
+      this.bulkAdd = function(entries) {
+        if (this.selItem.items == null) {
+          this.selItem.items = [];
         }
         for (var i = 0; i < entries.length; i++) {
 
-          $scope.selItem.items.push({
+          this.selItem.items.push({
             //id: nodeData.id * 10 + nodeData.items.length,
             id: new Date(),
             name: entries[i],
             items: []
           });
         }
-
       };
 
-      $scope.macroAdd = function() {
+      this.macroAdd = function() {
         var dirs = ["lib", "include", "bin"];
-        $scope.bulkAdd(dirs);
+        this.bulkAdd(dirs);
       };
 
-      $scope.addlist = "";
-      $scope.addFromList = false;
-      $scope.arrayAdd = function() {
-        $scope.addlist = "";
-        $scope.addFromList = true;
+      this.arrayAdd = function() {
+        this.addlist = "";
+        this.addFromList = true;
 
       };
 
-      $scope.addListOK = function() {
-        var newItems = $scope.addlist.split("\n");
+      this.addListOK = function() {
+        var newItems = this.addlist.split("\n");
         var logString = "";
         for (var i = 0; i < newItems.length; i++) {
           newItems[i] = newItems[i].trim();
@@ -116,47 +100,66 @@
           logString += newItems[i];
         }
         alert("Adding " + logString);
-        $scope.bulkAdd(newItems);
+        this.bulkAdd(newItems);
 
-        $scope.addFromList = false;
-      }
+        this.addFromList = false;
+      };
 
-      $scope.addListCancel = function() {
-        $scope.addFromList = false;
-      }
+      this.addListCancel = function() {
+        this.addFromList = false;
+      };
 
 
-      $scope.itemSelect = function(scope) {
-        $scope.selItem = scope.$modelValue;
-        //alert("Selected item:  " + $scope.selItem.name);
+      this.itemSelect = function(scope) {
+        this.selItem = scope.$modelValue;
+        //alert("Selected item:  " + this.selItem.name);
 
         // Create comments if they do not yet exist
-        if (!$scope.selItem.comment) {
-          $scope.selItem.comment = "No comment yet!";
+        if (!this.selItem.comment) {
+          this.selItem.comment = "No comment yet!";
         }
       };
 
-      $scope.showJSONstuff = function() {
-        $scope.showJSON = true;
+      this.showJSONstuff = function() {
+        this.showJSON = true;
       };
-      $scope.doneJSON = function() {
-        $scope.showJSON = false;
+      this.doneJSON = function() {
+        this.showJSON = false;
       };
-      $scope.commitChanges = function() {
-        var c2String = angular.toJson($scope.list)
+      this.commitChanges = function() {
+        var c2String = angular.toJson(this.list)
         localStorage.setItem("dir_list", c2String);
         alert("Directory data saved to Local Storage");
 
       };
-      $scope.flushLocal = function() {
+      this.flushLocal = function() {
         if (confirm("Are you really really sure you want to delete local storage?")) {
           localStorage.removeItem("dir_list");
           alert("Local Storage Deleted!");
         }
       };
+    } // end constructor
+    $onInit() {
+      console.log("dirExporer onInit");
+      this.$http.get('dir_data_hier.json', {
+         cache : true
+       }).then(response => {
 
+         console.log("Got Directory Data");
+         this.list = response.data;
+       }, function errorCallback(response) {
+      // Handle the error
+         alert("Request for dir_data_hier.json yielded error: " + response.status);
+      });
 
+    } // end onInit
 
+  } // end component class
 
-    }]); // end controller
+  angular.module('myappApp')
+    .component('dirExplorerComponent', {
+      templateUrl: 'app/dirExplorer/dirExplorer.html',
+      controller: DirExplorerComponent
+    });
+
 })();

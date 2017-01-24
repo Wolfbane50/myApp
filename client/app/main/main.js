@@ -6,8 +6,4 @@ angular.module('myappApp')
       url: '/',
       template: '<main></main>'
     });
-    $stateProvider.state('spGridExample', {
-      url: '/spriteGridExample',
-      template: '<sprite-grid-example></sprite-grid-example>'
-    });
   });
