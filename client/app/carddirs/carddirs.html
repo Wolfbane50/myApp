@@ -22,19 +22,19 @@
       <h2>Card Directories</h2>
     </div>
     <div class="col-lg-8" id="buttonBar">
-      <a class="pull-right btn btn-primary" ng-click="showJSONstuff()">
+      <a class="pull-right btn btn-primary" ng-click="$ctrl.showJSONstuff()">
         <span>Generate JSON</span></a>
-      <a class="pull-right btn btn-primary" ng-click="getNewCards()">
+      <a class="pull-right btn btn-primary" ng-click="$ctrl.getNewCards()">
         <span>Get New Cards</span></a>
-      <button ng-json-export-excel data="checkedItems" report-fields="{name: 'Name', team: 'Team', brand: 'Brand', type: 'Type', path: 'Path', fname: 'File Name'}" filename="'newCards'" separator=',' class="pull-right btn btn-primary">Export Excel</button>
+      <button ng-json-export-excel data="$ctrl.checkedItems" report-fields="{name: 'Name', team: 'Team', brand: 'Brand', type: 'Type', path: 'Path', fname: 'File Name'}" filename="'newCards'" separator=',' class="pull-right btn btn-primary">Export Excel</button>
 
-      <a class="pull-right btn btn-primary" ng-click="jsonTable = true">
+      <a class="pull-right btn btn-primary" ng-click="$ctrl.jsonTable = true">
                 <span>Show in Table</span></a>
-      <a class="pull-right btn btn-primary" ng-click="removeChecked()">
+      <a class="pull-right btn btn-primary" ng-click="$ctrl.removeChecked()">
                           <span>Del Selected</span></a>
-      <a class=" pull-right btn btn-primary " ng-click="commitChanges() ">
+      <a class=" pull-right btn btn-primary " ng-click="$ctrl.commitChanges() ">
         <span>Commit Changes</span></a>
-      <a class="pull-right btn btn-primary " ng-click="flushLocal() ">
+      <a class="pull-right btn btn-primary " ng-click="$ctrl.flushLocal() ">
         <span>Flush Local</span></a>
     </div>
   </div>
@@ -47,75 +47,75 @@
           <!-- Nested list template -->
           <script type="text/ng-template " id="items_renderer.html ">
             <div id="wasui-tree-handle ">
-              <input data-nodrag type="checkbox" ng-model="this.$modelValue.checked  " ng-change="addDelChecked(this) "></input>
-              <a class="btn btn-default btn-xs" data-nodrag ng-click="toggle(this) ">
-                <span class="glyphicon " ng-class="itemIcon(this) "></span></a>
-              <span data-nodrag ng-show="item.fname "><a ng-click="itemSelect(this) " ng-class="selectedItemClass(this) ">{{item.fname}} : {{item.name}}</a></span>
-              <span data-nodrag ng-hide="item.fname "><a ng-click="itemSelect(this) " ng-class="selectedItemClass(this) ">{{item.path}}</a></span>
+              <input data-nodrag type="checkbox" ng-model="this.$modelValue.checked  " ng-change="$ctrl.addDelChecked(this) "></input>
+              <a class="btn btn-default btn-xs" data-nodrag ng-click="$ctrl.toggle(this) ">
+                <span class="glyphicon " ng-class="$ctrl.itemIcon(this) "></span></a>
+              <span data-nodrag ng-show="item.fname "><a ng-click="$ctrl.itemSelect(this) " ng-class="$ctrl.selectedItemClass(this) ">{{item.fname}} : {{item.name}}</a></span>
+              <span data-nodrag ng-hide="item.fname "><a ng-click="$ctrl.itemSelect(this) " ng-class="$ctrl.selectedItemClass(this) ">{{item.path}}</a></span>
             </div>
-            <ol ui-tree-nodes="options " ng-model="item.items " ng-class="{hidden: collapsed} ">
+            <ol ui-tree-nodes="$ctrl.options " ng-model="item.items " ng-class="{hidden: collapsed} ">
               <li ng-repeat="item in item.items " ui-tree-node data-nodrag ng-include=" 'items_renderer.html' ">
               </li>
             </ol>
           </script>
           <div ui-tree="options ">
-            <a class="btn btn-primary btn-xs " ng-click="setAllChecks(true) ">
+            <a class="btn btn-primary btn-xs " ng-click="$ctrl.setAllChecks(true) ">
               <span>X All</span></a>
-            <a class="btn btn-primary btn-xs " ng-click="setAllChecks(false) ">
+            <a class="btn btn-primary btn-xs " ng-click="$ctrl.setAllChecks(false) ">
               <span>X None</span></a>
 
-            <a class="btn btn-primary btn-xs " ng-click="myCollapseAll(this) ">
+            <a class="btn btn-primary btn-xs " ng-click="$ctrl.myCollapseAll(this) ">
               <span>Collapse Tree</span></a>
-            <a class="btn btn-primary btn-xs " ng-click="myExpandAll(this) ">
+            <a class="btn btn-primary btn-xs " ng-click="$ctrl.myExpandAll(this) ">
               <span>Expand Tree</span></a>
 
-            <ol ui-tree-nodes ng-model="cardTree ">
-              <li ng-repeat="item in cardTree " ui-tree-node ng-include=" 'items_renderer.html' "></li>
+            <ol ui-tree-nodes ng-model="$ctrl.cardTree ">
+              <li ng-repeat="item in $ctrl.cardTree " ui-tree-node ng-include=" 'items_renderer.html' "></li>
             </ol>
           </div>
         </div>
         <div class="col-lg-8 ">
-          <div ng-show="showJSON ">
-            <a class="btn btn-default btn-xs " ng-click="doneJSON() ">
+          <div ng-show="$ctrl.showJSON ">
+            <a class="btn btn-default btn-xs " ng-click="$ctrl.doneJSON() ">
               <span>Done with JSON</span></a>
 
-            <pre class="code ">{{ cardTree | json }}</pre>
+            <pre class="code ">{{ $ctrl.cardTree | json }}</pre>
           </div>
           <div ng-show="showSel ">
-            <a class="btn btn-default btn-xs " ng-click="doneSel() ">
+            <a class="btn btn-default btn-xs " ng-click="$ctrl.doneSel() ">
               <span>Done with List</span></a>
 
-            <pre class="code ">{{ checkedItems | json }}</pre>
+            <pre class="code ">{{ $ctrl.checkedItems | json }}</pre>
           </div>
           <div id="response_pane ">
-            <div ng-hide="selItem ">
+            <div ng-hide="$ctrl.selItem ">
               <h1>Select an Item from tree ...</h1></div>
-            <div ng-show="selItem ">
-              <h1>{{selItem.fname}}</h1>
+            <div ng-show="$ctrl.selItem ">
+              <h1>{{$ctrl.selItem.fname}}</h1>
 
-              <img class="dircardpic " ng-show="selItem.fname " ng-src="http://192.168.1.151/cards/{{selItem.path}}/{{selItem.fname}} " />
+              <img class="dircardpic " ng-show="$ctrl.selItem.fname " ng-src="http://192.168.1.151/cards/{{$ctrl.selItem.path}}/{{$ctrl.selItem.fname}} " />
               <div class="dircardinfo ">
-                <div ng-show="selItem.fname ">Name:
-                  <input ng-model="selItem.name ">
+                <div ng-show="$ctrl.selItem.fname ">Name:
+                  <input ng-model="$ctrl.selItem.name ">
                 </div>
                 <div>Team:
-                  <input ng-model="selItem.team ">
+                  <input ng-model="$ctrl.selItem.team ">
                 </div>
                 <div>Brand:
-                  <input ng-model="selItem.brand ">
+                  <input ng-model="$ctrl.selItem.brand ">
                 </div>
                 <div>Type:
-                  <input ng-model="selItem.type ">
+                  <input ng-model="$ctrl.selItem.type ">
                 </div>
                 <div>Path:
-                  <input ng-model="selItem.path ">
+                  <input ng-model="$ctrl.selItem.path ">
                 </div>
-                <a class="btn btn-primary btn-xs " ng-hide="selItem.fname " ng-click="applyFolder() ">
+                <a class="btn btn-primary btn-xs " ng-hide="$ctrl.selItem.fname " ng-click="$ctrl.applyFolder() ">
                   <span>Apply to Folder</span></a>
 
               </div>
             </div>
-            <div ng-show="jsonTable">
+            <div ng-show="$ctrl.jsonTable">
               <table>
                 <tr>
                   <th>Name</th>
@@ -125,7 +125,7 @@
                   <th>Path</th>
                   <th>Filename</th>
                 </tr>
-                <tr ng-repeat="item in checkedItems ">
+                <tr ng-repeat="item in $ctrl.checkedItems ">
                   <td>{{item.name}}</td>
                   <td>{{item.team}}</td>
                   <td>{{item.brand}}</td>
@@ -134,7 +134,7 @@
                   <td>{{item.fname}}</td>
                 </tr>
               </table>
-              <a class="btn btn-primary" ng-click="jsonTable = false;>
+              <a class="btn btn-primary" ng-click="$ctrl.jsonTable = false;>
                         <span>Done</span></a>
             </div>
           </div>

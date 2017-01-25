@@ -1,21 +1,28 @@
 'use strict';
 
 (function() {
+  class CarddirsComponent {
+  constructor($http, $scope, $uibModal) {
+    this.$http = $http;
+    this.$scope = $scope;
+    this.$uibModal = $uibModal;
 
-  angular.module('myappApp')
-    .controller('carddirsCtrl', ['$scope', '$http', '$uibModal', function($scope, $http, $uibModal) {
+    this.showJSON = false;
+    this.showSel = false;
+    //this.editDoc = {};
+    this.selItem = {};
+    this.cardTree = [];
+    this.selItem = {};
+    this.showShow = false;
+    this.jsonTable = false;
+    this.checkedItems = [];
+    this.selectedItem = {};
 
-      $scope.showJSON = false;
-      $scope.showSel = false;
-      //$scope.editDoc = {};
-      this.selItem = {};
-      $scope.cardTree = [];
-      var treeCtlScope = $scope;
-      this.selItem = {};
-      $scope.showShow = false;
-      $scope.jsonTable = false;
-      $scope.checkedItems = [];
-      function cardTreeFromJson(data) {
+    this.options = {
+      "data-drag-enabled": false
+    };
+
+    this.cardTreeFromJson = function(data) {
         var seriesIncr = 50000;
         var dirLookup = {};
 
@@ -43,40 +50,21 @@
             };
             //console.log("Starting  " + path + " with " + inFname);
             dirLookup[path] = targetList;
-            treeCtlScope.cardTree.push(targetList);
+            this.cardTree.push(targetList);
           }
         });
-      }
+      };
 
-      var c2DataStr = localStorage.getItem("cardTree");
-      if (c2DataStr) {
-        //alert("Getting data from local store");
-
-        $scope.cardTree = angular.fromJson(c2DataStr);
-      } else {
-        $http({
-          method: 'GET',
-          url: 'carddirs.json'
-        }).then(function successCallback(response) {
-          //alert("Got data ");
-            cardTreeFromJson(response.data);
-
-        }, function errorCallback(response) {
-          alert("Request for New Cards data yielded error: " + response.status);
-        });
-
-      }
-
-      $scope.selectedItemClass = function(scope) {
+      this.selectedItemClass = function(scope) {
         var nodeData = scope.$modelValue;
-        if ($scope.selItem == nodeData) {
+        if (this.selItem == nodeData) {
           return 'dhitem-selected';
         } else {
           return 'dhitem';
         }
       };
 
-      $scope.itemIcon = function(scope) {
+      this.itemIcon = function(scope) {
         if (scope.hasChild()) {
           return scope.collapsed ? 'glyphicon-folder-close' : 'glyphicon-folder-open';
         } else {
@@ -84,29 +72,24 @@
         }
       };
 
-      $scope.selectedItem = {};
 
-      $scope.options = {
-        "data-drag-enabled": false
+      this.myCollapseAll = function(scope) {
+        this.$scope.$broadcast('angular-ui-tree:collapse-all');
       };
-
-      $scope.myCollapseAll = function(scope) {
-        scope.collapseAll();
+      this.myExpandAll = function(scope) {
+        this.$scope.$broadcast('angular-ui-tree:expand-all');
       };
-      $scope.myExpandAll = function(scope) {
-        scope.expandAll();
-      };
-      $scope.sureRemove = function(scope) {
+      this.sureRemove = function(scope) {
         if (confirm("Are you sure you want to delete this node?")) {
           scope.remove();
         }
       };
 
-      $scope.toggle = function(scope) {
+      this.toggle = function(scope) {
         scope.toggle();
       };
 
-      $scope.newSubItem = function(scope) {
+      this.newSubItem = function(scope) {
         var nodeData = scope.$modelValue;
         if (nodeData.items == null) {
           nodeData.items = [];
@@ -123,52 +106,52 @@
       };
 
 
-      $scope.itemSelect = function(scope) {
-        $scope.selItem = scope.$modelValue;
-        $scope.path = $scope.selItem['path'];
-        //alert("Selected item:  " + $scope.selItem.path);
-        if (($scope.selItem.fname) && ($scope.selItem.name)) {
-          $scope.name = $scope.selItem.name;
+      this.itemSelect = function(scope) {
+        this.selItem = scope.$modelValue;
+        this.path = this.selItem['path'];
+        //alert("Selected item:  " + this.selItem.path);
+        if ((this.selItem.fname) && (this.selItem.name)) {
+          this.name = this.selItem.name;
         } else {
-          $scope.name = "";
+          this.name = "";
         }
 
-        if (($scope.selItem.fname) && ($scope.selItem.brand)) {
-          $scope.brand = $scope.selItem.brand;
+        if ((this.selItem.fname) && (this.selItem.brand)) {
+          this.brand = this.selItem.brand;
         } else {
-          $scope.brand = "";
-          $scope.selItem.brand = "";
+          this.brand = "";
+          this.selItem.brand = "";
         }
-        if (($scope.selItem.fname) && ($scope.selItem.type)) {
-          $scope.type = $scope.selItem.type;
+        if ((this.selItem.fname) && (this.selItem.type)) {
+          this.type = this.selItem.type;
         } else {
-          $scope.type = "";
-          $scope.selItem.type = "";
+          this.type = "";
+          this.selItem.type = "";
         }
-        if (($scope.selItem.fname) && ($scope.selItem.team)) {
-          $scope.team = $scope.selItem.team;
+        if ((this.selItem.fname) && (this.selItem.team)) {
+          this.team = this.selItem.team;
         } else {
-          $scope.team = "";
-          $scope.selItem.team = "";
+          this.team = "";
+          this.selItem.team = "";
         }
       };
 
-      $scope.applyFolder = function() {
-        alert("Apply tags to " + $scope.path);
-        $scope.cardTree.forEach(function(sublist, index, array) {
-          if (sublist.path == $scope.path) {
+      this.applyFolder = function() {
+        alert("Apply tags to " + this.path);
+        this.cardTree.forEach(function(sublist, index, array) {
+          if (sublist.path == this.path) {
             sublist.items.forEach(function(element, index2, array2) {
-              if ($scope.selItem.team) {
-                element.team = $scope.selItem.team;
+              if (this.selItem.team) {
+                element.team = this.selItem.team;
               }
-              if ($scope.selItem.brand) {
-                element.brand = $scope.selItem.brand;
+              if (this.selItem.brand) {
+                element.brand = this.selItem.brand;
               }
-              if ($scope.selItem.type) {
-                element.type = $scope.selItem.type;
+              if (this.selItem.type) {
+                element.type = this.selItem.type;
               }
-              if ($scope.selItem.path) {
-                element.path = $scope.selItem.path;
+              if (this.selItem.path) {
+                element.path = this.selItem.path;
               }
             });
           }
@@ -177,7 +160,7 @@
 
 
       var processChecked = function(method, successCb, errCb) {
-        var checkedItems = $scope.checkedItems;
+        var checkedItems = this.checkedItems;
         if (checkedItems.length == 0) {
           alert("Sorry!  No items were selected.");
           return;
@@ -188,6 +171,7 @@
 
         $http({
           method: method,
+          //  Why port 3000????
           url: 'http://127.0.0.1:3000/cards',
           headers: {
             "Content-Type": "application/json"
@@ -198,8 +182,8 @@
         }).then(successCb), errCb;
       };
 
-      $scope.removeChecked = function() {
-        $scope.cardTree.forEach(function(sublist, index, array) {
+      this.removeChecked = function() {
+        this.cardTree.forEach(function(sublist, index, array) {
           for (var i = (sublist.items.length - 1); i >= 0; i--) {
             var element = sublist.items[i];
             if (element.checked) {
@@ -211,22 +195,22 @@
       };
 
 
-      $scope.deleteChecked = function() {
+      this.deleteChecked = function() {
         processChecked('DELETE', function(data) {
           // Success
           // Remove each of the items from their respective lists
-          $scope.removeChecked();
+          this.removeChecked();
           alert("Delete Successful");
         }, function(data, status, headers, config) {
           alert("Delete failed with status: " + status);
 
         });
       };
-      $scope.enterChecked = function() {
+      this.enterChecked = function() {
         processChecked('POST', function(data) {
           // Success
           // Remove each of the items from their respective lists
-          $scope.removeChecked();
+          this.removeChecked();
           alert("Data enterred into Database!");
         }, function(data, status, headers, config) {
           alert("DB entry failed with status: " + status);
@@ -238,11 +222,11 @@
         if (nodeData.checked) {
           // Add to list of checked items
 
-          $scope.checkedItems.push(nodeData);
+          this.checkedItems.push(nodeData);
         } else {
-          for (var i = 0; i < $scope.checkedItems.length; i++) {
-            if ($scope.checkedItems[i] === nodeData) {
-              $scope.checkedItems.splice(i, 1);
+          for (var i = 0; i < this.checkedItems.length; i++) {
+            if (this.checkedItems[i] === nodeData) {
+              this.checkedItems.splice(i, 1);
               return;
             }
           }
@@ -252,7 +236,7 @@
       };
 
       // Callback when individual checkbox is changed
-      $scope.addDelChecked = function(scope) {
+      this.addDelChecked = function(scope) {
         var nodeData = scope.$modelValue;
         if (scope.hasChild()) {
           // This is a folder, mirror check value on all the children
@@ -275,8 +259,8 @@
 
       };
 
-      $scope.setAllChecks = function(checked) {
-        $scope.cardTree.forEach(function(sublist, index, array) {
+      this.setAllChecks = function(checked) {
+        this.cardTree.forEach(function(sublist, index, array) {
           sublist.checked = checked;
           addDelSublistChecks(sublist, checked);
         });
@@ -284,35 +268,35 @@
       };
 
 
-      $scope.showJSONstuff = function() {
-        $scope.showJSON = true;
+      this.showJSONstuff = function() {
+        this.showJSON = true;
       };
-      $scope.doneJSON = function() {
-        $scope.showJSON = false;
+      this.doneJSON = function() {
+        this.showJSON = false;
       };
-      $scope.commitChanges = function() {
-        var c2String = angular.toJson($scope.cardTree)
+      this.commitChanges = function() {
+        var c2String = angular.toJson(this.cardTree)
         localStorage.setItem("cardTree", c2String);
         alert("Card Data saved to Local Storage");
 
       };
-      $scope.flushLocal = function() {
+      this.flushLocal = function() {
         if (confirm("Are you really really sure you want to delete local storage?")) {
           localStorage.removeItem("cardTree");
           alert("Local Storage Deleted!");
         }
       };
-      $scope.showSelstuff = function() {
-        $scope.showSel = true;
+      this.showSelstuff = function() {
+        this.showSel = true;
       };
-      $scope.doneSel = function() {
-        $scope.showSel = false;
+      this.doneSel = function() {
+        this.showSel = false;
       };
 
-      $scope.getNewCards = function() {
+      this.getNewCards = function() {
         if (confirm("Are you sure you want to delete local storage working data?  Must be done prior to getting new cards.")) {
           localStorage.removeItem("cardTree");
-          $scope.updateDate = new Date();
+          this.updateDate = new Date();
 //          var dt = new Date();
 //          var todayStr = (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
 //          var updateDate = prompt ("Load cards created modified after what date (mm/dd/yy)", todayStr);
@@ -324,25 +308,24 @@
               resolve: {
                 updateDt: function () {
                   console.log("resolving updateDt");
-                  return $scope.updateDate;
+                  return this.updateDate;
                 }
               }
            });
 
           modalInstance.result.then(function (selectedDate) {
-            $scope.updateDate = selectedDate;
+            this.updateDate = selectedDate;
             // Could do some validations here
-            //alert("Want cards after " + $scope.updateDate);
-            $http({
-              method: 'GET',
-              url: '/api/newCards',
+            //alert("Want cards after " + this.updateDate);
+
+            this.$http.get('/api/newCards' , {
               params : {
                 directory: "x:\\cards",
                 lastDate: selectedDate
               }
-            }).then(function successCallback(response) {
-                treeCtlScope.cardTree = [];
-                cardTreeFromJson(response.data);
+            }).then(response => {
+               this.cardTree = [];
+                this.cardTreeFromJson(response.data);
 
             }, function errorCallback(response) {
                         alert("Request for New Cards data yielded error: " + response.data + " (" + response.status + ")");
@@ -354,5 +337,30 @@
 
       };
 
-    }]); // end controller
+  }
+
+  $onInit() {
+    var c2DataStr = localStorage.getItem("cardTree");
+    if (c2DataStr) {
+      //alert("Getting data from local store");
+
+      this.cardTree = angular.fromJson(c2DataStr);
+    } else {
+      this.$http.get('carddirs.json')
+         .then(response => {
+             this.cardTreeFromJson(response.data);
+         }, function errorCallback(response) {
+            alert("Request for New Cards data yielded error: " + response.status);
+         });
+    }
+  }
+}
+
+angular.module('myappApp')
+ .component('carddirsComponent', {
+   templateUrl: 'app/carddirs/carddirs.html',
+   controller: CarddirsComponent
+ });
+
+
 })();

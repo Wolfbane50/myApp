@@ -3,7 +3,6 @@ angular.module('myappApp')
     $stateProvider
       .state('carddirs', {
         url: '/carddirs',
-        template: '<carddirs></carddirs>',
-        css: 'app/carddirs/carddirs.css'
+        component: 'carddirsComponent'
       });
   });

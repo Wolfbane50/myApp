@@ -38,9 +38,9 @@ class BfGridComponent {
      this.$http.get('bigFinish.json', { cache : true } ).then(response => {
        this.audioList = response.data;
         console.log("Got BF Data");
-     }).error(function(data, status, headers, config) {
+     }, function errorCallback(response) {
      // Handle the error
-        alert("Request for bigFinish.json yielded error: " + status);
+        alert("Request for bigFinish.json yielded error: " + response.status);
      });
    }
 }

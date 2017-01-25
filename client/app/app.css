@@ -177,6 +177,15 @@ table.episodeTable {
   background: YELLOW;
 }
 
+// From carddirs.css
+.dircardpic {
+  height: 500px;
+}
+.dircardinfo {
+  float: left;
+}
+
+
 
 /*
 These are the responsive styles. Throw some breakpoints in here!

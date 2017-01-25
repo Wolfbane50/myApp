@@ -1,28 +1,28 @@
 
-@page {
+.render-cards @page {
   margin-left: 0.5in;
   margin-top:0.2in;
 }
 
-.sizeit {
+.render-cards .sizeit {
 width: 225px;
   height: 321px;
 }
 
-div#runhead {
+.render-cards div#runhead {
   position: fixed;
   top: 0;
   right: 0;
 }
 
-.cardpic {
+.render-cards .cardpic {
   float:left;
   padding: 1px;
   width: 225px;
   height: 321px;
 }
 
-.cardRow {
+.render-cards .cardRow {
   float: left;
   clear:left;
   padding: 1px;
@@ -30,17 +30,17 @@ div#runhead {
   height: 321px;
 }
 
-.rotate {
+.render-cards .rotate {
   transform: rotate(-90deg) translateX(-321px);
   transform-origin: left top;
   width: 321px;
   height: 225px;
 }
-.noPage {
+.render-cards .noPage {
   display: none;
 }
 
-@media screen {
+.render-cards @media screen {
   .print-vis {
     display: none;
   }
@@ -48,7 +48,7 @@ div#runhead {
      display: none;
   }
 }
-@media print {
+.render-cards @media print {
   /* Style rules */
   .page-break {
      page-break-after: always;
@@ -61,20 +61,20 @@ div#runhead {
   }
 }
 
-select.form-control {
+.render-cards select.form-control {
   background-color: BLACK;
   color: white;
 }
-.cardDisplay {}
-.nav-label {
+.render-cards .cardDisplay {}
+.render-cards .nav-label {
   color: white;
   vertical-align: middle;
   margin-top: 10px;
 }
-.affix {
+.render-cards .affix {
   top: 0;
   width: 100%;
 }
-.affix + .container-fluid {
+.render-cards .affix + .container-fluid {
     padding-top: 70px;
 }
