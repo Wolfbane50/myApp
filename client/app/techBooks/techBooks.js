@@ -5,8 +5,7 @@ angular.module('myappApp')
     $stateProvider
       .state('techBooks', {
         url: '/techBooks',
-        template: '<tech-books></tech-books>',
-        css: 'app/techBooks/techBooks.css'
+        component: 'techBooksComponent'
       })
       .state('techBooks.tagCloud', {
         url: '/tagCloud',

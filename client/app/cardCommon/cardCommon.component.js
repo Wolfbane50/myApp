@@ -171,11 +171,4 @@
        controller: CardCommonComponent
      });
 
-  angular.module('myappApp')
-    .controller('cardCtrl', ['$scope', '$http', '$uibModal', 'Lightbox',
-      function($scope, $http, $uibModal, Lightbox) {
-
-
-      }
-    ]); // end controller
 })();

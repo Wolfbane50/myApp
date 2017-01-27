@@ -120,11 +120,11 @@
         this.selectedItem = {};
 
         this.myCollapseAll = function() {
-          $scope.$broadcast('angular-ui-tree:collapse-all');
+          this.$scope.$broadcast('angular-ui-tree:collapse-all');
         };
 
         this.myExpandAll = function() {
-          $scope.$broadcast('angular-ui-tree:expand-all');
+          this.$scope.$broadcast('angular-ui-tree:expand-all');
         };
 
         this.sureRemove = function(scope) {

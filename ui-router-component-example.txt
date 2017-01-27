@@ -1,0 +1,215 @@
+index.html
+----------
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script src="//unpkg.com/angular@1.6.1/angular.js"></script>
+    <script src="//unpkg.com/angular-ui-router@1.0.0-rc.1/release/angular-ui-router.js"></script>
+    <script src="script.js"></script>
+    <script src="components/users.js"></script>
+    <script src="components/userLink.js"></script>
+    <script src="components/userDetail.js"></script>
+    <script src="components/userEdit.js"></script>
+    <style>
+      a.deactivated {
+        color: lightgrey;
+      }
+      li.userselected {
+        font-weight: bolder;
+      }
+    </style>
+  </head>
+
+  <body ng-app="app">
+    <ui-view></ui-view>
+  </body>
+
+</html>
+
+script.js
+---------
+"use babel";
+let app = angular.module('app', ['ui.router']);
+
+app.config(function($stateProvider, $urlServiceProvider) {
+  $urlServiceProvider.rules.otherwise({ state: 'userlist' });
+  
+  $stateProvider.state('userlist', {
+    url: '/users',
+    component: 'users',
+    resolve: {
+      users: function(UserService) {
+        return UserService.list();
+      }
+    }
+  });
+    
+  $stateProvider.state('userlist.detail', {
+    url: '/:userId',
+    component: 'userDetail',
+    resolve: {
+      user: function($transition$, users) {
+        let userId = $transition$.params().userId;
+        return users.find(user => user.id == userId);
+      }
+    }
+  });
+
+  $stateProvider.state('userlist.detail.edit', {
+    url: '/edit',
+    views: {
+      // Targets the default (unnamed) ui-view 
+      // from the grandparent state.
+      // This replaces the `userDetail` component
+      "$default@^.^": {
+        component: 'userEdit',
+        bindings: { originalUser: 'user' }
+      }
+    },
+  });
+
+});
+
+app.service('UserService', function($http) { 
+  return {
+    list: function() {
+      return $http.get('./data/users.json', { cache: true }).then(resp => resp.data)
+    }
+  };
+});
+
+// preload resources in case plunker times out
+app.run(function($http, $templateRequest) {
+  $http.get('data/users.json', { cache: true });
+})
+
+coponents/userDetail.js
+-----------------------
+angular.module('app')
+.component('userDetail', {
+  bindings: { user: '<' },
+  template: `
+    <h3>User {{ $ctrl.user.id }}</h3> <a ui-sref=".edit">Edit</a>
+    
+    <h2>{{ $ctrl.user.name }} {{ !$ctrl.user.active ? "(Deactivated)" : "" }}</h2>
+    
+    <table>
+      <tr><td>Address</td><td>{{ $ctrl.user.address }}</td></tr>
+      <tr><td>Phone</td><td>{{ $ctrl.user.phone }}</td></tr>
+      <tr><td>Email</td><td>{{ $ctrl.user.email }}</td></tr>
+      <tr><td>Company</td><td>{{ $ctrl.user.company }}</td></tr>
+      <tr><td>Age</td><td>{{ $ctrl.user.age }}</td></tr>
+    </table>
+`,
+})
+
+components/userEdit.js
+----------------------
+angular.module('app')
+.component('userEdit', {
+  bindings: { 
+    originalUser: '<',
+    onUserUpdated: '&',
+    onEditCancelled: '&'
+  },
+  
+  controller: function() {
+    this.$onInit = function() {
+      // make a copy of the user
+      // (don't live edit the parent's model)
+      this.user = angular.copy(this.originalUser);
+    }
+  },
+  
+  template: `
+    <h3>User {{ $ctrl.user.id }}</h3>
+    
+    Name: <input ng-model="$ctrl.user.name"><br>
+    Active: <input type="checkbox" ng-model="$ctrl.user.active"><br><br>
+    
+    Address: <input type="text" ng-model="$ctrl.user.address"><br>
+    Phone: <input type="text" ng-model="$ctrl.user.phone"><br>
+    Email: <input type="text" ng-model="$ctrl.user.email"><br>
+    Company: <input type="text" ng-model="$ctrl.user.company"><br>
+    Age: <input type="text" ng-model="$ctrl.user.age"><br><br>
+    
+    <button type="button" ng-click="$ctrl.onUserUpdated({ user: $ctrl.user })">Update user</button>
+    <button type="button" ng-click="$ctrl.onEditCancelled()">Cancel</button>
+`,
+})
+
+components/userLink.js
+----------------------
+angular.module('app')
+.component('userLink', {
+  bindings: { user: '<', onToggleActive: '&' },
+  template: `
+    <li ui-sref-active="userselected">
+      <a ui-sref="userlist.detail({ userId: $ctrl.user.id })" 
+          ng-disabled="!$ctrl.user.active"
+          ng-class="{ deactivated: !$ctrl.user.active }">
+        {{ $ctrl.user.name }}
+      </a>
+      
+      <button ng-click="$ctrl.onToggleActive({ userId: $ctrl.user.id })">
+        {{ $ctrl.user.active ? "Deactivate" : "Activate" }}
+      </button>
+    </li>
+`,
+})
+
+component/users.js
+angular.module('app')
+.component('users', {
+  bindings: { users: '<' },
+  controller: function($state) {
+    this.clickHandler = function() {
+      alert('something');
+    }
+    
+    this.findUser = function(userId) {
+      return this.users.find(user => user.id == userId);
+    }
+    
+    this.toggleActive =  function(userId) {
+      let user = this.findUser(userId);
+      if (!user) return;
+      user.active = !user.active;
+    };
+    
+    this.showUserDetail = function() {
+      // Parameter values (userId) are kept
+      // because `.go()` uses `{ inherit: true }`
+      $state.go('userlist.detail')
+    }
+    
+    this.handleUserUpdated = function(updatedUser) {
+      let currentUser = this.findUser(updatedUser.id);
+      let idx = this.users.indexOf(currentUser);
+      if (idx !== -1) {
+        this.users[idx] = updatedUser;
+        // Go go `detail` state.
+        // Reload the state, so the `user` resolve is refreshed
+        $state.go("userlist.detail", null, { reload: 'userlist.detail' })
+      }
+    }
+  },
+  template: `
+    <h1>Users</h1>
+    
+    <button ng-click="$ctrl.clickHandler()">Do something</button>
+    
+    <ul>
+      <user-link ng-repeat="user in $ctrl.users" user="user" 
+        on-toggle-active="$ctrl.toggleActive(userId)">
+     </user-link>
+    </ul>
+    
+    <div ui-view 
+      on-user-updated="$ctrl.handleUserUpdated(user)"
+      on-edit-cancelled="$ctrl.showUserDetail()"
+    ></div>
+`,
+})

@@ -4,6 +4,7 @@ angular.module('myappApp').factory('Category', function($resource) {
       method: 'GET',
       isArray:true,
       data: false,
+      cache: true,
       headers: {
         'Content_Type': 'application/json',
         'Accept' : 'application/json'

@@ -4,11 +4,11 @@
       <h2>Music by Artist</h2>
     </div>
     <div class="col-lg-8" id="buttonBar">
-      <a class="btn btn-primary" ng-click="freshScan()">
+      <a class="btn btn-primary" ng-click="$ctrl.freshScan()">
         <span>freshScan</span></a>
-      <a class="pull-right btn btn-primary" ng-click="updateScan()">
+      <a class="pull-right btn btn-primary" ng-click="$ctrl.updateScan()">
         <span>Update Scan</span></a>
-      <a class="pull-right btn btn-primary" ng-click="saveChanges()">
+      <a class="pull-right btn btn-primary" ng-click="$ctrl.saveChanges()">
         <span>save Changes</span></a>
     </div>
   </div>
@@ -19,7 +19,7 @@
         <div class="col-lg-4">
 
           <uib-accordion>
-            <div uib-accordion-group class="panel-default" ng-repeat="set in artistSets | orderBy:'letter'">
+            <div uib-accordion-group class="panel-default" ng-repeat="set in $ctrl.artistSets | orderBy:'letter'">
               <uib-accordion-heading>
                 <span class="btn btn-primary">
                 <b  class="pull-right glyphicon" >{{set.letter}}</b>
@@ -29,7 +29,7 @@
 
               <ul>
                 <li ng-repeat="artist in set.artists | orderBy:'name'">
-                  <a ng-click="selectArtist(artist)">{{artist.name}}</a>
+                  <a ng-click="$ctrl.selectArtist(artist)">{{artist.name}}</a>
                 </li>
               </ul>
 
@@ -40,24 +40,25 @@
 
         </div>
         <div class="col-lg-8">
-          <div ng-hide="selArtist">
-            <h1>Select an Artist ...</h1></div>
-          <div ng-show="selArtist">
+          <div ng-hide="$ctrl.selArtist">
+            <h1>Select an Artist ...</h1>
+          </div>
+          <div class="my-music" ng-show="$ctrl.selArtist">
             <div class="row">
               <div class="col-sm-6">
-                <span ng-hide="selArtist.edit" class="lead">{{selArtist.name}}</span>
-                <span ng-show="selArtist.edit" class="lead">Artist Name: <input type="text" ng-model="selArtist.name"></span>
+                <span ng-hide="$ctrl.selArtist.edit" class="lead">{{$ctrl.selArtist.name}}</span>
+                <span ng-show="$ctrl.selArtist.edit" class="lead">Artist Name: <input type="text" ng-model="$ctrl.selArtist.name"></span>
               </div>
               <div class="col-sm-6">
-                <img ng-show="selArtist.image" ng-src="{{selArtist.image}}" style="float: right;" />
-                <button class="pull-right btn btn-primary" ng-click="setArtistImage(selArtist)">Set Image</button>
+                <img ng-show="$ctrl.selArtist.image" ng-src="{{$ctrl.selArtist.image}}" style="float: right;" />
+                <button class="pull-right btn btn-primary" ng-click="$ctrl.setArtistImage(selArtist)">Set Image</button>
               </div>
               <hr />
             </div>
             <div class="row">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" ng-model="selArtist.edit">Edit Mode</label>
+                  <input type="checkbox" ng-model="$ctrl.selArtist.edit">Edit Mode</label>
               </div>
             </div>
             <div class="row">
@@ -69,19 +70,19 @@
                   <th>Cover</th>
                   <th class="control">&nbsp;</th>
                 </tr>
-                <tr ng-repeat="album in selArtist.albums">
+                <tr ng-repeat="album in $ctrl.selArtist.albums">
                   <td class="namecol">
-                    <span ng-hide="selArtist.edit">{{album.name}}</span>
-                    <input ng-show="selArtist.edit" class="tableInput" type="text" ng-model="album.name">
+                    <span ng-hide="$ctrl.selArtist.edit">{{album.name}}</span>
+                    <input ng-show="$ctrl.selArtist.edit" class="tableInput" type="text" ng-model="album.name">
                   </td>
                   <td>
-                    <span ng-hide="selArtist.edit">{{album.year}}</span>
-                    <input ng-show="selArtist.edit" class="tableYearInput" type="text" ng-model="album.year">
+                    <span ng-hide="$ctrl.selArtist.edit">{{album.year}}</span>
+                    <input ng-show="$ctrl.selArtist.edit" class="tableYearInput" type="text" ng-model="album.year">
                   </td>
                   <td>{{album.archived | date:'fullDate'}}</td>
                   <td><img class="cover" ng-show="album.image" ng-src="{{album.image}}"></td>
                   <td class="control">
-                    <button class="btn btn-primary" ng-click="setAlbumImage(album)">Set Cover</button>
+                    <button class="btn btn-primary" ng-click="$ctrl.setAlbumImage(album)">Set Cover</button>
                   </td>
                 </tr>
               </table>

@@ -8,14 +8,14 @@
         <th class="charbags">Number of Bags</th>
         <th class="control">&nbsp;</th>
       </tr>
-      <tr ng-repeat="trip in donationTrips">
+      <tr ng-repeat="trip in $ctrl.donationTrips">
         <td>
           <p>
           <input class="dateInput" type="text" uib-datepicker-popup="MM/dd/yyyy"
 
                   ng-model="trip.date" is-open="trip.opened" />
 
-          <button type="button" class="pull-right" ng-click="open1($index)">
+          <button type="button" class="pull-right" ng-click="$ctrl.open1($index)">
             <i class="glyphicon glyphicon-calendar"></i>
                </button>
              </p>
@@ -27,16 +27,16 @@
           <input ng-model="trip.bags">
         </td>
         <td class="control">
-          <button ng-hide="trip.added" ng-click="addTrip(trip)">Add</button>
+          <button ng-hide="trip.added" ng-click="$ctrl.addTrip(trip)">Add</button>
         </td>
       </tr>
     </table>
   </div>
 
-  <button ng-click="calculate()">Submit</button>
+  <button ng-click="$ctrl.calculate()">Submit</button>
   <button class="btn btn-primary" ng-print preview="true" print-element-id="report"><i class="fa fa-print"></i> Print Preview</button>
 
-  <pre class="code">{{output}}</pre>
+  <pre class="code">{{$ctrl.output}}</pre>
 
   <div class="report" id="report"></div>
 </div>

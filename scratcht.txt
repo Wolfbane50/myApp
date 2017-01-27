@@ -1,0 +1,71 @@
+
+Convenience Functions
+
+saveConfig()
+catNameFromIndex(idx)
+getTagsForDoc(doc)
+typeOfDoc(url)
+findDocIndexFromCatList(catid, id)
+
+
+Scope functions (this.)
+  clearStars - Clears all stars from configuration
+
+  getCategories
+
+  getPublishers
+
+  getDocsByCategory(cat)
+
+  getAndOrganizeDocuments
+
+  setServerDir
+
+  newDoc(catid)
+
+  revert
+
+  itemSelect
+
+  typeChange
+  changeCategory
+
+  findDocIndexFromList(id)
+  findDocFromList(id)
+
+  deleteDoc
+
+  saveDoc
+  toggleStarred
+  starredIcon
+  readEpub
+  booksHome
+  
+  
+  documentList - Flat array of documents obtained from service.
+  starredDocs - List of starred documents
+  docsByCat - Object with key category id, value pointer to document list
+  
+  taggedDocs - List of docs for a given tag
+     Not really docList in that you cannot manipulated it like others.
+     
+     
+  Document
+  	set - Let selectedDocument be owned by document component
+  	revert
+  	typeChange - callback
+  	changeCategory - callback
+  	saveDoc
+  	toggleStarred - callback
+  	readEpub - internal
+  	delete - do DB delete and callback
+  	googleQuery - internal
+  	
+ DocumentList
+    newDoc
+    find
+    
+   
+   
+Starred documents - Decorator pattern?
+  

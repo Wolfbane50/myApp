@@ -1,44 +1,44 @@
 
-table {
+.my-music table {
   border-collapse: collapse;
 }
 
-td {
+.my-music td {
   border: 2px solid #666;
 }
 
-.tableInput {
+.my-music .tableInput {
   margin: 0;
   padding: 0;
   display: block;
   width: 390px;
 }
-.tableYearInput {
+.my-music .tableYearInput {
   width: 70px;
 }
-th {
+.my-music th {
    border: 2px solid #666;
    background: CADETBLUE;
    margin: 5px;
    padding-right: 20px;
    padding-left: 20px;
 }
-th.control {
+.my-music th.control {
   border: none;
   background: white;
 }
-td.control {
+.my-music td.control {
   border: none;
 }
-td.namecol {
+.my-music td.namecol {
   width: 400px;
 }
 
-tr:hover {
+.my-music tr:hover {
   background: DARKKAHKI;
 }
 
-img.cover {
+.my-music img.cover {
   padding: 1px;
   width: 100px;
   height: 100px;
