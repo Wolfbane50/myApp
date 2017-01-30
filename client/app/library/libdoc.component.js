@@ -136,7 +136,7 @@ console.log("Finisthed constructor");
 
   $onInit() {
     // Handle Options
-    console.log("In onInit of libdoc");
+    console.log("In onInit of libdoc, id = " + this.id + " doc = " + JSON.stringify(this.doc));
     if(this.options) {
       if (this.options.serverPath) {
         this.serverPath = this.options.serverPath;
@@ -156,9 +156,11 @@ console.log("Finisthed constructor");
         this.myDoc = this.Document.get({
           id: this.id
         }, function() {
-          console.log("got document");
-           ctrl.processDoc(ctrl.myDoc, ctrl);
-        });
+             console.log("got document");
+             ctrl.processDoc(ctrl.myDoc, ctrl);
+         }, function(response) {
+            console.log('GET of document failed! status = ' + repsonse.status);
+         });
         } else {
           console.log("No document");
           this.myDoc = null;  // not passed anything

@@ -1,4 +1,5 @@
-'use strict';
+ 'use strict';
+
 
 (function() {
   class DocumentListComponent {
@@ -16,8 +17,10 @@
 } // end component class
 
 angular.module('myappApp')
-  .component('documentListComponent', {
-    bindings: { docs: '<' },
+  .component('documentList', {
+    bindings: {
+      docs: '<' 
+    },
     templateUrl: 'app/techBooks/documentList.html',
     controller: DocumentListComponent
   });
