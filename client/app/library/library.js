@@ -20,8 +20,22 @@ angular.module('myappApp')
           }
         }
       })
+      .state('library.tagCloud', {
+        url: '/tagCloud',
+        component: 'tagCloudComponent'
+      })
+      .state('library.taggedDocs', {
+        url: '/taggedDocs/:tag',
+        component: 'taggedDocsComponent'
+      })
       .state('library.docdisp', {
         component: 'libdoc',
         url: '/document/view'
+      })
+      .state('library.pubdisp', {
+        component: 'publisherComponent',
+      })
+      .state('library.catdisp', {
+        component: 'categoryComponent',
       });
   });

@@ -2,13 +2,15 @@
 
 (function() {
   class LibraryComponent {
-  constructor($http, $scope, Category, Document, Publisher) {
+  constructor($http, $state, $scope, Category, Document, Publisher) {
     this.$http = $http;
+    this.$state = $state;
     this.$scope = $scope;
     this.Document = Document;
     this.Category = Category;
     this.Publisher = Publisher;
 
+    this.selectCount = 0;
     this.selectedId = 486;
     this.docsByCat = {};
     this.tmpDocs = [];
@@ -65,10 +67,20 @@
       ctrl.tmpDocs = ctrl.docsByCat[1];
       });
     };
+    // May not need this.  Could put SREF in app navbar
+    this.editPubs = function() {
+      console.log("Going to edit publishrs");
+      this.$state.go('library.pubdisp');
+    };
+
 
     this.docSelect = function(document) {
-      console.log("Selected => " + JSON.stringify(document));
-      this.tmpDoc = document;
+      this.selectCount++;
+      console.log("In library.docSelect #" + this.selectCount);
+      if (document) {
+        console.log("Selected => " + JSON.stringify(document));
+        this.tmpDoc = document;
+      }
     };
 
   }  // end constructor

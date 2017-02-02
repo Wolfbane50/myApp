@@ -1,8 +1,9 @@
 <subapp-navbar name="Technial Books" state="library">
   <subapp-nav class="nav navbar-nav" on-action="$ctrl.newDoc()">New Document</subapp-nav>
-  <subapp-nav class="nav navbar-nav" on-action="">Tag Cloud</subapp-nav>
-  <subapp-nav class="nav navbar-nav" on-action="">Edit Categories</subapp-nav>
-  <subapp-nav class="nav navbar-nav" on-action="">Edit Publishers</subapp-nav>
+  // Selection callback will pass through tagCloud to taggedDocs to documentList
+  <subapp-nav class="nav navbar-nav" ui-sref="library.tagCloud({onSelect: $ctrl.docSelect(document)})">Tag Cloud</subapp-nav>
+  <subapp-nav class="nav navbar-nav" ui-sref="library.catdisp">Edit Categories</subapp-nav>
+  <subapp-nav class="nav navbar-nav" ui-sref="library.pubdisp">Edit Publishers</subapp-nav>
   <subapp-nav class="nav navbar-nav" on-action="$ctrl.setServerDir()">Set Server Dir</subapp-nav>
   <subapp-nav ng-show="$ctrl.selDoc" class="nav navbar-nav" on-action="$ctrl.prevItem()">&lt;&lt; Previous</subapp-nav>
   <subapp-nav ng-show="$ctrl.selDoc" class="nav navbar-nav" on-action="$ctrl.nextItem()">Next &gt;&gt;</subapp-nav>
