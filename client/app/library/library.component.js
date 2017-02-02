@@ -6,8 +6,8 @@
     this.$http = $http;
     this.$scope = $scope;
     this.Document = Document;
-//    this.Category = Category;
-//    this.Publisher = Publisher;
+    this.Category = Category;
+    this.Publisher = Publisher;
 
     this.selectedId = 486;
     this.docsByCat = {};
@@ -27,7 +27,6 @@
       alert("Selected document deleted!");
     };
     this.getAndOrganizeDocuments = function() {
-      console.log("In getAndOrganizeDocuments");
       var ctrl = this;
       this.documentList = this.Document.query(function() {
 
@@ -63,7 +62,13 @@
             return 1;
           });
         });
+      ctrl.tmpDocs = ctrl.docsByCat[1];
       });
+    };
+
+    this.docSelect = function(document) {
+      console.log("Selected => " + JSON.stringify(document));
+      this.tmpDoc = document;
     };
 
   }  // end constructor
@@ -72,7 +77,7 @@
     this.categories = this.Category.query();
     this.publishers = this.Publisher.query();
     this.getAndOrganizeDocuments();
-    this.tmpDocs = docsByCat[1];
+
 
   } // end onInit
 } // end component class

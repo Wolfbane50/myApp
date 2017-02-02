@@ -6,8 +6,9 @@ describe('libdoc Component, input structure', () => {
   let element;
   let $httpBackend;
 
-  function findIn(element, selector) {
-    return angular.element(element[0].querySelector(selector));
+
+  function findIn(el, selector) {
+    return angular.element(el[0].querySelector(selector));
   }
 
 
@@ -18,7 +19,8 @@ describe('libdoc Component, input structure', () => {
 
   beforeEach(inject((_$httpBackend_, $http, $compile, $rootScope) => {
     $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET('/api/books/categories')
+
+    $httpBackend.whenGET('/api/books/categories')
       .respond([{
         id: 0,
         name: 'Perl'
@@ -26,7 +28,8 @@ describe('libdoc Component, input structure', () => {
         id: 1,
         name: 'Miscellaneous'
       }]);
-    $httpBackend.expectGET('/api/books/publishers')
+
+    $httpBackend.whenGET('/api/books/publishers')
       .respond([
         "O\'Reilly",
         'APress',
@@ -43,7 +46,8 @@ describe('libdoc Component, input structure', () => {
         'Wrox',
         'Addison Wesley'
       ]);
-    $httpBackend.expectGET(/\/api\/books\/tagsForDoc/)
+
+    $httpBackend.whenGET(/\/api\/books\/tagsForDoc/)
       .respond([]); //no tags
 
 
@@ -65,106 +69,46 @@ describe('libdoc Component, input structure', () => {
     expect(myTitle).toEqual('My Title');
   });
 
-  it('displays changed values of Dcoument', () => {
+  it('displays changed values within  Document', () => {
     parentScope.doc.title = 'Changed Title';
-    var myTitleInp = findIn(element, '.js-title-input');
-    myTitleInp.value = 'Changed Title';
+    //var myTitleInp = findIn(element, '.js-title-input');
+    //myTitleInp.value = 'Changed Title';
     parentScope.$digest();
 
     const myTitle = findIn(element, '.js-title').text();
     expect(myTitle).toEqual('Changed Title');
 
   });
-});
-describe('libdoc Component, input id', () => {
-  var queryId;
-  let parentScope;
-  let element;
-  let $httpBackend;
 
-  function findIn(element, selector) {
-    return angular.element(element[0].querySelector(selector));
-  }
-
-
-
-  beforeEach(angular.mock.module('myappApp'));
-
-  beforeEach(module('app/library/libdoc.html'));
-
-  beforeEach(inject((_$httpBackend_, $http, $compile, $rootScope) => {
-    $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET('/api/books/categories')
-      .respond([{
-        id: 0,
-        name: 'Perl'
-      }, {
-        id: 1,
-        name: 'Miscellaneous'
-      }]);
-    $httpBackend.expectGET('/api/books/publishers')
-      .respond([
-        "O\'Reilly",
-        'APress',
-        'Manning',
-        'McGraw Hill',
-        'MS Press',
-        'No Starch',
-        'Packt',
-        'Peachpit Press',
-        'Prentice Hall',
-        'Pragmatic Publishing',
-        'Sams',
-        '7 Summits',
-        'Wrox',
-        'Addison Wesley'
-      ]);
-
-    $httpBackend.expectGET(/\/api\/books\/documents\/(.+)/, undefined, undefined, ['id'])
-      .respond(function(method, url, data, params) {
-        queryId = params.id;
-        console.log("Document request for ID = " + params.id);
-        return [200, {
-          title: "My Title",
-          id: 1
-        }];
-      });
-
-    $httpBackend.whenGET(/\/api\/books\/tagsForDoc/)
-      .respond([]); //no tags
-
-
-
-    parentScope = $rootScope.$new();
-    parentScope.id = 482;
-    // Set attributes on the parentScoope e.g. parentScope.attr ="blah";
-
-    element = angular.element(`<libdoc id="id"></libdoc>`);
-    $compile(element)(parentScope);
-
+  it('displays the new document when the document pointer is changed', () => {
+    parentScope.doc = {
+      id : 2,
+      title : "New Document"
+    };
     parentScope.$digest();
-  }));
 
-  afterEach(function() {
-    $httpBackend.verifyNoOutstandingExpectation();
-    $httpBackend.verifyNoOutstandingRequest();
-  });
+    const myTitle = findIn(element, '.js-title');
+    expect(myTitle.text()).toEqual('New Document');
 
-
-  it('Requests the correct document from database', () => {
-    expect(queryId).toEqual(482);
-  });
-  it('Displays initial values of Document', () => {
-    const myTitle = findIn(element, '.js-title').text();
-    expect(myTitle).toEqual('My Title');
-  });
-
-  it('displays changed values of Document', () => {
-    var myTitleInp = findIn(element, '.js-title-input');
-    myTitleInp.value = 'Changed Title';
-
-    const myTitle = findIn(element, '.js-title').text();
-    expect(myTitle).toEqual('Changed Title');
+//    const myNodocWarning = findIn(element, '.js-nodoc');
+  //  expect(myNodocWarning).toBeDefined();
+//    console.log("warning element display attr => " + myNodocWarning.css('color'));
+//    expect(myNodocWarning.html()).toMatch(/No document selected/);
 
   });
+
+  it('Calls back when a documents category is changed');
+  it ('Calls back when a document is deleted.');
+  it ('Calls back when a document is saved.');
+
+//  it('displays a notice when no document record is empty', () => {
+//    parentScope.doc = {};
+//    parentScope.$digest();
+
+//    const myNodocWarning = findIn(element, '.js-nodoc');
+//    console.log("warning element display attr => " + myNodocWarning.css('display'));
+//    expect(myNodocWarning).not.toBeNull();
+//    expect(myNodocWarning.html()).toMatch(/No document selected/);
+//
+//  });
 });

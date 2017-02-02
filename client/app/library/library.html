@@ -1,9 +1,30 @@
-<document-list docs="tmpDocs"
-     
->
-</document-list>
+<subapp-navbar name="Technial Books" state="library">
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.newDoc()">New Document</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="">Tag Cloud</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="">Edit Categories</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="">Edit Publishers</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.setServerDir()">Set Server Dir</subapp-nav>
+  <subapp-nav ng-show="$ctrl.selDoc" class="nav navbar-nav" on-action="$ctrl.prevItem()">&lt;&lt; Previous</subapp-nav>
+  <subapp-nav ng-show="$ctrl.selDoc" class="nav navbar-nav" on-action="$ctrl.nextItem()">Next &gt;&gt;</subapp-nav>
+</subapp-navbar>
 
+<div class="view_container">
+  <sidebar>
+    <uib-accordion>
+      <div uib-accordion-group ng-repeat="cat in $ctrl.categories track by cat.id" class="panel-default" heading="{{cat.name}}">
+        <a class="pull-right btn btn-primary btn-xs" ng-click="$ctrl.newDoc(cat.id)" style="margin-right: 8px;">
+          <span class="glyphicon glyphicon-plus"></span></a>
+        <document-list docs="$ctrl.docsByCat[cat.id]" on-select="$ctrl.docSelect(document)">
+        </document-list>
+      </div>
+    </uib-accordion>
+  </sidebar>
 
-<div ui-view></div>
-      <span class="lead">Document ID:  <input class="fill" type="text" placeholder="ID" ng-model="$ctrl.selectedId"></span>
-<a class="btn btn-primary" ui-sref=".doc({ id: $ctrl.selectedId })"><span>Load</span></a>
+  <div class="detail" ui-view>
+  </div>
+
+  <div class="main_container">
+    <libdoc doc="$ctrl.tmpDoc" on-category-change="$ctrl.changeCategory" on-save="$ctrl.onSave" on-delete="$ctrl.onDelete">
+    </libdoc>
+  </div>
+</div>

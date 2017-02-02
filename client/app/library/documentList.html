@@ -1,7 +1,7 @@
 
-<ul ng-repeat="doc in $ctrl.docs)">
-  <li ui-sref-active="docSelected">
-  <a  ui-sref=".doc({doc: doc})">{{doc.title}}</a>
+<ul ng-repeat="doc in $ctrl.docs">
+  <li>
+  <a class="js-document-title" ng-click="$ctrl.select({ document: doc })">{{ doc.title }}</a>
   </li>
 </ul>
 </div>

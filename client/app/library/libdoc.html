@@ -1,4 +1,4 @@
-<div ng-hide="$ctrl.myDoc" >
+<div class="js-nodoc" ng-hide="$ctrl.myDoc" >
   <h2>No document selected</h2>
 </div>
 <div ng-show="$ctrl.myDoc" >
@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-md-10">
       <span class="lead">Title:  <input class="js-title-input fill" type="text" placeholder="Title" ng-model="$ctrl.myDoc.title"></span>
-      <p>ID:  {{$ctrl.myDoc.id}}</p>
+      <p class="js-id">ID:  {{$ctrl.myDoc.id}}</p>
     </div>
     <div class="col-md-2">
       <img ng-show="$ctrl.myDoc.image_url" ng-src="{{$ctrl.myDoc.image_url}}" style="float: right;" /></a>
