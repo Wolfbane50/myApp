@@ -1,0 +1,110 @@
+describe('libdoc Component, input id', () => {
+  var queryId;
+  let parentScope;
+  let element;
+  let $httpBackend;
+
+  function findIn(element, selector) {
+    return angular.element(element[0].querySelector(selector));
+  }
+
+
+
+  beforeEach(angular.mock.module('myappApp'));
+
+  beforeEach(module('app/library/libdoc.html'));
+
+  beforeEach(inject((_$httpBackend_, $http, $compile, $rootScope) => {
+    $httpBackend = _$httpBackend_;
+    $httpBackend.whenGET('/api/books/categories')
+      .respond([{
+        id: 0,
+        name: 'Perl'
+      }, {
+        id: 1,
+        name: 'Miscellaneous'
+      }]);
+    $httpBackend.whenGET('/api/books/publishers')
+      .respond([
+        "O\'Reilly",
+        'APress',
+        'Manning',
+        'McGraw Hill',
+        'MS Press',
+        'No Starch',
+        'Packt',
+        'Peachpit Press',
+        'Prentice Hall',
+        'Pragmatic Publishing',
+        'Sams',
+        '7 Summits',
+        'Wrox',
+        'Addison Wesley'
+      ]);
+
+      console.log("Setting up backend");
+      $httpBackend.whenGET(/\/api\/books\/documents\//)
+         .respond({
+                  title: "My Title",
+                  id: 1
+      });
+
+//    $httpBackend.whenGET(/\/api\/books\/documents\/(.+)/, undefined, undefined, ['id'])
+//      .respond(function(method, url, data, params) {
+//        queryId = params.id;
+//        console.log("Document request for ID = " + params.id);
+//        return [200, {
+//          title: "My Title",
+//          id: 1
+//        }];
+//      });
+//      $httpBackend.flush();
+
+    $httpBackend.whenGET(/\/api\/books\/tagsForDoc/)
+      .respond([]); //no tags
+
+
+
+    parentScope = $rootScope.$new();
+    parentScope.id = 482;
+    // Set attributes on the parentScoope e.g. parentScope.attr ="blah";
+
+    element = angular.element(`<libdoc id="id"></libdoc>`);
+    $compile(element)(parentScope);
+
+    parentScope.$digest();
+  }));
+
+  afterEach(function() {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  });
+
+
+  it('Requests the correct document from database', () => {
+  
+    
+    $httpBackend.flush();
+    expect(queryId).toEqual(482);
+  });
+  it('Displays initial values of Document', () => {
+    const myTitle = findIn(element, '.js-title').text();
+    expect(myTitle).toEqual('My Title');
+  });
+
+  it('displays changed values of Document', () => {
+    var myTitleInp = findIn(element, '.js-title-input');
+    myTitleInp.value = 'Changed Title';
+
+    const myTitle = findIn(element, '.js-title').text();
+    expect(myTitle).toEqual('Changed Title');
+
+  });
+});
+
+
+
+  <a  ui-sref=".docdisp({ doc: doc })">{{ doc.title }}</a>
+<div ui-view></div>
+      <span class="lead">Document ID:  <input class="fill" type="text" placeholder="ID" ng-model="$ctrl.selectedId"></span>
+<a class="btn btn-primary" ui-sref=".doc({ id: $ctrl.selectedId })"><span>Load</span></a>

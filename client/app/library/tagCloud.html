@@ -2,7 +2,7 @@
   <h2>Tag Cloud</h2>
   <div>
     <div ng-repeat="tag in $ctrl.tagCloud" ng-class="(($index % 8) == 0) ? 'cloudRow' : 'cloudEntry'">
-      <a ng-class="$ctrl.tagFrequencyClass(tag)" ui-sref="library.taggedDocs({tag: tag.name, onSelect:'$ctrl.select(document)''})">{{tag.name}}</a>
+      <a ng-class="$ctrl.tagFrequencyClass(tag)" ui-sref="library.taggedDocs({tag: tag.name, onSelect:'$ctrl.select(document)'})">{{tag.name}}</a>
     </div>
   </div>
 

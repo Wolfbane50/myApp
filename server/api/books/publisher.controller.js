@@ -2,9 +2,6 @@
 var fs = require("fs");
 // Publishers
 
-export function query(req, res) {
-  res.redirect(303, '/publishers.json');
-}
 
 //export function get(req, res) {}
 function getPublisherRecord(res) {
@@ -18,6 +15,12 @@ function getPublisherRecord(res) {
     // What to return???
   }
 
+}
+export function query(req, res) {
+  var publisherBlk = getPublisherRecord(res);
+  if (publisherBlk) {
+    return res.status(200).json(publisherBlk.items);
+  }
 }
 
 export function create(req, res) {
