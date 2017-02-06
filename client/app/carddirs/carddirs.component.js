@@ -22,7 +22,7 @@
       "data-drag-enabled": false
     };
 
-    this.cardTreeFromJson = function(data) {
+    this.cardTreeFromJson = function(data, ctrl) {
         var seriesIncr = 50000;
         var dirLookup = {};
 
@@ -50,7 +50,7 @@
             };
             //console.log("Starting  " + path + " with " + inFname);
             dirLookup[path] = targetList;
-            this.cardTree.push(targetList);
+            ctrl.cardTree.push(targetList);
           }
         });
       };
@@ -300,7 +300,7 @@
 //          var dt = new Date();
 //          var todayStr = (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
 //          var updateDate = prompt ("Load cards created modified after what date (mm/dd/yy)", todayStr);
-
+          var ctrl = this;
           var modalInstance = $uibModal.open({
               templateUrl: 'carddirModal.html',
               controller: 'carddirModalCtrl',
@@ -308,24 +308,24 @@
               resolve: {
                 updateDt: function () {
                   console.log("resolving updateDt");
-                  return this.updateDate;
+                  return ctrl.updateDate;
                 }
               }
            });
 
           modalInstance.result.then(function (selectedDate) {
-            this.updateDate = selectedDate;
+            ctrl.updateDate = selectedDate;
             // Could do some validations here
             //alert("Want cards after " + this.updateDate);
 
-            this.$http.get('/api/newCards' , {
+            ctrl.$http.get('/api/newCards' , {
               params : {
                 directory: "x:\\cards",
                 lastDate: selectedDate
               }
             }).then(response => {
-               this.cardTree = [];
-                this.cardTreeFromJson(response.data);
+               ctrl.cardTree = [];
+                ctrl.cardTreeFromJson(response.data, ctrl);
 
             }, function errorCallback(response) {
                         alert("Request for New Cards data yielded error: " + response.data + " (" + response.status + ")");
@@ -346,9 +346,10 @@
 
       this.cardTree = angular.fromJson(c2DataStr);
     } else {
+      var ctrl = this;
       this.$http.get('carddirs.json')
          .then(response => {
-             this.cardTreeFromJson(response.data);
+             ctrl.cardTreeFromJson(response.data, this);
          }, function errorCallback(response) {
             alert("Request for New Cards data yielded error: " + response.status);
          });

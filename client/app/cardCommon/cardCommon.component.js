@@ -128,28 +128,29 @@
 
 
         this.updateJson = function() {
-          function postIt (url) {
-            this.$http.post(url, {
+          function postIt (url, ctrl) {
+            ctrl.$http.post(url, {
               cache: true
             }).then(response => {
-              this.cardSets = response.data;
-              this.mySet = this.cardSets[0];
-              this.cards = this.mySet.cards;
+              ctrl.cardSets = response.data;
+              ctrl.mySet = ctrl.cardSets[0];
+              ctrl.cards = ctrl.mySet.cards;
             }, function errorCallback(response) {
               // Handle the error
-              alert("Request to update Card data (" + this.myJSON  +  ") yielded error: " + response.status);
+              alert("Request to update Card data (" + ctrl.myJSON  +  ") yielded error: " + response.status);
             });
           }
 
+          var ctrl = this;
           var jsonFile = this.myJSON;
           if (jsonFile == "chachis3.json") {
-            postIt("/api/newCards/chachi");
+            postIt("/api/newCards/chachi", ctrl);
           } else {
             if (jsonFile == "bunt.json") {
-              postIt("/api/newCards/bunt");
+              postIt("/api/newCards/bunt", ctrl);
             } else {
               if (jsonFile == "ss_cards.json") {
-                postIt("/api/newCards");
+                postIt("/api/newCards", ctrl);
               } else {
                 alert("No update function implemented for this yet!");
               }
