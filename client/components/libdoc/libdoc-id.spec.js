@@ -35,10 +35,7 @@ describe('libdoc Component, input id', () => {
       }]);
     $httpBackend.whenGET('/api/books/publishers')
       .respond(
-        {
-          "label":"name",
-          "identifier":"name",
-          "items": [
+       [
         "O\'Reilly",
         'APress',
         'Manning',
@@ -53,7 +50,7 @@ describe('libdoc Component, input id', () => {
         '7 Summits',
         'Wrox',
         'Addison Wesley'
-      ]});
+      ]);
 
     $httpBackend.whenGET(/\/api\/books\/documents\//)
        .respond({

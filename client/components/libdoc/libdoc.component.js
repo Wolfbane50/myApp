@@ -2,7 +2,8 @@
 
 (function() {
   class LibdocComponent {
-    constructor($http, Category, Document, Publisher, googleBooks) {
+    constructor($stateParams, $http, Category, Document, Publisher, googleBooks) {
+        this.$stateParams = $stateParams;
         this.$http = $http;
         this.googleBooks = googleBooks;
         this.Category = Category;
@@ -154,6 +155,11 @@
               }, function(response) {
                 console.log('GET of document failed! status = ' + repsonse.status);
               });
+            } else {
+              if (this.$stateParams.document) {
+                this.myDoc = this.doc = this.$stateParams.document;
+                this.processDoc(this.myDoc, this);
+              }
             }
           }
         };

@@ -16,6 +16,7 @@
 
   $onInit() {
     this.selectedTag = this.$stateParams.tag;
+    console.log("taggedDocsComponent.onInit selState =" + this.selState + " stateParams" + JSON.stringify(this.$stateParams) );
     // go get the tagged documents
     var ctrl = this;
     this.$http({
@@ -38,7 +39,7 @@
 angular.module('myappApp')
   .component('taggedDocsComponent', {
     bindings: {
-      onSelect: '&'
+      selState: '<',
     },
     templateUrl: 'app/library/taggedDocs.html',
     controller: TaggedDocsComponent

@@ -1,7 +1,7 @@
 <subapp-navbar name="Technial Books" state="library">
   <subapp-nav class="nav navbar-nav" on-action="$ctrl.newDoc()">New Document</subapp-nav>
   // Selection callback will pass through tagCloud to taggedDocs to documentList
-  <subapp-nav class="nav navbar-nav" ui-sref="library.tagCloud({onSelect: $ctrl.docSelect(document)})">Tag Cloud</subapp-nav>
+  <subapp-nav class="nav navbar-nav" ui-sref="library.tagCloud({selState: 'library.docdisp' })">Tag Cloud</subapp-nav>
   <subapp-nav class="nav navbar-nav" ui-sref="library.catdisp">Edit Categories</subapp-nav>
   <subapp-nav class="nav navbar-nav" ui-sref="library.pubdisp">Edit Publishers</subapp-nav>
   <subapp-nav class="nav navbar-nav" on-action="$ctrl.setServerDir()">Set Server Dir</subapp-nav>
@@ -15,7 +15,7 @@
       <div uib-accordion-group ng-repeat="cat in $ctrl.categories track by cat.id" class="panel-default" heading="{{cat.name}}">
         <a class="pull-right btn btn-primary btn-xs" ng-click="$ctrl.newDoc(cat.id)" style="margin-right: 8px;">
           <span class="glyphicon glyphicon-plus"></span></a>
-        <document-list docs="$ctrl.docsByCat[cat.id]" on-select="$ctrl.docSelect(document)">
+        <document-list docs="$ctrl.docsByCat[cat.id]" state="'library.docdisp'" on-select="$ctrl.docSelect(document)">
         </document-list>
       </div>
     </uib-accordion>
@@ -25,7 +25,5 @@
   </div>
 
   <div class="main_container">
-    <libdoc doc="$ctrl.tmpDoc" on-category-change="$ctrl.changeCategory" on-save="$ctrl.onSave" on-delete="$ctrl.onDelete">
-    </libdoc>
   </div>
 </div>
