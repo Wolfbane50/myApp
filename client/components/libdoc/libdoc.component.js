@@ -69,7 +69,7 @@
         };
         this.saveDoc = function() {
           alert("Saving Document\n\n" + this.myDoc.title);
-
+          var ctrl = this;
           if (this.myDoc.id) {
             this.Document.update({
               id: this.selectedItem.id
@@ -78,16 +78,18 @@
               document: this.myDoc
             }, function() {
               console.log("Update successful");
-              this.onSave();
+              ctrl.onSave();
             }, function(error) {
               alert("Document.update returned error -> " + JSON.stringify(error));
             });
           } else {
-            this.Document.create({
+
+            var retDoc = this.Document.create({
               document: this.myDoc
             }, function() {
               console.log("Create successful");
-              this.onSave();
+              ctrl.myDoc.id = retDoc.id;
+              ctrl.onSave();
             }, function(error) {
               alert("Document.create returned error -> " + JSON.stringify(error));
             });
@@ -133,6 +135,12 @@
           } else {
             ctrl.selectedType = 'other';
           }
+//          for (var i=0; i < ctrl.categories.length; i++) {
+//            if (doc.category_id == ctrl.categories[i].id) {
+//              ctrl.selectedCategory = ctrl.categories[i];
+//            }
+//          }
+
         };
 
         // Note that this will be called when doc/id is first set and on any changes afterwards

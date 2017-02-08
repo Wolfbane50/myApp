@@ -19,7 +19,7 @@
     </div>
     <div class="col-md-4">
       <label for="CatPick">Category: </label>
-      <select id="CatPick" ng-model="$ctrl.myDoc.category_id" ng-options="cat.name for cat in $ctrl.categories track by cat.id" ng-change='$ctrl.onCategoryChange()'>
+      <select id="CatPick" ng-model="$ctrl.selectedCategory" ng-options="cat.name for cat in $ctrl.categories track by cat.id" ng-change='$ctrl.changeCategory()'>
       </select>
     </div>
   </div>

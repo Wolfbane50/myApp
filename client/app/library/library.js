@@ -8,25 +8,42 @@ angular.module('myappApp')
       })
       .state('library.tagCloud', {
         url: '/tagCloud',
-        component: 'tagCloudComponent'
+        component: 'tagCloudComponent',
+        params: {
+          selState: null
+        },
+        resolve: {
+          selState: function($transition$) {
+//            console.log("library.docdisp.resove: transition => " + JSON.stringify($transition$.params()));
+            return $transition$.params().selState;
+          }
+        }
       })
       .state('library.taggedDocs', {
         url: '/taggedDocs/:tag',
-        component: 'taggedDocsComponent'
+        component: 'taggedDocsComponent',
+        params: {
+          selState: null
+        },
+        resolve: {
+          selState: function($transition$) {
+        //            console.log("library.docdisp.resove: transition => " + JSON.stringify($transition$.params()));
+            return $transition$.params().selState;
+          }
+        }
       })
       .state('library.docdisp', {
         component: 'libdoc',
           params: {
-            document: null,
+            document: null
           },
 //          component: 'dummyDocComponent'
-//          resolve: {
-//            doc: function($transition$) {
-//              console.log("library.docdisp.resove: transition => " + JSON.stringify($transition$.params()));
-//              return $transition$.params().document;
-//            }
-
-//          }
+          resolve: {
+            doc: function($transition$) {
+              console.log("library.docdisp.resove: transition => " + JSON.stringify($transition$.params()));
+              return $transition$.params().document;
+            }
+         }
       })
       .state('library.pubdisp', {
         component: 'publisherComponent',

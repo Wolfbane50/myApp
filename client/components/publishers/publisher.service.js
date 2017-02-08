@@ -3,7 +3,8 @@ angular.module('myappApp').factory('Publisher', function($resource) {
     query: {
       method: 'GET',
       isArray: true,
-      data: false
+      cache: true,
+    data: false
     },
     create: {
       method: 'POST',

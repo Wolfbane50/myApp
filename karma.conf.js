@@ -92,6 +92,8 @@ module.exports = function(config) {
     // - IE (only Windows)
     browsers: ['PhantomJS', 'Firefox'],
 
+    browserNoActivityTimeout: 100000,
+
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
     singleRun: false

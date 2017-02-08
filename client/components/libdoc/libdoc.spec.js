@@ -67,6 +67,11 @@ describe('libdoc Component, input structure', () => {
   it('Displays initial values of Document', () => {
     const myTitle = findIn(element, '.js-title').text();
     expect(myTitle).toEqual('My Title');
+
+    // Check the Category selector
+    // Check the pubisher field
+    // Check the type selector
+    // Check the image generated from the imageURL
   });
 
   it('displays changed values within  Document', () => {
@@ -96,6 +101,12 @@ describe('libdoc Component, input structure', () => {
 //    expect(myNodocWarning.html()).toMatch(/No document selected/);
 
   });
+
+  it("Will save changes to database");
+  it("Will delete the document correctly");
+  it('Will send google query and populate with results');
+  it('Will handle google query with no results');
+  it("Will revert changes from google query");
 
   it('Calls back when a documents category is changed');
   it ('Calls back when a document is deleted.');

@@ -1,5 +1,5 @@
 <subapp-navbar name="Technial Books" state="library">
-  <subapp-nav class="nav navbar-nav" on-action="$ctrl.newDoc()">New Document</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.newDoc('')">New Document</subapp-nav>
   // Selection callback will pass through tagCloud to taggedDocs to documentList
   <subapp-nav class="nav navbar-nav" ui-sref="library.tagCloud({selState: 'library.docdisp' })">Tag Cloud</subapp-nav>
   <subapp-nav class="nav navbar-nav" ui-sref="library.catdisp">Edit Categories</subapp-nav>

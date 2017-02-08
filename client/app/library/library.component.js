@@ -17,6 +17,11 @@
 
 
     // define all functions
+    function saveConfig() {
+      var storeString = angular.toJson(this.config);
+      localStorage.setItem("docMgrConfig", storeString);
+    }
+
     this.changeCategory = function() {
       alert("Category on selected Item changed!");
     };
@@ -73,6 +78,35 @@
       this.$state.go('library.pubdisp');
     };
 
+    this.newDoc = function(catid) {
+      console.log("In library.newDoc...");
+      var myCatId = (catid) ? catid : 10; //'Uncategorized';
+
+      var myDoc = {
+        id: null, // What the server would expect on save for create.
+        title: "New Book",
+        author: null,
+        // publisher: null,    // May need this
+        image_url: "http://localhost:3000/assets/document.gif",
+        type_id: 1,
+        category_id: myCatId
+      };
+      this.documentList.push(myDoc);
+      this.docsByCat[myCatId].push(myDoc);
+      this.$state.go('library.docdisp', {
+        document: myDoc
+      });
+    };
+
+    this.setServerDir = function () {
+      var newDir = prompt("Enter Directory for Server Links: (Do Not Forget the trailing slash!)", this.config.serverPath);
+      if (newDir) {
+        if (newDir != this.config.serverPath) {
+          this.config.serverPath = newDir;
+          saveConfig();
+        }
+      }
+    };
 
     this.docSelect = function(document) {
       this.selectCount++;
@@ -86,6 +120,26 @@
   }  // end constructor
 
   $onInit() {
+    // Configuration data
+    var lconfig = localStorage.getItem("docMgrConfig");
+    this.config = angular.fromJson(lconfig);
+    console.log("Retrieved Config => " + JSON.stringify(this.config));
+    if (this.config) {
+      if (!this.config.starredHash) {
+        this.config.starredHash = {};
+      }
+      if (! this.config.serverPath ) {
+      this.config.serverPath = "/ebooks/"; // work
+    // this.config.serverPath = "http://nasd???/Multimedia/techbooks/";  // home
+      }
+    } else {
+      alert("No configuration in local storage");
+      this.config = {
+        starredHash : {},
+        serverPath : "/ebooks/"
+      };
+    }
+
     this.categories = this.Category.query();
     this.publishers = this.Publisher.query();
     this.getAndOrganizeDocuments();
