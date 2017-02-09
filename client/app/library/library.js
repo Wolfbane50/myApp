@@ -8,27 +8,19 @@ angular.module('myappApp')
       })
       .state('library.tagCloud', {
         url: '/tagCloud',
-        component: 'tagCloudComponent',
-        params: {
-          selState: null
-        },
-        resolve: {
-          selState: function($transition$) {
-//            console.log("library.docdisp.resove: transition => " + JSON.stringify($transition$.params()));
-            return $transition$.params().selState;
-          }
-        }
+        component: 'tagCloudComponent'
       })
       .state('library.taggedDocs', {
         url: '/taggedDocs/:tag',
         component: 'taggedDocsComponent',
         params: {
-          selState: null
+          selState: 'library.docdisp'
         },
         resolve: {
           selState: function($transition$) {
         //            console.log("library.docdisp.resove: transition => " + JSON.stringify($transition$.params()));
-            return $transition$.params().selState;
+         //      return $transition$.params().selState;
+            return "library.docdisp";
           }
         }
       })
@@ -56,31 +48,4 @@ angular.module('myappApp')
       });
   });
 
-  angular.module('myappApp')
-    .service('LibraryService', function() {
-      var catMap = {};
-      var docMap = {};
-      return {
-        catMapInit: function(categories) {
-          angular.forEach(categories, function(cat) {
-            catMap[cat.id] = cat;
-          });
-        },
-        catFromId: function(id) {
-          return catMap[id];
-        },
-        docMapInit: function(documents) {
-          angular.forEach(documents, function(doc) {
-            docMap[doc.id] = doc;
-          });
-        },
-        // If we are walking the list of all documents anyway, it is more
-        //    efficient to build the map then and set it in the service
-        docMapSet: function(theMap) {
-          docMap = theMap;
-        },
-        docFromId: function(id) {
-          return docMap[id];
-        }
-      };
-    });
+  

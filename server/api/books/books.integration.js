@@ -193,27 +193,28 @@ describe('get /api/books/savestage', function() {
 });
 
   var redirect, redirectUrl;
-describe('get /api/books/publishers', function() {
+describe.only('get /api/books/publishers', function() {
   beforeEach(function(done) {
 
     request(app)
       .get('/api/books/publishers')
       .send()
-      .expect(303)
+      .expect(200)
+      .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) {
           return done(err);
         }
 
-        redirect = res.redirect;
-        redirectUrl = res.headers.location;
+        cloudRec = res.body;
         done();
       });
   });
 
-  it('should respond with redirect to /publishers.json', function() {
-    redirect.should.be.true;
-    redirectUrl.should.equal('/publishers.json');
+  it('should return an array of strings', function() {
+    cloudRec.should.be.instanceOf(Array);
+    var myPub = cloudRec[0];
+    (myPub)should.be.type('string');
 
   });
 });
@@ -472,7 +473,7 @@ describe('Delete /api/books/documents/$id', function() {
   });
 });
 
-describe.only('Play with Documents API to get tags working', function() {
+describe('Play with Documents API to get tags working', function() {
   it('should respond with 204 on successful update', function(done) {
     newRecId = 400;   // web dev/Ajax and REST recipes
     request(app)

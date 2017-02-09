@@ -2,13 +2,15 @@
 
 (function() {
   class LibdocComponent {
-    constructor($stateParams, $http, Category, Document, Publisher, googleBooks) {
+    constructor($stateParams, $window, $http, Category, Document, Publisher, googleBooks, LibraryService) {
         this.$stateParams = $stateParams;
         this.$http = $http;
         this.googleBooks = googleBooks;
         this.Category = Category;
         this.Document = Document;
         this.Publisher = Publisher;
+        this.LibraryService = LibraryService;
+        this.$window = $window;
 
         this.myDoc = null;
         this.docTypes = {
@@ -55,7 +57,7 @@
 
         this.revert = function() {
           // User may select other document before call to database is complete
-          //               console.log("In revert...");
+          console.log("In revert...");
           angular.copy(this.stachedDoc, this.myDoc);
         };
 
@@ -64,21 +66,21 @@
         };
 
         this.queryGoogle = function() {
-          stachDoc();
+          this.stachDoc();
           this.googleBooks.queryGoogle(this.myDoc);
         };
         this.saveDoc = function() {
-          alert("Saving Document\n\n" + this.myDoc.title);
+          //alert("Saving Document\n\n" + this.myDoc.title);
           var ctrl = this;
           if (this.myDoc.id) {
             this.Document.update({
-              id: this.selectedItem.id
+              id: this.myDoc.id
                 //            }, this.selectedItem, function() {
             }, {
               document: this.myDoc
             }, function() {
               console.log("Update successful");
-              ctrl.onSave();
+              ctrl.onSave({ document: ctrl.myDoc });
             }, function(error) {
               alert("Document.update returned error -> " + JSON.stringify(error));
             });
@@ -89,28 +91,29 @@
             }, function() {
               console.log("Create successful");
               ctrl.myDoc.id = retDoc.id;
-              ctrl.onSave();
+              ctrl.onSave({ document: ctrl.myDoc });
             }, function(error) {
               alert("Document.create returned error -> " + JSON.stringify(error));
             });
           }
         };
         this.deleteDoc = function() {
-          if (confirm("Are you sure you want to delete this document?\n\n" + this.myDoc.title)) {
+          if (this.$window.confirm("Are you sure you want to delete this document?\n\n" + this.myDoc.title)) {
             var delDoc = this.myDoc;
+            var ctrl = this;
             if (delDoc.id) {
-              this.Document.delete({
+              ctrl.Document.delete({
                 id: delDoc.id
               }, function() {
                 console.log("Delete successful");
-                this.onDelete();
+                ctrl.onDelete({ document: ctrl.myDoc });
               }, function(error) {
                 alert("Document.delete returned error -> " + JSON.stringify(error));
               });
             } else {
               // No ID, so this must be a 'new' record, so skip the database delete
               console.log("Delete an item with no ID -- assuming its not in the database");
-              this.onDelete();
+              ctrl.onDelete({ document: ctrl.myDoc });
             }
           }
         };
@@ -121,6 +124,14 @@
           });
           localStorage.setItem("epub2read", storeString);
           window.open("/epub/reader/");
+        };
+
+        this.changeCategory = function() {
+          var oldCat = this.myDoc.category_id;
+          var newCat = this.docCategory.id;
+          myDoc.category_id = newCat;
+          console.log("Calling onCategoryChange with old = " + oldCat + "; chg =" + newCat);
+          this.onCategoryChange({document: myDoc, old: oldCat, chg: newCat });
         };
 
         this.processDoc = function(doc, ctrl) {
@@ -135,12 +146,9 @@
           } else {
             ctrl.selectedType = 'other';
           }
-//          for (var i=0; i < ctrl.categories.length; i++) {
-//            if (doc.category_id == ctrl.categories[i].id) {
-//              ctrl.selectedCategory = ctrl.categories[i];
-//            }
-//          }
 
+           ctrl.docCategory = LibraryService.catFromId(doc.category_id);
+           console.log("Set document category to => " + JSON.stringify(ctrl.docCategory));
         };
 
         // Note that this will be called when doc/id is first set and on any changes afterwards

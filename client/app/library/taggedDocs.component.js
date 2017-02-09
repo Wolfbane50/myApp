@@ -2,9 +2,10 @@
 
 (function() {
   class TaggedDocsComponent {
-  constructor($http, $stateParams) {
+  constructor($http, $stateParams, LibraryService) {
     this.$http = $http;
     this.$stateParams = $stateParams;
+    this.LibraryService = LibraryService;
     this.tagDocs = [];
 
     // define all functions
@@ -29,7 +30,7 @@
       }
     }).then(function successCallback(response) {
       angular.forEach(response.data, function(docref) {
-        ctrl.tagDocs.push(LibraryService.docFromId(docref.id));
+        ctrl.tagDocs.push(ctrl.LibraryService.docFromId(docref.id));
       });
       //  Was ctrl.tagDocs = response.data;
     }, function errorCallback(response) {

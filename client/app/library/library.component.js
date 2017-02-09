@@ -145,8 +145,10 @@
       };
     }
 
-    this.categories = this.Category.query();
-    this.publishers = this.Publisher.query();
+    var ctrl = this;
+    this.categories = this.Category.query(null, function() {
+        ctrl.LibraryService.catMapInit(ctrl.categories);
+    });
     this.getAndOrganizeDocuments();
 
 

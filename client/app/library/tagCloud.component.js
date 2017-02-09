@@ -58,9 +58,6 @@
 
 angular.module('myappApp')
   .component('tagCloudComponent', {
-    bindings: {
-      selState: '<'
-    },
     templateUrl: 'app/library/tagCloud.html',
     controller: TagCloudComponent
   });

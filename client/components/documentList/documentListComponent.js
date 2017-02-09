@@ -6,8 +6,8 @@
      constructor($state) {
          this.$state = $state;
          this.select = function(doc) {
-//           console.log("In documentList.select, doc => " + JSON.stringify(doc));
-//           console.log("About to call state " + this.state);
+           console.log("In documentList.select, doc => " + JSON.stringify(doc));
+           console.log("About to call state " + this.state);
            this.$state.go(this.state, doc);
            //this.onSelect(doc);
          };

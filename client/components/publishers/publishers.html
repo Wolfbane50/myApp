@@ -7,7 +7,7 @@
     </tr>
     <tr ng-repeat="pub in $ctrl.publishers" ng-class>
       <td ng-class-odd="'stripeRow'">
-        {{pub.name}}
+        {{pub}}
       </td>
       <td ng-class-odd="'stripeRow'">
         <a  class="btn btn-primary" uib-tooltip="Delete Publisher" ng-click="$ctrl.deletePub(pub, $index)">

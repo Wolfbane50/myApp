@@ -100,6 +100,29 @@ describe('Category service', () => {
 
 
   });
+  it('Will execute success callback', () => {
+    var theCategories = [{
+        id: 0,
+        name: 'Perl'
+      }, {
+        id: 1,
+        name: 'Miscellaneous'
+      }];
+      var tmpCatName;
+
+    // Expect only on get request
+    $httpBackend.expectGET('/api/books/categories')
+      .respond(theCategories);
+
+      var myCategories = mockCategoryResource.query(null, function() {
+        tmpCatName = myCategories[1].name;
+      });
+      $httpBackend.flush();
+
+      expect(tmpCatName).toEqual("Miscellaneous");
+
+
+  });
 
 
 });

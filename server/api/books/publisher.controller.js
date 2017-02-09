@@ -19,7 +19,11 @@ function getPublisherRecord(res) {
 export function query(req, res) {
   var publisherBlk = getPublisherRecord(res);
   if (publisherBlk) {
-    return res.status(200).json(publisherBlk.items);
+    var pubNames = [];
+    for (var i=0; i<publisherBlk.items.length; i++) {
+      pubNames.push(publisherBlk.items[i].name)
+    }
+    return res.status(200).json(pubNames);
   }
 }
 
