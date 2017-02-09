@@ -2,13 +2,14 @@
 
 (function() {
   class LibraryComponent {
-  constructor($http, $state, $scope, Category, Document, Publisher) {
+  constructor($http, $state, $scope, Category, Document, Publisher, LibraryService) {
     this.$http = $http;
     this.$state = $state;
     this.$scope = $scope;
     this.Document = Document;
     this.Category = Category;
     this.Publisher = Publisher;
+    this.LibraryService = LibraryService;
 
     this.selectCount = 0;
     this.selectedId = 486;
@@ -36,9 +37,10 @@
     this.getAndOrganizeDocuments = function() {
       var ctrl = this;
       this.documentList = this.Document.query(function() {
-
+        var docMap = {};
         angular.forEach(ctrl.documentList, function(doc) {
           delete doc.tag_id;
+          docMap[doc.id] = doc;
 
           // Build starred documents list
 //          if (doc.id) {
@@ -59,6 +61,9 @@
             ctrl.docsByCat[myCat] = [doc];
           }
         });
+        // Initialize the document map in LibraryService
+        ctrl.LibraryService.docMapInit(docMap);
+
         // Sort the Docs in each category
         angular.forEach(ctrl.docsByCat, function(docs, catId, obj) {
           obj[catId] = docs.sort(function(a, b) {

@@ -28,8 +28,10 @@
         'Accept': 'application/json'
       }
     }).then(function successCallback(response) {
-      //alert("Got tag cloud");
-      ctrl.tagDocs = response.data;
+      angular.forEach(response.data, function(docref) {
+        ctrl.tagDocs.push(LibraryService.docFromId(docref.id));
+      });
+      //  Was ctrl.tagDocs = response.data;
     }, function errorCallback(response) {
       alert("Request for Tagged Documents yielded error: " + response.status);
     });
