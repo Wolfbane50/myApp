@@ -13,7 +13,7 @@ angular.module('myappApp')
         console.log("Done catMapInit => " + Object.keys(catMap));
       },
       catFromId: function(id) {
-        console.log("catFromId for id=" + id + "; return => " + catMap[id]);
+        console.log("catFromId for id=" + id + "; return => " + JSON.stringify(catMap[id]));
         return catMap[id];
       },
       docMapInit: function(documents) {

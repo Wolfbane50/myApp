@@ -21,9 +21,11 @@
     </uib-accordion>
   </sidebar>
 
-  <div class="detail" ui-view>
+  <div class="detail"
+      ui-view on-save="$ctrl.onSave(document)"
+      on-delete="$ctrl.onDelete(document)"
+      on-category-change="$ctrl.changeCategory(old, chg, document)">      
   </div>
-
   <div class="main_container">
   </div>
 </div>

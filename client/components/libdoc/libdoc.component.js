@@ -80,7 +80,9 @@
               document: this.myDoc
             }, function() {
               console.log("Update successful");
-              ctrl.onSave({ document: ctrl.myDoc });
+              ctrl.onSave({
+                document: ctrl.myDoc
+              });
             }, function(error) {
               alert("Document.update returned error -> " + JSON.stringify(error));
             });
@@ -91,7 +93,9 @@
             }, function() {
               console.log("Create successful");
               ctrl.myDoc.id = retDoc.id;
-              ctrl.onSave({ document: ctrl.myDoc });
+              ctrl.onSave({
+                document: ctrl.myDoc
+              });
             }, function(error) {
               alert("Document.create returned error -> " + JSON.stringify(error));
             });
@@ -106,14 +110,18 @@
                 id: delDoc.id
               }, function() {
                 console.log("Delete successful");
-                ctrl.onDelete({ document: ctrl.myDoc });
+                ctrl.onDelete({
+                  document: ctrl.myDoc
+                });
               }, function(error) {
                 alert("Document.delete returned error -> " + JSON.stringify(error));
               });
             } else {
               // No ID, so this must be a 'new' record, so skip the database delete
               console.log("Delete an item with no ID -- assuming its not in the database");
-              ctrl.onDelete({ document: ctrl.myDoc });
+              ctrl.onDelete({
+                document: ctrl.myDoc
+              });
             }
           }
         };
@@ -127,11 +135,18 @@
         };
 
         this.changeCategory = function() {
-          var oldCat = this.myDoc.category_id;
-          var newCat = this.docCategory.id;
-          myDoc.category_id = newCat;
-          console.log("Calling onCategoryChange with old = " + oldCat + "; chg =" + newCat);
-          this.onCategoryChange({document: myDoc, old: oldCat, chg: newCat });
+          if (this.docCategory) {  // If control gets screwed up, ignore
+            console.log("In changeCategory.. myDoc => " + JSON.stringify(this.myDoc) + " docCategory => " + JSON.stringify(this.docCategory));
+            var oldCat = this.myDoc.category_id;
+            var newCat = this.docCategory.id;
+            this.myDoc.category_id = newCat;
+            console.log("Calling onCategoryChange with old = " + oldCat + "; chg =" + newCat);
+            this.onCategoryChange({
+              document: this.myDoc,
+              old: oldCat,
+              chg: newCat
+            });
+          }
         };
 
         this.processDoc = function(doc, ctrl) {
@@ -147,26 +162,26 @@
             ctrl.selectedType = 'other';
           }
 
-           ctrl.docCategory = LibraryService.catFromId(doc.category_id);
-           console.log("Set document category to => " + JSON.stringify(ctrl.docCategory));
+          ctrl.docCategory = LibraryService.catFromId(doc.category_id);
+          console.log("Set document category to => " + JSON.stringify(ctrl.docCategory));
         };
 
         // Note that this will be called when doc/id is first set and on any changes afterwards
         this.$onChanges = function(changes) {
-//          console.log("Libdoc onChanges fired, changes => " + JSON.stringify(changes));
+          //          console.log("Libdoc onChanges fired, changes => " + JSON.stringify(changes));
           //  If no change occured to an attribute, it will have previousValue but not currentValue;
           if ((changes.doc) && (changes.doc.currentValue)) {
-//            console.log("   Accepting changes");
+            //            console.log("   Accepting changes");
             this.myDoc = this.doc = changes.doc.currentValue;
             this.processDoc(this.myDoc, this);
           } else {
             if ((changes.id) && (changes.id.currentValue)) {
-//              console.log("Getting doc for ID");
+              //              console.log("Getting doc for ID");
               var ctrl = this;
               this.myDoc = this.Document.get({
                 id: this.id
               }, function() {
-//                console.log("got document");
+                //                console.log("got document");
                 ctrl.processDoc(ctrl.myDoc, ctrl);
               }, function(response) {
                 console.log('GET of document failed! status = ' + repsonse.status);
@@ -184,7 +199,7 @@
 
     $onInit() {
         // Handle Options
-//        console.log("In onInit of libdoc, id = " + this.id + " doc = " + JSON.stringify(this.doc));
+        //        console.log("In onInit of libdoc, id = " + this.id + " doc = " + JSON.stringify(this.doc));
         if (this.options) {
           if (this.options.serverPath) {
             this.serverPath = this.options.serverPath;

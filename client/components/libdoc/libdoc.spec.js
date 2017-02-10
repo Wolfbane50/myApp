@@ -9,6 +9,8 @@ describe('libdoc Component, input structure', () => {
   let oldId;
   let newId;
   let $win;
+  let myLibService;
+  let myCategories;
 
 
   function findIn(el, selector) {
@@ -21,18 +23,24 @@ describe('libdoc Component, input structure', () => {
 
   beforeEach(module('components/libdoc/libdoc.html'));
 
-  beforeEach(inject((_$httpBackend_, $http, $compile, $rootScope, $window) => {
+  beforeEach(inject((_$httpBackend_, $http, $compile, $rootScope, $window, LibraryService) => {
     $httpBackend = _$httpBackend_;
     $win = $window;
+    myLibService = LibraryService;
+
+    myCategories = [{
+      id: 0,
+      name: 'Perl'
+    }, {
+      id: 1,
+      name: 'Miscellaneous'
+    }];
+
+    // Need to initialize LibraryService catMap (would normally be done by top-level component)
+    myLibService.catMapInit(myCategories);
 
     $httpBackend.whenGET('/api/books/categories')
-      .respond([{
-        id: 0,
-        name: 'Perl'
-      }, {
-        id: 1,
-        name: 'Miscellaneous'
-      }]);
+      .respond(myCategories);
 
     $httpBackend.whenGET('/api/books/publishers')
       .respond([
@@ -60,6 +68,7 @@ describe('libdoc Component, input structure', () => {
     // Set attributes on the parentScoope e.g. parentScope.attr ="blah";
     parentScope.doc = {
       title: "My Title",
+      category_id: 1,
       //      author: "No Author",
       //      publisher: "Best Publishers",
       //      image_url: "None",
@@ -141,6 +150,7 @@ describe('libdoc Component, input structure', () => {
     $httpBackend.expectPUT('/api/books/documents/1', {
         document: {
           title: "My Title",
+          category_id: 1,
           id: 1,
           publisher: "Supreme Publishing"
         }
@@ -233,21 +243,22 @@ describe('libdoc Component, input structure', () => {
   });
 
   it('Calls back when a documents category is changed', () => {
-    parentScope.doc.category_id = 1;
-    parentScope.$digest();
+      // Flush to send categories response
+      $httpBackend.flush();
 
       const catSelect = findIn(element, '#CatPick');
-      // Will callback happen here?
-      expect(catSelect.val()).toEqual(1);
+      expect(catSelect.prop('length')).toEqual(2);
+      expect(catSelect.prop('selectedIndex')).toEqual(1);
+
+//    Not really changing value, just triggering the callback
+      catSelect.change();  // Should trigger the onChanges
+
       expect(parentScope.catChangeCallback).toHaveBeenCalled();
-      catSelect.val(2);
-      expect(parentScope.catChangeCallback).toHaveBeenCalled();
-      expect(processedDocument).toBeDefined();
-      expect(processedDocument.category_id).toEqual(2);
+      expect(processedDocument.category_id).toEqual(1);
       expect(oldId).toBeDefined();
       expect(oldId).toEqual(1);
       expect(newId).toBeDefined();
-      expect(newId).toEqual(2);
+      expect(newId).toEqual(1);
 
 
   });
