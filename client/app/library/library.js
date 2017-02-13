@@ -25,15 +25,26 @@ angular.module('myappApp')
         }
       })
       .state('library.docdisp', {
-        component: 'libdoc',
+//        component: 'libdoc',
+          component: 'starredDoc',
           params: {
             document: null
           },
 //          component: 'dummyDocComponent'
           resolve: {
             doc: function($transition$) {
-              console.log("library.docdisp.resove: transition => " + JSON.stringify($transition$.params()));
+              //console.log("library.docdisp.resove: transition => " + JSON.stringify($transition$.params()));
               return $transition$.params().document;
+//            },
+//            starred: function($transition$) {
+//               var id = $transition$.params().document.id;
+//                 if ($ctrl.config.starredHash[id]) {
+//                   console.log("Doc is starred!!");
+//                   return true;
+//                 } else {
+//                   console.log("Doc is not starred!");
+//                   return false;
+//                 }
             }
          }
       })
@@ -47,5 +58,3 @@ angular.module('myappApp')
           template: '<img src="assets/images/phanatic_in_suit.jpg" >'
       });
   });
-
-  

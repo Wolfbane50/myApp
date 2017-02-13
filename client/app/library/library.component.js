@@ -58,27 +58,21 @@
           saveConfig();
         };
 
-        this.toggleStarred = function(id) {
+        this.toggleStarred = function(document, toValue) {
+          var id = document.id;
+          // Not using toValue, potential to get out of synch
           if (this.config.starredHash[id]) {
             delete this.config.starredHash[id];
             this.spliceDocFromList(this.starredDocs, id)
           } else {
             this.config.starredHash[id] = true;
-            this.starredDocs.push(this.LibraryService.docFromId(id));
+            this.starredDocs.push(document);
             this.starredDocs = sortListByTitle(this.starredDocs);
           }
           saveConfig();
         };
 
-        this.starredIcon = function(id) {
-          if (this.config.starredHash[id]) {
-            return 'glyphicon glyphicon-star';
-          } else {
-            return 'glyphicon glyphicon-star-empty';
-          }
-        };
-
-        this.changeCategory = function(old, chg, document) {
+      this.changeCategory = function(old, chg, document) {
           console.log("Category on document " + document.id + " changed from " + old + " to " + chg);
           this.spliceDocFromList(this.docsByCat[old], document.id);
           this.docsByCat[chg].push(document);
@@ -101,6 +95,7 @@
           var ctrl = this;
           this.documentList = this.Document.query(function() {
             var docMap = {};
+            ctrl.starredDocs = [];
             angular.forEach(ctrl.documentList, function(doc) {
               delete doc.tag_id;
               docMap[doc.id] = doc;

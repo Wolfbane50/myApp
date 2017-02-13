@@ -3,18 +3,26 @@
 (function() {
   class StarredDocComponent {
     constructor() {
-      this.starred = false; // false by default
-      this.doc = {};
 
       this.toggle = function() {
         this.starred = !(this.starred);
-        this.onStarToggle(this.doc);
+        this.onStarToggle({ document: this.doc, toValue: this.starred });
       };
 
 
 
       this.starredIcon = function() {
         return (this.starred) ? 'glyphicon glyphicon-star' : 'glyphicon glyphicon-star-empty';
+      };
+
+      this.saveCB = function(document) {
+        this.onSave({ document: document });
+      };
+      this.deleteCB = function(document) {
+        this.onDelete({ document: document });
+      };
+      this.categoryChangeCB = function(old, chg, document) {
+        this.onCategoryChange({ old: old, chg: chg, document: document });
       };
 
     } // end constructor
@@ -27,7 +35,7 @@
         } // end component class
 
         angular.module('myappApp')
-          .component('libdoc', {
+          .component('starredDoc', {
             bindings: {
               // one-way input binding, e.g.,
               // <libdoc id="$parentCtrl.docid"></foo>
@@ -41,7 +49,7 @@
               onDelete: '&',
               onStarToggle: '&'
             },
-            templateUrl: 'components/StarredDoc/starredDoc.html',
+            templateUrl: 'components/starredDoc/starredDoc.html',
             controller: StarredDocComponent
           });
 

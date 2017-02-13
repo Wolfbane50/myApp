@@ -1,75 +1,29 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-4">
-      <h2>Enter NEW Technical Books from a Stage Directory</h2>
-    </div>
-    <div class="col-lg-8" id="buttonBar">
-      <a class="btn btn-primary" ui-sref='loadstage.default'>
-        <span  class="glyphicon glyphicon-home"><span>&nbsp;</a>
-          <ul style="list-style-type:none">
-            <li>
-      <a class="pull-right btn btn-primary" ng-click="backup()">
-        <span>Backup</span></a>
+<subapp-navbar name="Load Books from Stage" state="loadstage">
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.newDoc('')">New Document</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.backup()">Rmt Backup</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.restore()">Rmt Restore</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.commitChanges()">Local Save</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.retrieveLocal()">Local Load</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.flushLocal()">Local Flush</subapp-nav>
+  <subapp-nav class="nav navbar-nav">Save Stage</subapp-nav>
+  <subapp-nav ng-show="$ctrl.selDoc" class="nav navbar-nav" on-action="$ctrl.prevItem()">&lt;&lt; Previous</subapp-nav>
+  <subapp-nav ng-show="$ctrl.selDoc" class="nav navbar-nav" on-action="$ctrl.nextItem()">Next &gt;&gt;</subapp-nav>
+</subapp-navbar>
 
-            </li>
-            <li>
-      <a class="pull-right btn btn-primary" ng-click="restore()">
-        <span>Restore</span></a>
+<div class="view_container">
+  <sidebar>
+    <a class="btn btn-primary" ng-click="$ctrl.getStageDocs()">
+      <span>Retrieve Docs</span></a>
+    <document-list docs="$ctrl.stageDocs" state="'loadstage.docdisp'"
+       options="$ctrl.doclistOptions"
+    >
+    </document-list>
 
-            </li>
-            <li>
-      <a class="pull-right btn btn-primary" ng-click="commitChanges()">
-        <span>Save Progress</span></a>
+  </sidebar>
 
-            </li>
-            <li>
-      <a class="pull-right btn btn-primary" ng-click="retrieveLocal()">
-        <span>Retrieve Local</span></a>
-
-            </li>
-            <li>
-      <a class="pull-right btn btn-primary" ui-sref='loadstage.displayJSON'>
-        <span>JSON</span></a>
-
-            </li>
-            <li>
-      <a class="pull-right btn btn-primary" ng-click="flushLocal()">
-        <span>Flush Local</span></a>
-
-            </li>
-          </ul>
-
-
-        <a class="pull-right btn btn-primary" ng-click="newDoc()">
-          <span>New...</span></a>
-      <a class="pull-right btn btn-primary" ng-click="saveStage()">
-        <span>Save Stage</span></a>
-
-    </div>
+  <div class="detail"
+      ui-view on-save="$ctrl.onSave(document)"
+      on-delete="$ctrl.onDelete(document)"
+      >
   </div>
-  <div class="row">
-    <div class="col-lg-4" style="height: 750px; overflow:scroll;">
-      <a class="btn btn-primary" ng-click="getStageDocs()">
-        <span>Retrieve Docs</span></a>
-      <ul style="list-style-type:none">
-        <li ng-repeat="doc in stageDocs">
-          <a class="btn btn-primary btn-xs" ng-click="removeDoc($index)"><span class="glyphicon glyphicon-trash">
-                    </span></a>
-          <a ui-sref="loadstage.stageDocument({index: $index})">{{doc.title}}</a>
-        </li>
-      </ul>
-
-    </div>
-
-    <div class="col-lg-8">
-
-      <p>Storage: {{storageDir}} <a class="btn btn-primary" ng-click="setStorageDir()">
-        <span>Set</span></a></p>
-      <p>Stage: {{stageDir}} <a class="btn btn-primary" ng-click="setStageDir()">
-        <span>Set</span></a></p>
-      <div class="detail" ui-view></div>
-
-    </div>
-  </div>
-
 </div>

@@ -3,8 +3,20 @@ angular.module('myappApp')
     $stateProvider
       .state('loadstage', {
         url: '/loadstage',
-        template: '<loadstage></loadstage>',
-        css: 'app/loadstage/loadstage.css'
+        redirectTo: 'loadstage.default',
+        component: 'loadstageComponent'
+      })
+      .state('loadstage.docdisp', {
+          component: 'libdoc',
+          params: {
+            document: null
+          },
+          resolve: {
+            doc: function($transition$) {
+              //console.log("library.docdisp.resove: transition => " + JSON.stringify($transition$.params()));
+              return $transition$.params().document;
+            }
+         }
       })
       .state('loadstage.stageDocument', {
         url: '/document/:index',
@@ -21,14 +33,17 @@ angular.module('myappApp')
           $scope.itemSelect(rec, $stateParams.index);
         }
       })
-      .state('loadstage.displayJSON', {
-        url: '/showjson',
-        template: "<pre class='code'>{{ stageDocs | json }}</pre>"
-      })
       .state('loadstage.displayResults', {
-        url: '/stageResults',
-        templateUrl: 'app/loadstage/stageResults.html'
-
+        component: 'stageResults',
+        params: {
+          result: null
+        },
+        resolve: {
+          result: function($transition$) {
+            //console.log("library.docdisp.resove: transition => " + JSON.stringify($transition$.params()));
+            return $transition$.params().result;
+          }
+        }
       })
       .state('loadstage.default', {
         url: '/default',

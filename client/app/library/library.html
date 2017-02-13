@@ -24,7 +24,8 @@
   <div class="detail"
       ui-view on-save="$ctrl.onSave(document)"
       on-delete="$ctrl.onDelete(document)"
-      on-category-change="$ctrl.changeCategory(old, chg, document)">      
+      on-category-change="$ctrl.changeCategory(old, chg, document)"
+      on-star-toggle="$ctrl.toggleStarred(document, toValue)">
   </div>
   <div class="main_container">
   </div>
