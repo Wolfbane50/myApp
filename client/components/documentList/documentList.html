@@ -2,6 +2,8 @@
 <ul ng-repeat="doc in $ctrl.docs">
   <li>
   <a class="js-document-title" ng-click="$ctrl.select({ document: doc })">{{ doc.title }}</a>
+  <a ng-show="$ctrl.showDelete" class="js-remove-btn btn btn-primary btn-xs" ng-click="$ctrl.removeDoc($index)">
+       <span class="glyphicon glyphicon-trash"></span></a>
   </li>
 </ul>
 </div>

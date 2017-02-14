@@ -15,15 +15,22 @@
     <a class="btn btn-primary" ng-click="$ctrl.getStageDocs()">
       <span>Retrieve Docs</span></a>
     <document-list docs="$ctrl.stageDocs" state="'loadstage.docdisp'"
-       options="$ctrl.doclistOptions"
+       options="$ctrl.doclistOptions" on-remove="$ctrl.removeDoc(index)"
     >
     </document-list>
 
   </sidebar>
 
-  <div class="detail"
+  <div class="detail">
+    <p> <a class="btn btn-primary" ng-click="$ctrl.setStorageDir()">
+      <span>Set</span></a>Storage: {{$ctrl.storageDir}}</p>
+    <p><a class="btn btn-primary" ng-click="$ctrl.setStageDir()">
+      <span>Set</span></a>Stage: {{$ctrl.stageDir}} </p>
+<hr></hr>
+     <div
       ui-view on-save="$ctrl.onSave(document)"
       on-delete="$ctrl.onDelete(document)"
       >
+    </div>
   </div>
 </div>

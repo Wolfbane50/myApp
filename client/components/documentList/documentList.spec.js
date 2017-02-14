@@ -4,7 +4,8 @@ describe('documentList Component', () => {
 
   let parentScope;
   let element;
-  let selectedDocument;
+  let removedDocument;
+  let $win;
 
   function findIn(element, selector) {
     return angular.element(element[0].querySelector(selector));
@@ -14,7 +15,8 @@ describe('documentList Component', () => {
 
   beforeEach(module('components/documentList/documentList.html'));
 
-  beforeEach(inject(($compile, $rootScope) => {
+  beforeEach(inject(($compile, $rootScope, $window) => {
+    $win = $window;
     parentScope = $rootScope.$new();
     // Set attributes on the parentScoope e.g. parentScope.attr ="blah";
     parentScope.list = [{
@@ -25,16 +27,19 @@ describe('documentList Component', () => {
       id: 2
     }];
 
-    parentScope.selectCallback = function(document) {
-      // Verify doc
-      console.log("In parentScope.selectCallback, doc => " + JSON.stringify(document));
-      selectedDocument = document;
+    parentScope.removeCB = function(document) {
+      removedDocument = document;
+    }
+
+    parentScope.listOptions = {
+      showDelete: true
     };
 
-    spyOn(parentScope, "selectCallback").and.callThrough();
+
+    spyOn(parentScope, "removeCB").and.callThrough();
     // parentScope.callbackSpy = jasmine.createSpy("selectCallbackSpy");
 
-    element = angular.element(`<document-list docs="list" on-select="selectCallback(document)"></document-list>`);
+    element = angular.element(`<document-list docs="list" options="listOptions" on-remove="removeCB(document)"></document-list>`);
     $compile(element)(parentScope);
 
     parentScope.$digest();
@@ -49,6 +54,26 @@ describe('documentList Component', () => {
 
     // Check we rendered two documents
   });
+
+  //it('Does not display delete buttons if not in options', () => {
+//    const myDelButton = findIn(element, '.js-remove-btn');
+//    expect(myDelButton.hasClass('ng-hide')).toBe(true);
+//  });
+
+  it('Will support removal of documents if specified in options.', () => {
+    spyOn($win, 'confirm').and.callFake(function() {
+      return true;
+    });
+
+    //parentScope.listOptions.showDelete = true;
+  //  parentScope.$digest();
+    const myDelButton = findIn(element, '.js-remove-btn');
+    expect(myDelButton.hasClass('ng-hide')).toBe(false);
+    myDelButton.click();
+    expect(parentScope.removeCB).toHaveBeenCalled();
+    expect(removedDocument).toBeDefined();
+    expect(removedDocument).toEqual(parentScope.list[0]);
+  })
 
 //  it('Calls back on document selection', () => {
 //    // Find the first title

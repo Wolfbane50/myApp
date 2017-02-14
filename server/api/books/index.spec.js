@@ -12,7 +12,8 @@ var booksCtrlStub = {
 
 var loadstageCtrlStub = {
   newLoadstage: 'loadstageCtrl.newLoadstage',
-  saveStage: 'loadstageCtrl.saveStage'
+  saveStage: 'loadstageCtrl.saveStage',
+  moveStage: 'loadstageCtrl.moveStage'
 };
 
 var categoryCtrlStub = {
@@ -87,6 +88,14 @@ describe('Books API Router:', function() {
     it('should route to books.controller.loadstage', function() {
       routerStub.post
         .withArgs('/savestage', 'loadstageCtrl.saveStage')
+        .should.have.been.calledOnce;
+    });
+  });
+  describe('POST /api/books/movestage', function() {
+
+    it('should route to books.controller.loadstage', function() {
+      routerStub.post
+        .withArgs('/movestage', 'loadstageCtrl.moveStage')
         .should.have.been.calledOnce;
     });
   });

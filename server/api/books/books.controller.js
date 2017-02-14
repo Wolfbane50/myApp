@@ -71,13 +71,18 @@ function bookQuery(auth, req, res) {
          }
         //console.log("From API ==> " + JSON.stringify(results));
          var bookRec = results[0];
+         // May not be imageLinks or a thumbnail
+         var myThumb = "http://localhost:3000/assets/document.gif";  // default value
+         if(( bookRec.volumeInfo.imageLinks) && ( bookRec.volumeInfo.imageLinks.thumbnail)) {
+           myThumb = bookRec.volumeInfo.imageLinks.thumbnail;
+         }
          var qresult = {
            title: bookRec.volumeInfo.title,
            author: bookRec.volumeInfo.authors.join(", "),
            publisher: bookRec.volumeInfo.publisher,
            copywrite: bookRec.volumeInfo.publishedDate,
            description: bookRec.volumeInfo.description,
-           image_url: bookRec.volumeInfo.imageLinks.thumbnail
+           image_url: myThumb
          }
          //console.log("Returning ==> " + JSON.stringify(qresult));
          res.status(200).json(qresult);

@@ -7,6 +7,9 @@ var path = require('path');
 var async = require('async');
 var myRequest = require('request');
 
+var stageDir;
+var targetDir;
+
 function isDocumentFile(filePath) {
   var extensions = [".pdf", ".html", ".epub", ".chm"];
 
@@ -53,10 +56,10 @@ export function newLoadstage(req, res) {
   finder.on("match", function(strPath, stat) {
     //console.log("Match: " + strPath);
     var name = strPath.replace(/\\/g, '/');
-  //  console.log("Name of file in stage (after slash replace) is " + name);
-    if (name.indexOf(stageBaseDir) == 0) {  // StageDir in the url
-        //console.log("Cutting stage dir out of filename");
-       name = name.substr(stageBaseDir.length + 1);
+    //  console.log("Name of file in stage (after slash replace) is " + name);
+    if (name.indexOf(stageBaseDir) == 0) { // StageDir in the url
+      //console.log("Cutting stage dir out of filename");
+      name = name.substr(stageBaseDir.length + 1);
     }
     var newDoc = {
       name: name,
@@ -91,13 +94,13 @@ function validateDirectory(dir, writeable) {
       try {
         var mode = ((writeable) ? (fs.R_OK | fs.W_OK) : (fs.R_OK));
         //console.log("Checking mode: " + mode);
-//        fs.accessSync(dir, fs.R_OK);
+        //        fs.accessSync(dir, fs.R_OK);
         fs.accessSync(dir, mode);
       } catch (err) {
         console.log("Failed accessSync: " + error);
         return false;
       }
-      console.log("File is good!");
+      console.log("Directory is good!");
       return true; // Good to go
     }
     //console.log("Not a directory!");
@@ -106,73 +109,48 @@ function validateDirectory(dir, writeable) {
   return false;
 }
 
-export function saveStage(req, res) {
-  console.log("Checking stage directory");
-  var stageDir = req.body.stage_directory;
-  if (!validateDirectory(stageDir, false)) {
-    console.log("Invalid stage directory: " + stageDir);
-    return res.status(422).send("Invalid stage directory: " + stageDir);
-  }
 
-console.log("Checking target directory");
-  var targetDir = req.body.target;
-  if (!validateDirectory(targetDir, true)) {
-    console.log("Invalid target directory");
-    return res.status(422).send("Invalid target directory");
-  }
 
-  var stageDocs = req.body.documents;
+// foreach document via async
+//     is it a file and is it readable -
+//          should I use name or URL?
+//     Add to database
+//     Move file
+//         Rollback database if move uncsuccessful ?
+//     Build up status object along the way
+// when done
+//     Create an overall status (Good if all files successful)
+//     Return status object to client
+//         Success of each phase (valid, db, move)
+//         Database ID
+function stageFilePath(doc) {
+  return stageDir + "/" + doc.url;
+}
 
-  console.log("Initialize descriptor");
-  var docDescrs = [];
-  for (var i = 0; i < stageDocs.length; i++) {
-    docDescrs.push({
-      doc: stageDocs[i],
-      fileValid: false,
-      savedToDb: false,
-      moved: false
-    });
-  }
-  // foreach document via async
-  //     is it a file and is it readable -
-  //          should I use name or URL?
-  //     Add to database
-  //     Move file
-  //         Rollback database if move uncsuccessful ?
-  //     Build up status object along the way
-  // when done
-  //     Create an overall status (Good if all files successful)
-  //     Return status object to client
-  //         Success of each phase (valid, db, move)
-  //         Database ID
-  function stageFilePath(doc) {
-    return stageDir + "/" + doc.url;
-  }
+function targetFilePath(doc) {
+  return targetDir + "/" + doc.url;
+}
 
-  function targetFilePath(doc) {
-    return targetDir + "/" + doc.url;
-  }
-
-  function moveStageToTarget(docRec, doneCB) {
-    //console.log("Moving from stage to target");
-    var src = stageFilePath(docRec.doc);
-    var dest = targetFilePath(docRec.doc);
-    try {
+function moveStageToTarget(docRec, doneCB) {
+  //console.log("Moving from stage to target");
+  var src = stageFilePath(docRec.doc);
+  var dest = targetFilePath(docRec.doc);
+  try {
     fse.move(src, dest, function(err) {
       if (err) {
         // Particular problem - Getting EBUSY on unlink portion of move.
         //    --> Explicitly try unlink
-      if ((err.code == 'EBUSY') &&  (err.syscall == 'unlink')) {
-        try {
-          console.log("Got EBUSY, retrying unlink");
-          fs.unlinkSync(src);
-        } catch(err) {
-          // Still didn't work, so return error
-          docRec.moveError = err;
-          //console.log("Calling final doneCB from move " + docRec.doc.title);
-          return doneCB();
+        if ((err.code == 'EBUSY') && (err.syscall == 'unlink')) {
+          try {
+            console.log("Got EBUSY, retrying unlink");
+            fs.unlinkSync(src);
+          } catch (err) {
+            // Still didn't work, so return error
+            docRec.moveError = err;
+            //console.log("Calling final doneCB from move " + docRec.doc.title);
+            return doneCB();
+          }
         }
-      }
         console.log("Move of " + docRec.doc.title + " bad: " + err);
         docRec.moveError = err;
       } else {
@@ -182,14 +160,17 @@ console.log("Checking target directory");
       //console.log("Calling final doneCB from move " + docRec.doc.title);
       doneCB();
     });
-    } catch (err) {
-      console.log("Move threw error!  doc = " + docRec.doc.title);
-    }
-    //console.log("Returning from move " + docRec.doc.title);
+  } catch (err) {
+    console.log("Move threw error!  doc = " + docRec.doc.title);
   }
+  console.log("Returning from move " + docRec.doc.title);
+}
 
-  function addDatabase(docRec, doneCB) {
-  //  console.log("adding file to database");
+function addDatabase(docRec, doneCB) {
+  if (docRec.savedToDb) { // don't need to save to database
+    moveStageToTarget(docRec, doneCB);
+  } else {
+    console.log("adding file to database");
     var reqOptions = {
       url: 'http://localhost:3000/documents',
       method: 'POST',
@@ -212,82 +193,101 @@ console.log("Checking target directory");
         if (body.message) {
           docRec.dbError += "\n  error: " + body.message;
         }
-      //  console.log("Calling doneCB from save to DB");
+        //  console.log("Calling doneCB from save to DB");
         return doneCB();
       } else {
         // Successful Status code out of document.create should be 201
         if (response.statusCode == 201) {
-        //  console.log("Db saved good!");
+          //  console.log("Db saved good!");
           docRec.id = body.id;
           docRec.savedToDb = true;
           moveStageToTarget(docRec, doneCB);
         } else {
-          console.log( "Create returned " + response.statusCode + "; expected 201");
+          console.log("Create returned " + response.statusCode + "; expected 201");
           docRec.dbError = "Create returned " + response.statusCode + "; expected 201";
           if (body.message) {
             docRec.dbError += "\n  error: " + body.message;
           }
-//          console.log("Return -> " + JSON.stringify(body));
+          //          console.log("Return -> " + JSON.stringify(body));
           //console.log("Calling doneCB from save to DB");
           return doneCB();
         }
       }
 
     });
-
   }
+}
 
-  function validateFile(docRec, doneCB) {
-    //console.log("Validating file");
-    var file = stageFilePath(docRec.doc);
-    fs.stat(file, function(err, stats) {
-        if (err) {
-          docRec.fileValErr = err;
-          console.log("Error calling fs.stat: " + err);
-        } else {
-          if (stats.isFile()) {
+function validateFile(docRec, doneCB) {
+  var file = stageFilePath(docRec.doc);
+  console.log("Validating file: " + file);
+  fs.stat(file, function(err, stats) {
+    if (err) {
+      console.log("Error calling fs.stat: " + err);
+      docRec.fileValErr = err;
+    } else {
+      console.log("Checking stats");
+      if (stats.isFile()) {
 
-            // Could make sure file isn't in target directory
-
-            docRec.fileValid = true;
-            return addDatabase(docRec, doneCB);
-          }
-          console.log("Not a file: " + file);
-          docRec.fileValErr = "Not a file";
-        }
-        console.log("Calling doneCB from validateFile");
-        return doneCB();
-      });
+        // Could make sure file isn't in target directory
+        console.log("File valid, adding to database...");
+        docRec.fileValid = true;
+        return addDatabase(docRec, doneCB);
+      }
+      console.log("Not a file: " + file);
+      docRec.fileValErr = "Not a file";
     }
+    console.log("Calling doneCB from validateFile");
+    return doneCB();
+  });
+}
 
-    function distillStatus(docRecs) {
-      var successes = 0;
-      var statuses = [];
-      for (var i = 0; i < docRecs.length; i++) {
-        var rec = docRecs[i];
-        if ((rec.fileValid) && (rec.savedToDb) && (rec.moved)) {
-          successes++;
-        }
-        var stat = {
-          name: rec.doc.title,
-          fileValid: rec.fileValid,
-          savedToDb: rec.savedToDb,
-          moved: rec.moved
-        };
-      if (rec.moveError) stat.moveError = rec.moveError;
-      if (rec.dbError) stat.dbError = rec.dbError;
-      if (rec.fileValErr) stat.fileValErr = rec.fileValErr;
-      if (rec.id) stat.id = rec.id;
-      statuses.push(stat);
+function distillStatus(docRecs) {
+  var successes = 0;
+  var statuses = [];
+  for (var i = 0; i < docRecs.length; i++) {
+    var rec = docRecs[i];
+    if ((rec.fileValid) && (rec.savedToDb) && (rec.moved)) {
+      successes++;
     }
-    return {
-      overallStatus: (successes == docRecs.length) ? true : false,
-      statusDescription: "Completed " + successes + " out of " + docRecs.length,
-      docStatus: statuses
+    var stat = {
+      name: rec.doc.title,
+      fileValid: rec.fileValid,
+      savedToDb: rec.savedToDb,
+      moved: rec.moved
     };
+    if (rec.moveError) stat.moveError = rec.moveError;
+    if (rec.dbError) stat.dbError = rec.dbError;
+    if (rec.fileValErr) stat.fileValErr = rec.fileValErr;
+    if (rec.id) stat.id = rec.id;
+    statuses.push(stat);
+  }
+  return {
+    overallStatus: (successes == docRecs.length) ? true : false,
+    statusDescription: "Completed " + successes + " out of " + docRecs.length,
+    docStatus: statuses
+  };
+}
+
+function setAndValidateDirectories(req, res) {
+  console.log("Checking stage directory");
+  stageDir = req.body.stage_directory;
+  if (!validateDirectory(stageDir, false)) {
+    console.log("Invalid stage directory: " + stageDir);
+    return res.status(422).send("Invalid stage directory: " + stageDir);
   }
 
-//console.log("Starting to process each document");
+  console.log("Checking target directory");
+  targetDir = req.body.target;
+  if (!validateDirectory(targetDir, true)) {
+    console.log("Invalid target directory");
+    return res.status(422).send("Invalid target directory");
+  }
+  return;
+}
+
+function startChain(docDescrs, res) {
+  console.log("Starting to process each document");
   async.each(docDescrs, validateFile, function(error) {
     // Create skeleton status object
     console.log("Done Callback");
@@ -300,8 +300,39 @@ console.log("Checking target directory");
       console.log("Found error in completion of each: " + error);
       return res.status(422).json(stageStatus);
     }
-//    console.log("Returning good with status => " + JSON.stringify(stageStatus));
+    //    console.log("Returning good with status => " + JSON.stringify(stageStatus));
     return res.json(stageStatus);
   });
+
+}
+
+export function saveStage(req, res) {
+  if (setAndValidateDirectories(req, res)) return;
+  var stageDocs = req.body.documents;
+
+  console.log("Initialize descriptor");
+  var docDescrs = [];
+  for (var i = 0; i < stageDocs.length; i++) {
+    docDescrs.push({
+      doc: stageDocs[i],
+      fileValid: false,
+      savedToDb: false,
+      moved: false
+    });
+  }
+  return startChain(docDescrs, res);
+}
+
+export function moveStage(req, res) {
+  if (setAndValidateDirectories(req, res)) return;
+
+  var stageDoc = req.body.document;
+  var docDescrs = [{
+    doc: stageDoc,
+    fileValid: false,
+    savedToDb: true, // Need to skip this Part
+    moved: false
+  }];
+  return startChain(docDescrs, res);
 
 }

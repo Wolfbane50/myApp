@@ -22,8 +22,12 @@ router.get('/tag', controller.docsWithTag);
 router.get('/tagsForDoc', controller.tagsForDoc);
 
 //router.get('/loadstage', controller.loadstage);  // Proxy version
+// Lists all files in stage directory and initilized doc object for each
 router.get('/loadstage', loadstageCtrl.newLoadstage);
+//  Takes list of documents, adds to database and moves from stage to storage
 router.post('/savestage', loadstageCtrl.saveStage);
+// Move one document from stage to storage
+router.post('/movestage', loadstageCtrl.moveStage);
 
 // Categories
 router.get('/categories', categoryCtrl.query);

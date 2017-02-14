@@ -2,7 +2,7 @@
 
 var express = require('express');
 var controller = require('./charity_bag.controller');
-var passport = require('passport');
+//var passport = require('passport');
 
 var router = express.Router();
 

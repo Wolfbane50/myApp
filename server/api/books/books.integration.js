@@ -2,7 +2,8 @@
 
 var app = require('../..');
 import request from 'supertest';
-
+import touch from 'touch';
+import fse from 'fs-extra'; // Used for copy, move of files
 var bookRec, cloudRec, catRec;
 var newRecId;
 describe('Books API:', function() {
@@ -27,7 +28,8 @@ describe('Books API:', function() {
     });
 
     it('should have records with title, author, publisher, copywrite, description, image_url', function() {
-      bookRec.should.have.keys('title', 'author', 'publisher', 'copywrite', 'description', 'image_url');
+      //console.log("bookRec keys => " + JSON.stringify(Object.keys(bookRec)));
+      bookRec.should.have.keys('title', 'author', 'copywrite', 'description', 'image_url');
     });
   });
 
@@ -126,45 +128,71 @@ describe('get /api/books/loadstage', function() {
 
 });
 
+var fnames = [
+  "CoffeeScript Quick Ref.pdf",
+  "coffeescript-trevor-burnham.pdf",
+  "Doctor Who_ The Legends of Ashildr - Justin Richards.epub"
+];
+var myDocs = [
+  {
+    "title": "Book1",
+    "author": "Roseanne Roseannadanna",
+    "image_url": "http://localhost:3000/assets/document.gif",
+    "category_id": 10,
+    "type_id": 1,
+    "url": fnames[0],
+    "publisher": "WBANE",
+    "copywrite": "2008-02-21",
+    "description": "This record is part of integration testing and may be deleted."
+  }, {
+    "title": "Book2",
+    "author": "John Jacob Dingleberry Schmidt",
+    "image_url": "http://localhost:3000/assets/document.gif",
+    "category_id": 10,
+    "type_id": 1,
+    "url": fnames[1],
+    "publisher": "WBANE",
+    "copywrite": "2008-02-21",
+    "description": "This record is part of integration testing and may be deleted."
+  }, {
+    "title": "Book3",
+    "author": "Biggus Dickus",
+    "image_url": "http://localhost:3000/assets/document.gif",
+    "category_id": 10,
+    "type_id": 1,
+    "url": fnames[2],
+    "publisher": "WBANE",
+    "copywrite": "2008-02-21",
+    "description": "This record is part of integration testing and may be deleted."
+
+  }
+];
+
 describe('get /api/books/savestage', function() {
   //var stageDir = 'C:/Users/daniel.heaney/Documents/ebooks';
-  var stageDir = 'C:/Users/Daniel/myapp/server/api/books/test_stage_dir';
-  var targetDir = 'C:/Users/Daniel/myapp/server/api/books/test_dest_dir';
-  var myDocs = [
-    {
-      "title": "Book1",
-      "author": "Roseanne Roseannadanna",
-      "image_url": "http://localhost:3000/assets/document.gif",
-      "category_id": 10,
-      "type_id": 1,
-      "url": "CoffeeScript Quick Ref.pdf",
-      "publisher": "WBANE",
-      "copywrite": "2008-02-21",
-      "description": "This record is part of integration testing and may be deleted."
-    }, {
-      "title": "Book2",
-      "author": "John Jacob Dingleberry Schmidt",
-      "image_url": "http://localhost:3000/assets/document.gif",
-      "category_id": 10,
-      "type_id": 1,
-      "url": "coffeescript-trevor-burnham.pdf",
-      "publisher": "WBANE",
-      "copywrite": "2008-02-21",
-      "description": "This record is part of integration testing and may be deleted."
-    }, {
-      "title": "Book3",
-      "author": "Biggus Dickus",
-      "image_url": "http://localhost:3000/assets/document.gif",
-      "category_id": 10,
-      "type_id": 1,
-      "url": "Doctor Who_ The Legends of Ashildr - Justin Richards.epub",
-      "publisher": "WBANE",
-      "copywrite": "2008-02-21",
-      "description": "This record is part of integration testing and may be deleted."
+//  var stageDir = 'C:/Users/Daniel/myapp/server/api/books/test_stage_dir';
+//  var targetDir = 'C:/Users/Daniel/myapp/server/api/books/test_dest_dir';
+  var stageDir = './server/api/books/test_stage_dir';
+  var targetDir = './server/api/books/test_dest_dir';
 
-    }
-  ];
   beforeEach(function(done) {
+    // Move files back from storage to savestage
+    //      Assume if it doesnt work that they are in stageDir
+    try {
+      fse.emptyDirSync(targetDir);
+    } catch(e) {
+      console.log(e.message);
+      return done(e);
+    }
+    for (var i=0; i<fnames.length; i++) {
+      var src = stageDir + "/" + fnames[i];
+      try {
+        touch.sync(src);
+      } catch(e) {
+        console.log("Error touching fnames[i]: " + e.message);
+        return done(e);
+      }
+    }
     request(app)
       .post('/api/books/savestage')
       .send({
@@ -175,7 +203,7 @@ describe('get /api/books/savestage', function() {
       .expect(200)
       .end((err, res) => {
         if (err) {
-          console.log("We FAILED...." + err);
+          console.log("We FAILED...." + err + "\nresp => " + JSON.stringify(res.status));
           return done(err);
         }
 
@@ -191,9 +219,61 @@ describe('get /api/books/savestage', function() {
   });
 
 });
+describe('get /api/books/movestage', function() {
+  //var stageDir = 'C:/Users/daniel.heaney/Documents/ebooks';
+//  var stageDir = 'C:/Users/Daniel/myapp/server/api/books/test_stage_dir';
+//  var targetDir = 'C:/Users/Daniel/myapp/server/api/books/test_dest_dir';
+  var stageDir = './server/api/books/test_stage_dir';
+  var targetDir = './server/api/books/test_dest_dir';
+
+  beforeEach(function(done) {
+    // Move files back from storage to savestage
+    //      Assume if it doesnt work that they are in stageDir
+    try {
+      fse.emptyDirSync(targetDir);
+    } catch(e) {
+      console.log(e.message);
+      return done(e);
+    }
+      var src = stageDir + "/" + fnames[0];
+      try {
+        touch.sync(src);
+      } catch(e) {
+        console.log("Error touching fnames[0]: " + e.message);
+        return done(e);
+      }
+
+    request(app)
+      .post('/api/books/movestage')
+      .send({
+        stage_directory: stageDir,
+        target: targetDir,
+        document: myDocs[0]
+      })
+      .expect(200)
+      .end((err, res) => {
+        if (err) {
+          console.log("We FAILED...." + err + "\nresp => " + JSON.stringify(res.status));
+          return done(err);
+        }
+
+        cloudRec = res.body;
+        done();
+      });
+  });
+  it('should return a structure indicating success ', function() {
+    cloudRec.overallStatus.should.be.true
+    cloudRec.docStatus.should.be.instanceOf(Array);
+    cloudRec.docStatus.length.should.be.greaterThan(0);
+
+  });
+  targetDir = "./blah";
+
+});
+
 
   var redirect, redirectUrl;
-describe.only('get /api/books/publishers', function() {
+describe('get /api/books/publishers', function() {
   beforeEach(function(done) {
 
     request(app)
@@ -214,7 +294,7 @@ describe.only('get /api/books/publishers', function() {
   it('should return an array of strings', function() {
     cloudRec.should.be.instanceOf(Array);
     var myPub = cloudRec[0];
-    (myPub)should.be.type('string');
+    myPub.should.be.a.String;
 
   });
 });
