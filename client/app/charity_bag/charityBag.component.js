@@ -8,25 +8,22 @@
 
       this.output = "";
       this.calcTrips = [];
-      this.donationTrips = [{
-        "date": new Date(),
-        "charity": "Goodwill Industries",
-        "bags": 6,
-        "added": true
-      }, {
-        "date": null,
-        "charity": "",
-        "bags": 0,
-        "added": false
-
-      }];
+      this.donationTrips = [];
+//        "date": new Date(),
+//        "charity": "Goodwill Industries",
+//        "bags": 6,
+//        "added": true
+//      }, {
+//        "date": null,
+//        "charity": "",
+//        "bags": 0,
+//        "added": false
+//
+//      }];
       // Uib datepicker stuff
-      this.popup1 = {
-        opened: false
-      };
-      this.cbPopups = [ {
-        opened: false
-      } ];
+
+      this.cbPopups = [];
+      // { opened: false/true }
 
       this.dateOptions = {
   //      dateDisabled: disabled,
@@ -43,7 +40,7 @@
       // define all functions
       this.open1 = function(index) {
         console.log("open1 - " + index);
-        this.donationTrips[index].opened = true;
+        this.cbPopups[index].opened = true;
       };
 
       this.cbopen = function(index) {
@@ -78,19 +75,99 @@
         return true;
       };
 
-      this.addTrip = function(trip) {
+//      this.addTrip = function(trip) {
         // Validations
-        if (!this.validateTrip(trip)) return;
+//        if (!this.validateTrip(trip)) return;
 
-        trip.added = true;
+//        trip.added = true;
+//        this.donationTrips.push({
+//          date: "",
+//          charity: "",
+//          bags: 0,
+//          opened: false,
+//          added: false
+//        });
+//      };
+
+      this.newTrip = function() {
+        this.cbPopups.push({ opened: false });
         this.donationTrips.push({
-          "date": "",
-          "charity": "",
-          "bags": 0,
-          "added": false
+          date: new Date(),
+          charity: "",
+          bags: 0,
+          added: false
         });
 
+
+
       };
+      this.addOther = function(trip) {
+        console.log("Adding other to trip: " + JSON.stringify(trip));
+        if(trip.others) {
+          trip.others.push({
+            description: "",
+            quantity: 1,
+            value: 0,
+            totalValue: 0
+          })
+        } else {
+          trip.others= [{
+            description: "",
+            quantity: 1,
+            value: 0,
+            totalValue: 0
+          }]
+        }
+
+      };
+
+      this.calcOtherTotal = function(rec) {
+        rec.totalValue = rec.quantity * rec.value;
+      };
+
+      this.backup = function() {
+        var bkupData = {
+          donationTrips: this.donationTrips
+        };
+        var c2String = angular.toJson(bkupData);
+
+        this.$http({
+          method: 'POST',
+          url: '/api/backups/',
+          data: {
+            "c2_data": c2String,
+            "bkfile": "charityBag_snapshot"
+          }
+        })
+        .then(function successCallback(response) {
+             alert("Backup Successful!\n\n" + response.data);
+         }, function errorCallback(response) {
+          // Handle the error
+            alert("Backup failed with status: " + response.status);
+          });
+
+      };
+
+      this.restore = function() {
+        var ctrl = this;
+        this.$http({
+          method: 'GET',
+          url: '/charityBag_snapshot.json'
+        })
+        .then(function successCallback(response) {
+          ctrl.donationTrips = response.data.donationTrips;
+          // De-serialize the dates
+          for (var i=0; i<ctrl.donationTrips.length; i++) {
+            var dateSerial = ctrl.donationTrips[i].date;
+            if (dateSerial) {
+               ctrl.donationTrips[i].date = new Date(dateSerial);
+            }
+          }
+        }, function errorCallback(response) {
+          alert("Request for restore yielded error: " + response.status);
+        });
+      };
+
 
       this.calculate = function() {
         // Validate all the rows
@@ -107,11 +184,11 @@
             });
           }
         }
-        //this.output = JSON.stringify(this.calcTrips);
+
+         console.log("About to send: " + JSON.stringify(this.calcTrips));
         this.$http.post('/api/charity_bag', {
-          data: {
             "trips": this.calcTrips
-          } })
+           })
           .then(response => {
              console.log("Got data");
              //spsScope.output = data;
@@ -120,7 +197,7 @@
 
            }, function errorCallback(response) {
           // Handle the error
-               alert("Request for charity bag server failed with status: " + response.status);
+               alert("Request for charity bag server failed with status: (" + response.status + "): " + response.data);
           });
       };
     }  // end constructor

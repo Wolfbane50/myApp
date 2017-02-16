@@ -25,7 +25,7 @@
             }
           }
           this.documentSaved = function(document) {
-              if (this.$window.confirm(document.title + ":\n\n Document was saved.  Do you want to move from stage now?") {
+              if (this.$window.confirm(document.title + ":\n\n Document was saved.  Do you want to move from stage now?")) {
                   var ctrl = this;
                   this.$http({
                     method: 'POST',

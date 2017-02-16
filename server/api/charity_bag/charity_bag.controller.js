@@ -19,13 +19,18 @@ export function charity_bag(req, res) {
   var theTrips = {
     "trips": []
   };
-  for (var i = 0; i < req.body.trips.length; i++) {
-    //console.log("Processing trip #" + i);
-    var trip = req.body.trips[i];
-    var man = ctrlCharBag.calculate(trip.charity, trip.date, trip.bags);
-    //console.log(JSON.stringify(man));
-    theTrips.trips.push(man);
+  if (req.body.trips) {
+    for (var i = 0; i < req.body.trips.length; i++) {
+      //console.log("Processing trip #" + i);
+      var trip = req.body.trips[i];
+      var man = ctrlCharBag.calculate(trip.charity, trip.date, trip.bags);
+      //console.log(JSON.stringify(man));
+      theTrips.trips.push(man);
+    }
+  } else {
+    console.log("No trips found in request body: " + JSON.stringify(req.body));
+    return res.status(422).send("No charity trips defined in request")
   }
-    //console.log(JSON.stringify(theTrips));
-  res.render('charity_report', theTrips);
+  //console.log(JSON.stringify(theTrips));
+  return res.render('charity_report', theTrips);
 }

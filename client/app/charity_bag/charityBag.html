@@ -1,42 +1,61 @@
 <div>
+  <button class="btn btn-primary"  ng-click="$ctrl.calculate()">Submit</button>
+  <button class="btn btn-primary" ng-print preview="true" print-element-id="report"><i class="fa fa-print"></i> Print Preview</button>
+  <button class="pull-right btn btn-primary"  ng-click="$ctrl.backup()">Backup</button>
+  <button class="pull-right btn btn-primary"  ng-click="$ctrl.restore()">Restore</button>
+  <hr></hr>
   <div>
-
-    <table class="charbags">
+    <h1 ng-hide="$ctrl.donationTrips.length">Start adding donation trips!</h1>
+    <table style="border: 1px solid white;" ng-show="$ctrl.donationTrips.length" class="charbags">
+      <thead>
       <tr>
         <th class="charbagtablehdr">Date</th>
-        <th class="charbags">Charity</th>
+        <th colspan="2" class="charbags">Charity</th>
         <th class="charbags">Number of Bags</th>
         <th class="control">&nbsp;</th>
       </tr>
-      <tr ng-repeat="trip in $ctrl.donationTrips">
+    </thead>
+      <tbody ng-repeat="trip in $ctrl.donationTrips">
+      <tr >
         <td>
           <p>
-          <input class="dateInput" type="text" uib-datepicker-popup="MM/dd/yyyy"
-
-                  ng-model="trip.date" is-open="trip.opened" />
-
-          <button type="button" class="pull-right" ng-click="$ctrl.open1($index)">
+          <button type="button" class="pull-right" ng-click="$ctrl.cbopen($index)">
             <i class="glyphicon glyphicon-calendar"></i>
                </button>
+          <input class="dateInput" type="text" uib-datepicker-popup="MM/dd/yyyy"
+                  ng-model="trip.date" is-open="$ctrl.cbPopups[$index].opened" />
+
              </p>
         </td>
-        <td ng-class-odd="'altRow'">
+        <td colspan="2">
           <input ng-model="trip.charity">
         </td>
-        <td ng-class-odd="'altRow'">
+        <td>
           <input ng-model="trip.bags">
         </td>
         <td class="control">
-          <button ng-hide="trip.added" ng-click="$ctrl.addTrip(trip)">Add</button>
+          <button ng-click="$ctrl.addOther(trip)">Add Other</button>
         </td>
       </tr>
+      <tr ng-show="trip.others.length">
+        <td>&nbsp</td>
+      <td colspan="4" style="background-color: gray">Other Items or Donations</td>
+      </tr>
+      <tr ng-repeat="oth in trip.others">
+        <td>&nbsp</td>
+        <td><input ng-model="oth.description" type="text" placeholder="description"></td>
+        <td><input ng-model="oth.quantity" ng-change="" type="text"></td>
+        <td><input ng-model="oth.value"  ng-change="$ctrl.calcOtherTotal(oth)" type="text"></td>
+        <td>{{oth.totalValue}}</td>
+      </tr>
+      <tr style:"border: 1px solid white"><td colspan="5" style:"border: 1px solid white">&nbsp</td></tr>
+    </tbody>
     </table>
+      <button class="btn btn-primary"  ng-click="$ctrl.newTrip()">New</button>
   </div>
 
-  <button ng-click="$ctrl.calculate()">Submit</button>
-  <button class="btn btn-primary" ng-print preview="true" print-element-id="report"><i class="fa fa-print"></i> Print Preview</button>
-
-  <pre class="code">{{$ctrl.output}}</pre>
+  <pre class="code">{{$ctrl.donationTrips}}</pre>
+  <pre class="pull-right code">{{$ctrl.cbPopups}}</pre>
 
   <div class="report" id="report"></div>
 </div>
