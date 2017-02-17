@@ -20,6 +20,21 @@
 //        "added": false
 //
 //      }];
+
+      // Touch-spin options for number of bags
+      this.bagsOptions = {
+        min: 0,
+        max: 20,
+        stepInterval: 1000,
+       	stepIntervalDelay: 5000
+      };
+
+      this.qtyOptions = {
+        min: 1,
+        max: 20,
+        stepInterval: 1000,
+       	stepIntervalDelay: 5000
+      };
       // Uib datepicker stuff
 
       this.cbPopups = [];
@@ -124,6 +139,12 @@
       this.calcOtherTotal = function(rec) {
         rec.totalValue = rec.quantity * rec.value;
       };
+      this.removeOther = function(trip, index) {
+        trip.others.splice(index, 1);
+      };
+      this.removeTrip = function(index) {
+        this.donationTrips.splice(index, 1);
+      };
 
       this.backup = function() {
         var bkupData = {
@@ -208,7 +229,7 @@
 
   angular.module('myappApp')
     .component('charityBagComponent', {
-      templateUrl: 'app/charity_bag/charityBag.html',
+      templateUrl: 'app/charity_bag/charity2.html',
       controller: CharityBagComponent
     });
 

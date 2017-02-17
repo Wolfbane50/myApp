@@ -1,0 +1,93 @@
+<div class="container">
+  <button class="btn btn-primary"  ng-click="$ctrl.calculate()">Submit</button>
+  <button class="btn btn-primary" ng-print preview="true" print-element-id="report"><i class="fa fa-print"></i> Print Preview</button>
+  <button class="pull-right btn btn-primary"  ng-click="$ctrl.backup()">Backup</button>
+  <button class="pull-right btn btn-primary"  ng-click="$ctrl.restore()">Restore</button>
+  <hr></hr>
+  <h1 ng-hide="$ctrl.donationTrips.length">Start adding donation trips!</h1>
+  <div  class="well" style="border: 1px solid black; margin-bottom: 10px;" ng-repeat="trip in $ctrl.donationTrips">
+  <div style="margin-bottom: 10px;" class="row">
+     <div class="col-sm-6">
+      <h4 class="pull-right">Donation Trip on..</h4>
+    </div>
+    <div class="col-sm-5">
+      <div class="input-group">
+      <button type="button" class="btn btn-lg" ng-click="$ctrl.cbopen($index)">
+        <i class="glyphicon glyphicon-calendar"></i>
+           </button>
+      <input class="input-lg dateInput" type="text" uib-datepicker-popup="MM/dd/yyyy"
+              ng-model="trip.date" is-open="$ctrl.cbPopups[$index].opened" />
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <button type="button" class="btn btn-sm" ng-click="$ctrl.removeTrip($index)">
+        <i class="glyphicon glyphicon-remove"></i>
+      </button>
+
+    </div>
+  </div>
+  <div class="row">
+      <label for="charity" class="control-label text-right col-sm-1">Charity:</label>
+    <div class="col-sm-5">
+      <input class="form-control" id="charity" ng-model="trip.charity">
+    </div>
+      <label for="numbags"class="control-label text-right col-sm-2">Bags of Clothing:</label>
+    <div class="col-sm-2">
+       <touch-spin id="numbags" ng-model="trip.bags" options="$ctrl.bagsOptions"></touch-spin>
+    </div>
+    <div class="col-sm-2">
+      <button class="btn btn-primary" ng-click="$ctrl.addOther(trip)">Add Other</button>
+    </div>
+
+  </div>
+
+
+  <hr class="style-one" ng-show="trip.others.length">
+
+  <div class="row" ng-show="trip.others.length">
+    <div class="col-sm-12 text-center"><h4>Other Items or Donations</h4></div>
+  </div>
+  <div class="row" ng-show="trip.others.length">
+    <div class="col-sm-1">&nbsp;
+    </div>
+    <div class="col-sm-5">
+      <strong>Description</strong>
+    </div>
+    <div class="col-sm-2 text-center">
+      <strong>Qty</strong>
+    </div>
+    <div class="col-sm-2 text-center">
+      <strong>Value</strong>
+    </div>
+    <div class="col-sm-2 text-center">
+      <strong>Tot Val</strong>
+    </div>
+  </div>
+  <div class="row" ng-repeat="oth in trip.others">
+    <div class="col-sm-1">&nbsp;
+      <button type="button" class="btn btn-sm" ng-click="$ctrl.removeOther(trip, $index)">
+        <i class="glyphicon glyphicon-remove"></i>
+      </button>
+    </div>
+    <div class="col-sm-5">
+      <input class="form-control" ng-model="oth.description" type="text" placeholder="description">
+    </div>
+    <div class="col-sm-2">
+      <touch-spin ng-model="oth.quantity" options="$ctrl.qtyOptions"></touch-spin>
+    </div>
+    <div class="col-sm-2 text-center">
+      <input type="number" ng-model="oth.value" ng-change="$ctrl.calcOtherTotal(oth)" type="text">
+    </div>
+    <div class="col-sm-2 text-center">
+      {{oth.totalValue | currency}}
+    </div>
+  </div>
+</div>
+
+<button class="btn btn-primary"  ng-click="$ctrl.newTrip()">New</button>
+<pre class="code">{{$ctrl.donationTrips}}</pre>
+
+
+<div class="report" id="report"></div>
+
+</div>
