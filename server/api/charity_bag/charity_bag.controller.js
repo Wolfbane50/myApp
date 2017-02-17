@@ -32,5 +32,9 @@ export function charity_bag(req, res) {
     return res.status(422).send("No charity trips defined in request")
   }
   //console.log(JSON.stringify(theTrips));
-  return res.render('charity_report', theTrips);
+  if (req.body.wantJSON) {
+    return res.json(theTrips);
+  } else {
+    return res.render('charity_report', theTrips);
+  }
 }

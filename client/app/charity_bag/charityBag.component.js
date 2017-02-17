@@ -2,9 +2,9 @@
 
   (function() {
     class CharityBagComponent {
-    constructor($http, $scope) {
+    constructor($http, $state) {
       this.$http = $http;
-      this.$scope = $scope;
+      this.$state = $scope;
 
       this.output = "";
       this.calcTrips = [];
@@ -20,6 +20,8 @@
 //        "added": false
 //
 //      }];
+     // data calculated on server
+     this.bagsFromTrips = [];
 
       // Touch-spin options for number of bags
       this.bagsOptions = {
@@ -79,7 +81,7 @@
           alert("Must Specify a valid Date! \n You input >>" + trip.date + "<<");
           return false;
         }
-        if (trip.bags < 1) {
+        if (trip.bags < 0) {
           alert("Must have at least 1 bag!");
           return false;
         }
@@ -196,25 +198,34 @@
         //for (var trip in this.donationTrips)
         for (var i = 0; i < this.donationTrips.length; i++) {
           var trip = this.donationTrips[i];
-          if (trip.added) {
             if (!this.validateTrip(trip)) return;
+            if(trip.bags > 0) {
             this.calcTrips.push({
               "date": trip.date,
               "charity": trip.charity,
               "bags": trip.bags
             });
           }
+
         }
 
          console.log("About to send: " + JSON.stringify(this.calcTrips));
+         // Initial implmentation returned a report in HTML.  By adding wantJSON, we get data back
+         //    and can add in other items/donations and render report in client.
+         var ctrl = this;
         this.$http.post('/api/charity_bag', {
-            "trips": this.calcTrips
+            trips: this.calcTrips,
+            wantJSON: true
            })
           .then(response => {
              console.log("Got data");
-             //spsScope.output = data;
-             var div = document.getElementById("report");
-             div.innerHTML = response.data;
+             ctrl.bagsFromTrips = response.data;
+             //OLD:  spsScope.output = data;
+            //       var div = document.getElementById("report");
+            //       div.innerHTML = response.data;
+
+            // NEW state change
+            // ctrl.$state.go('charityBag.report', ctrl.bagsFromTrips,  this.donationTrips);
 
            }, function errorCallback(response) {
           // Handle the error

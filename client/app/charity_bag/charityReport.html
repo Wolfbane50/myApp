@@ -1,0 +1,92 @@
+<title>Charity Bag Report</title>
+<style>
+  table {
+    clear: left;
+     border-collapse: collapse;
+     border: 2px solid #444;
+     width: 500px;
+     margin-left: 25px;
+  }
+  th {
+    border: 2px solid #666;
+    background: CADETBLUE;
+
+    padding-right: 20px;
+    padding-left: 20px;
+    text-align: center;
+
+  }
+  td {
+    border: 2px solid #666;
+  }
+  .total {
+     font-weight: bold;
+     text-align: right;
+  }
+  @media screen {
+    .print-vis {
+      display: none;
+    }
+    .page-break {
+       display: none;
+    }
+  }
+  @media print {
+    /* Style rules */
+    .page-break {
+       page-break-after: always;
+    }
+    .print-invis {
+      display: none;
+    }
+    .print-vis {
+      display: block;
+    }
+  }
+.tripDate {
+  margin-left: 25px;
+}
+.tripDesc {
+  text-align: right;
+}
+.itemCol {
+  margin-left: 10px;
+}
+.costCol {
+  text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+<div ng-repeat="trip in $ctrl.tripRecords">
+  <div class="page-break"></div>
+   <h1>Clothing Donation to {{trip.charity}}</h1>
+   <div>
+     <span class="tripDate"><b>Date:</b>  {{trip.date}}</span>
+     <span class="tripDesc"><b>Description:</b> {{trip.bags}} Bags of Clothing</span>
+   </div>
+   <hr />
+   <table>
+  <tr>
+    <th class="itemCol">
+      Item
+    </th>
+    <th>
+      Cost
+    </th>
+  </tr>
+  <tr ng-repeat="item in trip.items">
+	  <td  class="itemCol">{{item.name}}</td><td class="costCol currency">{{item.price | currency}}</td>
+  </tr>
+	<tr><td>&nbsp;</td></tr>
+  <tr ng-repeat="item.trip.others">
+	  <td  class="itemCol">{{item.description + " (" + item.quantity + ")"}}</td><td class="costCol currency">{{item.totalValue | currency}}</td>
+  </tr>
+	<tr>
+	<td><span class="total">Total</span></td><td class="currency">{{trip.grandTotal | currency}}</td>
+	</tr>
+   </table>
+</div>
+<hr />
