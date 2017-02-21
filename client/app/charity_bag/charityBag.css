@@ -39,3 +39,60 @@ hr.style-one {
     background: #333;
     background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }
+
+/* Report styles */
+.char-report table {
+  clear: left;
+   border-collapse: collapse;
+   border: 2px solid #444;
+   width: 500px;
+   margin-left: 25px;
+}
+.char-report th {
+  border: 2px solid #666;
+  background: CADETBLUE;
+
+  padding-right: 20px;
+  padding-left: 20px;
+  text-align: center;
+
+}
+.char-report td{
+  border: 2px solid #666;
+}
+.char-report .total {
+   font-weight: bold;
+   text-align: right;
+}
+@media screen {
+  .print-vis {
+    display: none;
+  }
+  .page-break {
+     display: none;
+  }
+}
+@media print {
+  /* Style rules */
+  .page-break {
+     page-break-after: always;
+  }
+  .print-invis {
+    display: none;
+  }
+  .print-vis {
+    display: block;
+  }
+}
+.char-report .tripDate {
+margin-left: 25px;
+}
+.char-report .tripDesc {
+text-align: right;
+}
+.char-report .itemCol {
+margin-left: 10px;
+}
+.char-report .costCol {
+text-align: center;
+}
