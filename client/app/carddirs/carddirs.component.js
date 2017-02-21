@@ -218,15 +218,15 @@
         });
       };
 
-      var addDelCheckedArray = function(nodeData) {
+      var addDelCheckedArray = function(nodeData, ctrl) {
         if (nodeData.checked) {
           // Add to list of checked items
 
-          this.checkedItems.push(nodeData);
+          ctrl.checkedItems.push(nodeData);
         } else {
-          for (var i = 0; i < this.checkedItems.length; i++) {
-            if (this.checkedItems[i] === nodeData) {
-              this.checkedItems.splice(i, 1);
+          for (var i = 0; i < ctrl.checkedItems.length; i++) {
+            if (ctrl.checkedItems[i] === nodeData) {
+              ctrl.checkedItems.splice(i, 1);
               return;
             }
           }
@@ -241,28 +241,29 @@
         if (scope.hasChild()) {
           // This is a folder, mirror check value on all the children
           var checked = nodeData.checked;
-          addDelSublistChecks(nodeData, checked);
+          addDelSublistChecks(nodeData, checked, this);
 
         } else {
           //assume model already changed from click in checkbox due to ng-model
-          addDelCheckedArray(nodeData);
+          addDelCheckedArray(nodeData, this);
         }
       };
 
-      var addDelSublistChecks = function(sublist, checked) {
+      var addDelSublistChecks = function(sublist, checked, ctrl) {
         sublist.items.forEach(function(element, index2, array2) {
           if (element.checked != checked) {
             element.checked = checked;
-            addDelCheckedArray(element);
+            addDelCheckedArray(element, ctrl);
           }
         });
 
       };
 
       this.setAllChecks = function(checked) {
+        var ctrl = this;
         this.cardTree.forEach(function(sublist, index, array) {
           sublist.checked = checked;
-          addDelSublistChecks(sublist, checked);
+          addDelSublistChecks(sublist, checked, ctrl);
         });
 
       };
@@ -349,7 +350,7 @@
       var ctrl = this;
       this.$http.get('carddirs.json')
          .then(response => {
-             ctrl.cardTreeFromJson(response.data, this);
+             ctrl.cardTreeFromJson(response.data, ctrl);
          }, function errorCallback(response) {
             alert("Request for New Cards data yielded error: " + response.status);
          });

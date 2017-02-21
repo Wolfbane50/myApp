@@ -4,20 +4,20 @@ angular.module('myappApp')
       .state('charityBag', {
         url: '/charity_bag',
         component: 'charityBagComponent'
-      )
+      })
       .state('charityBag.report', {
-        component: 'charityReport'
-        parameters: {
+        component: 'charityReport',
+        params: {
           bagReport: null,
           trips: null
         },
         resolve: {
           bagReport: function($transition$) {
-            //console.log("library.docdisp.resove: transition => " + JSON.stringify($transition$.params()));
+            //console.log("bagReport.resolve: transition => " + JSON.stringify($transition$.params()));
             return $transition$.params().bagReport;
           },
           trips:function($transition$) {
-            //console.log("library.docdisp.resove: transition => " + JSON.stringify($transition$.params()));
+            //console.log("trips.resolve: transition => " + JSON.stringify($transition$.params()));
             return $transition$.params().trips;
           }
         }

@@ -4,7 +4,7 @@
     class CharityBagComponent {
     constructor($http, $state) {
       this.$http = $http;
-      this.$state = $scope;
+      this.$state = $state;
 
       this.output = "";
       this.calcTrips = [];
@@ -225,7 +225,8 @@
             //       div.innerHTML = response.data;
 
             // NEW state change
-            // ctrl.$state.go('charityBag.report', ctrl.bagsFromTrips,  this.donationTrips);
+//was            ctrl.$state.go('charityBag.report', ctrl.bagsFromTrips,  ctrl.donationTrips);
+            ctrl.$state.go('charityBag.report', { bagReport: ctrl.bagsFromTrips, trips: ctrl.donationTrips });
 
            }, function errorCallback(response) {
           // Handle the error
