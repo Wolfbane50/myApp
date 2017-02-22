@@ -16,6 +16,7 @@
       <span>Retrieve Docs</span></a>
     <document-list docs="$ctrl.stageDocs" state="'loadstage.docdisp'"
        options="$ctrl.doclistOptions" on-remove="$ctrl.removeDoc(index)"
+       on-select="$ctrl.docSelected(index)"
     >
     </document-list>
 
@@ -23,12 +24,16 @@
 
   <div class="detail">
     <p> <a class="btn btn-primary" ng-click="$ctrl.setStorageDir()">
-      <span>Set</span></a>Storage: {{$ctrl.storageDir}}</p>
+      <span>Set</span></a>Storage: {{$ctrl.storageDir}}
+    <span class="pull-right" ng-show="$ctrl.isSelectedSaved()">SAVED!</span></p>
     <p><a class="btn btn-primary" ng-click="$ctrl.setStageDir()">
-      <span>Set</span></a>Stage: {{$ctrl.stageDir}} </p>
-<hr></hr>
+      <span>Set</span></a>Stage: {{$ctrl.stageDir}}
+      <span class="pull-right" ng-show="$ctrl.isSelectedStaged()">STAGED!</span></p>
+
+<hr class="style-one"></hr>
      <div
-      ui-view on-save="$ctrl.onSave(document)"
+      ui-view
+      on-save="$ctrl.documentSaved(document)"
       on-delete="$ctrl.onDelete(document)"
       >
     </div>

@@ -14,6 +14,7 @@
         this.selectCount = 0;
         this.selectedId = 486;
         this.docsByCat = {};
+        this.accordionStatus = [];
 
 
         // define all functions
@@ -117,6 +118,9 @@
               } else {
                 // Create the category
                 ctrl.docsByCat[myCat] = [doc];
+
+                // Flags for if accordion is open
+                ctrl.accordionStatus.push(false);
               }
             });
             // Initialize the document map in LibraryService

@@ -1,9 +1,8 @@
 
-<ul ng-repeat="doc in $ctrl.docs">
-  <li>
-  <a class="js-document-title" ng-click="$ctrl.select({ document: doc })">{{ doc.title }}</a>
-  <a ng-show="$ctrl.showDelete" class="js-remove-btn btn btn-primary btn-xs" ng-click="$ctrl.removeDoc($index)">
+<ul class="sidebar-list" ng-repeat="doc in $ctrl.docs">
+  <li class="sidebar-list-item">
+  <a class="js-document-title sidebar-text"  ng-class="$ctrl.selectedClass($index)" ng-click="$ctrl.select({ document: doc }, $index)"><span>{{ doc.title }}</span></a>
+  <a ng-show="$ctrl.showDelete" class="js-remove-btn pull-right btn btn-default btn-xs" ng-click="$ctrl.removeDoc($index)">
        <span class="glyphicon glyphicon-trash"></span></a>
   </li>
 </ul>
-</div>

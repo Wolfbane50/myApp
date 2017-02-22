@@ -1,0 +1,13 @@
+
+<div class="row sidebar-row" ng-class="$ctrl.selectedClass($index)" ng-repeat="doc in $ctrl.docs">
+
+  <div class="col-xs-10">
+
+  <a class="js-document-title sidebar-text" ng-click="$ctrl.select({ document: doc }, $index)"><span>{{ doc.title }}</span></a>
+</div>
+<div class="col-xs-2">
+
+  <a ng-show="$ctrl.showDelete" class="js-remove-btn pull-right btn btn-default btn-xs" ng-click="$ctrl.removeDoc($index)">
+       <span class="glyphicon glyphicon-trash"></span></a>
+</div>
+</div>

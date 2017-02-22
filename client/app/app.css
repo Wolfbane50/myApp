@@ -31,6 +31,13 @@
  * App-wide Styles
  */
 
+ hr.style-one {
+     border: 0;
+     height: 1px;
+     background: #333;
+     background-image: linear-gradient(to right, #ccc, #333, #ccc);
+ }
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
@@ -63,7 +70,28 @@ span.glyphicon {
   width: 100%;
   min-height: 150px;
 }
+/*.sidebar.panel-group .panel.collapsed .panel-heading .accordion-toggle { */
+.sidebar .panel-body  {
+    color: #efefef;
+    font-weight: 400;
+    background-color:  #2A457A;
+}
 
+.sidebar .panel.collapsed  {
+    color: #efefef;
+    font-weight: 400;
+    background-color:  #2A457A;
+}
+.sidebar .panel-heading  {
+    color: #efefef;
+    font-weight: 400;
+    background-color:  #669999;
+}
+.sidebar .panel-title  {
+    color: black;
+    font-weight: 400;
+    background-color:  #669999;
+}
 
 /*  Side tree view */
 .sidebar, .main_container {
@@ -71,6 +99,33 @@ span.glyphicon {
   box-sizing: border-box;
 }
 
+.sidebar-text {
+  color: white;
+}
+
+.sidebar-list {
+  margin-left: 5px;
+  padding-left: 5px;
+}
+.sidebar-list-item {
+  border-top: 1px solid white;
+  padding: .3em 0;
+  list-style-type: none;
+}
+.sidebar-text:hover {
+  color: black;
+}
+.sidebar-row {
+  background-color:  #2A457A;
+  border-top: 1px solid white;
+  vertical-align: middle;
+}
+
+.sidebar-row.userselected {
+  color: black;
+  font-weight: bolder;
+  background-color: #6699ff;
+}
 .main_container {
   padding-left: 10px;
   width: 100%;
@@ -94,6 +149,7 @@ span.glyphicon {
   transform: translate(0, 0);
 }
 
+/* button to open/close the sidebar */
 .sidebar-button {
   background-color: #2A457A;
   border-color: #099DD9;

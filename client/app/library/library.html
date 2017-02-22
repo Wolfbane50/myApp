@@ -12,9 +12,12 @@
 <div class="view_container">
   <sidebar>
     <uib-accordion>
-      <div uib-accordion-group ng-repeat="cat in $ctrl.categories track by cat.id" class="panel-default" heading="{{cat.name}}">
-        <a class="pull-right btn btn-primary btn-xs" ng-click="$ctrl.newDoc(cat.id)" style="margin-right: 8px;">
+      <div uib-accordion-group ng-repeat="cat in $ctrl.categories track by cat.id" is-open="$ctrl.accordionStatus[$index]">
+        <uib-accordion-heading>
+          {{cat.name}}
+        <a class="pull-right btn btn-primary btn-xs" ng-click="$ctrl.newDoc(cat.id)" style="margin-right: 8px;" ng-show="$ctrl.accordionStatus[$index]">
           <span class="glyphicon glyphicon-plus"></span></a>
+        </uib-accordion-heading>
         <document-list docs="$ctrl.docsByCat[cat.id]" state="'library.docdisp'" on-select="$ctrl.docSelect(document)">
         </document-list>
       </div>
