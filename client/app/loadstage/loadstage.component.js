@@ -27,23 +27,57 @@
           }
         }
 
+        this.setSaved = function() {
+          console.log("Got to setSaved");
+          if (this.selectedIndex >= 0) {
+            console.log("Setting saved");
+            this.stageDocStatuses[this.selectedIndex].saved = true;
+          }
+        }
+
         this.isSelectedSaved = function() {
           var saved = false;
-          if (this.selectionIndex >= 0) {
-            saved = this.stageDocStatuses[this.selectionIndex].saved;
+          if (this.selectedIndex >= 0) {
+            saved = this.stageDocStatuses[this.selectedIndex].saved;
           }
           return saved;
         };
         this.isSelectedStaged = function() {
           var staged = false;
-          if (this.selectionIndex >= 0) {
-            staged = this.stageDocStatuses[this.selectionIndex].staged;
+          if (this.selectedIndex >= 0) {
+            staged = this.stageDocStatuses[this.selectedIndex].staged;
           }
           return staged;
         };
 
         this.docSelected = function(index) {
           this.selectedIndex = index;
+          console.log("Selected " + index + ", statuses => " + JSON.stringify(this.stageDocStatuses));
+        };
+
+        this.nextItem = function() {
+          if(this.selectedIndex >= 0) {
+            if(this.selectedIndex === (this.stageDocs.length - 1)) {
+              this.selectedIndex = 0;
+            } else {
+              this.selectedIndex = this.selectedIndex + 1;
+            }
+          }
+        };
+
+        this.prevItem = function() {
+          if(this.selectedIndex >= 0) {
+            if(this.selectedIndex === 0) {
+              this.selectedIndex = this.stageDocs.length - 1;
+            } else {
+              this.selectedIndex = this.selectedIndex - 1;
+            }
+          }
+        };
+
+        this.stageCurrent = function() {
+          var currentDoc = this.stageDocs[this.selectedIndex];
+          this.stageOneDocument(currentDoc);
         };
 
         this.stageOneDocument = function(document) {
@@ -63,11 +97,13 @@
             // alert("Got staged docs");
             //console.log("Received data: " + JSON.stringify(response.data));
             ctrl.stageResults = response.data;
-            var index = ctrl.indexFromDoc(document, ctrl);
+            var index = indexFromDoc(document, ctrl);
             if (index >= 0) {
               ctrl.stageDocStatuses[index].staged = true;
 
             }
+            ctrl.selectedIndex = -1;
+            // How to turn off selection in documentList
             ctrl.$state.go('loadstage.displayResults', {
               result: ctrl.stageResults
             });
@@ -95,6 +131,7 @@
         this.removeDoc = function(index) {
           var docToDel = this.stageDocs[index];
           this.stageDocs.splice(index, 1);
+          this.selectedIndex = -1;
           this.$state.go('loadstage.default');
         };
         this.getStageDocs = function() {
@@ -146,6 +183,7 @@
                 delete doc.name;
 
               });
+              ctrl.selectedIndex = -1;
               ctrl.$state.go('loadstage.default');
 
             }, function errorCallback(response) {
@@ -178,6 +216,15 @@
 
           }
         };
+        function fillStatuses(ctrl) {
+          for(var i=0; i<ctrl.stageDocs.length; i++) {
+            ctrl.stageDocStatuses.push({
+              saved: false,
+              staged: false
+            });
+          }
+        }
+
         this.retrieveLocal = function() {
           var c2DataStr = localStorage.getItem("stageDocs");
           if (c2DataStr) {
@@ -186,6 +233,13 @@
             if (tmpstr) this.stageDir = tmpstr;
             tmpstr = localStorage.getItem("storageDir");
             if (tmpstr) this.storageDir = tmpstr;
+            tmpstr = localStorage.getItem("stageDocStatuses");
+            if (tmpstr) {
+              this.stageDocStatuses = angular.fromJson(tmpstr);
+            } else {
+                fillStatuses(this);
+            }
+            this.selectedIndex = -1;
             this.$state.go('loadstage.default');
           }
         };
@@ -194,6 +248,8 @@
           localStorage.setItem("stageDocs", c2String);
           localStorage.setItem("stageDir", this.stageDir);
           localStorage.setItem("storageDir", this.storageDir)
+          var tmpstr = angular.toJson(this.stageDocStatuses);
+          localStorage.setItem("stageDocStatuses", tmpstr);
           alert("Stage Document Data saved to Local Storage");
 
         };
@@ -202,6 +258,7 @@
             localStorage.removeItem("stageDocs");
             localStorage.removeItem("stageDir");
             localStorage.removeItem("storageDir");
+            localStorage.removeItem("stageDocStatuses");
             alert("Local Storage Deleted!");
           }
         };
@@ -209,7 +266,8 @@
           var bkupData = {
             storageDir: this.storageDir,
             stageDir: this.stageDir,
-            stageDocs: this.stageDocs
+            stageDocs: this.stageDocs,
+            stageDocStatuses: this.stageDocStatuses
           };
           var c2String = angular.toJson(bkupData);
 
@@ -239,6 +297,11 @@
             ctrl.storageDir = response.data.storageDir;
             ctrl.stageDir = response.data.stageDir;
             ctrl.stageDocs = response.data.stageDocs;
+            if(response.data.stageDocStatuses) {
+              ctrl.stageDocStatuses = stageDocStatuses;
+            } else {
+              fillStatuses(ctrl);
+            }
           }, function errorCallback(response) {
             alert("Request for Staged Docs yielded error: " + response.status);
           });
@@ -270,6 +333,7 @@
               // alert("Got staged docs");
               //console.log("Received data: " + JSON.stringify(response.data));
               ctrl.stageResults = response.data;
+              ctrl.selectedIndex = -1;
               ctrl.$state.go('loadstage.displayResults', {
                 result: ctrl.stageResults
               });

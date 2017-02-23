@@ -7,15 +7,23 @@
          this.$state = $state;
          this.$window = $window;
          this.myCounter = 0;
+         this.showDelete = false;
+
+         function clearSelections(ctrl) {
+           for (var i = 0; i < ctrl.selectionTracker.length; i++) {
+             ctrl.selectionTracker[i] = false;
+           }
+         }
+
          this.select = function(doc, index) {
 
-           console.log("In documentList.select, doc => " + JSON.stringify(doc));
-           console.log("About to call state " + this.state);
-           for (var i = 0; i < this.selectionTracker.length; i++) {
-             this.selectionTracker[i] = false;
-           }
+           //console.log("In documentList.select, doc => " + JSON.stringify(doc));
+           //console.log("About to call state " + this.state);
+           clearSelections(this);
            this.selectionTracker[index] = true;
-           this.onSelect({ index: index });
+           this.onSelect({
+             index: index
+           });
 
            this.$state.go(this.state, doc);
            //this.onSelect(doc);
@@ -31,6 +39,17 @@
              });
            }
          };
+         this.selectFromIndex = function(index) {
+           if (index >= 0) {
+             var document = this.docs[index];
+             this.select({ document: document }, index);
+           } else {
+             // Reset selection
+             clearSelections(this);
+           }
+         };
+
+
          //  Set class on selected
          this.selectedClass = function(index) {
            if (this.selectionTracker) {
@@ -38,32 +57,46 @@
                userselected: this.selectionTracker[index]
              };
            } else {
-             return { userselected: false };
+             return {
+               userselected: false
+             };
            }
          };
+
+         function processOptions(ctrl) {
+           ctrl.showDelete = false;
+           if ((ctrl.options) && (ctrl.options.showDelete)) {
+             ctrl.showDelete = true;
+           }
+
+         }
+
          this.$onChanges = function(changes) {
-           //console.log("documentList onChanges event fired!");
+           console.log("documentList onChanges event fired! changes => " + Object.keys(changes));
            //           console.log("documentList.onChanges event fired.  options = " + JSON.stringify(this.options));
-           //  Replace current value in component
-           // if (changes.docs) {
-           //    this.docs = changes.docs.currentValue;
-           // }
-           if (this.docs) {
-             this.selectionTracker = [];
-             for (var i = 0; i < this.docs.length; i++) {
-               this.selectionTracker.push(false);
+
+           // Dont expect the state to ever change.
+           if (changes.options) processOptions(this);
+           if (changes.docs) {
+             if (this.docs) {
+               this.selectionTracker = [];
+               console.log("Initializing selection tracker");
+               for (var i = 0; i < this.docs.length; i++) {
+                 this.selectionTracker.push(false);
+               }
+             } else {
+               console.log("no docs at this time");
              }
-           } else {
-             //console.log("no docs at this time");
+           }
+           if(changes.selectIndex) {
+             console.log("Changes: => " + JSON.stringify(changes));
+             console.log("selectIndex => " + JSON.stringify(this.selectIndex));
+             this.selectFromIndex(this.selectIndex);
            }
          };
        } // end constructor
 
      $onInit() {
-         this.showDelete = false;
-         if ((this.options) && (this.options.showDelete)) {
-           this.showDelete = true;
-         }
          //        console.log("documentList.onInit: selection state = " + this.state );
          //         console.log("Initializing documentList => " + JSON.stringify(this.docs));
          //           console.log("documentList.onInit: options = " + JSON.stringify(this.options));
@@ -76,6 +109,7 @@
        bindings: {
          docs: '<',
          state: '<',
+         selectIndex: '<',
          options: '<',
          onSelect: '&',
          onRemove: '&'

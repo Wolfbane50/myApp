@@ -76,7 +76,7 @@
       <touch-spin ng-model="oth.quantity" options="$ctrl.qtyOptions"></touch-spin>
     </div>
     <div class="col-sm-2 text-center">
-      <input type="number" ng-model="oth.value" ng-change="$ctrl.calcOtherTotal(oth)" type="text">
+      <input type="number" ng-model="oth.value" ng-change="$ctrl.calcOtherTotal(oth)">
     </div>
     <div class="col-sm-2 text-center">
       {{oth.totalValue | currency}}

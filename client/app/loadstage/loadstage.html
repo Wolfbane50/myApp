@@ -6,8 +6,8 @@
   <subapp-nav class="nav navbar-nav" on-action="$ctrl.retrieveLocal()">Local Load</subapp-nav>
   <subapp-nav class="nav navbar-nav" on-action="$ctrl.flushLocal()">Local Flush</subapp-nav>
   <subapp-nav class="nav navbar-nav">Save Stage</subapp-nav>
-  <subapp-nav ng-show="$ctrl.selDoc" class="nav navbar-nav" on-action="$ctrl.prevItem()">&lt;&lt; Previous</subapp-nav>
-  <subapp-nav ng-show="$ctrl.selDoc" class="nav navbar-nav" on-action="$ctrl.nextItem()">Next &gt;&gt;</subapp-nav>
+  <subapp-nav ng-show="($ctrl.selectedIndex >= 0)" class="nav navbar-nav" on-action="$ctrl.prevItem()">&lt;&lt; Previous</subapp-nav>
+  <subapp-nav ng-show="($ctrl.selectedIndex >= 0)" class="nav navbar-nav" on-action="$ctrl.nextItem()">Next &gt;&gt;</subapp-nav>
 </subapp-navbar>
 
 <div class="view_container">
@@ -16,7 +16,7 @@
       <span>Retrieve Docs</span></a>
     <document-list docs="$ctrl.stageDocs" state="'loadstage.docdisp'"
        options="$ctrl.doclistOptions" on-remove="$ctrl.removeDoc(index)"
-       on-select="$ctrl.docSelected(index)"
+       on-select="$ctrl.docSelected(index)" select-index="$ctrl.selectedIndex"
     >
     </document-list>
 
@@ -28,7 +28,8 @@
     <span class="pull-right" ng-show="$ctrl.isSelectedSaved()">SAVED!</span></p>
     <p><a class="btn btn-primary" ng-click="$ctrl.setStageDir()">
       <span>Set</span></a>Stage: {{$ctrl.stageDir}}
-      <span class="pull-right" ng-show="$ctrl.isSelectedStaged()">STAGED!</span></p>
+      <span class="pull-right" ng-show="$ctrl.isSelectedStaged()">STAGED!</span>
+      <a class="btn btn-primary" ng-show="$ctrl.isSelectedSaved()" ng-click="$ctrl.stageCurrent()"><span>Stage</span></a></p>
 
 <hr class="style-one"></hr>
      <div
