@@ -1,31 +1,31 @@
-  <div class="container">
-<div class="js-nodoc" ng-hide="$ctrl.myDoc" >
+  <div class="container" style="background-color: #ffffcc;" >
+<div class="js-nodoc"ng-hide="$ctrl.myDoc" >
   <h2>No document selected</h2>
 </div>
 <div ng-show="$ctrl.myDoc" >
   <h1 class="js-title">{{$ctrl.myDoc.title}}</h1>
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-sm-10">
       <span class="lead">Title:  <input class="js-title-input fill" type="text" placeholder="Title" ng-model="$ctrl.myDoc.title"></span>
       <p class="js-id">ID:  {{$ctrl.myDoc.id}}</p>
     </div>
-    <div class="col-md-2">
+    <div class="col-sm-2">
       <img id="js-bk-image" ng-show="$ctrl.myDoc.image_url" ng-src="{{$ctrl.myDoc.image_url}}" style="float: right;" /></a>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-sm-8">
       <label for="author_inp">By: </label>
       <input id="author_inp" class="fill" type="text" placeholder="Author(s)" ng-model="$ctrl.myDoc.author" >
     </div>
-    <div class="col-md-4">
+    <div class="col-sm-4">
       <label for="CatPick">Category: </label>
       <select id="CatPick" ng-model="$ctrl.docCategory" ng-options="cat.name for cat in $ctrl.categories track by cat.id" ng-change='$ctrl.changeCategory()'>
       </select>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-sm-4">
       <div class="form-group">
         <br /><br /><label for="inputdefault">Type:</label>
 
@@ -34,7 +34,7 @@
         </select>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-sm-4">
       <div class="form-group">
         <br /><label for="inputdefault">Publisher:</label>
         <span class="combobox_toggle" uib-dropdown on-toggle="$ctrl.toggled(open)">
@@ -50,11 +50,11 @@
         </span>
       </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-sm-2">
       <br /><label for="cc_inp"><span uib-tooltip="Copyright" class="glyphicon glyphicon-copyright-mark"></span></label>
       <input id="cc_inp" uib-tooltip="Copyright" type="text" placeholder="copyright" ng-model="$ctrl.myDoc.copywrite">
     </div>
-    <div class="col-md-2">
+    <div class="col-sm-2">
       <div class="form-group">
         <a id="js-google-btn" class="pull-right btn btn-primary" uib-tooltip="Populate from Google" ng-click="$ctrl.queryGoogle()">
           <span  class="glyphicon glyphicon-question-sign"></span>&nbsp;</a>
@@ -69,7 +69,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
       <br />
       <label for="tags_inp">Tags: </label>
       <input id="tags_inp" class="fill" type="text" placeholder="tags" ng-model="$ctrl.myDoc.tag_list">
@@ -77,7 +77,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
       <br />
       <label for="url_inp">URL: </label>
       <input id="url_inp" class="fill" type="text" placeholder="URL" ng-model="$ctrl.myDoc.url">
@@ -89,7 +89,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
       <br />
       <label for="img_inp">Image URL: </label>
       <input id="img_inp" class="fill" type="text" placeholder="Image URL" ng-model="$ctrl.myDoc.image_url">
@@ -97,7 +97,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
       <br />
       <label for="descriptionText">Description: </label>
       <textarea id="descriptionText" class="form-control" rows="10" ng-model="$ctrl.myDoc.description"></textarea>

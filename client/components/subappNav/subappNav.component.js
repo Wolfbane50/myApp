@@ -26,27 +26,60 @@
       templateUrl: 'components/subappNav/subappNavbar.html'
 
     })
-    .component('subappNav', {
-      transclude: true,
-      bindings: {
-        uiSref: '<',
-        onAction: '&'
-      },
-      require: {
-        navsCtrl: '^subappNavbar'
-      },
-      templateUrl: 'components/subappNav/subappNav.html',
-      controller: function() {
-        this.$onInit = function() {
-//          console.log("Adding nav from nav.onInit, action = " + this.action);
-          this.navsCtrl.addNav(this);
-        };
-        this.action = function() {
-          //alert("Callback in Nav, will forward to " + this.onAction);
-          this.onAction();
-        };
+      .component('subappNavMenu', {
+        transclude: true,
+        bindings: {
+          name: '@'
+        },
+        require: {
+          navsCtrl: '^subappNavbar'
+        },
+        templateUrl: 'components/subappNav/subappNavMenu.html',
+        controller: function() {
+          var navs = this.navs = [];
+          this.isCollapsed = true;
+          this.toggleNav - function() {
+            this.isCollapsed = !(this.isCollapsed);
+          };
+          this.addNav = function(nav) {
+            navs.push(nav);
+          };
 
-      }
+          this.$onInit = function() {
+          console.log("subappNavMenu.onInit:  name = " + this.name);
+
+            this.navsCtrl.addNav(this);
+          };
+        }
+    })
+        .component('subappNav', {
+          transclude: true,
+          bindings: {
+            subitem: '<',
+            uiSref: '<',
+            onAction: '&'
+          },
+          require: {
+            navsCtrl: '^subappNavbar',
+            menuCtrl: '?^subappNavMenu'
+          },
+          templateUrl: 'components/subappNav/subappNav.html',
+          controller: function() {
+            this.$onInit = function() {
+    //          console.log("Adding nav from nav.onInit, action = " + this.action);
+              if (this.subitem) {
+                this.menuCtrl.addNav(this);
+              } else {
+                this.navsCtrl.addNav(this);
+
+              }
+            };
+            this.action = function() {
+              //alert("Callback in Nav, will forward to " + this.onAction);
+              this.onAction();
+            };
+
+          }
     });
 
 
