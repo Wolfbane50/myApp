@@ -1,6 +1,5 @@
 <subapp-navbar name="Technial Books" state="library">
   <subapp-nav class="nav navbar-nav" on-action="$ctrl.newDoc('')">New Document</subapp-nav>
-  // Selection callback will pass through tagCloud to taggedDocs to documentList
   <subapp-nav class="nav navbar-nav" ui-sref="library.tagCloud({selState: 'library.docdisp' })">Tag Cloud</subapp-nav>
   <subapp-nav class="nav navbar-nav" ui-sref="library.catdisp">Edit Categories</subapp-nav>
   <subapp-nav class="nav navbar-nav" ui-sref="library.pubdisp">Edit Publishers</subapp-nav>
@@ -11,25 +10,33 @@
 
 <div class="view_container">
   <sidebar>
+    <uib-tabset active="active">
+      <uib-tab index="0" heading="By Category">
     <uib-accordion>
       <div uib-accordion-group ng-repeat="cat in $ctrl.categories track by cat.id" is-open="$ctrl.accordionStatus[$index]">
         <uib-accordion-heading>
           {{cat.name}}
-        <a class="pull-right btn btn-primary btn-xs" ng-click="$ctrl.newDoc(cat.id)" style="margin-right: 8px;" ng-show="$ctrl.accordionStatus[$index]">
-          <span class="glyphicon glyphicon-plus"></span></a>
+          <a class="pull-right btn btn-primary btn-xs" ng-click="$ctrl.newDoc(cat.id)" style="margin-right: 8px;" ng-show="$ctrl.accordionStatus[$index]">
+            <span class="glyphicon glyphicon-plus"></span></a>
         </uib-accordion-heading>
-        <document-list docs="$ctrl.docsByCat[cat.id]" state="'library.docdisp'" on-select="$ctrl.docSelect(document)">
+        <document-list docs="$ctrl.docsByCat[cat.id]" state="'library.docdisp'" on-select="$ctrl.docSelect(index, id)">
         </document-list>
       </div>
     </uib-accordion>
+  </uib-tab>
+  <uib-tab index="1" heading="Starred">
+    <document-list docs="$ctrl.starredDocs" state="'library.docdisp'" on-select="$ctrl.docSelect(index, id)">
+    </document-list>
+  </uib-tab>
+</uib-tabset>
+
   </sidebar>
 
-  <div class="detail"
-      ui-view on-save="$ctrl.onSave(document)"
-      on-delete="$ctrl.onDelete(document)"
-      on-category-change="$ctrl.changeCategory(old, chg, document)"
-      on-star-toggle="$ctrl.toggleStarred(document, toValue)">
-  </div>
+
   <div class="main_container">
+    <a ng-show="($ctrl.selectedId > 0)" class="pull-right btn btn-success btn-lg" uib-tooltip="Toggle Starred list" ng-click="$ctrl.toggleStarred()">
+           <span ng-class="$ctrl.starredIcon()"></span></a>
+    <div ui-view on-save="$ctrl.onSave(document)" on-delete="$ctrl.onDelete(document)" on-category-change="$ctrl.changeCategory(old, chg, document)" on-star-toggle="$ctrl.toggleStarred(document, toValue)">
+    </div>
   </div>
 </div>

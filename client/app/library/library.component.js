@@ -11,13 +11,24 @@
         this.Publisher = Publisher;
         this.LibraryService = LibraryService;
 
-        this.selectCount = 0;
-        this.selectedId = 486;
+        this.selectedId = 0;
         this.docsByCat = {};
         this.accordionStatus = [];
+        this.selectedIndex = -1;
+
 
 
         // define all functions
+        function findDocFromId(id, ctrl) {
+          for (var i = 0; i < ctrl.documentList.length; i++) {
+            var doc = ctrl.documentList[i];
+            if (doc.id === id) {
+              return doc;
+            }
+          }
+          return null;
+        }
+
         function sortListByTitle(list) {
           return list.sort(function(a, b) {
             //console.log("Looking at " + a.title + "\n    vice\n    " + b.title);
@@ -29,8 +40,8 @@
 
         }
 
-        function saveConfig() {
-          var storeString = angular.toJson(this.config);
+        function saveConfig(ctrl) {
+          var storeString = angular.toJson(ctrl.config);
           localStorage.setItem("docMgrConfig", storeString);
         }
 
@@ -56,24 +67,38 @@
           if (this.config.starredIds) {
             delete this.config.starredIds
           }
-          saveConfig();
+          saveConfig(this);
         };
 
-        this.toggleStarred = function(document, toValue) {
-          var id = document.id;
+        this.toggleStarred = function() {
+          var id = this.selectedId;
           // Not using toValue, potential to get out of synch
           if (this.config.starredHash[id]) {
             delete this.config.starredHash[id];
             this.spliceDocFromList(this.starredDocs, id)
           } else {
             this.config.starredHash[id] = true;
-            this.starredDocs.push(document);
-            this.starredDocs = sortListByTitle(this.starredDocs);
+            var document = findDocFromId(id, this);
+            if (document) {
+              this.starredDocs.push(document);
+              this.starredDocs = sortListByTitle(this.starredDocs);
+            }
           }
-          saveConfig();
+          saveConfig(this);
+        };
+        this.starredIcon = function() {
+          // id == 0 indicates nothing selected
+          if (this.selectedId) {
+            if (this.config.starredHash[this.selectedId]) {
+              return 'glyphicon glyphicon-star';
+            } else {
+              return 'glyphicon glyphicon-star-empty';
+            }
+          }
+          return ''; // Return empty class for no icon
         };
 
-      this.changeCategory = function(old, chg, document) {
+        this.changeCategory = function(old, chg, document) {
           console.log("Category on document " + document.id + " changed from " + old + " to " + chg);
           this.spliceDocFromList(this.docsByCat[old], document.id);
           this.docsByCat[chg].push(document);
@@ -130,6 +155,7 @@
             angular.forEach(ctrl.docsByCat, function(docs, catId, obj) {
               obj[catId] = sortListByTitle(docs);
             });
+            ctrl.starredDocs = sortListByTitle(ctrl.starredDocs);
           });
         };
         // May not need this.  Could put SREF in app navbar
@@ -163,17 +189,15 @@
           if (newDir) {
             if (newDir != this.config.serverPath) {
               this.config.serverPath = newDir;
-              saveConfig();
+              saveConfig(this);
             }
           }
         };
 
-        this.docSelect = function(document) {
-          this.selectCount++;
-          console.log("In library.docSelect #" + this.selectCount);
-          if (document) {
-            console.log("Selected => " + JSON.stringify(document));
-            this.tmpDoc = document;
+        this.docSelect = function(index, id) {
+          console.log("In library.docSelect, id = " + id + ", index = " + index);
+          if (id) {
+            this.selectedId = id;
           }
         };
 

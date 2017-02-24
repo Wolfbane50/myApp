@@ -25,8 +25,8 @@ angular.module('myappApp')
         }
       })
       .state('library.docdisp', {
-//        component: 'libdoc',
-          component: 'starredDoc',
+        component: 'libdoc',
+//          component: 'starredDoc',
           params: {
             document: null
           },

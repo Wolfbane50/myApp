@@ -17,12 +17,13 @@
 
          this.select = function(doc, index) {
 
-           //console.log("In documentList.select, doc => " + JSON.stringify(doc));
+           console.log("In documentList.select, doc => " + JSON.stringify(doc));
            //console.log("About to call state " + this.state);
            clearSelections(this);
            this.selectionTracker[index] = true;
            this.onSelect({
-             index: index
+             index: index,
+             id: doc.document.id
            });
 
            this.$state.go(this.state, doc);
@@ -42,7 +43,9 @@
          this.selectFromIndex = function(index) {
            if (index >= 0) {
              var document = this.docs[index];
-             this.select({ document: document }, index);
+             this.select({
+               document: document
+             }, index);
            } else {
              // Reset selection
              clearSelections(this);
@@ -72,7 +75,7 @@
          }
 
          this.$onChanges = function(changes) {
-           console.log("documentList onChanges event fired! changes => " + Object.keys(changes));
+           //console.log("documentList onChanges event fired! changes => " + Object.keys(changes));
            //           console.log("documentList.onChanges event fired.  options = " + JSON.stringify(this.options));
 
            // Dont expect the state to ever change.
@@ -80,18 +83,20 @@
            if (changes.docs) {
              if (this.docs) {
                this.selectionTracker = [];
-               console.log("Initializing selection tracker");
+               //console.log("Initializing selection tracker");
                for (var i = 0; i < this.docs.length; i++) {
                  this.selectionTracker.push(false);
                }
              } else {
-               console.log("no docs at this time");
+               //console.log("no docs at this time");
              }
            }
-           if(changes.selectIndex) {
-             console.log("Changes: => " + JSON.stringify(changes));
-             console.log("selectIndex => " + JSON.stringify(this.selectIndex));
-             this.selectFromIndex(this.selectIndex);
+           if (changes.selectIndex) {
+             //console.log("Changes to selectIndex: => " + JSON.stringify(changes.selectIndex));
+             if (this.selectIndex) {
+               //console.log("selectIndex => " + JSON.stringify(this.selectIndex));
+               this.selectFromIndex(this.selectIndex);
+             }
            }
          };
        } // end constructor

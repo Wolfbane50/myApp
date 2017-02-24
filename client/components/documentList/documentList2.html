@@ -1,5 +1,5 @@
 
-<div class="row sidebar-row" ng-class="$ctrl.selectedClass($index)" ng-repeat="doc in $ctrl.docs">
+<div class="row sidebar-row" ng-class="$ctrl.selectedClass($index)" ng-repeat="doc in $ctrl.docs track by $index">
 
   <div class="col-xs-10">
 
