@@ -1,12 +1,3 @@
-  <script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header">
-      <h3 class="modal-title">Loading Data</h3>
-    </div>
-    <div class="modal-body">
-      <p>We Are Sorry!</p>
-      <p>Eventually the data will be moved to a database for quicker access. For now, you must wait for it to load...
-    </div>
-  </script>
 
   <subapp-navbar name="BF Audios" state="bftree">
     <subapp-nav class="nav navbar-nav" on-action="Bftree.showJSONstuff()">Generate JSON</subapp-nav>
@@ -25,9 +16,9 @@
             <span class="glyphicon" ng-class="itemIcon(this)"></span></a>
           <span data-nodrag ng-show="item.Title"><a ng-click="Bftree.itemSelect(this)" ng-class="Bftree.selectedItemClass(this)">{{item.Title}}</a></span>
           <span data-nodrag ng-hide="item.Title"><a ng-click="Bftree.itemSelect(this)" ng-class="Bftree.selectedItemClass(this)">{{item.Series}}</a></span>
-          <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="Bftree.sureRemove(this)">
+          <a class="pull-right btn btn-default btn-xs" data-nodrag ng-click="Bftree.sureRemove(this)">
             <span class="glyphicon glyphicon-remove"></span></a>
-          <a ng-hide="item.Title" class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="Bftree.newSubItem(this)" style="margin-right: 8px;">
+          <a ng-hide="item.Title" class="pull-right btn btn-default btn-xs" data-nodrag ng-click="Bftree.newSubItem(this)" style="margin-right: 8px;">
             <span class="glyphicon glyphicon-plus"></span></a>
         </div>
         <ol ui-tree-nodes data-collapsed="true" ng-model="item.items" ng-class="{hidden: collapsed}">

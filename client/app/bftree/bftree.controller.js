@@ -91,10 +91,6 @@
           this.popup1.opened = true;
         };
 
-        // Open loading modal dialog
-        this.modalInstance = $uibModal.open({
-          templateUrl: 'myModalContent.html'
-        });
 
         this.selectedItemClass = function(scope) {
           var nodeData = scope.$modelValue;
@@ -298,7 +294,7 @@
             }
           }, this);
 
-          this.modalInstance.dismiss('cancel');
+
         }, function errorCallback(response) {
             alert("Request for BF data yielded error: " + response.status);
 

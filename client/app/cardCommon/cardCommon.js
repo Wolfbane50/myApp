@@ -5,6 +5,16 @@ angular.module('myappApp')
     $stateProvider
       .state('cardCommon', {
         url: '/cards',
-        component: 'cardCommonComponent'
-      });
+        component: 'cardCommonComponent',
+        params: {
+          collection: null
+        },
+        resolve : {
+          collection: function($transition$) {
+            //console.log("cardCommony.resolve.collection: transition => " + JSON.stringify($transition$.params()));
+            return $transition$.params().collection;
+          }
+        }
+    });
+
   });

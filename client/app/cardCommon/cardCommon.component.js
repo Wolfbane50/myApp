@@ -157,11 +157,25 @@
             }
           }
         };
-
+//        this.$onChanges = function(changes) {
+//          console.log("documentList onChanges event fired! changes => " + Object.keys(changes));
+//        };
 
       } // end component class
 
       $onInit() {
+        console.log("cardCommon.onInit, collection = " + this.collection);
+        if(this.collection) {
+          if (this.collection === "bunt" ){
+            this.myJSON = "bunt.json";
+          } else {
+            if (this.collection === "local") {
+              this.myJSON = "ss_cards.json";
+            } else {
+               this.myJSON = "chachis3.json";
+            }
+          }
+        }
         this.loadSets();
       }  // end onInit
    }
@@ -169,7 +183,10 @@
    angular.module('myappApp')
      .component('cardCommonComponent', {
        templateUrl: 'app/cardCommon/cardCommon.html',
-       controller: CardCommonComponent
+       controller: CardCommonComponent,
+       bindings: {
+         collection: '<'
+       }
      });
 
 })();
