@@ -24,9 +24,9 @@
               <a class="btn btn-default btn-xs" data-nodrag ng-click="$ctrl.toggle(this)">
                 <span class="glyphicon" ng-class="$ctrl.itemIcon(this)"></span></a>
               <span data-nodrag><a ng-click="$ctrl.itemSelect(this)" ng-class="$ctrl.selectedItemClass(this)">{{item.name}}</a></span>
-              <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="$ctrl.sureRemove(this)">
+              <a class="pull-right btn btn-default btn-xs" data-nodrag ng-click="$ctrl.sureRemove(this)">
                 <span class="glyphicon glyphicon-remove"></span></a>
-              <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="$ctrl.newSubItem(this)" style="margin-right: 8px;">
+              <a class="pull-right btn btn-default btn-xs" data-nodrag ng-show="$ctrl.canAdd(this)" ng-click="$ctrl.newSubItem(this)" style="margin-right: 8px;">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
             <ol ui-tree-nodes data-collapsed="true" ng-model="item.items" ng-class="{hidden: collapsed}">
@@ -44,7 +44,7 @@
               <span>New Doctor</span></a>
 
             <ol ui-tree-nodes data-collapsed="true" ng-model="$ctrl.videoList">
-              <li ng-repeat="item in $ctrl.videoList" ui-tree-node ng-include="'items_renderer.html'"></li>
+              <li ng-repeat="item in $ctrl.videoList" ui-tree-node data-collapsed="true" ng-include="'items_renderer.html'"></li>
             </ol>
           </div>
         </div>
@@ -169,11 +169,16 @@
                       <th>No.</th>
                       <th>Name</th>
                       <th>Filename</th>
+                      <th>-</th>
                     </tr>
                     <tr ng-repeat="ep in $ctrl.selItem.episodes ">
                       <td center>{{$index + 1}}</td>
-                        <td><input type="text " ng-model="ep.name "></td>
-                        <td><input type="text " ng-model="ep.fname "></td>
+                      <td><input type="text " ng-model="ep.name "></td>
+                      <td><input type="text " ng-model="ep.fname "></td>
+                      <td>
+                        <a class="btn btn-primary btn-xs" data-nodrag ng-click="$ctrl.delEpisode($index)">
+                          <span class="glyphicon glyphicon-remove"></span></a>
+                      </td>
                     </tr>
                   </table>
                   <a class="btn btn-primary btn-xs " ng-click="$ctrl.newEpisode() ">
@@ -182,12 +187,41 @@
               </div>
 
               <div class="row" ng-show="$ctrl.selItem.episodes">
-                <h2 ng-show="$ctrl.selItem.episodes.length">Episode Links:</h2>
-                <ul ng-repeat="ep in $ctrl.selItem.episodes ">
-                  <li>&nbsp;<a href="{{$ctrl.selItem.SPath}}/{{ep.fname}} " target="_blank ">
+                <div class="col-sm-6">
+
+                  <h2 ng-show="$ctrl.selItem.episodes.length">Episode Links:</h2>
+                  <ul ng-repeat="ep in $ctrl.selItem.episodes ">
+                    <li>
+                      <a class="btn btn-primary btn-xs" ng-click="$ctrl.playEpisode($index)">
+                        <span class="glyphicon glyphicon-play"></span></a>
+                      &nbsp;<a href="{{$ctrl.selItem.SPath}}/{{ep.fname}} " target="_blank ">
                   {{ep.name}}
                   </a></li>
-                </ul>
+                  </ul>
+                </div>
+                <div class="col-sm-6">
+                  <h1>Viewer</h1>
+                  <videogular vg-player-ready="$ctrl.onPlayerReady($API)" vg-theme="$ctrl.vidConfig.theme">
+              			<vg-media></vg-media>
+
+              			<vg-controls>
+              				<vg-play-pause-button></vg-play-pause-button>
+              				<vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+              				<vg-scrub-bar>
+              					<vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+              				</vg-scrub-bar>
+              				<vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+              				<vg-volume>
+              					<vg-mute-button></vg-mute-button>
+              					<vg-volume-bar></vg-volume-bar>
+              				</vg-volume>
+              				<vg-fullscreen-button></vg-fullscreen-button>
+              			</vg-controls>
+
+              			<vg-overlay-play></vg-overlay-play>
+              			<vg-poster vg-url='$ctrl.vidConfig.plugins.poster'></vg-poster>
+              		</videogular>
+                </div>
               </div>
             </div>
           </div>
