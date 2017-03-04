@@ -1,0 +1,100 @@
+angular-video/scripts/directives/angular-video.js
+-------------------------------------------------
+angular.module("angular-video", []).directive("vgSrc",
+    function () {
+        return {
+            restrict: "A",
+            link: {
+                pre: function (scope, elem, attr) {
+                    var element = elem;
+                    var sources;
+                    var canPlay;
+
+                    function changeSource() {
+                        for (var i = 0, l = sources.length; i < l; i++) {
+                            canPlay = element[0].canPlayType(sources[i].type);
+
+                            if (canPlay == "maybe" || canPlay == "probably") {
+                                element.attr("src", sources[i].src);
+                                element.attr("type", sources[i].type);
+                                break;
+                            }
+                        }
+
+                        if (canPlay == "") {
+                            scope.$emit("onVideoError", {type: "Can't play file"})
+                        }
+                    }
+
+                    scope.$watch(attr.vgSrc, function (newValue, oldValue) {
+                        if (!sources || newValue != oldValue) {
+                            sources = newValue;
+                            changeSource();
+                        }
+                    });
+                }
+            }
+        }
+    }
+);
+
+angular-video/scripts/controllers/main.js
+-----------------------------------------
+'use strict';
+
+angular.module('angularVideoApp')
+    .controller('MainCtrl', ['$scope', '$sce', function ($scope, $sce) {
+        $scope.sources = [
+            {src: $sce.trustAsResourceUrl("http://videogular.com/assets/videos/videogular.mp4"), type: "video/mp4"},
+            {src: $sce.trustAsResourceUrl("http://videogular.com/assets/videos/videogular.webm"), type: "video/webm"},
+            {src: $sce.trustAsResourceUrl("http://videogular.com/assets/videos/videogular.ogg"), type: "video/ogg"}
+        ];
+
+        $scope.changeSource = function() {
+            $scope.sources = [
+                {src: $sce.trustAsResourceUrl("http://mirrorblender.top-ix.org/peach/bigbuckbunny_movies/big_buck_bunny_480p_h264.mov"), type: "video/mp4"},
+                {src: $sce.trustAsResourceUrl("http://mirrorblender.top-ix.org/peach/bigbuckbunny_movies/big_buck_bunny_480p_stereo.ogg"), type: "video/ogg"}
+            ];
+        };
+    }]);
+    
+angular-video/scripts/app.js
+----------------------------
+'use strict';
+
+angular.module('angularVideoApp', [
+        'ngCookies',
+        'ngResource',
+        'ngSanitize',
+        'ngRoute',
+        'angular-video'
+    ])
+    .config(function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'views/main.html',
+                controller: 'MainCtrl'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+    });
+    
+angular-video/views/main.html
+-----------------------------
+<div class="header">
+    <h3 class="text-muted">angular-video</h3>
+</div>
+
+<div class="jumbotron">
+    <h1>Angular Video</h1>
+
+    <video vg-src="sources" preload='metadata' controls></video>
+
+    <p><a class="btn btn-lg btn-success" ng-click="changeSource()">Change source!</a></p>
+</div>
+
+
+<div class="footer">
+    <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+</div>
