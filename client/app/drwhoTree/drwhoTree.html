@@ -44,7 +44,7 @@
               <span>New Doctor</span></a>
 
             <ol ui-tree-nodes data-collapsed="true" ng-model="$ctrl.videoList">
-              <li ng-repeat="item in $ctrl.videoList" ui-tree-node data-collapsed="true" ng-include="'items_renderer.html'"></li>
+              <li ng-repeat="item in $ctrl.videoList" ui-tree-node data-nodrag data-collapsed="true" ng-include="'items_renderer.html'"></li>
             </ol>
           </div>
         </div>
@@ -201,8 +201,9 @@
                 </div>
                 <div class="col-sm-6">
                   <h1>Viewer</h1>
-                  <videogular vg-player-ready="$ctrl.onPlayerReady($API)" vg-theme="$ctrl.vidConfig.theme">
-              			<vg-media></vg-media>
+                  <videogular vg-player-ready="$ctrl.onPlayerReady($API)" vg-complete="$ctrl.onCompleteVideo()"
+                         vg-error="$ctrl.onVgError($event)" vg-theme="$ctrl.vidConfig.theme" vg-can-play="$ctrl.onCanPlay()">
+              			<vg-media vg-src="$ctrl.vidConfig.sources"></vg-media>
 
               			<vg-controls>
               				<vg-play-pause-button></vg-play-pause-button>
@@ -217,10 +218,10 @@
               				</vg-volume>
               				<vg-fullscreen-button></vg-fullscreen-button>
               			</vg-controls>
-
               			<vg-overlay-play></vg-overlay-play>
-              			<vg-poster vg-url='$ctrl.vidConfig.plugins.poster'></vg-poster>
+              			<vg-poster vg-url='$ctrl.selItem.Image'></vg-poster>
               		</videogular>
+                  <button type="button" ng-click="$ctrl.checkPlayer()">Check Player</button>
                 </div>
               </div>
             </div>
