@@ -7,6 +7,8 @@
       //console.log("In bftree constructor");
       this.episodes = [];
       this.episodeListText = "";
+      this.playIndex = -1;
+      this.playAll = false;
 
       this.selItem = {};
       this.showShow = false;
@@ -47,7 +49,7 @@
 
       this.vidTypeMap = {
         ".mp4": "video/mp4",
-        ".m4v": "video/mp4", 
+        ".m4v": "video/mp4",
         ".webm": "video/webm",
         ".ogg": "video/ogg",
         //".mkv" : "video/x-matroska"   // Would work if supported
@@ -55,10 +57,22 @@
         ".avi" : "video/avi",  // Not supported
         ".mov" : "video/mov"
       };
+      this.playingClass = function (index) {
+        if (index == this.playIndex) {
+          console.log("Set playing");
+          return "playing";
+        }
+        console.log("Set not playing");
+        return '';
+      };
 
+      this.playAllEpisodes = function () {
+        this.playAll = true;
+        this.playEpisode(0);
+      }
       this.playEpisode = function(index) {
         this.videogular.stop();
-        console.log("Old video config => " + JSON.stringify(this.vidConfig.sources));
+        //console.log("Old video config => " + JSON.stringify(this.vidConfig.sources));
         var fname = this.selItem.episodes[index].fname;
         //var exts = fname.match(/\.*+$/);
         var ext = fname.substr(fname.lastIndexOf('.'));
@@ -67,6 +81,7 @@
         if (! canPlay) {
           return alert("Browser cannot play this video!");
         }
+        this.playIndex = index;
 
         var url = this.selItem.SPath + "/" + this.selItem.episodes[index].fname;
 
@@ -75,9 +90,9 @@
           type: vtype
         }];
 
-        console.log("Set video config sources to => { src : " +
-          $sce.getTrustedResourceUrl(this.vidConfig.sources[0].src) + ", \ntype: " +
-          this.vidConfig.sources[0].type + " }");
+        //console.log("Set video config sources to => { src : " +
+        //  $sce.getTrustedResourceUrl(this.vidConfig.sources[0].src) + ", \ntype: " +
+        //  this.vidConfig.sources[0].type + " }");
         this.videogular.changeSource(this.vidConfig.sources);
 
         //  this.$timeout(this.videogular.play.bind(this.videogular), 100);
@@ -85,9 +100,12 @@
 
       };
       this.onVgError = function(event) {
-        console.log("Player Error! =>  " + event);
+        console.log("Player Error! =>  " + JSON.stringify(event));
+        this.ngToast.create("Video Player Error! =>  " + event);
+        this.playIndex = -1;
       };
       this.checkPlayer = function() {
+        this.ngToast.create("Here is some toast");
         console.log("Current player state: " + this.videogular.currentState);
         var theSources = this.videogular.sources;
         if ((theSources) && (theSources.length)) {
@@ -110,6 +128,17 @@
       };
       this.onCompleteVideo = function() {
         console.log("Completed Episode");
+        if(this.playAll) {
+          if (this.playIndex === this.selItem.episodes.length - 1) {
+            // At the end of Episodes
+            this.playall = false;
+            this.playIndex = -1;
+          } else {
+            this.playEpisode(this.playIndex + 1);
+          }
+        } else {
+           this.playIndex = -1;
+        }
       };
       this.onCanPlay = function() {
         console.log("Video can play!");

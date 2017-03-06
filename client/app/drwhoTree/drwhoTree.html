@@ -190,9 +190,11 @@
                 <div class="col-sm-6">
 
                   <h2 ng-show="$ctrl.selItem.episodes.length">Episode Links:</h2>
-                  <ul ng-repeat="ep in $ctrl.selItem.episodes ">
-                    <li>
-                      <a class="btn btn-primary btn-xs" ng-click="$ctrl.playEpisode($index)">
+                  <a class="btn btn-default epall" ng-click="$ctrl.playAllEpisodes($index)">
+                    Play All >></a>
+                  <ul class="eplinks" ng-repeat="ep in $ctrl.selItem.episodes ">
+                    <li ng-class="$ctrl.playingClass($index)">
+                      <a class="btn btn-default btn-xs" ng-click="$ctrl.playEpisode($index)">
                         <span class="glyphicon glyphicon-play"></span></a>
                       &nbsp;<a href="{{$ctrl.selItem.SPath}}/{{ep.fname}} " target="_blank ">
                   {{ep.name}}
