@@ -19,6 +19,16 @@
       //=================================
       // Scope methods
       //=================================
+      this.transform = function() {
+        var term = this.xformPath;
+        if (term.match(/Documents/)) {
+          var newPath = term.substr(term.indexOf('Documents') + 10);
+          newPath = newPath.replace(/\\/g, '/');
+          this.xformPath = "http://localhost:9000/" + newPath;
+        }
+
+      };
+
       this.selectedItemClass = function(scope) {
           var nodeData = scope.$modelValue;
           if (this.selItem == nodeData) {

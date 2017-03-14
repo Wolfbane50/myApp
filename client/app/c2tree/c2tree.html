@@ -44,6 +44,8 @@
       <pre class="code">{{ $ctrl.list | json }}</pre>
     </div>
     <div id="response_pane">
+
+
       <div ng-hide="$ctrl.selItem">
         <h1>Select an Item from tree ...</h1></div>
       <div ng-show="$ctrl.selItem">
@@ -52,9 +54,9 @@
           <table border="1" cellpadding="5" cellspacing="2" ng-model="$ctrl.docs">
             <thead>
               <tr>
-                <th align=center><b>Name</b></th>
-                <th align=center><b>Author</b></th>
-                <th align=center><b>Date</b></th>
+                <th><b>Name</b></th>
+                <th><b>Author</b></th>
+                <th><b>Date</b></th>
               </tr>
             </thead>
 
@@ -92,12 +94,13 @@
       <div ng-show="$ctrl.editDoc.name">
         <h3>Enter Document Information</h3>
         <table>
+          <thead>
           <tr>
             <td>Title</td>
             <td>Author</td>
             <td>Date</td>
             <td>Link</td>
-          </tr>
+          </tr></thead>
           <tr>
             <td>
               <input ng-model="$ctrl.editDoc.name">
@@ -113,15 +116,20 @@
             </td>
           </tr>
           <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>
+            <td class="control">&nbsp;</td>
+            <td class="control">&nbsp;</td>
+            <td class="control">&nbsp;</td>
+            <td class="control">
               <button ng-click="$ctrl.docEditCancel()">Cancel</button> &nbsp;
               <button ng-click="$ctrl.docEditOK()">OK</button>
             </td>
           </tr>
         </table>
+        <div>
+        <label for="inputdefault">File/Path:</label>
+        <input class="form-control" id="inputdefault" type="text" ng-model="$ctrl.xformPath">
+        <button class="btn btn-default" ng-click="$ctrl.transform()">Transform</button>
+        </div>
       </div>
     </div>
   </div>
