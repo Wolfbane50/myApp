@@ -135,8 +135,10 @@
           this.$state.go('loadstage.default');
         };
         this.getStageDocs = function() {
+          var saveStageDir = this.stageDir;
+
           // this.stageDir = prompt("Enter Staging Directory", "C:/Users/daniel.heaney/Documents/ebooks");
-          this.stageDir = prompt("Enter Staging Directory", "C:/blah/myapp/server/api/books/test_stage_dir");
+          this.stageDir = prompt("Enter Staging Directory", saveStageDir);
 
           if (this.stageDir) {
             //console.log("In getTagCloud");
@@ -190,6 +192,8 @@
               alert("Request for Staged Docs yielded error: " + response.status);
             });
 
+          } else {
+            this.stageDir = saveStageDir;
           }
         };
 
