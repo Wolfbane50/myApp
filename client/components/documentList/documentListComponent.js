@@ -17,7 +17,7 @@
 
          this.select = function(doc, index) {
 
-           console.log("In documentList.select, doc => " + JSON.stringify(doc));
+           //console.log("In documentList.select, doc => " + JSON.stringify(doc));
            //console.log("About to call state " + this.state);
            clearSelections(this);
            this.selectionTracker[index] = true;

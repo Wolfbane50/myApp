@@ -10,10 +10,10 @@ angular.module('myappApp')
         angular.forEach(categories, function(cat) {
           catMap[cat.id] = cat;
         });
-        console.log("Done catMapInit => " + Object.keys(catMap));
+        //console.log("Done catMapInit => " + Object.keys(catMap));
       },
       catFromId: function(id) {
-        console.log("catFromId for id=" + id + "; return => " + JSON.stringify(catMap[id]));
+        //console.log("catFromId for id=" + id + "; return => " + JSON.stringify(catMap[id]));
         return catMap[id];
       },
       docMapInit: function(documents) {

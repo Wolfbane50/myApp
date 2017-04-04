@@ -23,6 +23,7 @@
         this.stachedDoc = {};
         this.serverPath = "";
         this.selectedType = 'other';
+        this.categories = [];
 
         // define all functions
         function getTagsForDoc(doc, ctrl) {
@@ -37,7 +38,7 @@
           }).then(function successCallback(response) {
             var tlist = response.data;
             doc.tag_list = tlist.join(', ');
-            console.log("Got tag_list: " + doc.tag_list);
+            //console.log("Got tag_list: " + doc.tag_list);
           }, function errorCallback(response) {
             alert("Request for tags on document yielded error(" + response.status + "): " + response.statusText);
           });
@@ -135,12 +136,12 @@
         };
 
         this.changeCategory = function() {
-          if (this.docCategory) {  // If control gets screwed up, ignore
-            console.log("In changeCategory.. myDoc => " + JSON.stringify(this.myDoc) + " docCategory => " + JSON.stringify(this.docCategory));
+          if (this.docCategory) { // If control gets screwed up, ignore
+            //console.log("In changeCategory.. myDoc => " + JSON.stringify(this.myDoc) + " docCategory => " + JSON.stringify(this.docCategory));
             var oldCat = this.myDoc.category_id;
             var newCat = this.docCategory.id;
             this.myDoc.category_id = newCat;
-            console.log("Calling onCategoryChange with old = " + oldCat + "; chg =" + newCat);
+            //console.log("Calling onCategoryChange with old = " + oldCat + "; chg =" + newCat);
             this.onCategoryChange({
               document: this.myDoc,
               old: oldCat,
@@ -151,7 +152,7 @@
 
         this.processDoc = function(doc, ctrl) {
           // Stuff to be done with doc after we get it from db
-          console.log("in processDoc");
+          //console.log("in processDoc");
           if ((doc.id) && (!doc.tag_list)) {
             getTagsForDoc(doc, ctrl);
           }
@@ -162,12 +163,25 @@
             ctrl.selectedType = 'other';
           }
 
+          // Race condition: on first selection, we dont have the categories yet
           ctrl.docCategory = LibraryService.catFromId(doc.category_id);
-          console.log("Set document category to => " + JSON.stringify(ctrl.docCategory));
+          //console.log("Set document category to => " + JSON.stringify(ctrl.docCategory));
         };
 
         // Note that this will be called when doc/id is first set and on any changes afterwards
         this.$onChanges = function(changes) {
+          if (this.categories.length === 0) {
+            var ctrl = this;
+            //console.log("onChanges: Query Categories, length = " + this.categories.length);
+            this.categories = this.Category.query(null, function() {
+              //console.log("onChanges: catMapInit, length = " + ctrl.categories.length);
+              ctrl.LibraryService.catMapInit(ctrl.categories);
+              // Fix race condition on first documenten
+              if(! ctrl.docCategory) {
+                ctrl.docCategory = ctrl.LibraryService.catFromId(ctrl.myDoc.category_id);
+              }
+            });
+          }
           //          console.log("Libdoc onChanges fired, changes => " + JSON.stringify(changes));
           //  If no change occured to an attribute, it will have previousValue but not currentValue;
           if ((changes.doc) && (changes.doc.currentValue)) {
@@ -206,7 +220,6 @@
           }
         }
 
-        this.categories = this.Category.query();
         this.publishers = this.Publisher.query();
       } // end onInit
   } // end component class

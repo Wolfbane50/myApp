@@ -52,7 +52,7 @@
 
         this.docSelected = function(index) {
           this.selectedIndex = index;
-          console.log("Selected " + index + ", statuses => " + JSON.stringify(this.stageDocStatuses));
+          //console.log("Selected " + index + ", statuses => " + JSON.stringify(this.stageDocStatuses));
         };
 
         this.nextItem = function() {
@@ -302,7 +302,7 @@
             ctrl.stageDir = response.data.stageDir;
             ctrl.stageDocs = response.data.stageDocs;
             if(response.data.stageDocStatuses) {
-              ctrl.stageDocStatuses = stageDocStatuses;
+              ctrl.stageDocStatuses = response.data.stageDocStatuses;
             } else {
               fillStatuses(ctrl);
             }
