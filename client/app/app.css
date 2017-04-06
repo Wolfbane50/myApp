@@ -164,8 +164,9 @@ span.glyphicon {
 }
 
 .sidebar-content-box {
-  height: 100%;
-  overflow: auto;
+  height: 1000px;
+  overflow-x: auto;
+  overflow-y: scroll;
 }
 
 .light_blue {
