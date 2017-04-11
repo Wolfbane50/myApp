@@ -19,6 +19,8 @@ export function update(req, res) {
     // Specify worksheets to process
     var idSheets = {
       "2017": 1,
+      "2017 Team Issue" : 1,
+      "1982" : 1,
       "Misc": 1,
       "2016": 1,
       "2015": 1,

@@ -149,6 +149,7 @@ export function update(req, res) {
     var workbook = XLSX.readFile(ch_path + 'buntseries2.xlsx');
     var jsonOut = s_path + "bunt.json";
     var idSheets = {
+      "2017 Bunt" : 1,
       "ID Table": 1,
       "2016 Inserts": 1,
       "2016 Huddle" : 1,
