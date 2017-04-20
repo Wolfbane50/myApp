@@ -1,0 +1,74 @@
+<subapp-navbar name="GUI Catalog" state="guiCatalog">
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.showJSONstuff()">Generate JSON</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.commitChanges()">Commit Changes</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.setPrePath()">Set Path</subapp-nav>
+
+</subapp-navbar>
+<div class="view_container">
+  <sidebar>
+    <script type="text/ng-template" id="items_renderer.html">
+      <div ui-tree-handle>
+        <a class="btn btn-default btn-xs" data-nodrag ng-click="$ctrl.toggle(this)">
+          <span class="glyphicon" ng-class="$ctrl.itemIcon(this)"></span></a>
+        <span data-nodrag><a ng-click="$ctrl.itemSelect(this)" ng-class="$ctrl.selectedItemClass(this)">{{item.text}}</a></span>
+        <a class="pull-right btn btn-default btn-xs" data-nodrag ng-click="$ctrl.sureRemove(this)">
+          <span class="glyphicon glyphicon-remove"></span></a>
+        <a class="pull-right btn btn-default btn-xs" data-nodrag  ng-show="$ctrl.canAdd(this)" ng-click="$ctrl.newSubItem(this)" style="margin-right: 8px;">
+          <span class="glyphicon glyphicon-plus"></span></a>
+      </div>
+      <ol ui-tree-nodes data-collapsed="true" ng-model="item.children" ng-class="{hidden: collapsed}">
+        <li ng-repeat="item in item.children" ui-tree-node ng-include="'items_renderer.html'">
+        </li>
+      </ol>
+    </script>
+    <div ui-tree="$ctrl.options">
+
+      <a class="btn btn-primary btn-xs" ng-click="$ctrl.myCollapseAll()">
+        <span>Collapse Tree</span></a>
+      <a class="btn btn-primary btn-xs" ng-click="$ctrl.myExpandAll()">
+        <span>Expand Tree</span></a>
+
+      <ol ui-tree-nodes ng-model="$ctrl.catalog.items">
+        <li ng-repeat="item in $ctrl.catalog.items track by $index" ui-tree-node data-collapsed="true" ng-include="'items_renderer.html'"></li>
+      </ol>
+    </div>
+  </sidebar>
+  <div class="main_container">
+    <div ng-show="$ctrl.showJSON">
+      <a class="btn btn-default btn-xs" ng-click="$ctrl.doneJSON()">
+        <span>Done with JSON</span></a>
+
+      <pre class="code">{{ $ctrl.catalog | json }}</pre>
+    </div>
+    <div id="response_pane">
+      <div ng-hide="$ctrl.selItem">
+        <h1>Select an Item from tree ...</h1></div>
+      <div ng-show="$ctrl.selItem">
+        <div class="row">
+          <div class="col-md-6">
+              <label for="guiTitle">Title</label>
+              <input id="guiTitle" type="text" placeholder="Title" ng-model="$ctrl.selItem.text">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              <label for="guiNumber">Number</label>
+              <input id="guiNumber" type="text" placeholder="Number" ng-model="$ctrl.selItem.number">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              <label for="guiFigNum">Figure number</label>
+              <input id="guiFigNum" type="text" placeholder="Figure Number" ng-model="$ctrl.selItem.fig_num">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              <label for="guiUrl">Image URL</label>
+              <input id="guiUrl" type="text" placeholder="Image URL" ng-model="$ctrl.selItem.image">
+          </div>
+        </div>
+        <img ng-show="$ctrl.selItem.image" ng-src="{{$ctrl.prePath + '/' + $ctrl.selItem.image}}" />
+    </div>
+  </div>
+</div>
