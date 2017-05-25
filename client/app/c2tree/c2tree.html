@@ -31,7 +31,7 @@
         <span>Expand Tree</span></a>
 
       <ol ui-tree-nodes ng-model="$ctrl.list">
-        <li ng-repeat="item in $ctrl.list track by $index" ui-tree-node data-collapsed="true" ng-include="'items_renderer.html'"></li>
+        <li ng-repeat="item in $ctrl.list track by $index" ui-tree-node data-nodrag data-collapsed="true" ng-include="'items_renderer.html'"></li>
       </ol>
     </div>
 
