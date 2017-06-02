@@ -45,6 +45,14 @@
         <h1>Select an Item from tree ...</h1></div>
       <div ng-show="$ctrl.selItem">
         <div class="row">
+          <div class="col-md-2">
+            <a class="btn btn-default btn-xs" ng-click="$ctrl.prevGUI()"><span>Previous</span></a>
+          </div>
+          <div class="col-md-2">
+            <a class="btn btn-default btn-xs" ng-click="$ctrl.nextGUI()"><span>Next</span></a>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-md-6">
               <label for="guiTitle">Title</label>
               <input id="guiTitle" type="text" placeholder="Title" ng-model="$ctrl.selItem.text">
@@ -66,6 +74,7 @@
           <div class="col-md-6">
               <label for="guiUrl">Image URL</label>
               <input id="guiUrl" type="text" placeholder="Image URL" ng-model="$ctrl.selItem.image">
+              <input type="file" multiple onchange="$ctrl.mydocsToUrl(this)">Select File</input>
           </div>
         </div>
         <img ng-show="$ctrl.selItem.image" ng-src="{{$ctrl.prePath + '/' + $ctrl.selItem.image}}" />
