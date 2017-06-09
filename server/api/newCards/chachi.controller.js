@@ -22,6 +22,7 @@ export function update(req, res) {
       "2017 Team Issue" : 1,
       "1982" : 1,
       "Misc": 1,
+      "Topps Phils" : 1,
       "2016": 1,
       "2015": 1,
       "2005": 1,
