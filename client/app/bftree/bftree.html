@@ -1,7 +1,7 @@
 
   <subapp-navbar name="BF Audios" state="bftree">
     <subapp-nav class="nav navbar-nav" on-action="Bftree.showJSONstuff()">Generate JSON</subapp-nav>
-    <subapp-nav class="nav navbar-nav" on-action="$Bftree.backup()">Backup</subapp-nav>
+    <subapp-nav class="nav navbar-nav" on-action="Bftree.backup()">Backup</subapp-nav>
     <subapp-nav ng-show="Bftree.showShow" class="nav navbar-nav" on-action="Bftree.prevItem()">&lt;&lt; Previous</subapp-nav>
     <subapp-nav ng-show="Bftree.showShow" class="nav navbar-nav" on-action="Bftree.nextItem()">Next &gt;&gt;</subapp-nav>
   </subapp-navbar>
