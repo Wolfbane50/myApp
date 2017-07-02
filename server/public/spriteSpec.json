@@ -1,22 +1,22 @@
 {
 	// URL to file with sprite images
 	//    Will be subject to browser cross-domain restrictions as this will be requested from the browser.
-	"spriteFile" : "doctor_featuring2.png",
-	
+	"spriteFile" : "doctor_featuring3.png",
+
 	// Define units used all spacing parameters, defaults to pixels (px)
-	"spacingUnits" : "px",	
-	
+	"spacingUnits" : "px",
+
 	// Height and width of all images
 	"imageWidth" : 91,
 	"imageHeight" : 85,
 
 	// Define margins (empty space between top, left of entire image and rows/columns of sprites
-	"topMargin"  : 36,   
-	"leftMargin" : 36, 
+	"topMargin"  : 36,
+	"leftMargin" : 36,
 
 	// Vertical pads:  Define spacing between columns of images
 	//    vertPad :  constant pad between all columns
-	//    vertPadVector:  Used for different padding between columns. 
+	//    vertPadVector:  Used for different padding between columns.
 	//         First entry should be zero
 	//         Vector length (number of entries in array must be equal to the number of columns
 	//               or exception will be thrown.
@@ -37,12 +37,13 @@
 	   13,
 	   11,
 	   14,
-	   9    
+	   9,
+		 13
 	],
 
 	// Horizontal pads:  Define spacing between rows of images
 	//    horizPad :  constant pad between all rowss
-	//    horizPadVector:  Used for different padding between rows. 
+	//    horizPadVector:  Used for different padding between rows.
 	//         First entry should be zero
 	//         Vector length (number of entries in array must be equal to the number of rows
 	//               or exception will be thrown.
@@ -62,9 +63,9 @@
 	   13,
 	   11,
 	   8,
-	   12 
+	   12
 	],
-	
+
 	//  Sprite key definitions.  Define names/keys to access sprite images with by row and column
 	"spriteTable" : [
 		    [       // Row 1
@@ -93,7 +94,7 @@
 			"The Eminence",	       // C10
 			"Amy Pond",	       // C11
 			"Kraals"	       // C12
-	
+
 		   ] , [   // Row 3
 			"Barbara",	       // C1
 			"Wirrn",	       // C2
@@ -107,7 +108,7 @@
 			"Mickey",	       // C10
 			"Dupe Whatshername",   // C11
 			"The Valyard"	       // C12
-	
+
 		     ] , [   // Row 4
 			"Ian",		       // C1
 			"Jamie",	       // C2
@@ -121,7 +122,7 @@
 			"dupeDonna",           // C10
 			"Rory",		       // C11
 			"Brigadier Bambera"    // C12
-	
+
 		   ] , [   // Row 5
 			"Vicki",	       // C1
 			"Victoria",	       // C2
@@ -129,13 +130,13 @@
 			"Leela",	       // C4
 			"Turlough",	       // C5
 			"Master 2",	       // C6
-			"Master 4",	       // C7	       	      
+			"Master 4",	       // C7
 			"Chang Lee",	       // C8
 			"Unknown",	       // C9
 			"Martha Jones",	       // C10
 			"Craig Owens",	       // C11
 			"Tractators"           // C12
-	
+
 		    ] , [   // Row 6
 			"Steven Taylor",       // C1
 			"Zoe",		       // C2
@@ -240,9 +241,22 @@
 			"Vardans",	       // C10
 			"Mavic Chen",	       // C11
 			"Oliver Harper"	       // C12
-		    ]
+		    ] , [
+			"Silence",
+			"Bill",
+			"Nardole",
+			"Churchill",
+			"Kate Stewart",
+			"Osgood",
+			"Ashildr",
+			"2nd Doctor",
+			"3rd Doctor",
+			"4th Doctor",
+			"5th Doctor",
+			"7th Doctor"
+				]
 		],
-	
+
 		// Alias map defines alternate names for various sprites.
 		//     Just point alternate name (key) to name (value) in the sprite table.
 		"aliasMap" : {
@@ -253,4 +267,3 @@
 		}
 
 }
-
