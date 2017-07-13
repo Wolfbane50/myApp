@@ -1,0 +1,36 @@
+[11:09:23] Requiring external module babel-register
+[11:09:26] Using gulpfile C:\blah\myapp\gulpfile.babel.js
+[11:09:26] Starting 'test:server:integration'...
+[11:09:26] Starting 'env:all'...
+[11:09:26] Finished 'env:all' after 15 ms
+[11:09:26] Starting 'env:test'...
+[11:09:26] Finished 'env:test' after 919 μs
+[11:09:26] Starting 'mocha:integration'...
+EPUB redirected to C:\blah\myapp\server/epub
+*** /drive returned:  undefined
+
+
+Express server listening on 9000, in test mode
+  gsynch API:
+    post /api/gsynch
+POST /api/gsynch -
+gsynch.update called with gid=0  path = TestPath
+      1) "before each" hook for "should return an array of strings"
+
+
+  0 passing (54ms)
+  1 failing
+
+  1) gsynch API: post /api/gsynch "before each" hook for "should return an array of strings":
+     Error: expected 201 "Created", got 502 "Bad Gateway"
+    at Test._assertStatus (C:\blah\myapp\node_modules\supertest\lib\test.js:232:12)
+    at Test._assertFunction (C:\blah\myapp\node_modules\supertest\lib\test.js:247:11)
+    at Test.assert (C:\blah\myapp\node_modules\supertest\lib\test.js:148:18)
+    at Server.assert (C:\blah\myapp\node_modules\supertest\lib\test.js:127:12)
+    at emitCloseNT (net.js:1555:8)
+    at _combinedTickCallback (internal/process/next_tick.js:71:11)
+    at process._tickDomainCallback (internal/process/next_tick.js:122:9)
+  
+
+
+

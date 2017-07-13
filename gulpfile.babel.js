@@ -499,6 +499,15 @@ gulp.task('test:server:savestage', cb => {
         cb);
 });
 
+gulp.task('test:server:gsynch', cb => {
+    runSequence(
+        'env:all',
+        'env:test',
+        'mocha:gsynch',
+        cb);
+});
+
+
 gulp.task('mocha:unit', () => {
     return gulp.src(paths.server.test.unit)
         .pipe(mocha());

@@ -189,7 +189,11 @@ function addDatabase(docRec, doneCB) {
         console.log("Request returned error -> " + error);
         //console.log("Return -> " + body);
         // It would be nice to save what happened
+        if (response.statusCode) {
         docRec.dbError = "Create returned " + response.statusCode + "; err = " + error;
+      } else {
+        docRec.dbError = "Create returned error: " + error;
+      }
         if (body.message) {
           docRec.dbError += "\n  error: " + body.message;
         }
