@@ -47,7 +47,8 @@
 	   12,
 	   12,
 	   12,
-	   9
+	   0,
+	   0
 	],
 	
 	//  Sprite key definitions.  Define names/keys to access sprite images with by row and column
@@ -57,20 +58,23 @@
 			"2nd",	      
 			"3rd",	      
 			"4th",     
-			"5th"	      
+			"5th",
+			"13th"
 		    ] , [   // Row 2
 			"10th",	      
 			"9th",	      
 			"8th",		
 			"7th",	      
-			"6th"	      
+			"6th",
+			"Heroes"
 	
 		   ] , [   // Row 3
 			"11th",	       
 			"12th",	       
 			"War",	       
 			"Unknown",	       	
-			"None"       
+			"None",
+			""
                   ]
 		],
 	
