@@ -1,0 +1,80 @@
+<subapp-navbar name="CPCR Tiers" state="cpcrTier">
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.showJSONstuff()">Generate JSON</subapp-nav>
+  <subapp-nav ng-show="$ctrl.showCpcr" class="nav navbar-nav" on-action="$ctrl.prevItem()">&lt;&lt; Previous</subapp-nav>
+  <subapp-nav ng-show="$ctrl.showCpcr" class="nav navbar-nav" on-action="$ctrl.nextItem()">Next &gt;&gt;</subapp-nav>
+</subapp-navbar>
+
+<div class="view_container">
+  <sidebar>
+    <span>
+      <label for="sel1">Element:</label>
+      <select class="pull-right" id="sel1" ng-model="$ctrl.elementFilter" ng-options="item for item in $ctrl.elementPickList"></select>
+</span>
+    <ul class="sidebar-list" ng-repeat="cpcr in $ctrl.cpcrs track by $index">
+      <li ng-show="$ctrl.cpcrFilter(cpcr)" class="sidebar-list-item"ng-class="$ctrl.selectedClass($index)">
+      <a class="js-document-title sidebar-text"  ng-click="$ctrl.select(cpcr, $index)"><span>{{ cpcr.crid }}</span></a>
+      </li>
+    </ul>
+
+  </sidebar>
+  <div class="main_container">
+    <div ng-show="$ctrl.showJSON">
+      <a class="btn btn-primary btn-xs" ng-click="$ctrl.doneJSON()">
+        <span>Done with JSON</span></a>
+      <pre class="code">{{$ctrl.cpcrs | json }}</pre>
+    </div>
+    <div id="response_pane">
+      <div ng-hide="$ctrl.showCpcr">
+        <h1>Select a CPCR from sidebar ...</h1></div>
+      <div ng-show="$ctrl.showCpcr">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <span class="lead">CPCR {{$ctrl.selCpcr.crid}}</span>
+          </div>
+          <div class="col-sm-9">
+            <span class="lead">{{$ctrl.selCpcr.title}}</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-3">
+            <span class="lead">{{$ctrl.selCpcr.element}} : {{$ctrl.selCpcr.subelement}}</span>
+          </div>
+          <div class="col-sm-9">
+            <span class="lead">{{$ctrl.selCpcr.crbpri}}{{$ctrl.selCpcr.crbprob}} - {{$ctrl.selCpcr.crbrisk}} (cert {{$ctrl.selCpcr.crbcert}})</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-3">
+            <span class="lead">Description</span>
+          </div>
+          <div class="col-sm-9 well">
+            <span >{{$ctrl.selCpcr.problemdescription}}</span>
+          </div>
+        </div>
+
+        <div class="row" ng-show="$ctrl.selCpcr.operationalimpact">
+          <div class="col-sm-3">
+            <span class="lead">OP Impact</span>
+          </div>
+          <div class="col-sm-9 well">
+            <span>{{$ctrl.selCpcr.operationalimpact}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <span class="lead">Tier {{$ctrl.selCpcr.tier0}}-{{$ctrl.selCpcr.tier1}}-{{$ctrl.selCpcr.tier2}}</span>
+          </div>
+          <div class="col-sm-9 well">
+            <span>Explanation of Tiers</span>
+          </div>
+        </div>
+
+        <pre class="code">{{$ctrl.selCpcr | json }}</pre>
+
+      </div>
+    </div>
+  </div>
+</div>

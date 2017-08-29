@@ -112,6 +112,11 @@ span.glyphicon {
   padding: .3em 0;
   list-style-type: none;
 }
+.sidebar-list-item.userselected {
+  color: black;
+  font-weight: bolder;
+  background-color: #6699ff;
+}
 .sidebar-text:hover {
   color: black;
 }

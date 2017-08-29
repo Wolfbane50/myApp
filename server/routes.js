@@ -14,6 +14,7 @@ export default function(app) {
   app.use('/api/charity_bag', require('./api/charity_bag'));
   app.use('/api/newCards', require('./api/newCards'));
   app.use('/api/parse_sps', require('./api/parseSPS'));
+  app.use('/api/tier_ver', require('./api/tier_ver'));
   app.use('/api/tunes', require('./api/tunes'));
   app.use('/api/books', require('./api/books'));
   app.use('/api/gsynch', require('./api/gsynch'));
