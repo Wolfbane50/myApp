@@ -2,11 +2,15 @@
 
 (function() {
   class CpcrTierComponent {
-    constructor($http, ngToast) {
+    constructor($http, $scope, ngToast) {
       this.$http = $http;
+      this.$scope = $scope;
       this.ngToast = ngToast;
       this.cpcrs = [];
       this.selCpcr = {};
+      this.selTier0 ={};
+      this.selTier1 ={};
+      this.selTier2 ={};
       this.showCpcr = false;
       this.elementFilter = "";
       this.selectedIndex = -1;
@@ -23,6 +27,8 @@
       this.doneJSON = function() {
         this.showJSON = false;
       };
+
+      this.tierDefs = {};
       this.selectedClass = function(index) {
         return (this.amISelected(index)) ? "userselected" : "";
       };
@@ -33,8 +39,23 @@
         }
         return false;
       };
+      this.getTier = function(key) {
+        if (this.tierDefs[key]) {
+          return this.tierDefs[key];
+        } else {
+          return {
+            number: key,
+            name: "Not Defined",
+            definition: "No Data",
+            proposeduse: "No Data"
+          };
+        }
+      }
 
       this.select = function(cpcr, index) {
+        this.selTier0 = this.getTier(cpcr.tier0);
+        this.selTier1 = this.getTier(cpcr.tier0 + '.' + cpcr.tier1);
+        this.selTier2 = this.getTier(cpcr.tier0 + '.' + cpcr.tier1 + '.' + cpcr.tier2);
         this.selCpcr = cpcr;
         this.showCpcr = true;
         this.selectedIndex = index;
@@ -48,30 +69,30 @@
     } // end constructor
 
     $onInit() {
-      var c2DataStr = localStorage.getItem("cpcrtiers");
-      if (c2DataStr) {
-        //alert("Getting data from local store");
-        console.log("Using local store data");
-        this.cpcrs = angular.fromJson(c2DataStr);
-      } else {
-        console.log("Off to server to get tier data");
-        this.$http.get('/api/tier_ver', {
+      this.$http.get('cpcr_tier_review.json', {
+          cache: true
+        })
+        .then(response => {
+          console.log("Got Tier Data");
+//          this.cpcrs = response.data.all.data;
+          this.cpcrs = response.data;
+
+        }, function errorCallback(response) {
+          // Handle the error
+          alert("Request for CPCR tier data yielded error: " + response.status);
+        });
+        this.$http.get('tierdef_hash.json', {
             cache: true
           })
           .then(response => {
-            console.log("Got Tier Data");
-            this.cpcrs = response.data.all.data;
-            var c2String = angular.toJson(this.cpcrs);
-            console.log("Caching tier data to local storage");
-            localStorage.setItem("cpcrtiers", c2String);
-            this.ngToast.create("CPCR Data saved to Local Storage");
+            console.log("Got Tier Definitions:" + JSON.stringify(response.data));
+              this.tierDefs = response.data;
 
           }, function errorCallback(response) {
             // Handle the error
-            alert("Request for CPCR tier data yielded error: " + response.status);
+            alert("Request for tier definitions yielded error: " + response.status);
           });
 
-      }
 
     } // end onInit
   } // end component class

@@ -1,0 +1,61 @@
+<subapp-navbar name="BF Audios" state="$ctrl">
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.showJSON = true">Generate JSON</subapp-nav>
+</subapp-navbar>
+
+<div class="view_container">
+  <sidebar>
+
+    <!-- Nested list template -->
+    <script type="text/ng-template" id="items_renderer.html">
+      <div ui-tree-handle>
+        <a class="btn btn-default btn-xs" data-nodrag ng-click="$ctrl.toggle(this)">
+          <span class="glyphicon" ng-class="itemIcon(this)"></span></a>
+        <span data-nodrag><a ng-click="$ctrl.itemSelect(this)" ng-class="$ctrl.selectedItemClass(this)">{{item.number}} {{item.name}}</a></span>
+      </div>
+      <ol ui-tree-nodes data-collapsed="true" ng-model="item.items" ng-class="{hidden: collapsed}">
+        <li ng-repeat="item in item.items" ui-tree-node data_nodrag ng-include="'items_renderer.html'">
+        </li>
+      </ol>
+    </script>
+    <div ui-tree>
+
+      <a class="btn btn-primary btn-xs" ng-click="$ctrl.myCollapseAll()">
+        <span>Collapse Tree</span></a>
+      <a class="btn btn-primary btn-xs" ng-click="$ctrl.myExpandAll()">
+        <span>Expand Tree</span></a>
+
+      <ol ui-tree-nodes ng-model="$ctrl.tierHier">
+        <li ng-repeat="item in $ctrl.tierHier track by $index" ui-tree-node data-collapsed="true" ng-include="'items_renderer.html'"></li>
+      </ol>
+    </div>
+  </sidebar>
+  <div class="main_container">
+    <div class="bg-primary" style="text-align: center;" ng-show="$ctrl.editMode">Edit Mode</div>
+    <div ng-show="$ctrl.showJSON">
+      <a class="pull-right btn btn-primary btn-xs" ng-click="$ctrl.showJSON = false">
+        <span>Done with JSON</span></a>
+
+      <pre class="code">{{ $ctrl.tierHier | json }}</pre>
+    </div>
+    <div id="response_pane">
+      <div ng-show="$ctrl.selTier">
+        <div class="well">
+          <div class="row">
+            <div class="col-sm-12">{{$ctrl.selTier.number}} : {{$ctrl.selTier.name}} <hr /></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">{{$ctrl.selTier.definition}}</div>
+            <div class="col-sm-6">{{$ctrl.selTier.proposeduse}}</div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+
+    </div>
+  </div>
+</div>

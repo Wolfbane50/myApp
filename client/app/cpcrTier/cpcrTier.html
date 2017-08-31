@@ -11,8 +11,8 @@
       <select class="pull-right" id="sel1" ng-model="$ctrl.elementFilter" ng-options="item for item in $ctrl.elementPickList"></select>
 </span>
     <ul class="sidebar-list" ng-repeat="cpcr in $ctrl.cpcrs track by $index">
-      <li ng-show="$ctrl.cpcrFilter(cpcr)" class="sidebar-list-item"ng-class="$ctrl.selectedClass($index)">
-      <a class="js-document-title sidebar-text"  ng-click="$ctrl.select(cpcr, $index)"><span>{{ cpcr.crid }}</span></a>
+      <li ng-show="$ctrl.cpcrFilter(cpcr)" class="sidebar-list-item" ng-class="$ctrl.selectedClass($index)">
+        <a class="js-document-title sidebar-text" ng-click="$ctrl.select(cpcr, $index)"><span>{{ cpcr.crid }}</span></a>
       </li>
     </ul>
 
@@ -51,7 +51,7 @@
             <span class="lead">Description</span>
           </div>
           <div class="col-sm-9 well">
-            <span >{{$ctrl.selCpcr.problemdescription}}</span>
+            <span>{{$ctrl.selCpcr.problemdescription}}</span>
           </div>
         </div>
 
@@ -63,16 +63,73 @@
             <span>{{$ctrl.selCpcr.operationalimpact}}</span>
           </div>
         </div>
+        <div class="row" ng-show="$ctrl.selCpcr.crbcertrecommendremarks">
+          <div class="col-sm-3">
+            <span class="lead">CRB Remarks</span>
+          </div>
+          <div class="col-sm-9 well">
+            <span>{{$ctrl.selCpcr.crbcertrecommendremarks}}</span>
+          </div>
+        </div>
+
+
         <div class="row">
           <div class="col-sm-3">
             <span class="lead">Tier {{$ctrl.selCpcr.tier0}}-{{$ctrl.selCpcr.tier1}}-{{$ctrl.selCpcr.tier2}}</span>
           </div>
-          <div class="col-sm-9 well">
-            <span>Explanation of Tiers</span>
+          <div class="col-sm-9">
+            <div class="well">
+              <div class="row">
+                <div class="col-sm-12">{{$ctrl.selTier0.number}} : {{$ctrl.selTier0.name}} <hr /></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">{{$ctrl.selTier0.definition}}</div>
+                <div class="col-sm-6">{{$ctrl.selTier0.proposeduse}}</div>
+              </div>
+            </div>
+            <div class="well">
+              <div class="row">
+                <div class="col-sm-12">{{$ctrl.selTier1.number}} : {{$ctrl.selTier1.name}} <hr /></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">{{$ctrl.selTier1.definition}}</div>
+                <div class="col-sm-6">{{$ctrl.selTier1.proposeduse}}</div>
+              </div>
+            </div>
+            <div class="well">
+              <div class="row">
+                <div class="col-sm-12">{{$ctrl.selTier2.number}} : {{$ctrl.selTier2.name}} <hr /></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">{{$ctrl.selTier2.definition}}</div>
+                <div class="col-sm-6">{{$ctrl.selTier2.proposeduse}}</div>
+              </div>
+            </div>
           </div>
         </div>
 
+      </div>
+      <div ng-hide="$ctrl.showRecJson">
+        <a class="btn btn-primary btn-xs" ng-click="$ctrl.showRecJson = true">
+            <span>Show CPCR JSON</span></a>
+      </div>
+      <div ng-show="$ctrl.showRecJson">
+
+        <a class="btn btn-primary btn-xs" ng-click="$ctrl.showRecJson = false">
+          <span>Done with JSON</span></a>
+
         <pre class="code">{{$ctrl.selCpcr | json }}</pre>
+      </div>
+      <div ng-hide="$ctrl.showDefJson">
+        <a class="btn btn-primary btn-xs" ng-click="$ctrl.showDefJson = true">
+        <span>Show Tier Definitions JSON</span></a>
+
+      </div>
+      <div ng-show="$ctrl.showDefJson">
+        <a class="btn btn-primary btn-xs" ng-click="$ctrl.showDefJson = false">
+        <span>Done with JSON</span></a>
+
+        <pre class="code">{{$ctrl.tierDefs | json }}</pre>
 
       </div>
     </div>
