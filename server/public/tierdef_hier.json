@@ -32,6 +32,11 @@
         "definition": "Does not tie to a mission area: Includes Site Config, Development, Utilities, , Enginering Level Debug/Data Recording, etc. ",
         "proposeduse": "Use 0.0.1 for data recording. Used for ET/DT type CPCRs and misspelled display issues",
         "tier": "2"
+        }, {
+          "number": "0.0.0",
+          "name": "Mismatch Applicability",
+          "definition": "For Further Evaluation",
+          "tier": "2"
       }]
     }]
   }, {
@@ -140,7 +145,7 @@
   "name": "Provide Computing Support",
   "definition": "This function provides internal computing support for services such as time keepting, data displays, networking, data recording, etc [*NEW*].",
   "tier": "1",
-  "items": [{ 
+  "items": [{
       "number": "1.3.1",
       "name": "Provide Data for Displays",
       "definition": "This function takes data from other combat system functions and formats it for delivery to console operators for review and/or action [*NEW*].\r\n\r\nACS: This function provides data to the ADS element for display from other AWS elements.",

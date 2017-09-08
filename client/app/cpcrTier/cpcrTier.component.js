@@ -12,11 +12,19 @@
       this.selTier1 ={};
       this.selTier2 ={};
       this.showCpcr = false;
-      this.elementFilter = "";
+      this.elementFilter = "all";
+      this.t0Filter = "all";
+      this.t1Filter = "all";
+      this.t2Filter = "all";
       this.selectedIndex = -1;
       this.elementPickList = [
-        "ADS", "C&D", "MP", "WCS", "SPY", "TACTOE"
+        "all", "ADS", "C&D", "MP", "WCS", "SPY", "TACTOE"
       ];
+      this.legacyOnly = false;
+      this.bl9A2Only = false;
+      this.t0PickList = ["all", "0", "1", "2", "3", "4", "5", "6", "7", "8"];
+      this.t1PickList = ["all", "0", "1", "2", "3", "4", "5", "6"];
+      this.t2PickList = ["all", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
       this.showJSON = false;
 
       this.showJSONstuff = function() {
@@ -61,9 +69,35 @@
         this.selectedIndex = index;
       };
       this.cpcrFilter = function(cpcr) {
-        if (this.elementFilter) {
-          return this.elementFilter === cpcr.element;
+        if (this.legacyOnly) {
+          if (cpcr.legacy === 'N') return false;
         }
+        if (this.bl9A2Only) {
+          if((cpcr['9a2a'] !== "9A2A") && (cpcr['9a2b'] !== "9A2B")) return false;
+        }
+        if (this.elementFilter !== "all") {
+          if (this.elementFilter !== cpcr.element) {
+            return false;
+          }
+        }
+        if (this.t0Filter !== "all" ) {
+          if (this.t0Filter === cpcr.tier0) {
+            if(this.t1Filter !== "all") {
+               if(this.t1Filter === cpcr.tier1) {
+                 if(this.t2Filter !== "all") {
+                   if (this.t2Filter !== cpcr.tier2) {
+                     return false;
+                   }
+                 }
+               } else {
+                 return false;
+               }
+            }
+          } else {
+            return false;
+          }
+        }
+
         return true;
       };
     } // end constructor

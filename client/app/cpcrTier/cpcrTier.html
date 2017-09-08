@@ -6,10 +6,21 @@
 
 <div class="view_container">
   <sidebar>
-    <span>
-      <label for="sel1">Element:</label>
-      <select class="pull-right" id="sel1" ng-model="$ctrl.elementFilter" ng-options="item for item in $ctrl.elementPickList"></select>
-</span>
+      <select ng-model="$ctrl.elementFilter" ng-options="item for item in $ctrl.elementPickList" placeholder="element"></select>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="$ctrl.legacyOnly">Legacy only</label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="$ctrl.bl9A2Only">9A2 Only</label>
+      </div>
+
+      <select class="pull-right" ng-model="$ctrl.t2Filter" ng-options="item for item in $ctrl.t2PickList"></select>
+      <select class="pull-right" ng-model="$ctrl.t1Filter" ng-options="item for item in $ctrl.t1PickList"></select>
+      <select class="pull-right" ng-model="$ctrl.t0Filter" ng-options="item for item in $ctrl.t0PickList"></select>
+
+
     <ul class="sidebar-list" ng-repeat="cpcr in $ctrl.cpcrs track by $index">
       <li ng-show="$ctrl.cpcrFilter(cpcr)" class="sidebar-list-item" ng-class="$ctrl.selectedClass($index)">
         <a class="js-document-title sidebar-text" ng-click="$ctrl.select(cpcr, $index)"><span>{{ cpcr.crid }}</span></a>

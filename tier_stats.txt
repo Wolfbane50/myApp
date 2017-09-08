@@ -1,0 +1,1064 @@
+0 : Nonmission  Area
+     All:  2930 CPCRs
+     ADS:  1032 CPCRs
+     C&D:  450 CPCRs
+
+     0.0 : Nonmission Area Stuff
+          All:  2930 CPCRs
+          ADS:  1032 CPCRs
+          C&D:  450 CPCRs
+
+          0.0.1 : Non Mission Area Data Recording
+               All:  252 CPCRs
+               ADS:  73 CPCRs
+               C&D:  42 CPCRs
+
+          0.0.2 : Non Mission Area Operating System
+               All:  115 CPCRs
+               ADS:  7 CPCRs
+               C&D:  10 CPCRs
+
+          0.0.3 : Non Mission Area Simulation Non-Tactical
+               No CPCRs
+
+          0.0.4 : Non Mission Area General
+               All:  740 CPCRs
+               ADS:  293 CPCRs
+               C&D:  156 CPCRs
+
+          0.0.0 : ???
+               All:  1823 CPCRs
+               ADS:  659 CPCRs
+               C&D:  242 CPCRs
+
+1 : Manage Combat System Resources
+     All:  1101 CPCRs
+     ADS:  614 CPCRs
+     C&D:  201 CPCRs
+
+     1.1 : Manage Combat System
+          All:  409 CPCRs
+          ADS:  171 CPCRs
+          C&D:  103 CPCRs
+
+          1.1.1 : Download and Install Software Upgrades
+               All:  17 CPCRs
+               ADS:  4 CPCRs
+               C&D:  3 CPCRs
+
+          1.1.2 : Initialize System
+               All:  78 CPCRs
+               ADS:  29 CPCRs
+               C&D:  14 CPCRs
+
+          1.1.3 : Manage Power
+               No CPCRs
+
+          1.1.4 : Perform Network Information Assurance (IA)/Computer Network Defense (CND) Services
+               All:  22 CPCRs
+               ADS:  3 CPCRs
+               C&D:  2 CPCRs
+
+          1.1.5 : Perform System Maintenance
+               All:  1 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          1.1.6 : Provide Computing Environment
+               All:  52 CPCRs
+               ADS:  40 CPCRs
+               C&D:  0 CPCRs
+
+          1.1.7 : Provide Cooling
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          1.1.8 : Provide Data Storage
+               All:  3 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          1.1.9 : Recover System
+               All:  137 CPCRs
+               ADS:  76 CPCRs
+               C&D:  30 CPCRs
+
+          1.1.10 : Transfer Communications Data Internally
+               All:  98 CPCRs
+               ADS:  18 CPCRs
+               C&D:  54 CPCRs
+
+     1.2 : Control Combat System Configuration
+          All:  44 CPCRs
+          ADS:  18 CPCRs
+          C&D:  17 CPCRs
+
+          1.2.1 : Control Battle Short Operations
+               All:  4 CPCRs
+               ADS:  1 CPCRs
+               C&D:  1 CPCRs
+
+          1.2.2 : Control Concurrent Test, Training, and Normal System Operations
+               All:  13 CPCRs
+               ADS:  7 CPCRs
+               C&D:  4 CPCRs
+
+          1.2.3 : Control Emission Control (EMCON) Operations
+               All:  4 CPCRs
+               ADS:  1 CPCRs
+               C&D:  1 CPCRs
+
+          1.2.4 : Control System States and Modes
+               All:  23 CPCRs
+               ADS:  9 CPCRs
+               C&D:  11 CPCRs
+
+     1.3 : Provide Computing Support
+          All:  648 CPCRs
+          ADS:  425 CPCRs
+          C&D:  81 CPCRs
+
+          1.3.1 : Provide Data for Displays
+               All:  115 CPCRs
+               ADS:  44 CPCRs
+               C&D:  33 CPCRs
+
+          1.3.2 : Provide Graphical User Interface (GUI) Services
+               All:  347 CPCRs
+               ADS:  311 CPCRs
+               C&D:  5 CPCRs
+
+          1.3.3 : Provide Local Area Network (LAN) Communications
+               All:  10 CPCRs
+               ADS:  1 CPCRs
+               C&D:  7 CPCRs
+
+          1.3.4 : Provide Networked Services and Applications
+               All:  100 CPCRs
+               ADS:  35 CPCRs
+               C&D:  25 CPCRs
+
+          1.3.5 : Provide Printing Services
+               All:  26 CPCRs
+               ADS:  14 CPCRs
+               C&D:  1 CPCRs
+
+          1.3.6 : Record Events for Post Operations Analysis
+               All:  37 CPCRs
+               ADS:  16 CPCRs
+               C&D:  8 CPCRs
+
+          1.3.7 : Synchronize Time
+               All:  9 CPCRs
+               ADS:  2 CPCRs
+               C&D:  1 CPCRs
+
+          1.3.8 : Transmit/Receive CS Data
+               All:  4 CPCRs
+               ADS:  2 CPCRs
+               C&D:  1 CPCRs
+
+2 : Plan Missions
+     No CPCRs
+
+     2.1 : Assess Mission Requirements
+          No CPCRs
+
+          2.1.1 : Generate Input to Missions Plans
+               No CPCRs
+
+          2.1.2 : Import Mission Planning Information
+               No CPCRs
+
+          2.1.3 : Plan Course of Action (COA): Zone, Area, Route
+               No CPCRs
+
+          2.1.4 : Provide Platform Characteristics and Configuration Information
+               No CPCRs
+
+          2.1.5 : Retrieve Mission Data
+               No CPCRs
+
+          2.1.6 : Update Target, Intelligence, and System Profiles
+               No CPCRs
+
+     2.2 : Create Plan
+          No CPCRs
+
+          2.2.1 : Calculate Sensor Coverage and Predict Sensor Performance
+               No CPCRs
+
+          2.2.2 : Create Maneuver Plans
+               No CPCRs
+
+          2.2.3 : Create Sensor Plans
+               No CPCRs
+
+          2.2.4 : Create Weapons Plans
+               No CPCRs
+
+          2.2.5 : Develop Deconfliction Plan
+               No CPCRs
+
+          2.2.6 : Generate New or Revised Plans
+               No CPCRs
+
+3 : Ensure Readiness
+     All:  380 CPCRs
+     ADS:  118 CPCRs
+     C&D:  49 CPCRs
+
+     3.1 : Assess Readiness
+          All:  215 CPCRs
+          ADS:  54 CPCRs
+          C&D:  21 CPCRs
+
+          3.1.1 : Conduct Sensor Registration and Calibration
+               All:  8 CPCRs
+               ADS:  4 CPCRs
+               C&D:  0 CPCRs
+
+          3.1.2 : Monitor Embedded Mission Readiness
+               All:  73 CPCRs
+               ADS:  9 CPCRs
+               C&D:  1 CPCRs
+
+          3.1.3 : Monitor System Status
+               All:  134 CPCRs
+               ADS:  41 CPCRs
+               C&D:  20 CPCRs
+
+     3.2 : Test System
+          All:  59 CPCRs
+          ADS:  12 CPCRs
+          C&D:  2 CPCRs
+
+          3.2.1 : Perform Built-in-Test (BIT)
+               All:  14 CPCRs
+               ADS:  6 CPCRs
+               C&D:  0 CPCRs
+
+          3.2.2 : Perform Fault Detection/Isolation
+               All:  37 CPCRs
+               ADS:  2 CPCRs
+               C&D:  1 CPCRs
+
+          3.2.3 : Perform Operability/Assessment Testing
+               All:  8 CPCRs
+               ADS:  4 CPCRs
+               C&D:  1 CPCRs
+
+     3.3 : Conduct Training
+          All:  106 CPCRs
+          ADS:  52 CPCRs
+          C&D:  26 CPCRs
+
+          3.3.1 : Assess Training Engagement
+               All:  1 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          3.3.2 : Conduct Training Control
+               All:  32 CPCRs
+               ADS:  24 CPCRs
+               C&D:  2 CPCRs
+
+          3.3.3 : Create Synthetic Exercise Environment
+               All:  9 CPCRs
+               ADS:  5 CPCRs
+               C&D:  3 CPCRs
+
+          3.3.4 : Distribute Training Scenario
+               All:  6 CPCRs
+               ADS:  4 CPCRs
+               C&D:  0 CPCRs
+
+          3.3.5 : Perform System Training
+               All:  35 CPCRs
+               ADS:  13 CPCRs
+               C&D:  14 CPCRs
+
+          3.3.6 : Perform System Training Simulation
+               All:  23 CPCRs
+               ADS:  5 CPCRs
+               C&D:  7 CPCRs
+
+          3.3.7 : Perform System Training Stimulation
+               No CPCRs
+
+4 : Detect and Track Objects
+     All:  105 CPCRs
+     ADS:  27 CPCRs
+     C&D:  51 CPCRs
+
+     4.1 : Detect Objects
+          All:  12 CPCRs
+          ADS:  7 CPCRs
+          C&D:  1 CPCRs
+
+          4.1.1 : Detect Acoustic Signals
+               All:  3 CPCRs
+               ADS:  3 CPCRs
+               C&D:  0 CPCRs
+
+          4.1.2 : Detect and Process Electronic Attack
+               No CPCRs
+
+          4.1.3 : Detect Electromagnetic Signals
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          4.1.4 : Process Acoustic Sensor Data
+               All:  2 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          4.1.5 : Process Electro-Optical/Infrared (EO/IR) Data
+               No CPCRs
+
+          4.1.6 : Receive and Process Signals
+               All:  2 CPCRs
+               ADS:  2 CPCRs
+               C&D:  0 CPCRs
+
+          4.1.7 : Search with Active Sensor
+               All:  4 CPCRs
+               ADS:  1 CPCRs
+               C&D:  1 CPCRs
+
+     4.2 : Track Objects
+          All:  67 CPCRs
+          ADS:  11 CPCRs
+          C&D:  39 CPCRs
+
+          4.2.1 : Associate Sensor Tracks
+               All:  4 CPCRs
+               ADS:  0 CPCRs
+               C&D:  2 CPCRs
+
+          4.2.2 : Correlate Sensor Tracks
+               All:  5 CPCRs
+               ADS:  0 CPCRs
+               C&D:  5 CPCRs
+
+          4.2.3 : Discriminate Objects
+               All:  3 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          4.2.4 : Estimate a Single Object
+               All:  4 CPCRs
+               ADS:  2 CPCRs
+               C&D:  2 CPCRs
+
+          4.2.5 : Estimate Multiple Objects
+               No CPCRs
+
+          4.2.6 : Estimate Object Classification
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          4.2.7 : Filter Track Report
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  1 CPCRs
+
+          4.2.8 : Manage Sensor Tracks
+               All:  42 CPCRs
+               ADS:  5 CPCRs
+               C&D:  27 CPCRs
+
+          4.2.9 : Qualify Track
+               All:  7 CPCRs
+               ADS:  3 CPCRs
+               C&D:  2 CPCRs
+
+     4.3 : Control and Manage Sensors
+          All:  26 CPCRs
+          ADS:  9 CPCRs
+          C&D:  11 CPCRs
+
+          4.3.1 : Acquire and Track Target
+               All:  3 CPCRs
+               ADS:  0 CPCRs
+               C&D:  1 CPCRs
+
+          4.3.2 : Control Search Parameters
+               All:  5 CPCRs
+               ADS:  2 CPCRs
+               C&D:  3 CPCRs
+
+          4.3.3 : Generate Sensor Configuration Commands
+               All:  4 CPCRs
+               ADS:  0 CPCRs
+               C&D:  1 CPCRs
+
+          4.3.4 : Manage Co-site Sensor Interference
+               No CPCRs
+
+          4.3.5 : Manage Sensors
+               All:  5 CPCRs
+               ADS:  2 CPCRs
+               C&D:  3 CPCRs
+
+          4.3.6 : Process Sensor Tasks
+               All:  8 CPCRs
+               ADS:  5 CPCRs
+               C&D:  3 CPCRs
+
+          4.3.7 : Protect Sensors
+               No CPCRs
+
+          4.3.8 : Provide Tracking Services
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+5 : Maintain Situational Awareness
+     All:  1232 CPCRs
+     ADS:  893 CPCRs
+     C&D:  302 CPCRs
+
+     5.1 : Manage Tactical Data
+          All:  278 CPCRs
+          ADS:  75 CPCRs
+          C&D:  197 CPCRs
+
+          5.1.1 : Assign Track Category
+               All:  10 CPCRs
+               ADS:  5 CPCRs
+               C&D:  4 CPCRs
+
+          5.1.2 : Assign Track Number
+               All:  5 CPCRs
+               ADS:  0 CPCRs
+               C&D:  5 CPCRs
+
+          5.1.3 : Associate Identification Friend or Foe (IFF) Response
+               All:  7 CPCRs
+               ADS:  4 CPCRs
+               C&D:  3 CPCRs
+
+          5.1.4 : Associate Tracks
+               All:  2 CPCRs
+               ADS:  2 CPCRs
+               C&D:  0 CPCRs
+
+          5.1.5 : Coordinate Remote Track Reporting
+               All:  6 CPCRs
+               ADS:  4 CPCRs
+               C&D:  2 CPCRs
+
+          5.1.6 : Correlate Tracks
+               All:  23 CPCRs
+               ADS:  1 CPCRs
+               C&D:  22 CPCRs
+
+          5.1.7 : Decorrelate Tracks
+               All:  3 CPCRs
+               ADS:  1 CPCRs
+               C&D:  2 CPCRs
+
+          5.1.8 : Fuse Track Data
+               All:  2 CPCRs
+               ADS:  0 CPCRs
+               C&D:  1 CPCRs
+
+          5.1.9 : Maintain Track History
+               All:  12 CPCRs
+               ADS:  11 CPCRs
+               C&D:  1 CPCRs
+
+          5.1.10 : Manage Tracks
+               All:  180 CPCRs
+               ADS:  37 CPCRs
+               C&D:  141 CPCRs
+
+          5.1.11 : Update Existing Tracks
+               All:  28 CPCRs
+               ADS:  10 CPCRs
+               C&D:  16 CPCRs
+
+     5.2 : Display Tactical Information
+          All:  870 CPCRs
+          ADS:  790 CPCRs
+          C&D:  51 CPCRs
+
+          5.2.1 : Display Data
+               All:  423 CPCRs
+               ADS:  386 CPCRs
+               C&D:  11 CPCRs
+
+          5.2.2 : Display Map
+               All:  33 CPCRs
+               ADS:  33 CPCRs
+               C&D:  0 CPCRs
+
+          5.2.3 : Display Overlays
+               All:  118 CPCRs
+               ADS:  112 CPCRs
+               C&D:  5 CPCRs
+
+          5.2.4 : Display Tracks
+               All:  178 CPCRs
+               ADS:  150 CPCRs
+               C&D:  26 CPCRs
+
+          5.2.5 : Display Video
+               All:  2 CPCRs
+               ADS:  2 CPCRs
+               C&D:  0 CPCRs
+
+          5.2.6 : Manage Alerts and Indications
+               All:  10 CPCRs
+               ADS:  4 CPCRs
+               C&D:  6 CPCRs
+
+          5.2.7 : Manage Display of Symbology
+               All:  67 CPCRs
+               ADS:  65 CPCRs
+               C&D:  2 CPCRs
+
+          5.2.8 : Playback and Display Recorded Operational Systems Data
+               All:  5 CPCRs
+               ADS:  5 CPCRs
+               C&D:  0 CPCRs
+
+          5.2.9 : Retrieve Specified Track
+               All:  34 CPCRs
+               ADS:  33 CPCRs
+               C&D:  1 CPCRs
+
+     5.3 : Identify Tracks
+          All:  14 CPCRs
+          ADS:  9 CPCRs
+          C&D:  5 CPCRs
+
+          5.3.1 : Determine Combat Identification (CID)
+               All:  11 CPCRs
+               ADS:  9 CPCRs
+               C&D:  2 CPCRs
+
+          5.3.2 : Determine Identification (ID) Based on Report of Visual ID (VID)
+               No CPCRs
+
+          5.3.3 : Determine Identification (ID) Based on Signature Association
+               No CPCRs
+
+          5.3.4 : Resolve Identification (ID) Conflicts
+               All:  3 CPCRs
+               ADS:  0 CPCRs
+               C&D:  3 CPCRs
+
+     5.4 : Create/Update System Tracks
+          All:  60 CPCRs
+          ADS:  15 CPCRs
+          C&D:  43 CPCRs
+
+          5.4.1 : Calculate Ballistic Missile Launch Point of Origin
+               No CPCRs
+
+          5.4.2 : Calculate Ballistic Missile Trajectory and Impact Point
+               No CPCRs
+
+          5.4.3 : Calculate Geolocation
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  1 CPCRs
+
+          5.4.4 : Correlate Navigational Data
+               All:  1 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          5.4.5 : Enter and Update Remote Tracks
+               All:  44 CPCRs
+               ADS:  7 CPCRs
+               C&D:  37 CPCRs
+
+          5.4.6 : Enter, Display, Update, and Monitor Force Status
+               All:  8 CPCRs
+               ADS:  6 CPCRs
+               C&D:  1 CPCRs
+
+          5.4.7 : Estimate Kinematic Track State
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  1 CPCRs
+
+          5.4.8 : Fuse Sensor Data
+               No CPCRs
+
+          5.4.9 : Maintain and Display Unit and Platform Status Information
+               No CPCRs
+
+          5.4.10 : Manage Track Inputs
+               All:  5 CPCRs
+               ADS:  1 CPCRs
+               C&D:  3 CPCRs
+
+          5.4.11 : Monitor Position Location Information (PLI)
+               No CPCRs
+
+     5.5 : Manage Navigational Data
+          All:  10 CPCRs
+          ADS:  4 CPCRs
+          C&D:  6 CPCRs
+
+          5.5.1 : Distribute Positioning, Navigation, and Timing Data
+               All:  9 CPCRs
+               ADS:  3 CPCRs
+               C&D:  6 CPCRs
+
+          5.5.2 : Monitor Natural Environment
+               All:  1 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          5.5.3 : Provide Inertial Navigation Data
+               No CPCRs
+
+          5.5.4 : Receive and Translate Global Positioning System (GPS) Signals
+               No CPCRs
+
+          5.5.5 : Select Navigational Data Source
+               No CPCRs
+
+          5.5.6 : Translate Navigation Signal
+               No CPCRs
+
+          5.5.7 : Translate Time Data
+               No CPCRs
+
+6 : Exercise Tactical Command and Control
+     All:  292 CPCRs
+     ADS:  156 CPCRs
+     C&D:  86 CPCRs
+
+     6.1 : Configure Systems
+          All:  38 CPCRs
+          ADS:  28 CPCRs
+          C&D:  8 CPCRs
+
+          6.1.1 : Configure and Control Weapons System
+               All:  18 CPCRs
+               ADS:  9 CPCRs
+               C&D:  7 CPCRs
+
+          6.1.2 : Determine System Configuration
+               All:  19 CPCRs
+               ADS:  18 CPCRs
+               C&D:  1 CPCRs
+
+          6.1.3 : Manage Voice and Data Communication Systems
+               All:  1 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+     6.2 : Evaluate Tactical Situation
+          All:  100 CPCRs
+          ADS:  77 CPCRs
+          C&D:  12 CPCRs
+
+          6.2.1 : Determine Tactical Action
+               All:  49 CPCRs
+               ADS:  45 CPCRs
+               C&D:  4 CPCRs
+
+          6.2.2 : Assess Effect
+               All:  2 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          6.2.3 : Assess Threats
+               All:  4 CPCRs
+               ADS:  4 CPCRs
+               C&D:  0 CPCRs
+
+          6.2.4 : Determine Target Engageability
+               All:  25 CPCRs
+               ADS:  13 CPCRs
+               C&D:  3 CPCRs
+
+          6.2.5 : Determine Track Management Settings
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          6.2.6 : Direct and Monitor Sensor Employment
+               All:  7 CPCRs
+               ADS:  3 CPCRs
+               C&D:  4 CPCRs
+
+          6.2.7 : Identify Target for Weapon Employment
+               No CPCRs
+
+          6.2.8 : Provide Real-Time Threat Warning
+               No CPCRs
+
+          6.2.9 : Provide Tactical Decision Aids (TDA) Services
+               All:  12 CPCRs
+               ADS:  11 CPCRs
+               C&D:  1 CPCRs
+
+          6.2.10 : Recommend Unit Maneuvers
+               No CPCRs
+
+     6.3 : Coordinate Resources
+          All:  154 CPCRs
+          ADS:  51 CPCRs
+          C&D:  66 CPCRs
+
+          6.3.1 : Control/Direct Aircraft
+               All:  14 CPCRs
+               ADS:  2 CPCRs
+               C&D:  7 CPCRs
+
+          6.3.2 : Coordinate Aircraft Engagement
+               All:  14 CPCRs
+               ADS:  6 CPCRs
+               C&D:  1 CPCRs
+
+          6.3.3 : Coordinate Force Operations
+               All:  1 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          6.3.4 : Determine Platform-Target Weapon Pairing
+               No CPCRs
+
+          6.3.5 : Generate Engagement Orders
+               All:  25 CPCRs
+               ADS:  4 CPCRs
+               C&D:  17 CPCRs
+
+          6.3.6 : Generate Sensor Tasking
+               All:  1 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          6.3.7 : Monitor Engagement Status
+               All:  86 CPCRs
+               ADS:  33 CPCRs
+               C&D:  38 CPCRs
+
+          6.3.8 : Request External Sensor Tasking
+               No CPCRs
+
+          6.3.9 : Select Weapon for Target Engagement
+               All:  13 CPCRs
+               ADS:  4 CPCRs
+               C&D:  3 CPCRs
+
+7 : Engage Targets
+     All:  175 CPCRs
+     ADS:  19 CPCRs
+     C&D:  33 CPCRs
+
+     7.1 : Manage Engagement
+          All:  59 CPCRs
+          ADS:  5 CPCRs
+          C&D:  16 CPCRs
+
+          7.1.1 : Control Engagement Systems
+               All:  44 CPCRs
+               ADS:  3 CPCRs
+               C&D:  9 CPCRs
+
+          7.1.2 : Dynamically Deconflict Engagement
+               All:  3 CPCRs
+               ADS:  1 CPCRs
+               C&D:  2 CPCRs
+
+          7.1.3 : Generate Cancel Engagement Order
+               All:  7 CPCRs
+               ADS:  1 CPCRs
+               C&D:  5 CPCRs
+
+          7.1.4 : Generate In-Flight Weapon Plan Changes
+               All:  4 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.1.5 : Terminate Launch
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+     7.2 : Launch/Fire Weapon
+          All:  22 CPCRs
+          ADS:  1 CPCRs
+          C&D:  4 CPCRs
+
+          7.2.1 : Aim Weapon
+               All:  9 CPCRs
+               ADS:  0 CPCRs
+               C&D:  1 CPCRs
+
+          7.2.2 : Conduct Automatic Engagement
+               All:  3 CPCRs
+               ADS:  0 CPCRs
+               C&D:  2 CPCRs
+
+          7.2.3 : Configure Weapons
+               All:  7 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          7.2.4 : Fire Weapon
+               All:  2 CPCRs
+               ADS:  0 CPCRs
+               C&D:  1 CPCRs
+
+          7.2.5 : Initialize, Prepare, and Launch Missile
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.2.6 : Load Weapon Mission Data
+               No CPCRs
+
+     7.3 : Guide Weapon
+          All:  19 CPCRs
+          ADS:  2 CPCRs
+          C&D:  3 CPCRs
+
+          7.3.1 : Assess Weapon Effectiveness with Sensor
+               All:  6 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          7.3.2 : Calculate Weapon/Target Track State
+               All:  2 CPCRs
+               ADS:  0 CPCRs
+               C&D:  1 CPCRs
+
+          7.3.3 : Control Munitions
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.3.4 : Determine Errant Missile Status
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.3.5 : Evaluate and Assess Engagement Effectiveness
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.3.6 : Illuminate Target
+               All:  2 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.3.7 : Initiate Order for Destruction of Missile in Flight
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.3.8 : Monitor Weapon Status
+               All:  3 CPCRs
+               ADS:  1 CPCRs
+               C&D:  2 CPCRs
+
+          7.3.9 : Predict Intercept
+               All:  2 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.3.10 : Receive Track Data
+               No CPCRs
+
+          7.3.11 : Release Illuminator
+               No CPCRs
+
+     7.4 : Determine Aim Point
+          All:  2 CPCRs
+          ADS:  0 CPCRs
+          C&D:  0 CPCRs
+
+          7.4.1 : Compute Fire Control Solution
+               All:  2 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.4.2 : Employ Countermeasures
+               No CPCRs
+
+          7.4.3 : Generate Target Coordinates
+               No CPCRs
+
+          7.4.4 : Locate Target
+               No CPCRs
+
+          7.4.5 : Perform Electronic Attack
+               No CPCRs
+
+          7.4.6 : Refine Aim Point Location
+               No CPCRs
+
+     7.5 : Control Missile
+          All:  25 CPCRs
+          ADS:  0 CPCRs
+          C&D:  0 CPCRs
+
+          7.5.1 : Acquire Target with Weapon
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.5.2 : Communicate with Weapon during Fly-Out
+               All:  20 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.5.3 : Detonate Warhead
+               All:  4 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.5.4 : Update Trajectory and Missile Mode
+               No CPCRs
+
+     7.6 : Schedule Engagement
+          All:  48 CPCRs
+          ADS:  11 CPCRs
+          C&D:  10 CPCRs
+
+          7.6.1 : Calculate Probability of Engagement Effectiveness
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.6.2 : Compute Engagement Envelope and Engagement Procedures
+               All:  8 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          7.6.3 : Determine Authorization Status for Engagement Execution
+               All:  5 CPCRs
+               ADS:  1 CPCRs
+               C&D:  1 CPCRs
+
+          7.6.4 : Determine Electronic Attack Countermeasure
+               All:  1 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          7.6.5 : Monitor Weapon and Ammunition Inventories
+               All:  14 CPCRs
+               ADS:  8 CPCRs
+               C&D:  3 CPCRs
+
+          7.6.6 : Plan Engagement Mission
+               No CPCRs
+
+          7.6.7 : Process Engagement Orders
+               All:  13 CPCRs
+               ADS:  0 CPCRs
+               C&D:  6 CPCRs
+
+          7.6.8 : Schedule Engagement Resources
+               All:  5 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.6.9 : Select and Prioritize Target
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  0 CPCRs
+
+          7.6.10 : Select Appropriate Lethal or Non-Lethal Attack System
+               No CPCRs
+
+8 : Communicate with External Nodes
+     All:  37 CPCRs
+     ADS:  9 CPCRs
+     C&D:  25 CPCRs
+
+     8.1 : Manage Communications
+          All:  30 CPCRs
+          ADS:  7 CPCRs
+          C&D:  20 CPCRs
+
+          8.1.1 : Align Tracks Geodetically
+               All:  4 CPCRs
+               ADS:  2 CPCRs
+               C&D:  1 CPCRs
+
+          8.1.2 : Communicate Data Link Information
+               All:  20 CPCRs
+               ADS:  5 CPCRs
+               C&D:  13 CPCRs
+
+          8.1.3 : Communicate Force Information
+               All:  3 CPCRs
+               ADS:  0 CPCRs
+               C&D:  3 CPCRs
+
+          8.1.4 : Establish Communication Networks
+               All:  2 CPCRs
+               ADS:  0 CPCRs
+               C&D:  2 CPCRs
+
+          8.1.5 : Provide Cryptographic Services
+               No CPCRs
+
+          8.1.6 : Transmit Measurement Data
+               All:  1 CPCRs
+               ADS:  0 CPCRs
+               C&D:  1 CPCRs
+
+     8.2 : Monitor ID and Tracking Communications
+          All:  5 CPCRs
+          ADS:  0 CPCRs
+          C&D:  5 CPCRs
+
+          8.2.1 : Detect Identification Friend or Foe (IFF) Response
+               All:  2 CPCRs
+               ADS:  0 CPCRs
+               C&D:  2 CPCRs
+
+          8.2.2 : Interrogate Track for Identification Friend or Foe (IFF)
+               All:  3 CPCRs
+               ADS:  0 CPCRs
+               C&D:  3 CPCRs
+
+          8.2.3 : Transmit Tactical Air Navigation (TACAN) Signals
+               No CPCRs
+
+     8.3 : Transmit/Receive Communications
+          All:  2 CPCRs
+          ADS:  2 CPCRs
+          C&D:  0 CPCRs
+
+          8.3.1 : Communicate Information on the Non-Classified Internet Protocol Router Network (NIPRnet)
+               No CPCRs
+
+          8.3.2 : Communicate Information on the Secret Internet Protocol Router Network (SIPRnet)
+               All:  1 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          8.3.3 : Communicate via Acoustic Communications
+               No CPCRs
+
+          8.3.4 : Communicate via Radio Frequency (RF) Communications
+               No CPCRs
+
+          8.3.5 : Provide Infrared (IR) Communications
+               No CPCRs
+
+          8.3.6 : Relay Communications
+               All:  1 CPCRs
+               ADS:  1 CPCRs
+               C&D:  0 CPCRs
+
+          8.3.7 : Transfer Information Over Multiple Channels Simultaneously
+               No CPCRs
+

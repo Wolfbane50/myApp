@@ -93,6 +93,11 @@ span.glyphicon {
     background-color:  #669999;
 }
 
+.sidebar select {
+  color: white;
+  background-color: navy;
+}
+
 /*  Side tree view */
 .sidebar, .main_container {
   padding: 1em;
