@@ -22,7 +22,7 @@
             <span class="glyphicon glyphicon-plus"></span></a>
         </div>
         <ol ui-tree-nodes data-collapsed="true" ng-model="item.items" ng-class="{hidden: collapsed}">
-          <li ng-repeat="item in item.items" ui-tree-node data_nodrag ng-include="'items_renderer.html'">
+          <li ng-repeat="item in item.items" ui-tree-node data-nodrag ng-include="'items_renderer.html'">
           </li>
         </ol>
       </script>
