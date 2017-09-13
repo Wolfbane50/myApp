@@ -22,7 +22,7 @@
       ];
       this.legacyOnly = false;
       this.bl9A2Only = false;
-      this.t0PickList = ["all", "0", "1", "2", "3", "4", "5", "6", "7", "8"];
+      this.t0PickList = ["all", "0", "1", "2", "3", "4", "5", "6", "7", "8", "99"];
       this.t1PickList = ["all", "0", "1", "2", "3", "4", "5", "6"];
       this.t2PickList = ["all", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
       this.showJSON = false;
