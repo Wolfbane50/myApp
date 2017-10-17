@@ -9,30 +9,69 @@
 	<body>
 		<script src="client/bower_components/three.js/build/three.js"></script>
 		<script>
-			var scene = new THREE.Scene();
+			scene = new THREE.Scene();
 			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 
 			var renderer = new THREE.WebGLRenderer();
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
+//
+//			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+//			var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+//			var cube = new THREE.Mesh( geometry, material );
+//			scene.add( cube );
+//
+//			camera.position.z = 5;
+//
+//			var animate = function () {
+//				requestAnimationFrame( animate );
+//
+//				cube.rotation.x += 0.1;
+//				cube.rotation.y += 0.1;
+//
+//				renderer.render(scene, camera);
+//			};
+//
+//			animate();
+	      // define geometry
+				function PolygonGeometry(sides) {
+					  var geo = new THREE.Geometry();
+						for( var pt=0; pt < sides; pt++) {
+							var angle = (Math.PI/2) +( pt / sides ) * 2 * Math.PI;
 
-			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-			var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-			var cube = new THREE.Mesh( geometry, material );
-			scene.add( cube );
+							var x = Math.cos (angle);
+							var y = Math.sin (angle);
 
-			camera.position.z = 5;
+							// Save the vertex location
+							geo.veritces.push( new THREE.Vector3( x, y, 0));
 
-			var animate = function () {
-				requestAnimationFrame( animate );
+							// Wrote the code to genrate the minimum number of faces for the Polygon
+							//    Polygon with N edges needs N-2 trangles to triangle
+							for( var tri = 1; tri < sides - 1; tri++) {
+							   	geo.faces.push( new THREE.Face3( 0, tri, tri + 1));
+							}
 
-				cube.rotation.x += 0.1;
-				cube.rotation.y += 0.1;
+							// returne the geometry object
+							return geo;
+						}
+				}
 
+				// vertices
+//			  triangleGeometry.veritces.push( new THREE.Vector3( 1, 1, 0));
+//				triangleGeometry.veritces.push( new THREE.Vector3( 3, 1, 0));
+//				// face
+//				triangleGeometry.faces.push( new THREE.Face3( 0, 1, 2 ));
+
+				//putting it all togtether
+				var polygonGeo = PolygonGeometry(8);
+				var triangleMaterial = new THREE.MeshBasicMaterial ({
+					color: 0x2685AA,
+					side: THREE.FrontSide
+				});
+				var triangleMesh = new THREE.Mesh( polygonGeo, triangleMaterial);
+				scene.add(triangleMesh);
 				renderer.render(scene, camera);
-			};
 
-			animate();
 		</script>
 	</body>
 </html>
