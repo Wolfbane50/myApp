@@ -1,0 +1,73 @@
+[11:19:17] Requiring external module babel-register
+[11:19:20] Using gulpfile C:\blah\myapp\gulpfile.babel.js
+[11:19:20] Starting 'build'...
+[11:19:20] Starting 'clean:dist'...
+[11:19:20] Starting 'clean:tmp'...
+[11:19:21] Finished 'clean:tmp' after 158 ms
+[11:19:21] Finished 'clean:dist' after 192 ms
+[11:19:21] Starting 'inject'...
+[11:19:21] Starting 'inject:js'...
+[11:19:21] Starting 'inject:css'...
+[11:19:21] client\app\app.css
+[11:19:21] client\components\footer\footer.css
+[11:19:21] client\components\modal\modal.css
+[11:19:21] client\components\ngPrint\ngPrint.css
+[11:19:21] client\app\admin\admin.css
+[11:19:21] client\app\bfGrid\bfGrid.css
+[11:19:21] client\app\c2tree\c2tree.css
+[11:19:21] client\app\cardCommon\cardCommon.css
+[11:19:21] client\app\charity_bag\charityBag.css
+[11:19:21] client\app\flexboxPlay\flexboxPlay.css
+[11:19:21] client\app\myEpub\main.css
+[11:19:21] client\app\myMusic\myMusic.css
+[11:19:21] client\app\main\main.css
+[11:19:21] client\app\techBooks\techBooks.css
+[11:19:21] client\components\oauth-buttons\oauth-buttons.css
+[11:19:21] client\app\spsdb\spsdb.css
+[11:19:21] gulp-inject 16 files into index.html.
+[11:19:21] Finished 'inject:css' after 461 ms
+[11:19:21] gulp-inject 88 files into index.html.
+[11:19:21] Finished 'inject:js' after 541 ms
+[11:19:21] Finished 'inject' after 542 ms
+[11:19:21] Starting 'wiredep:client'...
+Injected bower_components/bootstrap-social/bootstrap-social.css
+Injected bower_components/angular-ui-select/dist/select.css
+Injected bower_components/ngToast/dist/ngToast.css
+Injected bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.css
+Injected bower_components/angular-ui-tree/dist/angular-ui-tree.css
+Injected bower_components/videogular-themes-default/videogular.css
+Injected bower_components/jquery/dist/jquery.js
+Injected bower_components/angular/angular.js
+Injected bower_components/angular-resource/angular-resource.js
+Injected bower_components/angular-cookies/angular-cookies.js
+Injected bower_components/angular-sanitize/angular-sanitize.js
+Injected bower_components/angular-ui-select/dist/select.js
+Injected bower_components/angular-bootstrap/ui-bootstrap-tpls.js
+Injected bower_components/angular-animate/angular-animate.js
+Injected bower_components/lodash/dist/lodash.compat.js
+Injected bower_components/ngToast/dist/ngToast.js
+Injected bower_components/angular-socket-io/socket.js
+Injected bower_components/angular-ui-router/release/angular-ui-router.js
+Injected bower_components/angular-validation-match/dist/angular-validation-match.min.js
+Injected bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js
+Injected bower_components/angular-ui-tree/dist/angular-ui-tree.js
+Injected bower_components/file-saver/FileSaver.js
+Injected bower_components/json-export-excel/src/json-export-excel.js
+Injected bower_components/angular-css/angular-css.js
+Injected bower_components/angular-touchspin/dist/angular-touchspin.js
+Injected bower_components/videogular/videogular.js
+Injected bower_components/videogular-controls/vg-controls.js
+Injected bower_components/videogular-buffering/vg-buffering.js
+Injected bower_components/videogular-overlay-play/vg-overlay-play.js
+Injected bower_components/videogular-poster/vg-poster.js
+Injected bower_components/three.js/build/three.js
+Injected bower_components/rsvp/rsvp.js
+Injected bower_components/underscore/underscore.js
+Injected bower_components/webcomponentsjs/webcomponents.js
+Injected bower_components/backbone/backbone.js
+Injected bower_components/jquery-highlight/jquery.highlight.js
+Injected bower_components/epub.js/build/epub.js
+Injected bower_components/epub.js/build/zip.min.js
+[11:19:21] Finished 'wiredep:client' after 84 ms
+[11:19:21] Starting 'transpile:client'...
+[11:19:21] Starting 'transpile:server'...

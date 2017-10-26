@@ -1,2 +1,22 @@
+<subapp-navbar name="EPUB Reader" state="myEpub">
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.changeBook()">Change Book</subapp-nav>
+</subapp-navbar>
+<div class="view_container">
+  <sidebar>
+    <ul class="sidebar-list" ng-repeat="chapter in $ctrl.chapters">
+      <li class="sidebar-list-item">
+      <a class="js-document-title sidebar-text"  ng-class="$ctrl.selectedClass($index)" ng-click="$ctrl.selectChapter(chapter, $index)">
+        <span>{{ chapter.label }}</span></a>
+      </li>
+    </ul>
+  </sidebar>
+  <div class="main_container">
+    <a class="pull-left btn btn-lg" ng-click="$ctrl.Book.prevPage()">
+      <span class="glyphicon glyphicon-chevron-left"></span></a>
+    <div id="epubarea">blah</div>
+    <a class="pull-right btn btn-lg" ng-click="$ctrl.Book.nextPage()">
+      <span class="glyphicon glyphicon-chevron-right"></span></a>
+    <div ng-show="$ctrl.loadingBook" id="loader"><img src="assets/images/loader.gif"></div>
 
-  <epubreader src="ebooks/mind_geek.epub"></epubreader>
+  </div>
+</div>

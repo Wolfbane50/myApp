@@ -10,6 +10,16 @@
       this.showJSON = false;
       this.prePath = "";
       this.catalog = {};
+      this.pathMap = {
+        "AEGIS B/L 9" : "",
+        "LCS" : "LCS",
+        "SSDS" : "SSDS",
+        "ASTAC" : "ACB16/ASTAC_HSI",
+        "Frigate Scratch" : "Frigate"
+      };
+      this.pathOptions = Object.keys(this.pathMap);
+      this.pathOption = this.pathOptions[0];
+      this.loadingData = true;
 
       // methods
       this.selectedItemClass = function(scope) {
@@ -105,7 +115,9 @@
       };
 
 
-      this.guiAdd = function () {};
+      this.guiAdd = function () {
+        console.log("In guiAdd");
+      };
       this.showJSONstuff = function() {
            this.showJSON = true;
       };
@@ -113,11 +125,10 @@
       this.doneJSON = function() {
            this.showJSON = false;
       };
-      this.commitChanges = function () {};
-      this.setPrePath = function() {
-        var thePath = this.prePath;
-        this.prePath = prompt("Enter Pre Path", thePath);
+      this.commitChanges = function () {
+        console.log("In commitChanges");
       };
+
       this.mydocsToUrl = function(ele) {
          var mainScope = this;
           var files = ele.files;
@@ -136,20 +147,33 @@
           }
         };
 
+      this.changeGuiSet =function () {
+        this.prePath = this.pathMap[this.pathOption];
+        this.getGuiMetadata();
+      };
+
+        this.getGuiMetadata = function() {
+          var ctrl = this;
+          this.loadingData = true;
+          this.catalog = null;
+          this.$http.get(this.prePath + '/' + 'gui_review.json', {
+            cache: true
+          }).then(response => {
+            //alert("Got c2 tree data ");
+            ctrl.catalog = response.data;
+            this.loadingData = false;
+            this.selItem = null;
+          }, function errorCallback(response) {
+            alert("Request for GUI Catalog data returned error: " + response.status);
+          });
+
+        };
 
     } // end constructor
     $onInit() {
         //console.log("Ran onInit for c2tree component");
-        this.setPrePath();
-        var ctrl = this;
-        this.$http.get(this.prePath + '/' + 'gui_review.json', {
-          cache: true
-        }).then(response => {
-          //alert("Got c2 tree data ");
-          ctrl.catalog = response.data;
-        }, function errorCallback(response) {
-          alert("Request for GUI Catalog data returned error: " + response.status);
-        });
+        this.prePath = this.pathMap[this.pathOption];
+        this.getGuiMetadata();
       } // end onInit
 
   } // end class for component

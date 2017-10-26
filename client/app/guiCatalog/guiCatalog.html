@@ -1,7 +1,7 @@
 <subapp-navbar name="GUI Catalog" state="guiCatalog">
-  <subapp-nav class="nav navbar-nav" on-action="$ctrl.showJSONstuff()">Generate JSON</subapp-nav>
-  <subapp-nav class="nav navbar-nav" on-action="$ctrl.commitChanges()">Commit Changes</subapp-nav>
-  <subapp-nav class="nav navbar-nav" on-action="$ctrl.setPrePath()">Set Path</subapp-nav>
+  <select id="sel1" class="form-control" ng-model="$ctrl.pathOption" ng-options="item for item in $ctrl.pathOptions" ng-change="$ctrl.changeGuiSet();"></select>
+
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.showJSONstuff()">Show JSON</subapp-nav>
 
 </subapp-navbar>
 <div class="view_container">
@@ -41,6 +41,8 @@
       <pre class="code">{{ $ctrl.catalog | json }}</pre>
     </div>
     <div id="response_pane">
+      <div ng-show="$ctrl.loadingData" id="loader"><img src="assets/images/loader.gif"></div>
+    <div ng-hide="$ctrl.loadingData">
       <div ng-hide="$ctrl.selItem">
         <h1>Select an Item from tree ...</h1></div>
       <div ng-show="$ctrl.selItem">
@@ -79,5 +81,6 @@
         </div>
         <img ng-show="$ctrl.selItem.image" ng-src="{{$ctrl.prePath + '/' + $ctrl.selItem.image}}" />
     </div>
+  </div>
   </div>
 </div>
