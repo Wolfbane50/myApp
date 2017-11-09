@@ -1,5 +1,6 @@
 <subapp-navbar name="EPUB Reader" state="myEpub">
   <subapp-nav class="nav navbar-nav" on-action="$ctrl.changeBook()">Change Book</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.whereAmI()">Where Am I?</subapp-nav>
 </subapp-navbar>
 <div class="view_container">
   <sidebar>
@@ -13,7 +14,7 @@
   <div class="main_container">
     <a class="pull-left btn btn-lg" ng-click="$ctrl.Book.prevPage()">
       <span class="glyphicon glyphicon-chevron-left"></span></a>
-    <div id="epubarea">blah</div>
+    <div id="epubarea" class="epubarea"></div>
     <a class="pull-right btn btn-lg" ng-click="$ctrl.Book.nextPage()">
       <span class="glyphicon glyphicon-chevron-right"></span></a>
     <div ng-show="$ctrl.loadingBook" id="loader"><img src="assets/images/loader.gif"></div>

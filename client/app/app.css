@@ -70,6 +70,18 @@ span.glyphicon {
   width: 100%;
   min-height: 150px;
 }
+
+.epubarea {
+  width: 480px;
+  height: 650px;
+  margin: -5px auto;
+  -moz-box-shadow:      inset 10px 0 20px rgba(0,0,0,.1);
+  -webkit-box-shadow:   inset 10px 0 20px rgba(0,0,0,.1);
+  box-shadow:           inset 10px 0 20px rgba(0,0,0,.1);
+  padding: 5px 5px;
+
+}
+
 /*.sidebar.panel-group .panel.collapsed .panel-heading .accordion-toggle { */
 .sidebar .panel-body  {
     color: #efefef;
