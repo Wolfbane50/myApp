@@ -14,9 +14,9 @@
   <div class="main_container">
     <a class="pull-left btn btn-lg" ng-click="$ctrl.Book.prevPage()">
       <span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="pull-right btn btn-lg" ng-click="$ctrl.Book.nextPage()">
+        <span class="glyphicon glyphicon-chevron-right"></span></a>
     <div id="epubarea" class="epubarea"></div>
-    <a class="pull-right btn btn-lg" ng-click="$ctrl.Book.nextPage()">
-      <span class="glyphicon glyphicon-chevron-right"></span></a>
     <div ng-show="$ctrl.loadingBook" id="loader"><img src="assets/images/loader.gif"></div>
 
   </div>
