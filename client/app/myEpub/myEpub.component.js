@@ -8,22 +8,75 @@
         this.$scope = $scope;
         //this.bookUrl = "epub/Beginning.Android.3.epub";
 
-        this.bookUrl = "epub/86e2n.B.epub";
         this.chapters = [];
         this.Book;
         this.loadingBook = true;
         this.selectedChapter = 0;
+
+        this.catalog = [{
+          name: "Brew It Yourself",
+          url: "/epub/86e2n.B.epub"
+        }, {
+          name: "Angular.JS:  Novice to Ninja",
+          url: "/epub/angularjs_novice_to_ninja.epub"
+        }, {
+          name: "Beginning Android 3",
+          url: "/epub/Beginning.Android.3.epub"
+        }, {
+          name: "Beeing Geek",
+          url: "/epub/Being_Geek.epub"
+        }, {
+          name: "Elgin Baylor Biography",
+          url: "/epub/Elgin_Baylor__The_Man_Who_Changed_Basketball__Bijan_C._Bayne.epub"
+        }, {
+          name: "Emotional Agility",
+          url: "/epub/Emotional Agility_ Get Unstuck, Embrace Change and Thrive in Work and Life (2016).epub"
+        }, {
+          name: "Essential Oils",
+          url: "/epub/Essential Oils - Abigail Cruise.epub"
+        }, {
+          name: "Getting MEAN",
+          url: "/epub/getting-mean-with-mongo-express-angular-and-node.epub"
+        }, {
+          name: "Hacking VoIP",
+          url: "/epub/Hacking VoIP.epub"
+        }, {
+          name: "John Adams Biography",
+          url: "/epub/John Adams - David McCullough.epub"
+        }, {
+          name: "OpenSSL Cookbook",
+          url: "/epub/OpenSSL Cookbook.epub"
+        }, {
+          name: "The Mindful Geek",
+          url: "/epub/The Mindful Geek.epub"
+        }, {
+          name: "Social Media Job Search",
+          url: "/epub/The Social Media Job Search Workbook.epub"
+        }];
+        this.currentBook = this.catalog[0];
+        this.bookUrl = this.currentBook.url;
         //=================================
         // Scope methods
         //=================================
+        // Select book from select form input
+        this.bookSelect = function(index) {
+          console.log("Selected book is " +  this.currentBook.name);
+          if (this.currentBook.url !== this.bookUrl) {
+              this.swapBook(this.currentBook.url);
+            }
+        };
+        this.swapBook = function(newBookUrl) {
+          this.chapters = [];
+          this.Book.destroy();
+          this.bookUrl = newBookUrl;
+          this.openBook(this.bookUrl);
+
+        };
         this.changeBook = function() {
             console.log("Changing Book...");
             var newBookUrl = prompt("URL of epub to view_container: ");
             if (newBookUrl) {
-              this.chapters = [];
-              this.Book.destroy();
-              this.bookUrl = newBookUrl;
-              this.openBook(this.bookUrl);
+              this.swapBook(newBookUrl);
             }
 
         };
@@ -61,7 +114,9 @@
           var ctrl = this;
           this.Book.getToc().then(function(toc) {
               console.log("Got TOC");
+              ctrl.selectedChapter = 0;
               ctrl.chapters = toc;
+              ctrl.$scope.$apply();
             });
 
             this.Book.ready.all.then(function() {
@@ -74,11 +129,16 @@
             this.Book.renderTo("epubarea").then(function() {
               console.log("Book rendered...");
             }, function(error) {
-              console.log("Book rendered error path")
+              console.log("Book rendered error path");
               console.error(error);
             });
 
         };
+        this.$onChanges = function(changes) {
+          console.log("In $onChanges");
+        };
+
+
 
       } // end constructor
 

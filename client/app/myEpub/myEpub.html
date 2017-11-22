@@ -4,7 +4,10 @@
 </subapp-navbar>
 <div class="view_container">
   <sidebar>
-    <ul class="sidebar-list" ng-repeat="chapter in $ctrl.chapters">
+    <select id="sel1" class="form-control" ng-model="$ctrl.currentBook"
+           ng-options="item as item.name for item in $ctrl.catalog" ng-change="$ctrl.bookSelect($index);"></select>
+
+    <ul class="sidebar-list" ng-repeat="chapter in $ctrl.chapters track by $index">
       <li class="sidebar-list-item">
       <a class="js-document-title sidebar-text"  ng-class="$ctrl.selectedClass($index)" ng-click="$ctrl.selectChapter(chapter, $index)">
         <span>{{ chapter.label }}</span></a>
