@@ -1,0 +1,46 @@
+<subapp-navbar name="Display Excel" state="displayExcel">
+
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.showJSONstuff()">Show JSON</subapp-nav>
+
+</subapp-navbar>
+<div class="view_container">
+  <sidebar>
+  </sidebar>
+  <div class="main_container">
+
+    <div ng-show="$ctrl.showJSON">
+      <a class="btn btn-default btn-xs" ng-click="$ctrl.doneJSON()">
+        <span>Done with JSON</span></a>
+
+      <pre class="code">{{ $ctrl.excelData | json }}</pre>
+    </div>
+
+    <label>Excel File:
+      <input type="text" ng-model="$ctrl.excelfile" />
+    </label>
+    <a class="btn btn-primary btn-xs" ng-click="$ctrl.getJsonData()">
+      <span>Show</span></a>
+    <label>Skip Rows:
+
+      <span>
+        <touch-spin style="width: 20px;" ng-model="$ctrl.skipRows"></touch-spin>
+      </span>
+</label>
+
+
+    <div style="height: 700px; overflow-y: scroll;">
+      <table>
+        <tr>
+          <th ng-repeat="col in $ctrl.originalColumns track by $index">{{col}}</th>
+        </tr>
+        <tr ng-repeat="row in $ctrl.rows track by $index">
+          <td ng-repeat="col in $ctrl.columns track by $index">
+            {{row[col]}}
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
+  </div>
+</div>

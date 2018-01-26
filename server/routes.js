@@ -18,6 +18,7 @@ export default function(app) {
   app.use('/api/tunes', require('./api/tunes'));
   app.use('/api/books', require('./api/books'));
   app.use('/api/gsynch', require('./api/gsynch'));
+  app.use('/api/excel2json', require('./api/excel2json'));
   console.log("EPUB redirected to " + __dirname + '/epub');
   app.use('/epub', express.static(__dirname + '/epub'));
 app.use(express.static('/Users/daniel.heaney/Documents'));

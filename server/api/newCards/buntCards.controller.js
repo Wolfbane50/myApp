@@ -153,6 +153,7 @@ export function update(req, res) {
       "ID Table": 1,
       "2016 Inserts": 1,
       "2016 Huddle" : 1,
+      "2017 Huddle" : 1,
       "Insert Old ID Table": 1
     };
 
