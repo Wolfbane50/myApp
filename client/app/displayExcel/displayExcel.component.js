@@ -9,6 +9,8 @@
 
         this.excelfile = "Heroes.xlsx";  // First cut: FAA sheet as an example
         this.skiprows = 0;
+        this.startswith = "";
+        this.mergeData = false;
         this.excelData = {};
         this.originalColumns = [];
         this.columns = [];
@@ -25,15 +27,49 @@
         this.doneJSON = function() {
              this.showJSON = false;
         };
+
+        this.fileChange = function(ele) {
+          console.log("In fileChange...");
+          var files = ele.files;
+          var l = files.length;
+          //var namesArr = [];
+
+          for (var i = 0; i < l; i++) {
+            console.log("File " + i + ": " + JSON.stringify(files[i]));
+            //namesArr.push(files[i].name);
+          }
+        }
+
+        this.$scope.fileNameChanged = function (ele) {
+          var files = ele.files;
+          var l = files.length;
+          //var namesArr = [];
+
+          for (var i = 0; i < l; i++) {
+            console.log("File " + i + ": " + JSON.stringify(files[i]));
+            //namesArr.push(files[i].name);
+          }
+        }
+
         this.getJsonData = function() {
           var ctrl = this;
+          var myParms = {
+            "excelfile": this.excelfile,
+          };
+          if (this.skipRows) {
+            myParms.skiprows = this.skipRows;
+          }
+          if (this.startswith) {
+            myParms.sheetStart = this.startswith;
+          }
+          if (this.mergeData) {
+            myParms.mergeData = true;
+          }
+
           this.$http({
             url: '/api/excel2json',
             method: 'GET',
-            params: {
-              "excelfile": this.excelfile,
-              "skiprows": this.skipRows
-            }
+            params: myParms
           }).then(response => {
             //alert("Got c2 tree data ");
             ctrl.excelData = response.data;

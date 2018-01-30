@@ -3,30 +3,47 @@
   <subapp-nav class="nav navbar-nav" on-action="$ctrl.showJSONstuff()">Show JSON</subapp-nav>
 
 </subapp-navbar>
-<div class="view_container">
-  <sidebar>
-  </sidebar>
-  <div class="main_container">
-
     <div ng-show="$ctrl.showJSON">
       <a class="btn btn-default btn-xs" ng-click="$ctrl.doneJSON()">
-        <span>Done with JSON</span></a>
-
+        <span>Done with JSON</span>
+      </a>
       <pre class="code">{{ $ctrl.excelData | json }}</pre>
     </div>
 
-    <label>Excel File:
-      <input type="text" ng-model="$ctrl.excelfile" />
-    </label>
-    <a class="btn btn-primary btn-xs" ng-click="$ctrl.getJsonData()">
-      <span>Show</span></a>
-    <label>Skip Rows:
+    <div class="row light_gray">
 
-      <span>
+      <div class="col-sm-3">
+        <label>Excel File:
+           <input type="text" ng-model="$ctrl.excelfile" />
+        </label>
+        <a class="btn btn-primary btn-xs" ng-click="$ctrl.getJsonData()">
+          <span>Show</span>
+        </a>
+      </div>
+
+      <div class="col-sm-2">
+        Skip Rows:
         <touch-spin style="width: 20px;" ng-model="$ctrl.skipRows"></touch-spin>
-      </span>
-</label>
+      </div>
 
+      <div class="col-sm-3">Sheet starts with:
+        <input type="text" ng-model="$ctrl.startswith" />
+    </div>
+
+    <div class="col-sm-2">
+      <div class="checkbox">
+        <label>
+              <input type="checkbox" ng-model="$ctrl.mergeData">Merge Data</label>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <label class="import-file">
+          <input type="file" onchange="angular.element(this).$ctrl.fileChange(this)">
+          <div>Import file...</div>
+      </label>
+        </div>
+
+    </div>
 
     <div style="height: 700px; overflow-y: scroll;">
       <table>
@@ -41,6 +58,4 @@
       </table>
     </div>
 
-
   </div>
-</div>
