@@ -3,18 +3,12 @@
   <subapp-nav class="nav navbar-nav" on-action="$ctrl.showJSONstuff()">Show JSON</subapp-nav>
 
 </subapp-navbar>
-    <div ng-show="$ctrl.showJSON">
-      <a class="btn btn-default btn-xs" ng-click="$ctrl.doneJSON()">
-        <span>Done with JSON</span>
-      </a>
-      <pre class="code">{{ $ctrl.excelData | json }}</pre>
-    </div>
 
     <div class="row light_gray">
 
       <div class="col-sm-3">
         <label>Excel File:
-           <input type="text" ng-model="$ctrl.excelfile" />
+           <input type="file" files-input ng-model="$ctrl.excelfile">
         </label>
         <a class="btn btn-primary btn-xs" ng-click="$ctrl.getJsonData()">
           <span>Show</span>
@@ -36,14 +30,14 @@
               <input type="checkbox" ng-model="$ctrl.mergeData">Merge Data</label>
       </div>
     </div>
-    <div class="col-sm-3">
-      <label class="import-file">
-          <input type="file" onchange="angular.element(this).$ctrl.fileChange(this)">
-          <div>Import file...</div>
-      </label>
-        </div>
-
     </div>
+
+       <div ng-show="$ctrl.showJSON">
+         <a class="btn btn-default btn-xs" ng-click="$ctrl.doneJSON()">
+           <span>Done with JSON</span>
+         </a>
+         <pre class="code">{{ $ctrl.excelData | json }}</pre>
+       </div>
 
     <div style="height: 700px; overflow-y: scroll;">
       <table>
@@ -57,5 +51,3 @@
         </tr>
       </table>
     </div>
-
-  </div>

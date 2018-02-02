@@ -54,7 +54,7 @@
         this.getJsonData = function() {
           var ctrl = this;
           var myParms = {
-            "excelfile": this.excelfile,
+            "excelfile": this.excelfile
           };
           if (this.skipRows) {
             myParms.skiprows = this.skipRows;

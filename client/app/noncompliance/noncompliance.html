@@ -1,0 +1,35 @@
+<subapp-navbar name="CPCR Non-Compliances" state="displayExcel">
+
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.showJSONstuff()">Show JSON</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.updateFromMetrics()">Update From Metrics</subapp-nav>
+
+</subapp-navbar>
+
+    <div ng-show="$ctrl.showJSON">
+      <a class="btn btn-default btn-xs" ng-click="$ctrl.doneJSON()">
+        <span>Done with JSON</span>
+      </a>
+      <pre class="code">{{ $ctrl.excelData | json }}</pre>
+    </div>
+
+    <div style="height: 700px; overflow-y: scroll;">
+      <table>
+        <tr>
+          <th>B/L</th>
+          <th>CPCR</th>
+          <th>Element</th>
+          <th>Pri/Prob</th>
+          <th>Title</th>
+        </tr>
+        <tr ng-repeat="row in $ctrl.rows track by $index">
+          <td>{{row["b/l"]}}</td>
+          <td>{{row.cpcr}}</td>
+          <td>{{row.element}}</td>
+          <td>{{row["pri/prob"]}}</td>
+          <td>
+          <a ng-show="row.link" href="{{row.link}}" target="_blank">{{row.title}}</a>
+          <span ng-hide="row.link">{{row.title}}</span>
+          </td>
+        </tr>
+      </table>
+    </div>
