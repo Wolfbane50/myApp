@@ -27,6 +27,8 @@ var all = {
   // Should we populate the DB with sample data?
   seedDB: false,
 
+  myDocsDir: process.env.USERPROFILE + "/Documents",
+
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
     session: 'myapp-secret'
