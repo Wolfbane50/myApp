@@ -2,8 +2,10 @@
 
 angular.module("myappApp").directive("office", function($http, ngToast) {
     function callDoit(link) {
+      // Problem:  Link is caching
       $http({
         url: '/api/doit',
+        cache: false,
         method: 'GET',
         params: {
           "file": link

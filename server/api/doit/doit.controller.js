@@ -15,8 +15,13 @@ export function doit(req, res) {
     //  !!!!!!!!!!!!!!!  This will only work on NMCI Machine - Need to put into local config
     var docsDir = config.myDocsDir.replace(/\\/g, '/') + '/';
 
+    // Need to remove all the encoded crap
+    var decodedFile = decodeURI(officeFile);
+
     // console.log("Should send to " + docsDir);
-    officeFile = officeFile.replace(/^http:\/\/localhost:9000\//, docsDir);
+    officeFile = decodedFile.replace(/^http:\/\/localhost:9000\//, docsDir);
+  } else {
+    officeFile = decodeURI(officeFile);
   }
   var stats;
   try {
