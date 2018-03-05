@@ -13,6 +13,7 @@
       this.selectedItem = {};
 
        this.options = {};
+       this.cbPopups = [];
 
       this.addingDoc = false;
       var treeCtlScope = $scope;

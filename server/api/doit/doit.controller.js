@@ -11,7 +11,7 @@ export function doit(req, res) {
   // Assumption is that Windows knows what to run for this file
   var officeFile = req.query.file;
   console.log("doit:  About to process " + req.query.file);
-  if (officeFile.match(/localhost:9000/)) {
+  if( (officeFile.match(/localhost:9000/)) || (officeFile.match(/127\.0\.0\.1:9000/))) {
     //  !!!!!!!!!!!!!!!  This will only work on NMCI Machine - Need to put into local config
     var docsDir = config.myDocsDir.replace(/\\/g, '/') + '/';
 
@@ -20,6 +20,7 @@ export function doit(req, res) {
 
     // console.log("Should send to " + docsDir);
     officeFile = decodedFile.replace(/^http:\/\/localhost:9000\//, docsDir);
+    officeFile = decodedFile.replace(/^http:\/\/127\.0\.0\.1:9000\//, docsDir);
   } else {
     officeFile = decodeURI(officeFile);
   }

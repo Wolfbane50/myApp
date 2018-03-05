@@ -3,12 +3,15 @@
 angular.module("myappApp").directive("office", function($http, ngToast) {
     function callDoit(link) {
       // Problem:  Link is caching
+      var seed = Math.floor(Math.random() * 10001);
+
       $http({
         url: '/api/doit',
-        cache: false,
+        cache: true,
         method: 'GET',
         params: {
-          "file": link
+          "file": link,
+          "seed": seed
         }
       }).then(response => {
         console.log("Got good response from doit");
@@ -28,6 +31,7 @@ angular.module("myappApp").directive("office", function($http, ngToast) {
       link: function postLink(scope,elem,attrs) {
         elem.on("click", function(e) {
 //          var files = elem[0].files;
+
           var officeExts = {
             ".doc" : 1,
             ".docx" : 1,

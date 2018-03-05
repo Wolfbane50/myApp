@@ -110,9 +110,11 @@
             </td>
             <td>
               <input ng-model="$ctrl.editDoc.date">
+
             </td>
             <td>
               <input ng-model="$ctrl.editDoc.link">
+               <input type="file" files-input ng-model="$ctrl.editDoc.link">
             </td>
           </tr>
           <tr>
@@ -126,9 +128,12 @@
           </tr>
         </table>
         <div>
-        <label for="inputdefault">File/Path:</label>
+        <label for="inputdefault">Scratch File/Path:</label>
         <input class="form-control" id="inputdefault" type="text" ng-model="$ctrl.xformPath">
-        <button class="btn btn-default" ng-click="$ctrl.transform()">Transform</button>
+<ul>
+  <li>S:\DLGR15\FFG\</li>
+  <li>C:\Users\daniel.heaney\Documents\Frigate</li>
+</ul>
         </div>
       </div>
     </div>
