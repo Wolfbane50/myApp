@@ -42,6 +42,22 @@
 </uib-accordion>
 </uib-tab>
 <uib-tab index="1" heading="FFG(X)">
-  Not Defined Yet
+  <uib-accordion>
+    <div uib-accordion-group ng-repeat="(key, value) in $ctrl.ffgifs track by key">
+      <uib-accordion-heading>
+        {{key}}
+      </uib-accordion-heading>
+      <table>
+        <tr ng-repeat="(intf, ids) in value track by $index">
+          <td>{{intf}}</td>
+          <td>{{ids}}</td>
+          <td>
+            <a class="btn btn-primary" ng-click="$ctrl.searchTerm(ids)">
+                Search</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </uib-accordion>
 </uib-tab>
 </uib-tabset>

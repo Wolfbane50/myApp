@@ -1,0 +1,117 @@
+{
+  "SPY-6": {
+    "ESSM"	       : "WS-35418"	       ,
+    "SM-2"	       : "WS-35408"	       ,
+    "ORTS-1"       : "AMDR External IRS"  ,
+    "C&D"	       : "AMDR External IRS"  ,
+    "WCS"	       : "AMDR External IRS"  ,
+    "GWS"	       : "AMDR External IRS"  ,
+    "CEC"	       : "AMDR External IRS"  ,
+    "ADS"	       : "AMDR External IRS"  ,
+    "ATD"	       : "AMDR External IRS"  ,
+    "EWS"	       : "NA (Blanking)"      ,
+    "NAV/NAVSSI"   : "AMDR External IRS"  ,
+    "CSCI/ACEG"    : "AMDR External IRS"  ,
+    "NAV/RLGN"     : "NA (Attitude_Data)"   },
+  "CND": {
+    "ATD/TTC"	     : "IWS-PL-IDD-TDM"	     ,
+    "ADS-1"		     : "IWS-PL-IDD-TDM"	     ,
+    "EWS-2"		     : "IWS-PL-IDD-TDM"	     ,
+    "UWS-1"		     : "WS-35772"		     ,
+    "VCD"		     : "WS-35883"		     ,
+    "SeaRAM"	     : "DI-SEARAM-0462"	     ,
+    "SPY"		     : "AMDR External IRS"	     ,
+    "NGSSR"		     : "WS-33611_TBM"	     ,
+    "UWS-2"		     : "WS-35772"		     ,
+    "GWS"		     : "WS-35434"		     ,
+    "ORTS"		     : "WS-21329/12"		     ,
+    "CSSE"		     : "NA (Printer_Data)"	     ,
+    "WCS"		     : "WS-21328/14"		     ,
+    "ATD/TCP"	     : "WS-21338/14"		     ,
+    "ADS-2"		     : "WS-21272/11"		     ,
+    "CSCI-2"	     : "WS-35724"		     ,
+    "CSCI/ACEGIO"	     : "CDE_IDS_84-19Rev11/Chg3"  ,
+    "NAV/NAVSSI"	     : "WS-35430"		     ,
+    "CSCI"		     : "WS-21288/4"		     ,
+    "EXCOM/C2P"	     : "CDE_IDS_84-19Rev11/Chg3"  ,
+    "SGS/AC"	     : "WS-35682"		     ,
+    "CEC"		     : "WS-35420"		     ,
+    "EXCOM/JTT-M"	     : "WS-35432"		     ,
+    "EWS-1"		     : "WS-35581_RevF"	     ,
+    "MP"		     : "WS-21391"		     ,
+    "IFF"		     : "WS-35603"		     ,
+    "CSCI-3"	     : "WS-35453"		     ,
+    "CSCI/CSSE/CSBD"     : "IWS-PL-IDD-TDM"
+  },
+  "WCS": {
+    "EWS"	      : "WS-35581_RevF"     ,
+    "C&D"	      : "WS-21328/14"	      ,
+    "ADS"	      : "WS-21264/10"	      ,
+    "ATD"	      : "WS-19682/19"	      ,
+    "CSSE/RAVE"   : "NA (Nav_Data)"     ,
+    "ORTS"	      : "WS-19644/15"	      ,
+    "CSCI"	      : "WS-21288/4"	      ,
+    "SeaRAM"      : "SeaRAM TBD"	      ,
+    "VLS"	      : "WS-35416"	      ,
+    "SPY"	      : "AMDR External IRS" ,
+    "CEC"	      : "WS-TBD"
+  },
+  "AM": {
+    "SPY1"	     : "WS-35408"	       ,
+    "VLS/MLM1"   : "WS-19670 Rev B"     ,
+    "VLS/MLM2"   : "WS-35563"	       ,
+    "VLS/MLM4"   : "WS-33365 Rev B"     ,
+    "SPY 2"	     : "SPY 2"
+    },
+  "ORTS": {
+    "ACI/Printer"	: "NA (Printer_Data)"	 ,
+    "C&D"		: "WS-21329/12"		 ,
+    "WCS"		: "WS-19644/15"		 ,
+    "UWS"		: "WS-35772"		 ,
+    "EXCOM/CDLMS"	: "WS-35426"		 ,
+    "GWS"		: "WS-35434"		 ,
+    "GCCS-M"	: "WS-34112/1"		 ,
+    "ACI/DiVDS"	: "WS-35435"		 ,
+    "ACI/CSBD"	: "NA (Remote Desktop)"	 ,
+    "ADS"		: "WS-21267/9"		 ,
+    "ATD/TCP"	: "WS-21278/7"		 ,
+    "ACI/ACEG"	: "WS-21288/4"		 ,
+    "MP"		: "WS-21361"		 ,
+    "EWS"		: "WS-35581_RevF"	 ,
+    "VCD"		: "IWS-OBJARCH-CDM"	 ,
+    "SPY"		: "AMDR External IRS"
+  },
+  "NGSSR": {
+  },
+  "IFF": {
+  },
+  "EWS": {
+  },
+  "UWS": {
+  },
+  "ASDMS": {
+  },
+  "GWS": {
+  },
+  "CEC": {
+  },
+  "SGS/AC": {
+  },
+  "VLS": {
+  },
+  "ADS": {
+  },
+  "ATD": {
+  },
+  "MP": {
+  },
+  "VCD": {
+  },
+  "SSMM": {
+
+  },
+  "OTH-WS": {
+
+  }
+
+}

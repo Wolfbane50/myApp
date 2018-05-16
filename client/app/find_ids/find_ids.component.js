@@ -83,6 +83,15 @@
       }, function errorCallback(response) {
         alert("Request for B10 Interfaces data yielded error: " + response.status);
       });
+      this.$http.get('ffg_interfaces.json', {
+        cache: true
+      }).then(response => {
+        //alert("Got c2 tree data ");
+        this.ffgifs = response.data;
+        console.log("Response from b10 ifs: " + JSON.stringify(response.data));
+      }, function errorCallback(response) {
+        alert("Request for FFG Interfaces data yielded error: " + response.status);
+      });
 
     } // end onInit
   } // end component class
