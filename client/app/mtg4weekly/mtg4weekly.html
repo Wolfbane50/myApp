@@ -1,0 +1,83 @@
+<div class="container">
+  <subapp-navbar name="Meetings for FFG(X) Weekly" state="mtg4weakly">
+    <subapp-nav class="nav navbar-nav" on-action="$ctrl.sendToJohn()">Send to John</subapp-nav>
+    <subapp-nav class="nav navbar-nav" on-action="$ctrl.clear()">Clear</subapp-nav>
+  </subapp-navbar>
+
+  <div class="row">
+    <div class="form-group">
+      <div class="col-lg-3">
+        <label>Meeting Title:</label>
+      </div>
+      <div class="col-lg-9">
+        <input class="form-control" type="text" ng-model="$ctrl.title">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3">
+      <label>Date :</label>
+    </div>
+    <div class="col-lg-9">
+      <div class="input-group">
+        <button type="button" class="btn btn-lg" ng-click="$ctrl.cbopen($index)">
+      <i class="glyphicon glyphicon-calendar"></i>
+         </button>
+        <input class="input-lg dateInput" type="text" uib-datepicker-popup="MM/dd/yyyy" ng-model="$ctrl.date" is-open="$ctrl.cbPopups[$index].opened" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <div class="col-lg-3">
+        <label>Location:</label>
+      </div>
+      <div class="col-lg-9">
+        <input class="form-control" type="text" ng-model="$ctrl.place">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <div class="col-lg-3">
+        <label for="inputdefault"><br />Purpose of Meeting:</label>
+      </div>
+      <div class="col-lg-9">
+        <textarea class="commShortText" ng-model="$ctrl.purpose"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <div class="col-lg-3">
+
+        <label for="inputdefault"><br />DD's Input:</label>
+      </div>
+      <div class="col-lg-9">
+        <textarea class="commShortText" ng-model="$ctrl.ddInput"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <div class="col-lg-3">
+        <label for="inputdefault"><br />Deliverables:</label>
+      </div>
+      <div class="col-lg-9">
+        <textarea class="commShortText" ng-model="$ctrl.deliverables"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <div class="col-lg-3">
+        <label for="inputdefault"><br />Key Participants:</label>
+      </div>
+      <div class="col-lg-9">
+        <textarea class="commShortText" ng-model="$ctrl.participants"></textarea>
+      </div>
+    </div>
+  </div>
+</div>

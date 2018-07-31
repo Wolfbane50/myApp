@@ -8,6 +8,12 @@
    width: 100%;
    height: 500px;
 }
+.commShortText {
+   background: lightgrey;
+   padding: 2px 2px;
+   width: 100%;
+   height: 200px;
+}
 
 .addListDiv {
    border 5px solid #0000000;
