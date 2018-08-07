@@ -14,6 +14,17 @@
 
         this.clearToast = ngToast.dismiss;
 
+        this.torNum = "";
+        this.getTorNumber = function (url) {
+          if (url.match(/yourbittorrent.com/)) {
+            this.torNum = url.replace(/https:\/\/yourbittorrent.com\/torrent\//, "");
+            this.torNum = torNum.replace(/\/.*$/, "");
+            return this.torNum;
+            //https://yourbittorrent.com/torrent/13085960/video-post-%E2%80%93-video-sharing-html-template.html
+          }
+        }
+
+
 
         // Example use of Modal Confirm dialog
         this.dummyConfirm = function() {

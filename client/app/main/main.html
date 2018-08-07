@@ -17,5 +17,15 @@
     <br />
     <pre class="code">{{ MnCtrl.content | json }}</pre>
     <img src="assets/images/family.jpg" alt="The most important family">
+
+
+      <label>Tor. URL:
+         <input style="color:black;" type="text" ng-model="$ctrl.searchUrl">
+      </label>
+      <div ngShow="$ctrl.getTorNumber($ctrl.searchUrl)">
+        {{$ctrl.getTorNumber($ctrl.searchUrl)}}
+
+      </div>
+
   </div>
 </header>
