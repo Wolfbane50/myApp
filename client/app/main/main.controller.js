@@ -14,12 +14,20 @@
 
         this.clearToast = ngToast.dismiss;
 
-        this.torNum = "";
+        this.torUrl = "";
+        this.searchUrl = "";
+        this.clearUrl = function() {
+          this.torUrl = "";
+          this.searchUrl = "";
+        };
         this.getTorNumber = function (url) {
+          console.log("Find torrent for url: " + url);
           if (url.match(/yourbittorrent.com/)) {
-            this.torNum = url.replace(/https:\/\/yourbittorrent.com\/torrent\//, "");
-            this.torNum = torNum.replace(/\/.*$/, "");
-            return this.torNum;
+            var torNum = url.replace(/https:\/\/yourbittorrent.com\/torrent\//, "");
+            torNum = torNum.replace(/\/.*$/, "");
+            this.torUrl = "https://yourbittorrent.com/down/" + torNum + ".torrent";
+            console.log("Changing to " + this.torUrl);
+            return this.torUrl;
             //https://yourbittorrent.com/torrent/13085960/video-post-%E2%80%93-video-sharing-html-template.html
           }
         }

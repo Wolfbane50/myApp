@@ -20,12 +20,13 @@
 
 
       <label>Tor. URL:
-         <input style="color:black;" type="text" ng-model="$ctrl.searchUrl">
+         <input style="color:black;" type="text" ng-model="MnCtrl.searchUrl">
+         <button class="btn btn-primary" ng-click="MnCtrl.getTorNumber(MnCtrl.searchUrl)">Convert</button>
+         <button class="btn btn-primary" ng-click="MnCtrl.clearUrl()">Clear</button>
       </label>
-      <div ngShow="$ctrl.getTorNumber($ctrl.searchUrl)">
-        {{$ctrl.getTorNumber($ctrl.searchUrl)}}
+      <br />
+        {{MnCtrl.torUrl}}
 
-      </div>
 
   </div>
 </header>
