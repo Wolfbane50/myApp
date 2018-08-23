@@ -37,6 +37,7 @@ angular.module("myappApp").directive("office", function($http, ngToast) {
             ".docx" : 1,
              ".xls" : 1,
              ".xlsm" : 1,
+             ".xlsx" : 1,
              ".pptx" : 1,
              ".ppt" : 1,
              ".pdf" : 1,
