@@ -20,6 +20,7 @@ export default function(app) {
   app.use('/api/gsynch', require('./api/gsynch'));
   app.use('/api/excel2json', require('./api/excel2json'));
   app.use('/api/doit', require('./api/doit'));
+  app.use('/api/tiddly', require('./api/tiddly'));
   app.use('/epub', express.static(__dirname + '/epub'));
 app.use(express.static('/Users/daniel.heaney/Documents'));
 //  app.use('/api/things', require('./api/thing'));

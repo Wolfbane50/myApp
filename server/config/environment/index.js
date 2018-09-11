@@ -28,6 +28,7 @@ var all = {
   seedDB: false,
 
   myDocsDir: process.env.USERPROFILE + "/Documents",
+  myDownloadDir: process.env.USERPROFILE + "/Downloads",
 
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {

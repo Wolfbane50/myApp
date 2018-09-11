@@ -104,7 +104,8 @@ const paths = {
         json: [`${serverPath}/**/*.json`],
         test: {
           integration: [`${serverPath}/**/*.integration.js`, 'mocha.global.js'],
-          unit: [`${serverPath}/**/*.spec.js`, 'mocha.global.js']
+          unit: [`${serverPath}/**/*.spec.js`, 'mocha.global.js'],
+          tiddly: [`${serverPath}/**/tiddly.integration.js`, 'mocha.global.js']
         }
     },
     karma: 'karma.conf.js',
@@ -491,19 +492,12 @@ gulp.task('test:server:integration', cb => {
         'mocha:integration',
         cb);
 });
-gulp.task('test:server:savestage', cb => {
-    runSequence(
-        'env:all',
-        'env:test',
-        'mocha:savestage',
-        cb);
-});
 
-gulp.task('test:server:gsynch', cb => {
+gulp.task('test:server:tiddly', cb => {
     runSequence(
         'env:all',
         'env:test',
-        'mocha:gsynch',
+        'mocha:tiddly',
         cb);
 });
 
@@ -517,6 +511,13 @@ gulp.task('mocha:integration', () => {
     return gulp.src(paths.server.test.integration)
         .pipe(mocha());
 });
+
+gulp.task('mocha:tiddly', () => {
+
+    return gulp.src(paths.server.test.tiddly)
+        .pipe(mocha());
+});
+
 
 gulp.task('test:client', ['wiredep:test', 'constant'], (done) => {
     new KarmaServer({

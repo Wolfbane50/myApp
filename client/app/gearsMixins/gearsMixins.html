@@ -1,0 +1,41 @@
+<subapp-navbar name="Gears Mixins" state="gearsMixins">
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.showJSONstuff()">Show JSON</subapp-nav>
+</subapp-navbar>
+<div class="view_container">
+  <sidebar>
+    <!-- Nested list template -->
+    <script type="text/ng-template" id="items_renderer.html">
+      <div ui-tree-handle>
+        <a class="btn btn-default btn-xs" data-nodrag ng-click="$ctrl.toggle(this)">
+          <span class="glyphicon" ng-class="$ctrl.itemIcon(this)"></span></a>
+        <span data-nodrag><a ng-class="$ctrl.selectedItemClass(this)">{{item.name}}</a></span>
+      </div>
+      <ol ui-tree-nodes="$ctrl.options" ng-model="item.items" ng-class="{hidden: collapsed}">
+        <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'">
+        </li>
+      </ol>
+    </script>
+    <div ui-tree="$ctrl.options">
+
+      <a class="btn btn-primary btn-xs" ng-click="$ctrl.myCollapseAll()">
+        <span>Collapse Tree</span></a>
+      <a class="btn btn-primary btn-xs" ng-click="$ctrl.myExpandAll()">
+        <span>Expand Tree</span></a>
+
+      <ol ui-tree-nodes ng-model="$ctrl.list">
+        <li ng-repeat="item in $ctrl.mixins track by $index" ui-tree-node data-nodrag data-collapsed="true" ng-include="'items_renderer.html'"></li>
+      </ol>
+    </div>
+
+  </sidebar>
+  <div class="main_container">
+    <div ng-show="$ctrl.showJSON">
+      <a class="btn btn-default btn-xs" ng-click="$ctrl.doneJSON()">
+        <span>Done with JSON</span></a>
+
+      <pre class="code">{{ $ctrl.list | json }}</pre>
+    </div>
+    <div id="response_pane">
+    </div>
+  </div>
+</div>
