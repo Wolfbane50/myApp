@@ -4,11 +4,12 @@
 <div class="view_container">
   <sidebar>
     <!-- Nested list template -->
+    <!-- Nested list template -->
     <script type="text/ng-template" id="items_renderer.html">
       <div ui-tree-handle>
         <a class="btn btn-default btn-xs" data-nodrag ng-click="$ctrl.toggle(this)">
-          <span class="glyphicon" ng-class="$ctrl.itemIcon(this)"></span></a>
-        <span data-nodrag><a ng-class="$ctrl.selectedItemClass(this)">{{item.name}}</a></span>
+          <span class="glyphicon"  ng-click="$ctrl.itemSelect(this)" ng-class="$ctrl.itemIcon(this)"></span></a>
+        <span data-nodrag><a  ng-class="$ctrl.selectedItemClass(this)">{{item.name}}</a></span>
       </div>
       <ol ui-tree-nodes="$ctrl.options" ng-model="item.items" ng-class="{hidden: collapsed}">
         <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'">
@@ -22,8 +23,9 @@
       <a class="btn btn-primary btn-xs" ng-click="$ctrl.myExpandAll()">
         <span>Expand Tree</span></a>
 
-      <ol ui-tree-nodes ng-model="$ctrl.list">
-        <li ng-repeat="item in $ctrl.mixins track by $index" ui-tree-node data-nodrag data-collapsed="true" ng-include="'items_renderer.html'"></li>
+      <ol ui-tree-nodes ng-model="$ctrl.mixins">
+        <li ng-repeat="item in $ctrl.mixins track by $index" ui-tree-node data-nodrag data-collapsed="true"
+                  ng-include="'items_renderer.html'"></li>
       </ol>
     </div>
 
@@ -33,9 +35,19 @@
       <a class="btn btn-default btn-xs" ng-click="$ctrl.doneJSON()">
         <span>Done with JSON</span></a>
 
-      <pre class="code">{{ $ctrl.list | json }}</pre>
+      <pre class="code">{{ $ctrl.mixins | json }}</pre>
     </div>
-    <div id="response_pane">
+    <div class="well" id="response_pane">
+      <table class="table">
+        <th><td>FFG(X)</td><td>B/L 10</td><td>
+              <select class="form-control" ng-options="item for item in $ctrl.configurations" ng-model="$ctrl.configName">
+        </td></th>
+        <tr><td>{{$ctrl.selItem.fullname}}</td><td style="margin: auto;">
+          <input type="checkbox" ng-model="$ctrl.FFGApplicable">
+        </td><td style="margin: auto;"><input type="checkbox" ng-model="$ctrl.Bl10Applicable"></td>
+      </td><td style="margin: auto;"><input type="checkbox"" ng-model="$ctrl.otherApplicable"></td>
+    </tr>
+      </table>
     </div>
   </div>
 </div>
