@@ -23,6 +23,9 @@
 
   <div class="main_container">
     <p>
+      <label>Excel File:
+         <input type="file" files-input ng-model="$ctrl.storageDir">
+      </label>
       <a class="btn btn-primary" ng-click="$ctrl.setStorageDir()">
         <span>Set</span></a>Storage: {{$ctrl.storageDir}}
       <span class="pull-right" ng-show="$ctrl.isSelectedSaved()">SAVED!</span></p>

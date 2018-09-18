@@ -9,6 +9,8 @@
         this.Document = Document;
         this.LibraryService = LibraryService;
         this.selectedIndex = -1;
+        this.storageDir =" C:/Users/Daniel/myapp/server/api/books/test_dest_dir";
+        this.stageDir = "C:/Users/Daniel/myapp/server/api/books/test_stage_dir";
         this.doclistOptions = {
           showDelete: true
         };
@@ -199,7 +201,7 @@
 
 
         this.setStorageDir = function() {
-          var tmpDir = prompt("Set Storage Directory for Document Library:", "C:/Users/Daniel/myapp/server/api/books/test_dest_dir");
+          var tmpDir = prompt("Set Storage Directory for Document Library:", this.storageDir);
           if (tmpDir) {
             this.storageDir = tmpDir;
             if (this.storageDir.match(/^\w\:\\/)) {
@@ -210,7 +212,7 @@
           }
         };
         this.setStageDir = function() {
-          var tmpDir = prompt("Set Stage Directory for Document Library:", "C:/Users/Daniel/myapp/server/api/books/test_stage_dir");
+          var tmpDir = prompt("Set Stage Directory for Document Library:", this.stageDir);
           if (tmpDir) {
             this.stageDir = tmpDir;
             if (this.stageDir.match(/^\w\:\\/)) {
