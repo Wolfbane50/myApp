@@ -41,6 +41,7 @@
       </div>
     </sidebar>
     <div class="main_container">
+       <div ng-show="Bftree.loading" class="loader"></div>
       <div class="bg-primary" style="text-align: center;" ng-show="Bftree.editMode">Edit Mode</div>
       <div ng-show="Bftree.showJSON">
         <a class="pull-right btn btn-primary btn-xs" ng-click="Bftree.doneJSON()">
@@ -49,8 +50,6 @@
         <pre class="code">{{ Bftree.audioTree | json }}</pre>
       </div>
       <div id="response_pane">
-        <div ng-hide="Bftree.showShow">
-          <h1>Select an Item from tree ...</h1></div>
         <div ng-show="Bftree.showShow">
 
 

@@ -15,6 +15,7 @@
         this.showShow = false;
         this.epEdit = false;
         this.editMode = false;
+        this.loading = true;
 
         this.setSelectItem = function(item) {
           this.chapterListText = "";
@@ -293,7 +294,7 @@
               this.audioTree.push(targetList);
             }
           }, this);
-
+          this.loading = false;
 
         }, function errorCallback(response) {
             alert("Request for BF data yielded error: " + response.status);

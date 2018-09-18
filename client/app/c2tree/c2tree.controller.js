@@ -8,6 +8,7 @@
       this.isCollapsed = true;
       this.showJSON = false;
       this.docs = [];
+      this.loading = true;
 
       this.selItem = {};
       this.selectedItem = {};
@@ -206,6 +207,7 @@
             }).then(response => {
             //alert("Got c2 tree data ");
                this.list = response.data;
+               this.loading = false;
             }, function errorCallback(response) {
                 alert("Request for C2 data yielded error: " + response.status);
             });

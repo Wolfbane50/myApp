@@ -37,6 +37,7 @@
 
   </sidebar>
   <div class="main_container">
+     <div ng-show="$ctrl.loading" class="loader"></div> 
     <div ng-show="$ctrl.showJSON">
       <a class="btn btn-default btn-xs" ng-click="$ctrl.doneJSON()">
         <span>Done with JSON</span></a>
