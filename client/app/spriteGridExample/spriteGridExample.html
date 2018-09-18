@@ -23,6 +23,14 @@
 </div>
 
 <table class="table">
+  <tr ng-repeat="row in $ctrl.doctorTable track by $index">
+    <td ng-repeat="col in row track by $index">
+        <dh-sprite-set config="doctorSpriteSpec.min.json" feat='col'></dh-sprite-set>
+      {{col}}</td>
+</tr>
+</table>
+
+<table class="table">
   <tr ng-repeat="row in $ctrl.featureTable track by $index">
     <td ng-repeat="col in row track by $index">
         <dh-sprite-set config="spriteSpec.min.json" feat='col'></dh-sprite-set>
