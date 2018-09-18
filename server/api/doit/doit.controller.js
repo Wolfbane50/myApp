@@ -20,7 +20,7 @@ export function doit(req, res) {
 
     // console.log("Should send to " + docsDir);
     officeFile = decodedFile.replace(/^http:\/\/localhost:9000\//, docsDir);
-    officeFile = decodedFile.replace(/^http:\/\/127\.0\.0\.1:9000\//, docsDir);
+    officeFile = officeFile.replace(/^http:\/\/127\.0\.0\.1:9000\//, docsDir);
   } else {
     officeFile = decodeURI(officeFile);
   }
