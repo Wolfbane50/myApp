@@ -6,7 +6,8 @@ function spriteGridService($http) {
 
     if (vector.length) {
       if (vector.length < tableLength) {
-          throw type + " Padding vector too short for Sprite Table";
+          throw type + " Padding vector too short for Sprite Table. Expecting " 
+                   + tableLength + " but got " + vector.length ;
        }
     } else {
       if (! pad) {
