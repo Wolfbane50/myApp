@@ -2,14 +2,16 @@
 
 (function() {
   class LoadstageComponent {
-    constructor($http, $state, $window, Document, LibraryService) {
+    constructor($http, $state, $scope, $window, Document, LibraryService) {
         this.$http = $http;
         this.$state = $state;
+        this.$scope = $scope;
         this.$window = $window;
         this.Document = Document;
         this.LibraryService = LibraryService;
         this.selectedIndex = -1;
         this.storageDir =" C:/Users/Daniel/myapp/server/api/books/test_dest_dir";
+
         this.stageDir = "C:/Users/Daniel/myapp/server/api/books/test_stage_dir";
         this.doclistOptions = {
           showDelete: true
@@ -28,6 +30,17 @@
             return -1;
           }
         }
+
+        this.showStorage =  function(file) {
+          var dirOnly = file.replace(0, file.lastIndexOf('/'));
+          console.log("Changing " + file + " to " + dirOnly);
+          return dirOnly;
+        }
+
+        this.fileChange = function(ele) {
+          alert("In fileChange...");
+          var files = ele.files;
+        };
 
         this.setSaved = function() {
           console.log("Got to setSaved");
@@ -355,6 +368,13 @@
 
     $onInit() {
         this.stageDocs = [];
+        this.$scope.$watch("storageDir", function(newValue, oldValue) {
+          alert("Storagedir changed...");
+        });
+        this.$scope.$watch("stageDir", function(newValue, oldValue) {
+          alert("Stagedir changed...");
+        });
+
 
       } // end onInit
   } // end component class
