@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="demoApp">
+<head>
+  <meta charset="utf-8">
+  <title>Clean E-Mail Addresses</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+</head>
+<body ng-controller="MainCtrl">
+
+  <div class="container">
+
+
+    <div class="row">
+      <div class="col-lg-6">
+       <div class="form-group">
+	    <label for="comment">Copy distribution from Outlook:</label>
+      <button type="button" class="btn btn-info pull-right" ng-click="sourceString=''" ng-show="sourceString">Clear</button>
+	    <textarea class="form-control" rows="5" id="comment" ng-model="sourceString"></textarea>
+      </div>
+      </div>
+
+      <div class="col-lg-6">
+      <button type="button" class="btn btn-primary" ng-click="convert()">Convert</button>
+      <button type="button" class="btn btn-info pull-right" ng-click="cleanString=''" ng-show="cleanString">Clear</button>
+         <div class="well well-lg">{{cleanString}}</div>
+      </div>
+    </div>
+
+  </div>
+  <!-- JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+  <script src="distro_convert.js"></script>
+
+</body>
+</html>
