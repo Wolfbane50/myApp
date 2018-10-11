@@ -8,7 +8,7 @@
 
       <div class="col-sm-3">
         <label>Excel File:
-           <input type="file" files-input ng-model="$ctrl.excelfile">
+           <input type="file" files-input on-file-change="$ctrl.fileChange" ng-model="$ctrl.excelfile">
         </label>
         <a class="btn btn-primary btn-xs" ng-click="$ctrl.getJsonData()">
           <span>Show</span>

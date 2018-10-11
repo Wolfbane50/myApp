@@ -6,22 +6,22 @@ angular.module("myappApp").directive("filesInput", function() {
     link: function postLink(scope, elem, attrs, ngModel) {
 
       elem.on("change", function(e) {
-        var fileVal;
-        if (elem[0].webkitRelativePath) {
-          console.log("Got relative path");
-          fileVal = elem[0].webkitRelativePath + '/' + elem[0].value;
+        console.log("FilesInput Change Event occurred!");
+        var fileVal = elem[0].value;
+        //var props = Object.getOwnPropertyNames(elem[0]);
+        var props = Object.getOwnPropertyNames(scope);
+        var onFileChange = attrs.onFileChange;
+        console.log("Set fileval to " + fileVal + "; props = " + JSON.stringify(props));
+//        var path = URL.createObjectURL(fileVal);
+  if (attrs.onFileChange) {
+          var callbackName = attrs.onFileChange.replace(/\$ctrl\./, '');
+          console.log("Calling onFileChange as " + callbackName);
+          scope.$ctrl[callbackName](elem);
 
-        } else {
-          fileVal = elem[0].value;
+          //scope.fileNameChanged();
         }
-        console.log("First file => " + JSON.stringify(elem[0]));
-        console.log("Setting ngModel to " + fileVal);
-        ngModel.$setViewValue(fileVal);
-        if (attrs.onFileChange) {
-          //console.log("Calling onFileChange..");
-          attrs.onFileChange(e);
-        }
-      })
+
+      });
     }
   }
 });

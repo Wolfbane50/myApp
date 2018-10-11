@@ -15,7 +15,6 @@
         this.originalColumns = [];
         this.columns = [];
         this.rows = [];
-        this.controller
 
         //=================================
         // Scope methods
@@ -30,25 +29,13 @@
 
         this.fileChange = function(ele) {
           console.log("In fileChange...");
-          var files = ele.files;
-          var l = files.length;
-          //var namesArr = [];
 
-          for (var i = 0; i < l; i++) {
-            console.log("File " + i + ": " + JSON.stringify(files[i]));
-            //namesArr.push(files[i].name);
-          }
+          var filePath = URL.createObjectURL(ele[0]);
+          console.log("Could send to " + filePath);
         }
 
         this.$scope.fileNameChanged = function (ele) {
-          var files = ele.files;
-          var l = files.length;
-          //var namesArr = [];
-
-          for (var i = 0; i < l; i++) {
-            console.log("File " + i + ": " + JSON.stringify(files[i]));
-            //namesArr.push(files[i].name);
-          }
+          console.log("Got to fileNameChanged");
         }
 
         this.getJsonData = function() {
@@ -65,6 +52,8 @@
           if (this.mergeData) {
             myParms.mergeData = true;
           }
+          console.log("Sending off to process excel file: " + this.excelfile + ", skip " + this.skipRows +
+                       " rows, starts with " + this.startswith + "; Merge? " + this.mergeData);
 
           this.$http({
             url: '/api/excel2json',
