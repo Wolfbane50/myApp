@@ -12,6 +12,7 @@ export default function(app) {
   // Insert routes below
   app.use('/api/backups', require('./api/backup'));
   app.use('/api/charity_bag', require('./api/charity_bag'));
+  app.use('/api/ids', require('./api/ids'));
   app.use('/api/newCards', require('./api/newCards'));
   app.use('/api/parse_sps', require('./api/parseSPS'));
   app.use('/api/tier_ver', require('./api/tier_ver'));
