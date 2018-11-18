@@ -1,18 +1,13 @@
-x:
-cd "X:\TV Shows\Doctor Who\Season 24 doctor 7"
-C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor Who - s24e01 - Time and the Rani (1).avi" "Doctor Who - s24e01 - Time and the Rani 1.mp4"
-C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor Who - s24e02 - Time and the Rani (2).avi" "Doctor Who - s24e02 - Time and the Rani 2.mp4"
-C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor Who - s24e03 - Time and the Rani (3).avi" "Doctor Who - s24e03 - Time and the Rani 3.mp4"
-C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor Who - s24e04 - Time and the Rani (4).avi" "Doctor Who - s24e04 - Time and the Rani 4.mp4"
-C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor Who - s24e05 - Paradise Towers (1).avi" "Doctor Who - s24e05 - Paradise Towers 1.mp4"
-C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor Who - s24e06 - Paradise Towers (2).avi" "Doctor Who - s24e06 - Paradise Towers 2.mp4"
-C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor Who - s24e07 - Paradise Towers (3).avi" "Doctor Who - s24e07 - Paradise Towers 3.mp4"
-C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor Who - s24e08 - Paradise Towers (4).avi" "Doctor Who - s24e08 - Paradise Towers 4.mp4"
-C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor Who - s24e09 - Delta and the Bannermen (1).avi" "Doctor Who - s24e09 - Delta and the Bannermen 1.mp4"
-C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor Who - s24e10 - Delta and the Bannermen (2).avi" "Doctor Who - s24e10 - Delta and the Bannermen 2.mp4"
-C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor Who - s24e11 - Delta and the Bannermen (3).avi" "Doctor Who - s24e11 - Delta and the Bannermen 3.mp4"
-C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor Who - s24e12 - Dragonfire (1).avi" "Doctor Who - s24e12 - Dragonfire 1.mp4"
-C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor Who - s24e13 - Dragonfire (2).avi" "Doctor Who - s24e13 - Dragonfire 2.mp4"
-C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor Who - s24e14 - Dragonfire (3).avi" "Doctor Who - s24e14 - Dragonfire 3.mp4"
+cd "C:\Users\Daniel\Downloads\Doctor Who"
+C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Doctor.Who.2005.S11E02.The.Ghost.Monument.REPACK.720p.AMZN.WEB-DL.DDP5.1.H.264-NTb.mkv" "Doctor Who - s11e002 The Ghost Monument.mp4"
+C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Dr.Who.S11E03.1080p.[BOXHD].mkv" "Doctor Who - s11e003 - Rosa.mp4"
+C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "Dr.Who.S11E04.1080p.[BOXHD].mkv" "Doctor Who - s11e004 - Arachnids in the UK.mp4"
+C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "doctor_who_2005.11x05.720p_hdtv_x264-fov.mkv" "Doctor Who - s11e005 - The Tsuranga Conundrum.mp4"
+C:\ffmpeg-20160310-git-66edd86-win64-static\bin\ffmpeg -i "doctor_who_2005.11x06.720p_hdtv_x264-fov.mkv" "Doctor Who - s11e006 - Demons of the Punjab.mp4"
 c:
 cd "C:\Users\Daniel\myapp"
+
+
+
+
+
