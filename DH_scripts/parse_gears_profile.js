@@ -70,7 +70,9 @@ addApplicability = function(recordPtr, row) {
 parse_gears_excel = function() {
   XLSX = require('xlsx');
   var ch_path = "./";
-  var workbook = XLSX.readFile(ch_path + 'GearsMatrix_03.35-E06_TD.xlsx');
+  //var workbook = XLSX.readFile(ch_path + 'GearsMatrix_03.35-E06_TD.xlsx');
+  var workbook = XLSX.readFile(ch_path + 'GearsMatrix_03_36-E04_TD__8 JAN 2019.xlsx');
+
   var jsonOut = ch_path + "ffg_gears.json";
   // Specify worksheets to process
   var idSheets = {
