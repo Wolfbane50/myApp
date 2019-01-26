@@ -1,0 +1,47 @@
+<div class="container">
+  <subapp-navbar name="Edit Engineering Topic" state="ET">
+    <subapp-nav class="nav navbar-nav" on-action="$ctrl.newET()">New</subapp-nav>
+    <subapp-nav class="nav navbar-nav" on-action="$ctrl.clearET()">Clear</subapp-nav>
+    <subapp-nav class="nav navbar-nav" on-action="$ctrl.saveET()">Save</subapp-nav>
+  </subapp-navbar>
+
+  <div class="row">
+    <div class="form-group">
+      <div class="col-lg-1"><h2>ET</h2></div>
+      <div class="col-lg-1">{{$ctrl.topic.id}}</div>
+      <div class="col-lg-1">
+        <label><h2>Title:</h2></label>
+      </div>
+      <div class="col-lg-9">
+        <input class="form-control" type="text" ng-model="$ctrl.topic.title">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <div class="col-lg-12">
+        <h3>Problem Statement:</h3>
+        <textarea class="commShortText" ng-model="$ctrl.topic.description"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <h2>Questions/Expected Results</h2>
+      <textarea class="commShortText" ng-model="$ctrl.topic.qer"></textarea>
+    </div>
+      <div class="col-lg-6">
+        <h3>Answers/Status</h3>
+        <textarea class="commShortText" ng-model="$ctrl.topic.answerStatus"></textarea>
+      </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <div class="col-lg-12">
+        <h3>Big Rock Items:</h3>
+        <textarea class="commShortText" ng-model="$ctrl.topic.bigRocks"></textarea>
+      </div>
+    </div>
+  </div>
+
+</div>
