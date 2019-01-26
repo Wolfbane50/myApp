@@ -27,10 +27,29 @@
             torNum = torNum.replace(/\/.*$/, "");
             this.torUrl = "https://yourbittorrent.com/down/" + torNum + ".torrent";
             console.log("Changing to " + this.torUrl);
+            var copyText = document.getElementById("torrentlink");
+            if(copyText) {
+              copyText.value = this.torUrl;
+              copyText.select();
+            } else {
+              console.log("No copyText!!!!");
+            }
+            document.execCommand("copy");
+
             return this.torUrl;
             //https://yourbittorrent.com/torrent/13085960/video-post-%E2%80%93-video-sharing-html-template.html
           }
-        }
+        };
+
+       // This doesn't work because you need a special permission to read from clipboard
+        this.torNumberFromClipboard = function() {
+          var origText = document.getElementById("origurl");
+          origText.select();
+          document.execCommand("paste");
+          var origUrl = origText.value;
+          console.log("Will process URL: " + origUrl);
+          // this.getTorNumber(origUrl);
+        };
 
 
 

@@ -6,6 +6,7 @@
   <subapp-nav class="nav navbar-nav " on-action="$ctrl.retrieveLocal() ">Local Load</subapp-nav>
   <subapp-nav class="nav navbar-nav " on-action="$ctrl.flushLocal() ">Local Flush</subapp-nav>
   </subapp-nav-menu>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.showJSONstuff()">Generate JSON</subapp-nav>
   <subapp-nav class="nav navbar-nav" on-action="$ctrl.newDoc('')">New Document</subapp-nav>
   <subapp-nav class="nav navbar-nav ">Stage All</subapp-nav>
   <subapp-nav ng-show="($ctrl.selectedIndex>= 0)" class="nav navbar-nav" on-action="$ctrl.prevItem()">&lt;&lt; Previous</subapp-nav>
@@ -22,6 +23,12 @@
   </sidebar>
 
   <div class="main_container">
+    <div ng-show="$ctrl.showJSON">
+      <a class="btn btn-default btn-xs" ng-click="$ctrl.doneJSON()">
+        <span>Done with JSON</span></a>
+
+      <pre class="code">{{ $ctrl.stageDocs | json }}</pre>
+    </div>
     <p>
       <label>Excel File:
          <input type="file" files-input onchange="$ctrl.fileChange(event);" ng-model="$ctrl.storageDir">

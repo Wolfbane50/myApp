@@ -362,6 +362,13 @@
             });
           }
         };
+        this.showJSONstuff = function() {
+             this.showJSON = true;
+        };
+
+        this.doneJSON = function() {
+             this.showJSON = false;
+        };
 
 
       } // end constructor

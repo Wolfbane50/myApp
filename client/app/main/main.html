@@ -39,11 +39,11 @@
 
 
     <label>Tor. URL:
-         <input style="color:black;" type="text" ng-model="MnCtrl.searchUrl">
+         <input style="color:black;" id="origurl" type="text" ng-model="MnCtrl.searchUrl">
          <button class="btn btn-primary" ng-click="MnCtrl.getTorNumber(MnCtrl.searchUrl)">Convert</button>
          <button class="btn btn-primary" ng-click="MnCtrl.clearUrl()">Clear</button>
       </label>
-    <br /> {{MnCtrl.torUrl}} <br />
+    <br /><input style="color:black;" type="text" id="torrentlink" ng-model="MnCtrl.torUrl"> <br />
     <button class="btn btn-primary" ng-click="MnCtrl.makeToast('Sample Message')">Toast</button>
     <button class="btn btn-primary" ng-click="MnCtrl.clearToast()">Clr Toast</button>
     <oauth-buttons></oauth-buttons>
