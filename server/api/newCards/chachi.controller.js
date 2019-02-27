@@ -18,6 +18,7 @@ export function update(req, res) {
     var jsonOut = ch_path + "chachis3.json";
     // Specify worksheets to process
     var idSheets = {
+      "2019": 1,
       "2018": 1,
       "1978": 1,
       "2017": 1,
