@@ -29,6 +29,9 @@
 //*     serve:debug
 //*     test
 //*     test:server
+//*        test:server:unit
+//*        test:server:integration
+//*        test:server:tiddly
 //*     mocha:unit
 //*     mocha:integration
 //*     test:client
@@ -73,6 +76,7 @@ import runSequence from 'run-sequence';
 import {protractor, webdriver_update} from 'gulp-protractor';
 import {Instrumenter} from 'isparta';
 
+import logger from 'gulplog';
 
 var plugins = gulpLoadPlugins();
 var config;
@@ -321,7 +325,8 @@ gulp.task('transpile:client', () => {
 });
 
 gulp.task('transpile:server', () => {
-    return gulp.src(_.union(paths.server.scripts, paths.server.json))
+ //   return gulp.src(_.union(paths.server.scripts, paths.server.json))
+    return gulp.src(_.union(paths.server.scripts))
         .pipe(transpileServer())
         .pipe(gulp.dest(`${paths.dist}/${serverPath}`));
 });
@@ -581,6 +586,7 @@ gulp.task('build', cb => {
             'copy:fonts',
             'copy:assets',
             'copy:server',
+            'minifyJson',
             'build:client'
         ],
         cb);
@@ -683,6 +689,14 @@ gulp.task('copy:server', () => {
         '.bowerrc'
     ], {cwdbase: true})
         .pipe(gulp.dest(paths.dist));
+});
+
+gulp.task('minifyJson', () => {
+    //logger.error("Minifying JSON to " + `${paths.dist}/${serverPath}`);
+    return gulp.src(paths.server.json)
+    //  .pipe(gulp.jsonminify()
+    //    .pipe(plugins.print())
+        .pipe(gulp.dest(`${paths.dist}/${serverPath}`));
 });
 
 gulp.task('coverage:pre', () => {

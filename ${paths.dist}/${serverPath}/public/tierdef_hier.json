@@ -1,0 +1,1405 @@
+[{
+    "number": "0",
+    "name": "Nonmission  Area",
+    "definition": "Nontactical and engineering development issues requested by LM.",
+    "tier": "0",
+    "items": [{
+      "number": "0.0",
+      "name": "Nonmission Area Stuff",
+      "definition": "Place Holder",
+      "tier": "1",
+      "items": [{
+        "number": "0.0.1",
+        "name": "Non Mission Area Data Recording",
+        "definition": "Tactical Data Recording/War Diary/Event Reconstruction",
+        "proposeduse": "Non-tactical data recording and Extration Point issues used to support compter program development and testing prior to Fleet delivery.  Use 1.3.6 for War Diary",
+        "tier": "2"
+      }, {
+        "number": "0.0.2",
+        "name": "Non Mission Area Operating System",
+        "definition": "Operating System, Operating Environment utilized for Computing Infrastructure",
+        "proposeduse": "Recommend not using.  Use Tier 1.x.x to assess OS and OE",
+        "tier": "2"
+      }, {
+        "number": "0.0.3",
+        "name": "Non Mission Area Simulation Non-Tactical",
+        "definition": " Simulation and Stim Drivers to support replicating tactical env. Includes actuals simulators and changes required to Tacticals to support simulation.",
+        "proposeduse": "Recommend not using.  Use 3.3.6 and 3.3.7 instead ",
+        "tier": "2"
+      }, {
+        "number": "0.0.4",
+        "name": "Non Mission Area General",
+        "definition": "Does not tie to a mission area: Includes Site Config, Development, Utilities, , Enginering Level Debug/Data Recording, etc. ",
+        "proposeduse": "Use 0.0.1 for data recording. Used for ET/DT type CPCRs and misspelled display issues",
+        "tier": "2"
+        }, {
+          "number": "0.0.0",
+          "name": "Mismatch Applicability",
+          "definition": "For Further Evaluation",
+          "tier": "2"
+      }]
+    }]
+  }, {
+    "number": "1",
+    "name": "Manage Combat System Resources",
+    "definition": "This function managing the computing resources within the combat system.  It includes system initialization, setting of states of modes and monitoring of computing resources.  The function accepts configuration and re-configuration tasking and report resource status.",
+    "tier": "0",
+    "items": [{
+        "number": "1.1",
+        "name": "Manage Combat System",
+        "definition": "This function manages all the combat system initialization and configuration services [*NEW*].",
+        "tier": "1",
+        "items": [{
+          "number": "1.1.1",
+          "name": "Download and Install Software Upgrades",
+          "definition": "This function downloads and installs software upgrades such as new applications, repair patched, and version updates [JCSFL 9.1.28].",
+          "proposeduse": "File structure,  naming issues, SWC implementation, code clean-up and housekeeping",
+          "tier": "2"
+        }, {
+          "number": "1.1.2",
+          "name": "Initialize System",
+          "definition": "This function initializes the system bringing the components to an operational state [JCSFL 8.3.14].",
+          "proposeduse": "Initialization issues, config files,  and initialization scripts",
+          "tier": "2"
+        }, {
+          "number": "1.1.3",
+          "name": "Manage Power",
+          "definition": "This function requires that the system shall be capable of incorporating power management to achieve maximum efficiency as specified in domain annexes [JCSFL 8.5.14].",
+          "proposeduse": "Not used.  Not aware  AWS has power load shedding functionality",
+          "tier": "2"
+        }, {
+          "number": "1.1.4",
+          "name": "Perform Network Information Assurance (IA)/Computer Network Defense (CND) Services",
+          "definition": "This function performs network Information Assurance (IA)/Computer Network Defense (CND) services to ensure timely, efficient and reliable exchange of information, and provides the ability to protect and defend information and information systems against known external threats.  This function includes correlation of IA/CND system capabilities with threats to the network to determine network security requirements [JCSFL 8.2.1].",
+          "proposeduse": "CASA / CSTK / FIC  / AV issues",
+          "tier": "2"
+        }, {
+          "number": "1.1.5",
+          "name": "Perform System Maintenance",
+          "definition": "This function performs system maintenance to ensure the system operational availability and full system performance is maintained [JCSFL 9.1.36].",
+          "proposeduse": "OE maintenance issues … not used in legacy assessment.   Use 3.2.3 for ACS operability",
+          "tier": "2"
+        }, {
+          "number": "1.1.6",
+          "name": "Provide Computing Environment",
+          "definition": "This function provides support for computer applications and hardware platforms. This function provides computer processors, consoles, displays systems, storage devices, and networking hardware and enclosures [*NEW*] (reference PEO IWS ADD, V1.0, Figure 12, Computing Equipment Domain).",
+          "proposeduse": "Use 1.1.2 for storage devices and issues and 1.3.5 for printers and printing services.   Used in legacy CPCR assessment for all console failures that required a console restart / reboot.",
+          "tier": "2"
+        }, {
+          "number": "1.1.7",
+          "name": "Provide Cooling",
+          "definition": "This function manages all aspects of cooling services for computing equipment and other hardware [*NEW*].",
+          "proposeduse": "Use in legacy assessment for MCE cooling alarm issues",
+          "tier": "2"
+        }, {
+          "number": "1.1.8",
+          "name": "Provide Data Storage",
+          "definition": "This function will provide necessary recording mediums to store essential system data [*NEW*].",
+          "proposeduse": "NAS and connected hard drives",
+          "tier": "2"
+        }, {
+          "number": "1.1.9",
+          "name": "Recover System",
+          "definition": "This function will provide the ability to return a system back to its previous state or a newly defined state based on operational requirements [*NEW*].",
+          "proposeduse": "Double downs, failovers, app crashes and cores.  Issues that require a reload to recover with the exception of consoles.  Use 1.1.6. for consoles.",
+          "tier": "2"
+        }, {
+          "number": "1.1.10",
+          "name": "Transfer Communications Data Internally",
+          "definition": "This function transfer communications data to and from internal systems [JCSFL 7.1.114].",
+          "proposeduse": "Element to element messages that are either not sent, sent at the wrong periodic, missing/wrong information, or not received.  IDS issues",
+          "tier": "2"
+        }]
+    }, {
+      "number": "1.2",
+      "name": "Control Combat System Configuration",
+      "definition": "This function controls the system states and modes and concurrent mode operations [*NEW*].",
+      "tier": "1",
+      "items": [{
+        "number": "1.2.1",
+        "name": "Control Battle Short Operations",
+        "definition": "This function overrides system safeties that should normally result in system shutdown [JCSFL 9.3.2].",
+        "proposeduse": "Battle short",
+        "tier": "2"
+      }, {
+        "number": "1.2.2",
+        "name": "Control Concurrent Test, Training, and Normal System Operations",
+        "definition": "This function controls concurrent system test, training, and normal system operations thereby preventing subsystems involved in testing and training from creating actual hazardous actions while the system simultaneously conducts normal operations and maintains conditions of readiness to respond to actual mission operations [JCSFL 9.3.5].\r\n\r\nACS: Primarily used to assess legality of action within current combat system MODE.",
+        "proposeduse": "Concurrent system test, training, and normal system operations;  Use 1.2.4 for transition to Test / Training/ Tactical issues\r\nuse for tactical-training track violations",
+        "tier": "2"
+      }, {
+        "number": "1.2.3",
+        "name": "Control Emission Control (EMCON) Operations",
+        "definition": "This function controls emission control (EMCON) operations by monitoring and controlling radio frequency (RF) radiating systems.  Controls may direct the operation of individual systems or a suite of systems.  Controls may also direct operations based on characteristics such as specified sectors, frequencies, modes of operation, and doctrine based rule sets [JCSFL 6.1.23].",
+        "proposeduse": "RCS functionality, radiation zones, controlling RF radiation.  Use for controlling where to radiate, not what is radiated (ie beamform)",
+        "tier": "2"
+      }, {
+        "number": "1.2.4",
+        "name": "Control System States and Modes",
+        "definition": "This function controls a state and mode change given a selection of states and modes and a valid stimulus for controlling the system [JCSFL 8.8.13].",
+        "proposeduse": "Transition to Test / Tactical / Training",
+        "tier": "2"
+      }]
+}, {
+  "number": "1.3",
+  "name": "Provide Computing Support",
+  "definition": "This function provides internal computing support for services such as time keepting, data displays, networking, data recording, etc [*NEW*].",
+  "tier": "1",
+  "items": [{
+      "number": "1.3.1",
+      "name": "Provide Data for Displays",
+      "definition": "This function takes data from other combat system functions and formats it for delivery to console operators for review and/or action [*NEW*].\r\n\r\nACS: This function provides data to the ADS element for display from other AWS elements.",
+      "proposeduse": "CPCRs dealing with incorrect data sent by an element and displayed  or required data not provided.  Leads to reduced situational awareness or operator confusion.  Us 1.1.10 for information that is sent by an element to an element but is not displayed to the operator.    Use 5.2.1 for ADS errors.",
+      "tier": "2"
+    }, {
+      "number": "1.3.2",
+      "name": "Provide Graphical User Interface (GUI) Services",
+      "definition": "This function supplies a graphical user interface (GUI) that allows a user to interact with a system application by providing graphics representation of system user controls and displays [JCSFL 8.10.10].",
+      "proposeduse": "VAB and other GUI functionality issues.  Is is available, are the required all required action interfaces presented and operational as required?",
+      "tier": "2"
+    }, {
+      "number": "1.3.3",
+      "name": "Provide Local Area Network (LAN) Communications",
+      "definition": "This function supports the usage of a computer network covering a local area [JCSFL 7.1.53].",
+      "proposeduse": "ACS/AWC connectivity or data exchange issues.  Use 1.1.10 for AWS element to AWS element CPCRs.",
+      "tier": "2"
+    }, {
+      "number": "1.3.4",
+      "name": "Provide Networked Services and Applications",
+      "definition": "This function provides networked services, applications, and data while maintaining end-to-end quality of service and data fidelity through network addressing, routing, switching, and data flow management [JCSFL 8.1.22].",
+      "proposeduse": "Wasted resources, memory leaks, and redundancy issues",
+      "tier": "2"
+    }, {
+      "number": "1.3.5",
+      "name": "Provide Printing Services",
+      "definition": "This function supports output of text and/or graphical data, including any filtering or format conversion necessary [JCSFL 8.4.33].",
+      "proposeduse": "Printers",
+      "tier": "2"
+    }, {
+      "number": "1.3.6",
+      "name": "Record Events for Post Operations Analysis",
+      "definition": "This function records and maintains operational data to be used during post operations analysis, such as a war diary [JCSFL 3.4.16].",
+      "proposeduse": "War Diary only.  Use  NMA-Eng for test EPs not part of War Diary",
+      "tier": "2"
+    }, {
+      "number": "1.3.7",
+      "name": "Synchronize Time",
+      "definition": "This function will provide the ability to synchronize time between system components to operate the system in unison [*NEW*].",
+      "proposeduse": "IRIG/Time/synchronization issues",
+      "tier": "2"
+    }, {
+      "number": "1.3.8",
+      "name": "Transmit/Receive CS Data",
+      "definition": "This function will provide the means for a transfer of data over a point-to-point or point-to-multipoint communication channel [*NEW*].",
+      "proposeduse": " IP addresses, message routing issues",
+      "tier": "2"
+    }]
+  }]
+}, {
+  "number": "2",
+  "name": "Plan Missions",
+  "definition": "This function generates tactical plans for individual mission areas as well as an integration tactical plan using operational plan(s) as the foundation and utilizing an array of tactical planning tools and decision aids.  Intelligence and reference data obtained from operational command and control systems as well as the status of available tactical resources (e.g. sensor, weapons, communications, vehicles) are also used as an input to the planning process. The plan is tailor to a particular units capabilities and spans multiple mission areas assigned to the unit within operational plans.",
+  "proposeduse": "Applied to the creation and modification of plans  Not used in 9A assessment",
+  "tier": "0",
+  "items": [{
+      "number": "2.1",
+      "name": "Assess Mission Requirements",
+      "definition": "This function assembles data from multiple sources to be used for tactical mission planning. Sources include GCCS-M, CS readiness information, mission tasks from fleet messages. The CS operators assess mission tasking and provides mission requirements inputs to the mission plan creation process [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "2.1.1",
+          "name": "Generate Input to Missions Plans",
+          "definition": "This function generates input to mission plans by utilizing mission analysis and higher authority guidance [JCSFL 5.1.10].",
+          "tier": "2"
+        }, {
+          "number": "2.1.2",
+          "name": "Import Mission Planning Information",
+          "definition": "This function imports mission planning information from related planning systems and applications related to characteristics such as: resource availability, capability, performance, natural environmental, etc [JCSFL 5.1.76].",
+          "tier": "2"
+        }, {
+          "number": "2.1.3",
+          "name": "Plan Course of Action (COA): Zone, Area, Route",
+          "definition": "This function plans a Course of Action (COA) for the units via simulation, physical marking, or other means of route planning [JCSFL 5.1.61].",
+          "tier": "2"
+        }, {
+          "number": "2.1.4",
+          "name": "Provide Platform Characteristics and Configuration Information",
+          "definition": "This function provides platform characteristics and configuration information for the purpose of calculating fuel consumption rates, mission performance, autorouting, and other mission planning functions [JCSFL 5.1.73].\r\n\r\nACS: System information related to planning.",
+          "tier": "2"
+        }, {
+          "number": "2.1.5",
+          "name": "Retrieve Mission Data",
+          "definition": "This function retrieves mission data for the identified mission and all specified metadata [JCSFL 5.2.2].",
+          "tier": "2"
+        }, {
+          "number": "2.1.6",
+          "name": "Update Target, Intelligence, and System Profiles",
+          "definition": "This function allows the system to provide in-theater updates of system profiles for the specific Area of Operation (AO) supporting full automatic target identification (ID) [JCSFL 2.1.29].",
+          "tier": "2"
+        }]
+    }, {
+      "number": "2.2",
+      "name": "Create Plan",
+      "definition": "This function creates plans and assesses the ability of the plans to meet mission requirements [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "2.2.1",
+          "name": "Calculate Sensor Coverage and Predict Sensor Performance",
+          "definition": "This function calculates sensor coverage by determining the type, number, and placement of sensors to provide needed coverage.  Anticipated performance and coverage of a sensor system or network is calculated using models and/or simulations given environmental conditions such as clutter, background noise, sensor geometry, terrain and adversary system capabilities, tactics, and techniques [JCSFL 4.6.18].",
+          "proposeduse": "Not used",
+          "tier": "2"
+        }, {
+          "number": "2.2.2",
+          "name": "Create Maneuver Plans",
+          "definition": "This function develops a maneuver plan for the assets, including vehicles and dismounts, but does not task the asset at this point. The maneuver plan includes functionality associated with developing both strategy and deconfliction planning [JCSFL 5.1.14].",
+          "proposeduse": "Not used",
+          "tier": "2"
+        }, {
+          "number": "2.2.3",
+          "name": "Create Sensor Plans",
+          "definition": "This function creates sensor plans in regards to coverage areas, frequencies, and targets [JCSFL 5.1.11].",
+          "proposeduse": "Not used",
+          "tier": "2"
+        }, {
+          "number": "2.2.4",
+          "name": "Create Weapons Plans",
+          "definition": "This function generates weapon mission plans that support, or meet, the applicable overall mission objectives given weapon characteristics including the analysis of weapon effectiveness, weapon target pairing, and weapons control [JCSFL 5.1.13].",
+          "proposeduse": "Not used",
+          "tier": "2"
+        }, {
+          "number": "2.2.5",
+          "name": "Develop Deconfliction Plan",
+          "definition": "This function utilizes real-time track data, topography, air route, threat weapons envelope, and current ground unit location to generate a deconfliction plan to maintain minimum separation between aircraft, missiles, and artillery [JCSFL 5.1.16].",
+          "proposeduse": "Not used",
+          "tier": "2"
+        }, {
+          "number": "2.2.6",
+          "name": "Generate New or Revised Plans",
+          "definition": "This function employs the use of decision aids to generate and revise Air, Space, Land, and Maritime mission operations plans.  These functions include, but are not limited to: asset allocation, determining coverage requirements, assigning areas of responsibility, developing platform movement orders, determining sensor and weapon system configurations, and engagement planning [JCSFL 5.1.1].",
+          "proposeduse": "Not used",
+          "tier": "2"
+        }]
+    }]
+}, {
+  "number": "3",
+  "name": "Ensure Readiness",
+  "definition": "Provides the assessment of the combat system readiness to include the system and the operators.  This functions provides for training to prepare sailors to fight, operate, and win at the tactical level of war. This includes the assessment of current combat team capability through training and mission analysis.  This function is also responsible for the assessment of the overall readiness of the combat system equipment.",
+  "tier": "0",
+  "items": [{
+      "number": "3.1",
+      "name": "Assess Readiness",
+      "definition": "This function monitors status, embedded mission readiness, and conducts sensor registration and calibration for all missions [*NEW*].",
+      "proposeduse": "as written",
+      "tier": "1",
+      "items": [{
+          "number": "3.1.1",
+          "name": "Conduct Sensor Registration and Calibration",
+          "definition": "This function conducts sensor registration and calibration to measure and adjust rotational and translational biases [JCSFL 1.4.34].",
+          "proposeduse": "Sensor alignment and calibration; element level PMS.  See 1.1.5 for OE issues",
+          "tier": "2"
+        }, {
+          "number": "3.1.2",
+          "name": "Monitor Embedded Mission Readiness",
+          "definition": "This function monitors embedded mission readiness and the status of mission-critical components, subsystems and consumables [JCSFL 3.5.1].\r\n\r\nACS: This function is performed by ORTS within the AEGIS Combat System.",
+          "proposeduse": "ORTS",
+          "tier": "2"
+        }, {
+          "number": "3.1.3",
+          "name": "Monitor System Status",
+          "definition": "This function monitors system status such as initialization complete, mission readiness, availability configuration, interface operability, and degraded performance for situational awareness [JCSFL 3.5.27].",
+          "proposeduse": "Equipment status reports; ",
+          "tier": "2"
+        } ]
+    }, {
+      "number": "3.2",
+      "name": "Test System",
+      "definition": "This function performs operability/assessment, fault detection/isolation, and BIT testing [*NEW*].",
+      "proposeduse": "as written",
+      "tier": "1",
+      "items": [{
+          "number": "3.2.1",
+          "name": "Perform Built-in-Test (BIT)",
+          "definition": "This function performs the system internal test and diagnostic Built-In-Test (BIT) provisions to ensure fault isolation to the Line Replaceable Unit (LRU) [JCSFL 9.2.1].",
+          "proposeduse": "BIT only or BIT+ETF+CAT",
+          "tier": "2"
+        }, {
+          "number": "3.2.2",
+          "name": "Perform Fault Detection/Isolation",
+          "definition": "This function will provide the capability to monitor systems for faults as well as categorize the fault and where it is within the specific system [*NEW*].",
+          "proposeduse": "FD / FI",
+          "tier": "2"
+        }, {
+          "number": "3.2.3",
+          "name": "Perform Operability/Assessment Testing",
+          "definition": "This function will perform system testing to keep the system in a safe and reliable functioning condition according to pre-defined operational requirements [*NEW*].",
+          "proposeduse": "OCSOT / DSOT/ PAC fires",
+          "tier": "2"
+        }]
+    }, {
+      "number": "3.3",
+      "name": "Conduct Training",
+      "definition": "This function controls, creates, and performs training information and simulations [*NEW*].",
+      "proposeduse": "training systems issues",
+      "tier": "1",
+      "items": [{
+          "number": "3.3.1",
+          "name": "Assess Training Engagement",
+          "definition": "This function evaluates actual time, space, positional indicators against training situational awareness and training actions to determine the results of engagements [JCSFL 13.2.2].",
+          "proposeduse": "not used.  Assessed as mission as functionality",
+          "tier": "2"
+        }, {
+          "number": "3.3.2",
+          "name": "Conduct Training Control",
+          "definition": "This function involves control of the exercise during execution, including starting, stopping, pausing, resuming, or resetting the exercise as well as all of its data capturing, simulations, and timings [JCSFL 13.2.15].",
+          "proposeduse": "TNGS / TNGA issues",
+          "tier": "2"
+        }, {
+          "number": "3.3.3",
+          "name": "Create Synthetic Exercise Environment",
+          "definition": "This function creates a synthetic exercise environment based on inputs specifying characteristics such as, but not limited to: terrain, bathymetry, weather, array of forces and tracks, geo-political situation, rules of engagement, and system and force status [JCSFL 13.2.16].",
+          "proposeduse": "FST issues",
+          "tier": "2"
+        }, {
+          "number": "3.3.4",
+          "name": "Distribute Training Scenario",
+          "definition": "This function distributes the training scenario to network nodes participating in the training event [JCSFL 13.2.19].",
+          "proposeduse": "BFTT, BEWT",
+          "tier": "2"
+        }, {
+          "number": "3.3.5",
+          "name": "Perform System Training",
+          "definition": "This function performs system training as a means of planning, directing, controlling, and coordinating training across the host system and/or systems.  This includes both external and embedded system training capabilities [JCSFL 13.2.18].",
+          "proposeduse": "Issues regarding things that do not work while in training mode.",
+          "tier": "2"
+        }, {
+          "number": "3.3.6",
+          "name": "Perform System Training Simulation",
+          "definition": "This function provides the ability to simulate a system capability or interface for the purpose of training, modeling and/or simulation [JCSFL 13.2.11].",
+          "proposeduse": "System simulation; test and training",
+          "tier": "2"
+        }, {
+          "number": "3.3.7",
+          "name": "Perform System Training Stimulation",
+          "definition": "This function provides sensor systems with the stimulation signals necessary to provide live sensor inputs of training signals [JCSFL 13.2.10].",
+          "proposeduse": "System stimulation; test and training",
+          "tier": "2"
+        }]
+    }]
+}, {
+  "number": "4",
+  "name": "Detect and Track Objects",
+  "definition": "This function detects objects from received energy and generates lines of bearing and/or tracks.  Detections may be active or passive.  The received energy includes radio frequency (RF), infra-red (IR), and acoustic.  Sensor emissions are generated in active mode.  Sensor data is provide to support situational awareness; however, fire control quality tracking is provided to support engagements.  This function receives setting and constraints (e.g. radiation sector inhibit, frequency limits, etc) as well as real-time sensor support tasking.",
+  "proposeduse": "Sensor realated ",
+  "tier": "0",
+  "items": [{
+      "number": "4.1",
+      "name": "Detect Objects",
+      "definition": "This function searches for objects with active air surface, underwater, and space sensor to detect objects. This function also detects objects through the passive detection of acoustic and electronic surveillance (ES) signals [*NEW*].",
+      "proposeduse": "Infrequently used.  Need to re-evaluate?",
+      "tier": "1",
+      "items": [{
+          "number": "4.1.1",
+          "name": "Detect Acoustic Signals",
+          "definition": "This function detects acoustic signals in the environment. Detections are performed by systems using acoustic transducers to receive and measure sound through mediums such as air, ground, and water [JCSFL 1.3.20].",
+          "proposeduse": "Active and passive acoustic detection including  sonobouys (DICASS, DIFAR, LOFAR, VLAD)   Includes MAD.  Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "4.1.2",
+          "name": "Detect and Process Electronic Attack",
+          "definition": "This function detects an electronic attack and determines the type and origin of the attack [JCSFL 1.3.19].",
+          "proposeduse": "ECCM. Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "4.1.3",
+          "name": "Detect Electromagnetic Signals",
+          "definition": "This function detects electromagnetic signals in the environment. These signals include, but are not limited to Radio Frequency (RF), microwave, and electro-optical emissions such as jamming, radar scans, and communication signals. Detection of this type is also referred to as an intercept [JCSFL 1.3.8].",
+          "proposeduse": "ESM. Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "4.1.4",
+          "name": "Process Acoustic Sensor Data",
+          "definition": "This function processes acoustic sensor data detected by acoustic sensors for purposes such as noise resolution, object detection, signature classification, and target tracking [JCSFL 1.1.13].",
+          "proposeduse": "Active and passive acoustic processing and classification including  sonobouys (DICASS, DIFAR, LOFAR, VLAD) ",
+          "tier": "2"
+        }, {
+          "number": "4.1.5",
+          "name": "Process Electro-Optical/Infrared (EO/IR) Data",
+          "definition": "This function processes detected Electro-Optical/Infrared (EO/IR) sensor data for purposes such as object detection and target tracking [JCSFL 1.1.15].",
+          "proposeduse": "EO/IR processing issues.  Use 4.1.6 for processing other sensor data. Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "4.1.6",
+          "name": "Receive and Process Signals",
+          "definition": "This function receives raw sensor signals and processes these signals to generate geospatial data such as: position, elevation, height, depth, size, and other characteristics enabled by the sensors on objects in the environment [JCSFL 1.1.1].",
+          "proposeduse": "Radar processing.",
+          "tier": "2"
+        }, {
+          "number": "4.1.7",
+          "name": "Search with Active Sensor",
+          "definition": "This function actively searches by transmitting energy for the purpose of detecting the signal reflected from an object [JCSFL 1.2.1].",
+          "proposeduse": "All radar and sonar transmissions",
+          "tier": "2"
+        }]
+    }, {
+      "number": "4.2",
+      "name": "Track Objects",
+      "definition": "This function tracks objects by distinguishing between single objects, multiple objects. This function associates and correlates tracks as appropriate.  This function discriminates objects and determines track object classification [*NEW*].",
+      "proposeduse": "Used for sensot level functionality",
+      "tier": "1",
+      "items": [{
+          "number": "4.2.1",
+          "name": "Associate Sensor Tracks",
+          "definition": "This function associates tracks with similar characteristics, behaviors, or relationships by generating a linkage between the tracks for further track characterization such as formation, emitter/platform, and weapon/launch platform [*NEW*].",
+          "proposeduse": "Not used?",
+          "tier": "2"
+        }, {
+          "number": "4.2.2",
+          "name": "Correlate Sensor Tracks",
+          "definition": "This function correlates two or more tracks to form a single track when they share similar attributes and represent a single entity [*NEW*].",
+          "proposeduse": "sensor level track correlation decorrelation (see 5.1.6 / 5.1.7 for STM correlation / decorrelation",
+          "tier": "2"
+        }, {
+          "number": "4.2.3",
+          "name": "Discriminate Objects",
+          "definition": "This function distinguishes objects of interest from background ambient noise, ground clutter, decoys, debris, etc. detected in raw sensor signals using filters, scan comparisons, gain reduction, Moving Target Indicator (MTI), and other signal processing techniques [JCSFL 1.1.4].\r\n\r\nACS: This function is used to determine the objects of interest from other objects being tracked (e.g., chaff, debris, birds, etc.) that passed track qualification.",
+          "proposeduse": "Splach avoidance, MTI, track discrimination issues.  Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "4.2.4",
+          "name": "Estimate a Single Object",
+          "definition": "This function provides estimation and prediction of a single object on the basis of observation to track association, continuous state estimation (e.g. kinematics), and discrete state estimation [e.g. target type and Identification (ID)] by combining data to obtain estimates of an entity's location, motion, attributes, characteristics, and identity [JCSFL 1.1.12].",
+          "proposeduse": "Sensor level track and coast functionality  ",
+          "tier": "2"
+        }, {
+          "number": "4.2.5",
+          "name": "Estimate Multiple Objects",
+          "definition": "This function estimates the presence of multiple objects from detections that appear to represent more than one object [JCSFL 1.1.5].",
+          "proposeduse": "Split tracks.  Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "4.2.6",
+          "name": "Estimate Object Classification",
+          "definition": "This function determines an estimation of classification and/or identity of entities such as emitters, platforms, or smaller-size military units, based on attributes or features [JCSFL 2.2.5].",
+          "proposeduse": "Possibly used for ASToC issues",
+          "tier": "2"
+        }, {
+          "number": "4.2.7",
+          "name": "Filter Track Report",
+          "definition": "This function filters track reports by employing track reporting rules, thereby adjusting the flow of track data to and from remote units [JCSFL 2.1.11].\r\n\r\nACS: This function is applied at the sensor to prevent unwanted track data from being sent to the Maintain Situational Awareness functions on an element-by-element basis.",
+          "proposeduse": "Not used in legacy assessment.  Can we do this at the sensor level?",
+          "tier": "2"
+        }, {
+          "number": "4.2.8",
+          "name": "Manage Sensor Tracks",
+          "definition": "This function manages sensor tracks by employment of sub-functions such as, but not limited to: generating and updating tracks, assigning and coordinating track numbers, coordinating remote and local tracks, performing correlation, monitoring track information quality, etc. [*NEW*]\r\n\r\nNote: This function is similar to JCSFL 2.1.35 MANAGE TRACKS but is being applied here specifically to sensor functions as opposed to management of system level tracks.",
+          "proposeduse": "Element level track management; not STM issues",
+          "tier": "2"
+        }, {
+          "number": "4.2.9",
+          "name": "Qualify Track",
+          "definition": "This function determines if a track meets qualification criteria and/or standards [JCSFL 2.1.7].",
+          "proposeduse": "Sensor level track declaration",
+          "tier": "2"
+        }]
+    }, {
+      "number": "4.3",
+      "name": "Control and Manage Sensors",
+      "definition": "This function generates sensor configuration commands, provides track services, controls search parameters, acquires and tracks targets, and protects sensors. This function also utilizes spectrum management techniques to mitigation RF signal interference amongst active sensors [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "4.3.1",
+          "name": "Acquire and Track Target",
+          "definition": "This function acquires and tracks the target to produce target state reports enabling the generation of a fire control solution or to control an autonomous weapon to intercept a target [JCSFL 2.1.39].\r\n\r\nACS: This function handles sensor cues from local and remote sources. This functions determines how to point the sensor to acquire the track.",
+          "proposeduse": "GWS / HWS issues. Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "4.3.2",
+          "name": "Control Search Parameters",
+          "definition": "This function controls search parameters for the system to detect potential target(s) based on criteria given to them [JCSFL 1.4.4].\r\n\r\nACS: Used for sensor doctrine.",
+          "proposeduse": "Sensor doctrine activation/deactivation",
+          "tier": "2"
+        }, {
+          "number": "4.3.3",
+          "name": "Generate Sensor Configuration Commands",
+          "definition": "This function generates sensor configuration and reconfiguration commands to adjust characteristics such as sensor coverage, wavelength, power, pulse type, spectrum range, rotation rate, azimuth, elevation, zoom, and reporting frequency as required [JCSFL 1.4.14].",
+          "proposeduse": "SPY / FCS / HWS / SQP-9B / SQQ 89 / SLQ-32 EA / (Nixie?)",
+          "tier": "2"
+        }, {
+          "number": "4.3.4",
+          "name": "Manage Co-site Sensor Interference",
+          "definition": "Manage Co-site Sensor Interference utilizes spectrum management to generate time blanking signal to cancel EW RF signal interference from active sensors. In the future co-site interference is planned to be managed through sharing of short term schedule information. [*NEW*]",
+          "proposeduse": "Functionally applies to SLA-10 but is not co-site.",
+          "tier": "2"
+        }, {
+          "number": "4.3.5",
+          "name": "Manage Sensors",
+          "definition": "This function relates to the management of sensors including planning, tasking and control, collection management, monitoring, and protection [JCSFL 1.4.5].\r\n\r\nACS: This function interprets tasks and determines appropriate controls to change sensor configuration, search parameters, etc. Manage sensors provides for detailed sensor management (i.e. dwell prioritization, resource management, etc) that occurs as a result of tasking. Manage sensors is a continuous activity. Process sensor tasks is input driven (e.g. change from operators or C2 functionality).",
+          "tier": "2"
+        }, {
+          "number": "4.3.6",
+          "name": "Process Sensor Tasks",
+          "definition": "This function processes the receipt of tasks and translates to commands that can be interpreted by Manage Sensors. Tasks include sector settings, doctrine orders, search parameters, etc [*NEW*].\r\n\r\nACS: Provides for operator entry of settings, doctrine, etc. Processes tasks from determine course of action (e.g. ADS, C&D).",
+          "proposeduse": "Use for sensors to reponding to doctrine trips",
+          "tier": "2"
+        }, {
+          "number": "4.3.7",
+          "name": "Protect Sensors",
+          "definition": "This function protects sensors including anti-jamming capabilities [JCSFL 1.4.8].",
+          "proposeduse": "Anti-jamming techniques.  Burn through. Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "4.3.8",
+          "name": "Provide Tracking Services",
+          "definition": "This function provides track formation and entity tracking [JCSFL 2.1.33].\r\n\r\nACS: Determines how to configure the sensor to provide support for requests from GWS, external units, etc.",
+          "proposeduse": "Not used in legacy assessment.",
+          "tier": "2"
+        }]
+    }]
+}, {
+  "number": "5",
+  "name": "Maintain Situational Awareness",
+  "definition": "Provides an integrated and coherent Situational Awareness (SA) picture of objects within sensor range of ownship and distributed platforms to enable successful command and decision actions in support of mission and self-defense functions; contribute to shared SA across all cooperating platforms.  Local and remote sensor data is processed and provided as integrated SA to support tactical assessment of the current situation and tactical decisions.  Doctrine is processed to support identification (ID) assignments.\r\n\r\nIncludes determination of reportability; e.g. application of tactical data link auto-reporting based upon ID, category, etc.  TDL protocols such as R2 rules are managed by the Communicate with External Nodes function.  Includes conversion of accuracy data into TDL (and other link representations) based upon knowledge of combat system resource capabilities.  Resolution of ID (e.g. ID conflict resolution) is included in the Maintain SA function.",
+  "tier": "0",
+  "items": [{
+      "number": "5.1",
+      "name": "Manage Tactical Data",
+      "definition": "This function manages track data and performs operations including, but not limited to: assignment of track category and ID, assignment of track numbers, track correlation/association, and management of track updates [*NEW*].",
+      "proposeduse": "These should be C&D related issues",
+      "tier": "1",
+      "items": [{
+          "number": "5.1.1",
+          "name": "Assign Track Category",
+          "definition": "This function assigns track category using predetermined categorization procedures [JCSFL 2.1.23].",
+          "tier": "2"
+        }, {
+          "number": "5.1.2",
+          "name": "Assign Track Number",
+          "definition": "This function assigns numbers to unassociated sensor measurements and tracks for use internally and on the communications networks of the force [JCSFL 2.1.17].",
+          "proposeduse": "Track number assignment and reuse (CTSL, CEPN,  LTN, or ALL)???",
+          "tier": "2"
+        }, {
+          "number": "5.1.3",
+          "name": "Associate Identification Friend or Foe (IFF) Response",
+          "definition": "This function associates Identification Friend or Foe (IFF) responses with a vehicular track based on the spatial relationship of the centroided IFF response position and the track's position.  Once spatially associated, the received IFF modes and codes are associated with the track for the purpose of identification determination [JCSFL 1.1.6].",
+          "proposeduse": "IFF to track pairing  and IFF display location.  Not related to  correctness of IFF modes and codes.  (see 8.2.1 for modes and codes issues)",
+          "tier": "2"
+        }, {
+          "number": "5.1.4",
+          "name": "Associate Tracks",
+          "definition": "This function associates tracks with similar characteristics, behaviors, or relationships by generating a linkage between the tracks for further track characterization such as formation, emitter/platform, and weapon/launch platform [JCSFL 2.1.10].",
+          "tier": "2"
+        }, {
+          "number": "5.1.5",
+          "name": "Coordinate Remote Track Reporting",
+          "definition": "This function coordinates remote track reporting by implementing data forwarding rules, resolves or precludes duplicate track data across multiple communications links, and arbitrates communication link track numbers with other units on the communications links [JCSFL 2.1.12].",
+          "proposeduse": "Link Track numbers and reporting",
+          "tier": "2"
+        }, {
+          "number": "5.1.6",
+          "name": "Correlate Tracks",
+          "definition": "This function correlates two or more tracks to form a single track when they share similar attributes and represent a single entity [JCSFL 2.1.9].",
+          "proposeduse": "STM Track Correlation ",
+          "tier": "2"
+        }, {
+          "number": "5.1.7",
+          "name": "Decorrelate Tracks",
+          "definition": "This function decorrelates tracks that were previously correlated and reverts the specified tracks back to individual uncorrelated tracks [JCSFL 2.1.41].",
+          "proposeduse": "STM Track Decorrelation",
+          "tier": "2"
+        }, {
+          "number": "5.1.8",
+          "name": "Fuse Track Data",
+          "definition": "This function fuses multiple information types such as kinematic, identification and positional data, from multiple sources to generate a single system track [JCSFL 2.1.31].",
+          "proposeduse": "CEC tracks",
+          "tier": "2"
+        }, {
+          "number": "5.1.9",
+          "name": "Maintain Track History",
+          "definition": "This function stores and maintains track information history for a predetermined period [JCSFL 2.1.26].",
+          "proposeduse": "Track history",
+          "tier": "2"
+        }, {
+          "number": "5.1.10",
+          "name": "Manage Tracks",
+          "definition": "This function manages tracks, both new and existing, by employment of subfunctions such as, but not limited to: generating and updating tracks, assigning and coordinating track numbers, coordinating remote and local tracks, performing correlation, monitoring track information quality, etc [JCSFL 2.1.35].",
+          "proposeduse": "Catchall that dublicates other 5.1 functionality.  Not used?",
+          "tier": "2"
+        }, {
+          "number": "5.1.11",
+          "name": "Update Existing Tracks",
+          "definition": "This function assigns updated and validated measurements or track data candidates to existing track [JCSFL 2.1.21].",
+          "proposeduse": "Update tracks",
+          "tier": "2"
+        }]
+    }, {
+      "number": "5.2",
+      "name": "Display Tactical Information",
+      "definition": "This function receives tactical data and formats it for display. This function handles operator input through the use of infrastructure services. This data orients display data based upon operator controls and doctrine that affect symbology, maps, overlays, etc [*NEW*].\r\n\r\nACS: Used for systems with a physical display to manage (e.g. ADS, ORTS, GWS, EWS).",
+      "proposeduse": "These should be ADS related issues. ",
+      "tier": "1",
+      "items": [{
+          "number": "5.2.1",
+          "name": "Display Data",
+          "definition": "This function displays situational awareness such as formatted graphical products, imagery, tables, charts, maps, and text to IT display devices providing the visual interface of system information to the operator [JCSFL 8.10.3].",
+          "proposeduse": "Alerts, tutorials, ASTABS.  CPCRs that are ADS errors.  Use 1.3.1 for bad information received and displayed by ADS",
+          "tier": "2"
+        }, {
+          "number": "5.2.2",
+          "name": "Display Map",
+          "definition": "This function displays the specified map file or map data, e.g., Digital Nautical Charts (DNC), Digital Terrain and Elevation Data (DTED), and Digital Aeronautical Flight Information File (DAFIF) on the map layer of the tactical display [JCSFL 3.2.52].",
+          "proposeduse": "Maps",
+          "tier": "2"
+        }, {
+          "number": "5.2.3",
+          "name": "Display Overlays",
+          "definition": "This function displays overlays specified for display on the overlay layer of the tactical display [JCSFL 3.4.24].",
+          "proposeduse": "Develop and display overlays, zones, and regions",
+          "tier": "2"
+        }, {
+          "number": "5.2.4",
+          "name": "Display Tracks",
+          "definition": "This function displays tracks using symbology of the type selected to represent corresponding track file objects and related tabular information on tactical situation displays such as a common operational picture and tactical picture.  Tracks may be displayed as filters indicate or by specified track reference such as system track number, track name, identification, etc. [JCSFL 3.4.21].",
+          "proposeduse": "Tracks, track information, and symbology issues (including bearing lines and special points) and ra",
+          "tier": "2"
+        }, {
+          "number": "5.2.5",
+          "name": "Display Video",
+          "definition": "This function displays video such as full motion video, still imagery, and visual representations of information, i.e. tables, charts, maps, text, etc [JCSFL 8.10.25].",
+          "tier": "2"
+        }, {
+          "number": "5.2.6",
+          "name": "Manage Alerts and Indications",
+          "definition": "This function manages alerts and indications by allowing the user to define a set of alerts and indications and their conditions [JCSFL 3.3.13].",
+          "proposeduse": "Alert Doctrine",
+          "tier": "2"
+        }, {
+          "number": "5.2.7",
+          "name": "Manage Display of Symbology",
+          "definition": "This function permits the user to manage display symbology by permitting selections such as: symbol sets, symbol size; points only; none, paring lines, track history on or off, etc [JCSFL 8.10.22].",
+          "proposeduse": "user level symbology management; manage tacit display",
+          "tier": "2"
+        }, {
+          "number": "5.2.8",
+          "name": "Playback and Display Recorded Operational Systems Data",
+          "definition": "This function plays back and displays recorded operational systems data for post mission analysis.  This data includes recorded information such as sensor images, common operational and tactical pictures, communications (audio/text), video, logs, doctrine and rule sets [JCSFL 3.4.23].",
+          "proposeduse": "PMA",
+          "tier": "2"
+        }, {
+          "number": "5.2.9",
+          "name": "Retrieve Specified Track",
+          "definition": "This function retrieves track information for a specified track. Information is made available from the track file data base based on input parameters such as a system track number, track name, identification, etc. [JCSFL 3.4.27].",
+          "proposeduse": "Hooked track issues",
+          "tier": "2"
+        }]
+    }, {
+      "number": "5.3",
+      "name": "Identify Tracks",
+      "definition": "This function determines track classification and identification based upon doctrine, tactical data, visual ID and intelligence data. This function is also responsible for resolving ID conflicts [*NEW*].",
+      "proposeduse": "Rearely used … re evaluate usage",
+      "tier": "1",
+      "items": [{
+          "number": "5.3.1",
+          "name": "Determine Combat Identification (CID)",
+          "definition": "This function determines combat identification (CID) by processing acquired track data to generate the identification and classification of the track, managing this information with other forces, and distributing the data [JCSFL 2.2.1].",
+          "proposeduse": "Includes ID and IFF doctrine",
+          "tier": "2"
+        }, {
+          "number": "5.3.2",
+          "name": "Determine Identification (ID) Based on Report of Visual ID (VID)",
+          "definition": "This function determines the identification (ID) based on the report of visual identification (VID) recognition [JCSFL 2.2.21].",
+          "proposeduse": "Not used.  Use 5.4.10",
+          "tier": "2"
+        }, {
+          "number": "5.3.3",
+          "name": "Determine Identification (ID) Based on Signature Association",
+          "definition": "This function determines the identification (ID) based on associations with signatures such as electromagnetic and acoustic signatures [JCSFL 2.2.20].",
+          "proposeduse": "Use 4.1.3 (ESM) and 4.1.4 (Acoustic)",
+          "tier": "2"
+        }, {
+          "number": "5.3.4",
+          "name": "Resolve Identification (ID) Conflicts",
+          "definition": "This function resolves identification (ID) conflicts using established criteria [JCSFL 2.2.17].",
+          "proposeduse": "ID conflicts ",
+          "tier": "2"
+        }]
+    }, {
+      "number": "5.4",
+      "name": "Create/Update System Tracks",
+      "definition": "This function processes data from local and remote sources and generate system tracks. This function is responsible for estimation of kinematic track states and track attributes [*NEW*].",
+      "proposeduse": "Manaul track creation.  Manual/remote track updates.  Track display management.",
+      "tier": "1",
+      "items": [{
+          "number": "5.4.1",
+          "name": "Calculate Ballistic Missile Launch Point of Origin",
+          "definition": "This function calculates the ballistic missile launch point of origin based on ballistic missile trajectory, target track state vectors, current position, and target track characteristics.  For the purpose of this function the description of ballistic missiles also includes munitions such as mortar and artillery munitions [JCSFL 4.6.47].",
+          "proposeduse": "Not used",
+          "tier": "2"
+        }, {
+          "number": "5.4.2",
+          "name": "Calculate Ballistic Missile Trajectory and Impact Point",
+          "definition": "This function calculates a ballistic missile trajectory and impact point based information such as target track state vectors, launch point, and target track characteristics.   For the purpose of this function the description of ballistic missiles also includes munitions such as mortar and artillery munitions [JCSFL 4.6.45].",
+          "proposeduse": "Not used",
+          "tier": "2"
+        }, {
+          "number": "5.4.3",
+          "name": "Calculate Geolocation",
+          "definition": "This function calculates geolocation by determining latitude, longitude, and altitude (or depth) of a sensor contact or track [JCSFL 2.1.24].",
+          "tier": "2"
+        }, {
+          "number": "5.4.4",
+          "name": "Correlate Navigational Data",
+          "definition": "This function correlates local navigation data with remote navigation data [JCSFL 1.5.6].",
+          "proposeduse": "Not used",
+          "tier": "2"
+        }, {
+          "number": "5.4.5",
+          "name": "Enter and Update Remote Tracks",
+          "definition": "This function enters and updates remote tracks received from nonorganic sources such as Tactical Data Links (TDLs) messages [JCSFL 2.1.36].",
+          "tier": "2"
+        }, {
+          "number": "5.4.6",
+          "name": "Enter, Display, Update, and Monitor Force Status",
+          "definition": "This function enters, displays, updates, and monitors force status attributed to force, platform, facility, organizational, unit, personnel status, force equipment, etc.  Status includes information such as identification, location, equipment status, readiness status, weapons and ammunition status and the quality, quantity, and type of supplies inventoried [JCSFL 3.5.9].",
+          "proposeduse": "Receipt and reporting of force level weapon inventories including A/C stores and sonobouy inventories",
+          "tier": "2"
+        }, {
+          "number": "5.4.7",
+          "name": "Estimate Kinematic Track State",
+          "definition": "This function includes application of track filters to estimate track kinematics such as position, velocity, acceleration and associated variances [*NEW*].",
+          "proposeduse": "As written.",
+          "tier": "2"
+        }, {
+          "number": "5.4.8",
+          "name": "Fuse Sensor Data",
+          "definition": "This function creates and maintains correlated and fused multi-sensor data [JCSFL 1.4.1].",
+          "proposeduse": "Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "5.4.9",
+          "name": "Maintain and Display Unit and Platform Status Information",
+          "definition": "This function maintains and displays status information on units and platforms specified [JCSFL 3.2.14].",
+          "proposeduse": "Use 5.4.6?",
+          "tier": "2"
+        }, {
+          "number": "5.4.10",
+          "name": "Manage Track Inputs",
+          "definition": "This function manages track inputs from local and remote system sources for the purpose of performing validity checks, data conversion to desired formats, maintaining status, and distribution of stabilized track data to other system entities (function, service, system, node) [JCSFL 2.1.42].\r\n\r\nACS: Provides for sensor source selection.",
+          "proposeduse": "Sensor source selection and drop track doctrine",
+          "tier": "2"
+        }, {
+          "number": "5.4.11",
+          "name": "Monitor Position Location Information (PLI)",
+          "definition": "This function monitors position location information (PLI) whether transmitted directly from a PLI source or reported indirectly from another source [JCSFL 3.4.25].",
+          "proposeduse": "Not used.  ",
+          "tier": "2"
+        }]
+    }, {
+      "number": "5.5",
+      "name": "Manage Navigational Data",
+      "definition": "This function manages and distributes navigation data [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "5.5.1",
+          "name": "Distribute Positioning, Navigation, and Timing Data",
+          "definition": "This function distributes positioning, navigation, and timing data to all other functions [JCSFL 1.5.9].",
+          "proposeduse": "NAVSSI; includes 5.5.3 through 5.5.7",
+          "tier": "2"
+        }, {
+          "number": "5.5.2",
+          "name": "Monitor Natural Environment",
+          "definition": "This function processes sensor data and provides data about the natural environment, which includes, but is not limited to: Meteorological and Oceanographic (METOC) analysis, sound velocity profiles, etc [*NEW*].",
+          "proposeduse": "SMQ-13 Moriah ",
+          "tier": "2"
+        }, {
+          "number": "5.5.3",
+          "name": "Provide Inertial Navigation Data",
+          "definition": "This function provides inertial navigation data supplied by inertial navigation systems sensors such as gyrocompasses and accelerometers.  The output data consist of information such as pitch, roll, heading, and attitude signals [JCSFL 1.5.27].",
+          "proposeduse": "Included in 5.5.1",
+          "tier": "2"
+        }, {
+          "number": "5.5.4",
+          "name": "Receive and Translate Global Positioning System (GPS) Signals",
+          "definition": "This function receives Global Positioning System (GPS) navigation satellite signals and translates them into positioning, navigation, and timing information [JCSFL 1.5.22].",
+          "proposeduse": "Included in 5.5.1",
+          "tier": "2"
+        }, {
+          "number": "5.5.5",
+          "name": "Select Navigational Data Source",
+          "definition": "This function selects the best navigation sensor to provide navigation data, given navigation data sources [JCSFL 1.5.7].",
+          "proposeduse": "Included in 5.5.1",
+          "tier": "2"
+        }, {
+          "number": "5.5.6",
+          "name": "Translate Navigation Signal",
+          "definition": "This function translates navigation signals into position and kinematic information reports that comply with earth model standards such as WGS-84 [JCSFL 1.5.10].",
+          "proposeduse": "Included in 5.5.1",
+          "tier": "2"
+        }, {
+          "number": "5.5.7",
+          "name": "Translate Time Data",
+          "definition": "This function translates time data into a recognized time standard, such as Coordinated Universal Time (UTC) [JCSFL 1.5.11].",
+          "proposeduse": "Included in 5.5.1",
+          "tier": "2"
+        }]
+  }]
+}, {
+  "number": "6",
+  "name": "Exercise Tactical Command and Control",
+  "definition": "Evaluates the current tactical situation and determines the appropriate tactical actions.  Decisions are based upon doctrine provided in the tactical plan and incoming orders.  Once a decision has been made, the Exercise Tactical C2 activity coordinates resources and issues resource tasking.",
+  "proposeduse": "This section evaluates and directs engagnements from a CO or warefare commander perspective",
+  "tier": "0",
+  "items": [{
+      "number": "6.1",
+      "name": "Configure Systems",
+      "definition": "This function determines the appropriate settings, constraints, and doctrine for controlled systems, including weapons, sensors, data and voice communications systems, etc [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "6.1.1",
+          "name": "Configure and Control Weapons System",
+          "definition": "This function configures and controls the weapon system by setting parameters such as modes of operation (e.g., automatic, semi-automatic, manual, etc.), setting safety states (e.g., armed, safe), salvo number, and weapon configurations [*NEW*].",
+          "proposeduse": "Establish and set Weapons, SM Policy, and Tight Zone Doctrine",
+          "tier": "2"
+        }, {
+          "number": "6.1.2",
+          "name": "Determine System Configuration",
+          "definition": "This function determines the optimum system configuration to accomplish mission objectives [JCSFL 6.2.20].\r\n\r\nACS: This function determines the settings/constraints, and issues appropriate commands to the systems for implementation. This includes enabling, modifying, and deleting doctrine.",
+          "proposeduse": "Enable, modify, delete Weapons, SM Policy, and Tight Zone Doctrine",
+          "tier": "2"
+        }, {
+          "number": "6.1.3",
+          "name": "Manage Voice and Data Communication Systems",
+          "definition": "This function manages voice and data communication systems using methods to configure system settings such as states, modes, waveforms, and frequencies [JCSFL 7.1.111].\r\n\r\nACS: This function configures the voice and communications but does not implement the functionality.",
+          "proposeduse": "Not used in legacy assessment.  Configures the voice and communications",
+          "tier": "2"
+        }]
+    }, {
+      "number": "6.2",
+      "name": "Evaluate Tactical Situation",
+      "definition": "This function analyzes the current the tactical/operational picture and the status of actions/tasks being performed, and determines if any action needs to be taken, modified, or cancelled.  Possible actions include issuing threat warninings, maneuvers, system settings, engagements, etc [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "6.2.1",
+          "name": "Determine Tactical Action",
+          "definition": "This function makes a decision based upon information about the current tactical situation that is provided by tactical displays, tactical decision aids (TDAs), and an assessment of current ability to meet mission objectives. [*NEW*]",
+          "proposeduse": "Issues with TDAs",
+          "tier": "2"
+        }, {
+          "number": "6.2.2",
+          "name": "Assess Effect",
+          "definition": "This function determines whether an effect launched against a target has been successful, compares the outcome to the success criteria, and makes a final effect success assessment [JCSFL 4.3.18].",
+          "proposeduse": "BDA",
+          "tier": "2"
+        }, {
+          "number": "6.2.3",
+          "name": "Assess Threats",
+          "definition": "This function processes incoming data to identify, monitor, and assess threat data as well as analyze threats specific to a given mission [JCSFL 4.8.11].",
+          "tier": "2"
+        }, {
+          "number": "6.2.4",
+          "name": "Determine Target Engageability",
+          "definition": "This function determines target engageability based on factors such as target range, target state vectors, weapon availability, weapon and target capability, engagement schedule, and engagement constraints.  Outputs include information such as probability of engagement success, engagement opportunities, and engagement battlespace volume [JCSFL 4.6.1].",
+          "tier": "2"
+        }, {
+          "number": "6.2.5",
+          "name": "Determine Track Management Settings",
+          "definition": "This function determines track management settings to be set to optimize tracking performance to meet mission requirements [JCSFL 2.1.34].",
+          "proposeduse": "Drop Track Doctrine",
+          "tier": "2"
+        }, {
+          "number": "6.2.6",
+          "name": "Direct and Monitor Sensor Employment",
+          "definition": "This function directs sensor asset location, monitors sensor performance, and controls sensor assets to optimize utilization of sensors, information sources, and algorithms to achieve the tasked coverage [JCSFL 1.4.19].",
+          "tier": "2"
+        }, {
+          "number": "6.2.7",
+          "name": "Identify Target for Weapon Employment",
+          "definition": "This function automatically generates an identification interrogation to confirm that the target is not friendly prior to employment of weapons in order to avoid fratricide [JCSFL 6.3.13].",
+          "tier": "2"
+        }, {
+          "number": "6.2.8",
+          "name": "Provide Real-Time Threat Warning",
+          "definition": "This function provides real-time enemy threat warnings to friendly forces [JCSFL 3.3.1].",
+          "proposeduse": "Not used in legacy assessment",
+          "tier": "2"
+        }, {
+          "number": "6.2.9",
+          "name": "Provide Tactical Decision Aids (TDA) Services",
+          "definition": "This function provides Tactical Decision Aids (TDA) access information and control capabilities to support the user’s decision making process [JCSFL 8.10.17].",
+          "proposeduse": "Not used in legacy assessment",
+          "tier": "2"
+        }, {
+          "number": "6.2.10",
+          "name": "Recommend Unit Maneuvers",
+          "definition": "This function recommends maneuver orders for the purpose of, but not limited to: transit, evasive action, engagement, and mission objectives [JCSFL 6.2.15].",
+          "tier": "2"
+        }]
+    }, {
+      "number": "6.3",
+      "name": "Coordinate Resources",
+      "definition": "This function evaluates existing and ordered actions to determine the appropriate allocation of tasking to local and remote systems and units, ensuring that all resources needed to achieve the desired effect are issued the appropriate orders.  This includes force orders, local engagement orders, local and remote sensor tasking, orders to controlled vehicles, etc [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "6.3.1",
+          "name": "Control/Direct Aircraft",
+          "definition": "This function receives and maintains information from and about controlled aircraft, including weapon loadout, personnel on board, fuel state, equipment status, and any other information needed by air controllers [*NEW*].",
+          "proposeduse": "Receipt and display of controlled air craft information",
+          "tier": "2"
+        }, {
+          "number": "6.3.2",
+          "name": "Coordinate Aircraft Engagement",
+          "definition": "This function coordinates and directs controlled aircraft engagements. This includes voice and data communications between controlled aircraft and air controllers, coordiation of missions by controlled aircraft, and maintenance and display of engagement and aircraft status [*NEW*].",
+          "proposeduse": "Link control of air craft issues",
+          "tier": "2"
+        }, {
+          "number": "6.3.3",
+          "name": "Coordinate Force Operations",
+          "definition": "This function establishes coordination and tasking of operations with other Components, Joint Task Force (JTF) commanders, and other supporting agencies [*NEW*]",
+          "proposeduse": "STAO mode issues.  Not used in legacy Assess,emrt",
+          "tier": "2"
+        }, {
+          "number": "6.3.4",
+          "name": "Determine Platform-Target Weapon Pairing",
+          "definition": "This function determines which launch platform has the most successful weapon to target pairing [JCSFL 4.8.3].",
+          "proposeduse": "Warfare Commanders.  Not used in legacy assessment",
+          "tier": "2"
+        }, {
+          "number": "6.3.5",
+          "name": "Generate Engagement Orders",
+          "definition": "This function generates an engagement order for a weapon system or a platform to respond to an engage order such as engage, hold fire, cease fire, break engage, assign, and cancel [JCSFL 6.3.1].",
+          "tier": "2"
+        }, {
+          "number": "6.3.6",
+          "name": "Generate Sensor Tasking",
+          "definition": "This function generates sensor tasking including planning, control, collection management, monitoring, and protection [JCSFL 1.4.13].\r\n\r\nACS: Used for cued direction.",
+          "proposeduse": "Is this NIFC-CA?  How is this different from 6.3.8?",
+          "tier": "2"
+        }, {
+          "number": "6.3.7",
+          "name": "Monitor Engagement Status",
+          "definition": "This function monitors engagement status and the progress of the current engagement situation [JCSFL 6.3.10].",
+          "proposeduse": "Engagement status and proper termination of engaged tracks (hung alerts)",
+          "tier": "2"
+        }, {
+          "number": "6.3.8",
+          "name": "Request External Sensor Tasking",
+          "definition": "This function permits authorized consumers to submit organic sensor tasking of assets of a particular node to gather data providing the user with expanded access in support of automatic target collection nomination [JCSFL 6.1.32].\r\n\r\nACS: For AAW engagements, this function requests sensor support from other platforms in support of both IFC and organic engagements.",
+          "proposeduse": "See 6.3.6",
+          "tier": "2"
+        }, {
+          "number": "6.3.9",
+          "name": "Select Weapon for Target Engagement",
+          "definition": "This function selects and allocates a specific weapon type (e.g., Surface-to-Air, Air-to-Air) based on target type, level of destruction, and protective measures of the platforms in the engagement [*NEW*].",
+          "tier": "2"
+        }]
+  }]
+}, {
+  "number": "7",
+  "name": "Engage Targets",
+  "definition": "Provides combat system weapon engagement capabilities. Accepts weapon tasks and generates engagement emissions to include expended ordnance, illumination, RF, and directed energy.  Fire control data is required for some engagements to support real-time weapons guidance.  This function is also responsible for status reporting to ensure engagement objectives and weapons safety.",
+  "proposeduse": "this sections deals with physically engaging a target once directed",
+  "tier": "0",
+  "items": [{
+      "number": "7.1",
+      "name": "Manage Engagement",
+      "definition": "This function controls engagement systems to terminate launches, cancel engagements, change plans for weapons in flight, and dynamically de-conflict engagements [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "7.1.1",
+          "name": "Control Engagement Systems",
+          "definition": "This function controls the engagement of platforms, fire control systems, and weapon launchers enabling engagement execution on specified targets [JCSFL 6.3.3].",
+          "proposeduse": "Applies to system/operator reponse to and engagement order in 6.3.5",
+          "tier": "2"
+        }, {
+          "number": "7.1.2",
+          "name": "Dynamically Deconflict Engagement",
+          "definition": "This function takes real-time track data, topography, platform route, weapons envelope, and platform locations, and evaluates the use of a selected weapon in order to determine potential interference or conflicts with other platforms or weapons in vicinity of engagement path [JCSFL 6.2.21].",
+          "proposeduse": "SCRAM / Tight Zone indications",
+          "tier": "2"
+        }, {
+          "number": "7.1.3",
+          "name": "Generate Cancel Engagement Order",
+          "definition": "This function produces a cancel engagement order to cancel an engagement before the fire mission has started [JCSFL 6.3.12].",
+          "proposeduse": "Applies to system/operator reponse to and negation order in 6.3.5",
+          "tier": "2"
+        }, {
+          "number": "7.1.4",
+          "name": "Generate In-Flight Weapon Plan Changes",
+          "definition": "This function utilizes conditions and parameters that have changed since the weapon mission plan was created to update one or more elements of the mission plan during flight [JCSFL 5.1.59].",
+          "proposeduse": "in-flight WCS / Missile commands",
+          "tier": "2"
+        }, {
+          "number": "7.1.5",
+          "name": "Terminate Launch",
+          "definition": "This function describes the sequence of activities after the missile launch command, including removal of power, when the missile does not exit the launcher.  The missile is declared a dud and removed from the active inventory [*NEW*].",
+          "proposeduse": "As written",
+          "tier": "2"
+        }]
+    }, {
+      "number": "7.2",
+      "name": "Launch/Fire Weapon",
+      "definition": "This function respectively controls the preparation and launch of missiles and the aiming and firing of gun weapon systems [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "7.2.1",
+          "name": "Aim Weapon",
+          "definition": "This function aims a weapon against a fixed or moving target on inputs from a provided fire control solution.  Weapon train and elevation may either be fixed or moving to maintain a computed aim point to compensate for target movement and/or movement of the firing platform [JCSFL 6.3.29].\r\n\r\nACS: Calculates direction, elevation, etc. (e.g. Gun).",
+          "proposeduse": "Integrated guns and CIWS pointing.  ",
+          "tier": "2"
+        }, {
+          "number": "7.2.2",
+          "name": "Conduct Automatic Engagement",
+          "definition": "This function selects the weapon system, sends the fire command to the weapon system, which automatically engages the target taking into account numerous factors [JCSFL 6.3.15].",
+          "proposeduse": "Auto engage doctrine",
+          "tier": "2"
+        }, {
+          "number": "7.2.3",
+          "name": "Configure Weapons",
+          "definition": "This function configures the internal systems of the weapon to the point of readiness for launch [JCSFL 6.3.4].",
+          "proposeduse": "Does anything get taken to CAL with AEGIS?",
+          "tier": "2"
+        }, {
+          "number": "7.2.4",
+          "name": "Fire Weapon",
+          "definition": "This function fires the weapon, given that the weapon was previously loaded and there is receipt of a firing, release, or launch order.  For the purpose of scoping this function, Fire Weapon also includes functionality to release or launch a weapon [JCSFL 6.3.32].\r\n\r\nACS: Includes loading where appropriate.",
+          "proposeduse": "As written; include FIS issues",
+          "tier": "2"
+        }, {
+          "number": "7.2.5",
+          "name": "Initialize, Prepare, and Launch Missile",
+          "definition": "This function initializes, prepares, and launches missile by performing subordinate tasks such as selecting missiles appropriate for assigned tasking, applying power, monitoring missile initialization (spin-up), and launching missile at designated time [JCSFL 6.3.25].",
+          "proposeduse": "applying power, monitoring missile initialization (spin-up), and launching missile at designated time only",
+          "tier": "2"
+        }, {
+          "number": "7.2.6",
+          "name": "Load Weapon Mission Data",
+          "definition": "This function loads weapon mission data into the weapon.  Import data includes information such as target data set, desired point of impact (DPI), routes, terrain models, and fuse settings [JCSFL 6.1.46].",
+          "proposeduse": "TTWCS data entry. Not used in legacy assessment.",
+          "tier": "2"
+        }]
+    }, {
+      "number": "7.3",
+      "name": "Guide Weapon",
+      "definition": "This function controls weapon in flight, monitors weapon engagement status, predicts intercepts, illuminates targets, and determines if engagements should be terminated [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "7.3.1",
+          "name": "Assess Weapon Effectiveness with Sensor",
+          "definition": "Assess weapon effectiveness with sensor to support kill assessment or battle damage assessment [JCSFL 1.1.26].",
+          "proposeduse": "BDA",
+          "tier": "2"
+        }, {
+          "number": "7.3.2",
+          "name": "Calculate Weapon/Target Track State",
+          "definition": "This function processes, smooths, and filters track data and where necessary extrapolates tracks to support missile engagements [*NEW*].",
+          "proposeduse": "Use 7.1.4 to caluclate mid-course",
+          "tier": "2"
+        }, {
+          "number": "7.3.3",
+          "name": "Control Munitions",
+          "definition": "This function sends in-flight updates for munitions controls such as targeting, terminal guidance, and changes in flight path to the munition, and generates controls and orders necessary to launch and fire [JCSFL 6.3.5].",
+          "proposeduse": "TTWCS.   Use 7.5.2 to transmit SM/ESSM mid-course  update",
+          "tier": "2"
+        }, {
+          "number": "7.3.4",
+          "name": "Determine Errant Missile Status",
+          "definition": "This function determines errant missile status if the flight path of the missile is sufficiently different from the path required for a successful engagement.  The setting of this status stimulates the initiation of a missile in flight destruction order [*NEW*].",
+          "proposeduse": "monitor missile in flight trajectory",
+          "tier": "2"
+        }, {
+          "number": "7.3.5",
+          "name": "Evaluate and Assess Engagement Effectiveness",
+          "definition": "This function evaluates mission post engagement information to determine efficacy of engagement [JCSFL 4.8.4].",
+          "tier": "2"
+        }, {
+          "number": "7.3.6",
+          "name": "Illuminate Target",
+          "definition": "This function directs radar energy at an aircraft or surface vessel sufficient to obtain radar targeting information (fire control solution) using assigned illuminator [JCSFL 6.3.19].",
+          "proposeduse": "Mk 99 FCS issues",
+          "tier": "2"
+        }, {
+          "number": "7.3.7",
+          "name": "Initiate Order for Destruction of Missile in Flight",
+          "definition": "This function initiates an order for destruction of a missile in flight to Hold-Fire on an engagement in progress or to destroy an errant missile once the missile is launched.  Destruction orders may result in actions such as immediate physical destruction or disabling guidance signals, dependent on weapon design [JCSFL 6.1.53].",
+          "proposeduse": "destroy missile in flight",
+          "tier": "2"
+        }, {
+          "number": "7.3.8",
+          "name": "Monitor Weapon Status",
+          "definition": "This function supplies continuous weapon availability status information, both horizontally and vertically, across an organization using all of the weapon status feeds for a given execution node allowing commanders to pair weapons with targets based on availability rather than organizational ownership [JCSFL 6.3.8].",
+          "tier": "2"
+        }, {
+          "number": "7.3.9",
+          "name": "Predict Intercept",
+          "definition": "This function determines the location and probability of interception of target [JCSFL 4.6.35].",
+          "tier": "2"
+        }, {
+          "number": "7.3.10",
+          "name": "Receive Track Data",
+          "definition": "This function receives track data from within the combat system or from external battleforce sources [JCSFL 7.2.52].",
+          "proposeduse": "Use for integrated CIWS and Guns.  Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "7.3.11",
+          "name": "Release Illuminator",
+          "definition": "This function is the act ordering an illuminator to cease radiating energy on an assigned target once an intercept occurs or the engagement is aborted [*NEW*].",
+          "proposeduse": "As written. Not used in legacy assessment.",
+          "tier": "2"
+        }]
+    }, {
+      "number": "7.4",
+      "name": "Determine Aim Point",
+      "definition": "This function locates targets, computes fire control solutions, and selects softkill weapons where appropriate. This function refines aim point locations prior to weapons release [*NEW*].",
+      "proposeduse": "Not used in legacy assessment.",
+      "tier": "1",
+      "items": [{
+          "number": "7.4.1",
+          "name": "Compute Fire Control Solution",
+          "definition": "This function utilizes systems to compute a fire control solution for specified target using dedicated computer-based fire control systems [JCSFL 6.2.34].",
+          "proposeduse": "GWS ands UBFCS issues. Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "7.4.2",
+          "name": "Employ Countermeasures",
+          "definition": "This function employs countermeasures to deceive, seduce, or confuse the enemy or enemy systems, or deprive the use of the electromagnetic and/or acoustic spectrum [JCSFL 6.3.17].",
+          "proposeduse": "SLQ-32 V3 EA and SLQ-25 (Nixie) functionality; Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "7.4.3",
+          "name": "Generate Target Coordinates",
+          "definition": "This function generates target coordinates with required timeliness and resolution to permit effective employment of weapons [JCSFL 6.1.33].",
+          "proposeduse": "NGFS. Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "7.4.4",
+          "name": "Locate Target",
+          "definition": "This function locates a target in sufficient detail to permit effective employment of weapons [JCSFL 6.3.14].",
+          "proposeduse": "Not used",
+          "tier": "2"
+        }, {
+          "number": "7.4.5",
+          "name": "Perform Electronic Attack",
+          "definition": "This function employs the use of the electromagnetic spectrum to degrade, neutralize, or destroy enemy capability [JCSFL 6.3.20].",
+          "proposeduse": "Use 7.4.2.  Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "7.4.6",
+          "name": "Refine Aim Point Location",
+          "definition": "This function continuously assesses various prediction methods to narrow the target interception field given an aim point location [JCSFL 4.6.34].",
+          "proposeduse": "Use for CIWS.  Not used in legacy assessment.",
+          "tier": "2"
+        }]
+    }, {
+      "number": "7.5",
+      "name": "Control Missile",
+      "definition": "This function provides communications with weapons in flight in order to update its trajectory and includes weapon acquisition of the target to successful intercept of the target and warhead detonation [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "7.5.1",
+          "name": "Acquire Target with Weapon",
+          "definition": "This function specifies the action of the weapon sensing and homing to intercept a target using active, semi-active or passive homing seekers [*NEW*].",
+          "proposeduse": "applies to SM's and ESSM, but not AWS/ACS",
+          "tier": "2"
+        }, {
+          "number": "7.5.2",
+          "name": "Communicate with Weapon during Fly-Out",
+          "definition": "This function performs any uplink or downlink communications to or from the weapon necessary to support the weapon in its engagement by enhancing targeting accuracy, redirecting and adjusting weapon(s) impact points, providing positive in-flight control, and supporting critical functions such as \"Abort\" [JCSFL 7.2.15].",
+          "proposeduse": "SM / ESSM midcourse updater transmittion",
+          "tier": "2"
+        }, {
+          "number": "7.5.3",
+          "name": "Detonate Warhead",
+          "definition": "The function causes the warhead to explode by fuze action triggered on a) proximity to, contact with or, penetration into the target, b) a preset time from launch or c) upon command [*NEW*].\r\n\r\nACS: This function is used only for cases where a command to destruct is sent to the missile or if the missile flight is outside of the set parameters.",
+          "proposeduse": "command destruct. Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "7.5.4",
+          "name": "Update Trajectory and Missile Mode",
+          "definition": "This function controls flight parameters include range, altitude, and maneuver capabilities of the weapon, either on commands from external source or by autonomous missile flight changes while in a casualty mode [*NEW*].",
+          "proposeduse": "EOR. Not used in legacy assessment. ",
+          "tier": "2"
+        }]
+    }, {
+      "number": "7.6",
+      "name": "Schedule Engagement",
+      "definition": "This function schedules engagement resources in order to select and prioritize targets, select the appropriate weapon for the engagement and plans and schedules the engagement [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "7.6.1",
+          "name": "Calculate Probability of Engagement Effectiveness",
+          "definition": "This function estimates the effectiveness of an engagement to produce desired physical damage and degradation of target's function [JCSFL 4.6.21].",
+          "proposeduse": "Not used.  Use 6.2.4",
+          "tier": "2"
+        }, {
+          "number": "7.6.2",
+          "name": "Compute Engagement Envelope and Engagement Procedures",
+          "definition": "This function computes the engagement envelop and engagement procedures based on sensor and engagement system coverage, area distribution of systems, performance, tactics, techniques, procedures, and adversary system capabilities [*NEW*].\r\n\r\nACS: This function provides for trial intercept capability and associated data for visualization.\r\n\r\nNote: If only used for trial intercept within ADS after CS Requirements Volume 3 Review, consider moving associated ADS functions to 610/612/Provide Tactical Decision Aids (TDA) Services.",
+          "tier": "2"
+        }, {
+          "number": "7.6.3",
+          "name": "Determine Authorization Status for Engagement Execution",
+          "definition": "This function determines if the authorization status for an engagement have been met prior to committing to the engagement execution.  This functionality includes ensuring non conflicting status and authorization have been met for conditions such as modes of engagement, rule set checklists, and current engagement status.  Upon successful authorization determination, the scheduled engagements are available for execution [JCSFL 6.2.50].",
+          "tier": "2"
+        }, {
+          "number": "7.6.4",
+          "name": "Determine Electronic Attack Countermeasure",
+          "definition": "This function determines appropriate countermeasures to employ for an electronic attack [JCSFL 6.2.47].",
+          "proposeduse": "Not used.  Use 4.3.3",
+          "tier": "2"
+        }, {
+          "number": "7.6.5",
+          "name": "Monitor Weapon and Ammunition Inventories",
+          "definition": "This function monitors remaining weapons and ammunition inventories for combat [JCSFL 3.5.18].",
+          "proposeduse": "Own ship inventory.  Use 5.4.6 for force level inventories",
+          "tier": "2"
+        }, {
+          "number": "7.6.6",
+          "name": "Plan Engagement Mission",
+          "definition": "This function plans the engagement mission using decision aids to coordinate elements such as Rules of Engagement (ROE), commanders intent, external organizations, optimized use of weapons, firing platforms, firing location, Time on Target (TOT), collateral damage, routes, flight times, event sequences, battlespace utilization, and battle damage assessment [JCSFL 5.1.93].",
+          "proposeduse": "Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "7.6.7",
+          "name": "Process Engagement Orders",
+          "definition": "This function supports the receipt of engagement orders and processes the controls necessary to launch, fire, and direct the guidance and flight of force weapons [JCSFL 6.2.19].",
+          "proposeduse": "WCS Order processing incluing break engage",
+          "tier": "2"
+        }, {
+          "number": "7.6.8",
+          "name": "Schedule Engagement Resources",
+          "definition": "This function (operating in tactical, training and test modes) schedules weapon types, number and launch times, and schedules operation of  resources providing in-flight mid-course updates to the weapon and illumination for weapon terminal homing. [*NEW*]",
+          "tier": "2"
+        }, {
+          "number": "7.6.9",
+          "name": "Select and Prioritize Target",
+          "definition": "This function identifies, prioritizes, and selects specific targets from joint target lists, component requests, intelligence recommendations, electronic warfare inputs, and current intelligence [JCSFL 4.7.5].",
+          "proposeduse": "Not used in legacy assessment.",
+          "tier": "2"
+        }, {
+          "number": "7.6.10",
+          "name": "Select Appropriate Lethal or Non-Lethal Attack System",
+          "definition": "This function determines the quantity and specific type of lethal or non-lethal weapon required to achieve a specific level of damage to a given target based on target vulnerability weapon effect, munitions accuracy, damage criteria, probability of kill, and weapon's reliability. Also known as weaponeering [JCSFL 6.2.25].",
+          "proposeduse": "Not used in legacy assessment.",
+          "tier": "2"
+        }]
+    }]
+}, {
+  "number": "8",
+  "name": "Communicate with External Nodes",
+  "definition": "This function provides the control point for managing various communications devices within the combat system and for accessing communication related services provided by external communications nodes outside of the combat system but within a ship.  This functions receives tasks and settings to establish communications networks.  It also formats incoming and outgoing data to/from the combat system and external nodes.\r\n\r\nThis function provides the user interface to the Warfare Area Commander as the primary \"user of the system.\"  At this level, combat system operators are considered to be part of the system.  Each top level function will organize data for display that will allocated to consoles, but they will not have defined inputs and outputs since data is handled internally.\r\n\r\nThis function manages TDL protocols such as R2, terminal initialization, etc.  Determination of reportability (e.g. auto-reports) is handled by the Maintain SA function.",
+  "tier": "0",
+  "items": [{
+      "number": "8.1",
+      "name": "Manage Communications",
+      "definition": "This function provides the communication infrastructure to external nodes by establishing the networks, communicating the information, and providing crypto services [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "8.1.1",
+          "name": "Align Tracks Geodetically",
+          "definition": "This function aligns tracks geodetically by removing own-unit translational and rotational biases and errors from local track data and translates data to a standard reference frame for transmission [JCSFL 2.1.14].",
+          "proposeduse": "SGS and pads issues",
+          "tier": "2"
+        }, {
+          "number": "8.1.2",
+          "name": "Communicate Data Link Information",
+          "definition": "This function communicates (i.e. transmit, receive, broadcast as appropriate) data link information in accordance with applicable data link standards and protocols [JCSFL 7.3.24].",
+          "proposeduse": "Transmit and receive link data  excluing force orders",
+          "tier": "2"
+        }, {
+          "number": "8.1.3",
+          "name": "Communicate Force Information",
+          "definition": "This function supports dissemination of force information including, but not limited to: force orders, rules of engagement, engagement, status, target lists, and intelligence [JCSFL 7.2.11].",
+          "proposeduse": "Transmit and receive link force orde",
+          "tier": "2"
+        }, {
+          "number": "8.1.4",
+          "name": "Establish Communication Networks",
+          "definition": "This function provides the communications links between collection systems, processors, and users. These include the physical communications channels as well as networks, protocols, software, databases, and servers for the staging of products for dissemination [JCSFL 7.1.1].",
+          "proposeduse": "Part of 1.3.3?",
+          "tier": "2"
+        }, {
+          "number": "8.1.5",
+          "name": "Provide Cryptographic Services",
+          "definition": "This function employs cryptographic protection based on given information encryption techniques that can be applied to information in order to support information assurance and various levels of information privacy [JCSFL 8.2.15].",
+          "proposeduse": "?",
+          "tier": "2"
+        }, {
+          "number": "8.1.6",
+          "name": "Transmit Measurement Data",
+          "definition": "This function transmits measurement data within a combat system and across the battleforce [JCSFL 7.2.29].",
+          "proposeduse": "USG-2B issues",
+          "tier": "2"
+        }]
+    }, {
+      "number": "8.2",
+      "name": "Monitor ID and Tracking Communications",
+      "definition": "This function provides Identification Friend for Foe (IFF) and navigation signals [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "8.2.1",
+          "name": "Detect Identification Friend or Foe (IFF) Response",
+          "definition": "This function detects and registers Identification Friend or Foe (IFF) interrogation responses provided by vehicular tracks [JCSFL 1.3.17].",
+          "proposeduse": " IFF response",
+          "tier": "2"
+        }, {
+          "number": "8.2.2",
+          "name": "Interrogate Track for Identification Friend or Foe (IFF)",
+          "definition": "This function performs the interrogation of a track for an Identification Friend or Foe (IFF) response [JCSFL 1.2.7].",
+          "proposeduse": "IFF interrogation",
+          "tier": "2"
+        }, {
+          "number": "8.2.3",
+          "name": "Transmit Tactical Air Navigation (TACAN) Signals",
+          "definition": "This function transmits Ultra High Frequency (UHF) tactical air navigation (TACAN) signals for navigation in air to ground and air to air modes.  TACAN provides signals to determine bearing, range and closure (to/from) the transmitting station [JCSFL 1.5.15].",
+          "proposeduse": "Not integrated with AEGIS.  Not used in legacy assessment.",
+          "tier": "2"
+        }]
+    }, {
+      "number": "8.3",
+      "name": "Transmit/Receive Communications",
+      "definition": "This function transmits and receives information over the communication technologies supported by the Combat System [*NEW*].",
+      "tier": "1",
+      "items": [{
+          "number": "8.3.1",
+          "name": "Communicate Information on the Non-Classified Internet Protocol Router Network (NIPRnet)",
+          "definition": "This function communicates information on the Non-Classified Internet Protocol Router Network (NIPRnet) using a system of interconnected computer networks to transmit information by packet switching over TCP/IP protocols to exchange unclassified, but sensitive information between internal users and to provide users access to the Internet [JCSFL 7.1.121].",
+          "proposeduse": "Not used",
+          "tier": "2"
+        }, {
+          "number": "8.3.2",
+          "name": "Communicate Information on the Secret Internet Protocol Router Network (SIPRnet)",
+          "definition": "This function communicates information on the Secret Internet Protocol Router Network (SIPRnet) using a system of interconnected computer networks to transmit information (up to and including information classified SECRET) by packet switching over TCP/IP protocols in a completely secure environment [JCSFL 7.1.120].",
+          "proposeduse": "Not used in legacy assessment.",
+          "tier": "2"
+        },{
+          "number": "8.3.3",
+          "name": "Communicate via Acoustic Communications",
+          "definition": "This function provides the capability to communicate via transmission and reception of acoustic energy [JCSFL 7.1.91].",
+          "proposeduse": "Not integrated with AEGIS",
+          "tier": "2"
+        }, {
+          "number": "8.3.4",
+          "name": "Communicate via Radio Frequency (RF) Communications",
+          "definition": "This function permits nodes to communicate via transmission and reception of Radio Frequency (RF) energy [JCSFL 7.1.87].",
+          "proposeduse": "Not integrated with AEGIS",
+          "tier": "2"
+        }, {
+          "number": "8.3.5",
+          "name": "Provide Infrared (IR) Communications",
+          "definition": "This function provides the ability to transmit and receive information using infrared (430 THz – 300 GHz) light [*NEW*].",
+          "proposeduse": "Not integrated with AEGIS",
+          "tier": "2"
+        }, {
+          "number": "8.3.6",
+          "name": "Relay Communications",
+          "definition": "This function relays communications data between two nodes [JCSFL 7.2.34].\r\n\r\nACS: This function relays duplex electromagnetic communications data between two nodes.",
+          "proposeduse": "AUTOCAT.  Not integrated with AEGIS",
+          "tier": "2"
+        }, {
+          "number": "8.3.7",
+          "name": "Transfer Information Over Multiple Channels Simultaneously",
+          "definition": "This function transfers data on Full-Duplex (FDX) or Half-Duplex (HDX) channels simultaneously [JCSFL 7.1.11].\r\n\r\nACS: This function transfers data on Full-Duplex (FDX) or Half-Duplex (HDX) channels simultaneously including providing audible alarms and television services. Used for internal communication, e.g. phone lines, hand held radios, sound powered phones.",
+          "proposeduse": "Not integrated with AEGIS",
+          "tier": "2"
+        }]
+    }]
+}]

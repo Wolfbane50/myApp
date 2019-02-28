@@ -201,6 +201,7 @@
           //alert("Getting data from local store");
 
              this.list = angular.fromJson(c2DataStr);
+             this.loading = false;
        } else {
             this.$http.get('c2snapshot.json', {
               cache: true

@@ -1,0 +1,87 @@
+{
+	// URL to file with sprite images
+	//    Will be subject to browser cross-domain restrictions as this will be requested from the browser.
+	"spriteFile" : "The11Doctors.png",
+	
+	// Define units used all spacing parameters, defaults to pixels (px)
+	"spacingUnits" : "px",	
+	
+	// Height and width of all images
+	"imageWidth" : 114,
+	"imageHeight" : 157,
+
+	// Define margins (empty space between top, left of entire image and rows/columns of sprites
+	"topMargin"  : 0,   
+	"leftMargin" : 0, 
+
+	// Vertical pads:  Define spacing between columns of images
+	//    vertPad :  constant pad between all columns
+	//    vertPadVector:  Used for different padding between columns. 
+	//         First entry should be zero
+	//         Vector length (number of entries in array must be equal to the number of columns
+	//               or exception will be thrown.
+	//    If vertPad and vertPadVector are defined, vertPadVector will be used
+	//    If neither vertPad nor vertPadVector are defined, padding will be assumed to be 0
+	//
+	//    "vertPad" : 10,
+	"vertPadVector" : [
+	   0,
+	   6,
+	   0
+	],
+
+
+	// Horizontal pads:  Define spacing between rows of images
+	//    horizPad :  constant pad between all rowss
+	//    horizPadVector:  Used for different padding between rows. 
+	//         First entry should be zero
+	//         Vector length (number of entries in array must be equal to the number of rows
+	//               or exception will be thrown.
+	//    If horizPad and horizPadVector are defined, horizPadVector will be used
+	//    If neither horizPad nor horizPadVector are defined, padding will be assumed to be 0
+	//
+	//    "horizPad" : 10,
+	"horizPadVector" : [
+	   0,
+	   0,
+	   12,
+	   12,
+	   12,
+	   0,
+	   0
+	],
+	
+	//  Sprite key definitions.  Define names/keys to access sprite images with by row and column
+	"spriteTable" : [
+		    [       // Row 1
+			"1st",        
+			"2nd",	      
+			"3rd",	      
+			"4th",     
+			"5th",
+			"13th"
+		    ] , [   // Row 2
+			"10th",	      
+			"9th",	      
+			"8th",		
+			"7th",	      
+			"6th",
+			"Heroes"
+	
+		   ] , [   // Row 3
+			"11th",	       
+			"12th",	       
+			"War",	       
+			"Unknown",	       	
+			"None",
+			""
+                  ]
+		],
+	
+		// Alias map defines alternate names for various sprites.
+		//     Just point alternate name (key) to name (value) in the sprite table.
+		"aliasMap" : {
+		}
+
+}
+
