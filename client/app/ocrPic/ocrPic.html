@@ -17,7 +17,9 @@
       <img id="myimage" ng-src="{{$ctrl.link}}"
       <br />
       <div>
-        {{$ctrl.resultText}}
+        <a class="btn btn-primary" ng-click="$ctrl.setOcr()">
+      OCR</a>
+          <pre class="code">{{ $ctrl.resultText }}</pre>
       </div>
     </div>
 </div>

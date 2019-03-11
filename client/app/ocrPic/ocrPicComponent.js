@@ -6,7 +6,8 @@
     constructor($http, $scope, $uibModal) {
       this.$http = $http;
       this.$scope = $scope;
-      this.baseUrl = "http://www.usdebtclock.org/sources/";
+//      this.baseUrl = "http://www.usdebtclock.org/sources/";
+      this.baseUrl = "/elijpgs/";
 
       this.link = "assets/images/doubt.png";
       this.resultText = "No Image yet...";
@@ -155,12 +156,27 @@
       this.setImage = function(fname) {
         this.link = this.baseUrl + fname;
 
-        // OCR
-        var imageloc = angular.element('#myimage');
-        Tesseract.recognize(imageloc).then(function(result) {
-          this.resultText = result.text ? result.text.trim() : '';
-        });
       };
+
+      this.setOcr = function () {
+        // OCR
+        var img = new Image();
+        img.src = document.getElementById('myimage').src;
+        if (! img.src) {
+          console.log("No Image Source!");
+          return;
+        }
+        var blah = this;
+        Tesseract.recognize(img, {
+          lang: 'eng'
+        }).then(function(result) {
+          console.log(result);
+          //this.resultText = result.text;
+            blah.resultText = result.text;
+        });
+
+      };
+
     } // end constructor
     $onInit() {
       console.log("Ran onInit for ocrPic component");
