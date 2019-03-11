@@ -1,0 +1,23 @@
+<subapp-navbar name="C2 Documents" state="c2tree">
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.docAdd()">Add Document</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.showJSONstuff()">Generate JSON</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.commitChanges()">Commit Changes</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.backup()">Backup</subapp-nav>
+  <subapp-nav class="nav navbar-nav" on-action="$ctrl.flushLocal()">Flush Local</subapp-nav>
+</subapp-navbar>
+<div class="view_container">
+  <sidebar>
+    <ul>
+      <li ng-repeat="item in $ctrl.list track by $index">
+        <a ng-click="$ctrl.setImage(item)">{{item}} </a>
+      </li>
+    </ul>
+  </sidebar>
+    <div class="main_container">
+      <img id="myimage" ng-src="{{$ctrl.link}}"
+      <br />
+      <div>
+        {{$ctrl.resultText}}
+      </div>
+    </div>
+</div>
