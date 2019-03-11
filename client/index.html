@@ -62,39 +62,39 @@
     <![endif]-->
     <!-- build:js({client,node_modules}) app/vendor.js -->
       <!-- bower:js -->
-      <script src="bower_components/jquery/dist/jquery.js"></script>
-      <script src="bower_components/angular/angular.js"></script>
-      <script src="bower_components/angular-resource/angular-resource.js"></script>
-      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-      <script src="bower_components/angular-ui-select/dist/select.js"></script>
-      <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-      <script src="bower_components/angular-animate/angular-animate.js"></script>
-      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
-      <script src="bower_components/ngToast/dist/ngToast.js"></script>
-      <script src="bower_components/angular-socket-io/socket.js"></script>
-      <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-      <script src="bower_components/angular-validation-match/dist/angular-validation-match.min.js"></script>
-      <script src="bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js"></script>
-      <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
-      <script src="bower_components/file-saver/FileSaver.js"></script>
-      <script src="bower_components/json-export-excel/src/json-export-excel.js"></script>
-      <script src="bower_components/angular-css/angular-css.js"></script>
-      <script src="bower_components/angular-touchspin/dist/angular-touchspin.js"></script>
-      <script src="bower_components/videogular/videogular.js"></script>
-      <script src="bower_components/videogular-controls/vg-controls.js"></script>
-      <script src="bower_components/videogular-buffering/vg-buffering.js"></script>
-      <script src="bower_components/videogular-overlay-play/vg-overlay-play.js"></script>
-      <script src="bower_components/videogular-poster/vg-poster.js"></script>
-      <script src="bower_components/three.js/build/three.js"></script>
-      <script src="bower_components/rsvp/rsvp.js"></script>
-      <script src="bower_components/underscore/underscore.js"></script>
-      <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
-      <script src="bower_components/backbone/backbone.js"></script>
-      <script src="bower_components/jquery-highlight/jquery.highlight.js"></script>
-      <script src="bower_components/epub.js/build/epub.js"></script>
-      <script src="bower_components/epub.js/build/zip.min.js"></script>
-      <script src="bower_components/wicked-good-xpath/dist/wgxpath.install.js"></script>
+      <script src='bower_components/jquery/dist/jquery.js'></script>
+      <script src='bower_components/angular/angular.js'></script>
+      <script src='bower_components/angular-resource/angular-resource.js'></script>
+      <script src='bower_components/angular-cookies/angular-cookies.js'></script>
+      <script src='bower_components/angular-sanitize/angular-sanitize.js'></script>
+      <script src='bower_components/angular-ui-select/dist/select.js'></script>
+      <script src='bower_components/angular-bootstrap/ui-bootstrap-tpls.js'></script>
+      <script src='bower_components/angular-animate/angular-animate.js'></script>
+      <script src='bower_components/lodash/dist/lodash.compat.js'></script>
+      <script src='bower_components/ngToast/dist/ngToast.js'></script>
+      <script src='bower_components/angular-socket-io/socket.js'></script>
+      <script src='bower_components/angular-ui-router/release/angular-ui-router.js'></script>
+      <script src='bower_components/angular-validation-match/dist/angular-validation-match.min.js'></script>
+      <script src='bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js'></script>
+      <script src='bower_components/angular-ui-tree/dist/angular-ui-tree.js'></script>
+      <script src='bower_components/file-saver/FileSaver.js'></script>
+      <script src='bower_components/json-export-excel/src/json-export-excel.js'></script>
+      <script src='bower_components/angular-css/angular-css.js'></script>
+      <script src='bower_components/angular-touchspin/dist/angular-touchspin.js'></script>
+      <script src='bower_components/videogular/videogular.js'></script>
+      <script src='bower_components/videogular-controls/vg-controls.js'></script>
+      <script src='bower_components/videogular-buffering/vg-buffering.js'></script>
+      <script src='bower_components/videogular-overlay-play/vg-overlay-play.js'></script>
+      <script src='bower_components/videogular-poster/vg-poster.js'></script>
+      <script src='bower_components/three.js/build/three.js'></script>
+      <script src='bower_components/rsvp/rsvp.js'></script>
+      <script src='bower_components/underscore/underscore.js'></script>
+      <script src='bower_components/webcomponentsjs/webcomponents.js'></script>
+      <script src='bower_components/backbone/backbone.js'></script>
+      <script src='bower_components/jquery-highlight/jquery.highlight.js'></script>
+      <script src='bower_components/epub.js/build/epub.js'></script>
+      <script src='bower_components/epub.js/build/zip.min.js'></script>
+      <script src='bower_components/wicked-good-xpath/dist/wgxpath.install.js'></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -167,6 +167,8 @@
       <script src="app/myMusic/myMusic.js"></script>
       <script src="app/noncompliance/noncompliance.js"></script>
       <script src="app/noncompliance/noncomplianceComponent.js"></script>
+      <script src="app/ocrPic/ocrPic.js"></script>
+      <script src="app/ocrPic/ocrPicComponent.js"></script>
       <script src="app/spriteGridExample/spriteGridExample.component.js"></script>
       <script src="app/spriteGridExample/spriteGridExample.js"></script>
       <script src="app/spsdb/spsdb.component.js"></script>
@@ -205,5 +207,6 @@
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->
+<script src='https://cdn.jsdelivr.net/gh/naptha/tesseract.js@v1.0.14/dist/tesseract.min.js'></script>    
   </body>
 </html>
