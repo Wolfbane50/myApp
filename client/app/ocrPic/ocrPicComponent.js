@@ -12,6 +12,8 @@
       this.link = "assets/images/doubt.png";
       this.resultText = "No Image yet...";
 
+      this.allText = "";
+
       this.list = [
         "US-Population-115.jpg",
         "US-Taxpayers-115.jpg",
@@ -175,6 +177,10 @@
             blah.resultText = result.text;
         });
 
+      };
+
+      this.appendCurrent = function() {
+        this.allText = this.allText + this.resultText;
       };
 
     } // end constructor

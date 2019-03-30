@@ -21,5 +21,9 @@
       OCR</a>
           <pre class="code">{{ $ctrl.resultText }}</pre>
       </div>
-    </div>
+      <textarea rows="10" cols="100" ng-model="$ctrl.resultText"></textarea>
+      <a class="btn btn-primary" ng-click="$ctrl.appendCurrent()">
+    appendCurrent</a>
+    <pre class="code">{{ $ctrl.allText }}</pre>
+
 </div>
