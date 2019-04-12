@@ -20,7 +20,11 @@ var searchDirectories = [
   "Z:/DLGR_NAVSEA_Projects/FFG/FF Archive/FF Work In Progress/Interfaces/External Interfaces",
   "Z:/DLGR_NAVSEA_Projects/FFG/FF Archive/FF Work In Progress/Interfaces/Other Related Program Specs",
   "Z:/DLGR_NAVSEA_Projects/FFG/FF Archive/FF Work In Progress/Interfaces/Other Related Program Specs/IFF",
-  "C:/Users/daniel.heaney/Documents/AMOD/IDS"
+  "Z:/DLGR_NAVSEA_Projects/FFG/SE CPT/PEO IWS 6 - Navigation/Latency/IDS's",
+  "C:/Users/daniel.heaney/Documents/AMOD/IDS",
+  "Z:/DLGR_NAVSEA_Projects/FFG/SE CPT/Angie's Wish List Items",
+  "Z:/DLGR_NAVSEA_Projects/FFG/Architecture/Interfaces",
+  "Z:/DLGR_NAVSEA_Projects/Virtualization Efforts/VPS/Weapon Specs"
 ];
 
 var results = [];

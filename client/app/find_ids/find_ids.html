@@ -1,5 +1,26 @@
 <div class="fixed-top">
 
+  <script type="text/ng-template" id="editIdsModal.html">
+    <div class="modal-header">
+      <h3 class="modal-title">Edit IDS Entry</h3>
+    </div>
+    <div class="modal-body">
+       Name: <input type="text" ng-model="$ctrl.editRec.name">
+       IDS Name: <input type="text" ng-model="$ctrl.editRec.idsName">
+       Number: <input type="text" ng-model="$ctrl.editRec.number">
+      Classification: <input type="text" ng-model="$ctrl.editRec.classification">
+      Link: <input type="text" ng-model="$ctrl.editRec.link">
+
+
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+      <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+  </script>
+
+
   <div class="row light_gray">
 
 
@@ -12,7 +33,7 @@
 
   </div>
   <ul>
-    <li ng-hide="$ctrl.results.length">No Results!</li>
+    <li ng-hide="$ctrl.results.length">{{$ctrl.message}}</li>
     <li ng-repeat="doc in $ctrl.results">
       <a office ng-href="{{ 'file:' + doc.dir + '/' + doc.doc }}" target="_blank">{{doc.dir}}/{{doc.doc}}</a>
     </li>
@@ -54,6 +75,29 @@
           <td>
             <a class="btn btn-primary" ng-click="$ctrl.searchTerm(ids)">
                 Search</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </uib-accordion>
+</uib-tab>
+<uib-tab index="2" heading="New FFG(X)">
+  <uib-accordion>
+    <div uib-accordion-group ng-repeat="(key, value) in $ctrl.ffg_if_recs track by key">
+      <uib-accordion-heading>
+        {{key}}
+      </uib-accordion-heading>
+      <table>
+        <tr><th>Interface</th><th>IDS Name</th><th>IDS Number</th><th>Classification</th><th>Link</th></tr>
+        <tr ng-repeat="rec in value track by $index">
+          <td>{{rec.name}}</td>
+          <td>{{rec.idsName}}</td>
+          <td>{{rec.number}}</td>
+          <td>{{rec.Classification}}</td>
+          <td>{{rec.link}}</td>
+          <td>
+            <a class="btn btn-primary" ng-click="$ctrl.editRecord(key, $index)">
+                Edit</a>
           </td>
         </tr>
       </table>
